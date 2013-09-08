@@ -3,6 +3,32 @@ require 'mongo'
 require 'net/ssh/gateway'
 require 'yaml'
 require 'pandoc-ruby'
+require 'rake/clean'
+  
+desc 'Generate documentation '
+task 'docs' do |task|
+  require 'pandoc-ruby'
+  ['guides', 'pages', 'posts'].each {
+    |subdir|
+    mdFiles = Dir.glob("#{subdir}/*.md")
+    mdFiles.each{
+      |f|
+        out = File.join(File.dirname(__FILE__), 'docs', subdir, "#{File.basename(f, '.md')}.html")
+        FileUtils.makedirs(File.dirname(out))
+        content = IO.read(f)
+        PandocRuby.convert(
+          content, 
+          :smart, 
+          :standalone,
+          :toc,
+          {:output=>out},
+        )
+    }
+    puts "Generated html docs under docs/#{subdir}"
+  }
+end
+CLEAN.include('docs')
+
 
 def on_remote(&block)
   gateway = Net::SSH::Gateway.new('lps2.lipsiasoft.com', 'root')
