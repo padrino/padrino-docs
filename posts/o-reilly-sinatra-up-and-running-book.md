@@ -2,8 +2,8 @@
 date: 2011-06-17
 author: Arthur
 email: mr.arthur.chiu@gmail.com
-categories: Press
-tags: sinatra, book, oreilly
+categories: press
+tags: sinatra book oreilly
 title: O'Reilly Sinatra - Up and Running Book!
 ---
 
@@ -16,3 +16,4 @@ With our growing community, its great that we have a book on the shelf to guide 
 > Sinatra gives developers a small but powerful and scalable framework for building web applications with Ruby. This introduction gets readers started, helping them to build, install, and polish a first application. It also explores how Sinatra fits in the web application ecosystem, especially in comparison to its far larger cousin, Ruby on Rails.
 
 Definitely looking forward to getting this book. Show your support and thanks to both [Alan](https://twitter.com/Anachronistic) and [Konstantin](https://twitter.com/konstantinhaase) for releasing this awesome title!
+

@@ -2,17 +2,15 @@
 date: 2011-06-08
 author: Arthur
 email: mr.arthur.chiu@gmail.com
-categories: Ruby, Update
-tags: padrino, sinatra, ruby
+categories: ruby Update
+tags: padrino sinatra ruby
 title: Padrino 0.10.0 - Routing Upgrades, Rbx and JRuby Support, and Minor Breaking
-  Changes
 ---
 
-Roughly a month has went by since our last release and there have been several developments since. Today, we are release our first minor point release in a while because we have introduced a breaking change to the way Padrino loads our rendering module.
+Roughly a month has went by since our last release and there have been several developments since then. Today, we are release our first minor point release in a while because we have introduced a breaking change to the way Padrino loads our rendering module.
 
-This 0.10.0 release brings a couple new features such as enhanced route filter support, significantly faster routing engine, full compatibility with Rubinius and JRuby, bug fixes and several other improvements. The next releases coming in the pipline are 0.10.1 (for Sinatra 1.3), 0.10.2 (for AS 3.1) and then a release candidate for our 1.0 release barring any major complications. Details for this release are below.
+This 0.10.0 release brings a couple new features such as enhanced route filter support, significantly faster routing engine, full compatibility with Rubinius and JRuby, bug fixes and several other improvements. The next releases coming in the pipeline are 0.10.1 (for Sinatra 1.3), 0.10.2 (for AS 3.1) and then a release candidate for our 1.0 release barring any major complications. Details for this release are below.
 
-<break>
 
 ## Rendering Module Changes
 
@@ -31,9 +29,11 @@ For an existing application, all you need to do is add an explicit include to `P
 
 on every application within a project. For those that are curious, the `Padrino::Rendering` module is the functionality that enhances “render” to auto-locate templates and adds support for I18n amongst a variety of other conveniences that makes template rendering much more powerful and convenient. If you are using `render "index"` in your code then you are using this module. Commit [here](https://github.com/padrino/padrino-framework/commit/981f481eee02d16ed206eedf801f831627a2ec37).
 
+
 ## Rubinius and JRuby Compatibility
 
-This release also marks full support for [Rubinius](http://rubini.us) and [JRuby](http://www.jruby.org), two of the upcoming stable ruby implementations gaining attention. As of [this tweet](http://twitter.com/#!/DAddYE/status/77857253406932992), we are now 100% compatible with Rubinius and have tested full support for JRuby. Uchio Kondo, the offical Japanese documentation maintainer for Padrino has also created an excellent guide for [Running Padrino on JRuby](http://www.padrinorb.com/guides/running-padrino-on-jruby) which gets you started. Commits [here](https://github.com/padrino/padrino-framework/commit/ecf3968f216cbfb97008b487e34742c5b6f2f4ab), [here](https://github.com/padrino/padrino-framework/commit/4838791fe7a685179630ad4175a099a800f8626c), and [here](https://github.com/padrino/padrino-framework/commit/f991ea5376c71ee00f8bdf532c126c162c15dced).
+This release also marks full support for [Rubinius](http://rubini.us) and [JRuby](http://www.jruby.org), two of the upcoming stable ruby implementations gaining attention. As of [this tweet](http://twitter.com/#!/DAddYE/status/77857253406932992), we are now 100% compatible with Rubinius and have tested full support for JRuby. Uchio Kondo, the official Japanese documentation maintainer for Padrino has also created an excellent guide for [Running Padrino on JRuby](http://www.padrinorb.com/guides/running-padrino-on-jruby) which gets you started. Commits [here](https://github.com/padrino/padrino-framework/commit/ecf3968f216cbfb97008b487e34742c5b6f2f4ab), [here](https://github.com/padrino/padrino-framework/commit/4838791fe7a685179630ad4175a099a800f8626c), and [here](https://github.com/padrino/padrino-framework/commit/f991ea5376c71ee00f8bdf532c126c162c15dced).
+
 
 ## Routing Speed Improvements
 
@@ -63,6 +63,7 @@ Josh has enabled serious performance gains in http\_router which has once again 
      rails => 122.37 rps
 
 Commits [here](https://github.com/padrino/padrino-framework/commit/459c57e16ff8a9d9c27b23c311c3e6bf3e1432aa) to upgrade http\_router and take advantage of the optimizations. Thanks again to joshbuddy (Joshua Hull) of our core team for hacking on these upgrades!
+
 
 ## Route Filters
 
@@ -105,9 +106,10 @@ Now you can have a lot more options related to filters and they work much more i
 
 This gives developers a lot more flexibility when running filters and enables much more selective execution in a convenient way. Great to have this feature available as part of our routing enhancements. Commits [here](https://github.com/padrino/padrino-framework/commit/459c57e16ff8a9d9c27b23c311c3e6bf3e1432aa) and [here](https://github.com/padrino/padrino-framework/commit/434c4beee4f69fa478b078f704096a88c70290a1).
 
+
 ## Route Ordered Priority
 
-This release has also added support for respecting route order in controllers and also allows the developer to specify certain routes as less or more “important” then others in the route recognition order. Consider two controllers, the first with a “catch-all” route that matches any URL and the second below in another controller that is very specific. This wouldn’t work by default because the second endpoint would be eclipsed by the catch-all route and as such would not be accessible. To solve this, you can do the following:
+This release has also added support for respecting route order in controllers and also allows the developer to specify certain routes as less or more “important” then others in the route recognition order. Consider two controllers, the first with a “catch-all” route that matches any URL and the second below in another controller that is very specific. This wouldn't work by default because the second endpoint would be eclipsed by the catch-all route and as such would not be accessible. To solve this, you can do the following:
 
     # app/controllers/pages.rb
     MyApp.controller :pages do
@@ -128,13 +130,14 @@ When setting a routes priority to `:low`, this route is then recognized in order
 
 Commit [here](https://github.com/padrino/padrino-framework/commit/670185db74bdb10f707229740e27a606862ddb71).
 
+
 ## Reloader Fixes
 
 The reloader has been much improved in the last release, and we are continuing in that tradition improving the reloader again to be more robust in this release:
 
--   Better support for constant reloading [commit](https://github.com/padrino/padrino-framework/commit/e6ee8d34da21291b5d136de29272b10f78bc883b)
--   Fix Padrino::Reloader reloading also \$LOADED\_FEATURES deps [commit](https://github.com/padrino/padrino-framework/commit/fd1c439d99c574e788bbfcee8b5fb2b81af65928)
--   Remove incomplete constants when require fails (Thanks bernerdschaefer) [commit](https://github.com/padrino/padrino-framework/commit/a2720b773d6c0dc957f906d4ec70e8b253c47644)
+- Better support for constant reloading [commit](https://github.com/padrino/padrino-framework/commit/e6ee8d34da21291b5d136de29272b10f78bc883b)
+- Fix Padrino::Reloader reloading also \$LOADED\_FEATURES deps [commit](https://github.com/padrino/padrino-framework/commit/fd1c439d99c574e788bbfcee8b5fb2b81af65928)
+- Remove incomplete constants when require fails (Thanks bernerdschaefer) [commit](https://github.com/padrino/padrino-framework/commit/a2720b773d6c0dc957f906d4ec70e8b253c47644)
 
 There is also a new way to add files to the reloader manually using the `prerequisites` method:
 
@@ -143,17 +146,19 @@ There is also a new way to add files to the reloader manually using the `prerequ
 
 This will autoload those files and watch them for changes. Commit [here](https://github.com/padrino/padrino-framework/commit/f41d374cdb68d62f812e4f345f37da0ec032053b).
 
+
 ## Other changes and fixes
 
--   Adds support for the Ripple ORM (Thanks pepe) [commit](https://github.com/padrino/padrino-framework/commit/916f9502cfe0b2644fe7dac7516b2b36caf004d4)
--   Hungarian translations added (Thanks Kormány Zsolt) [commit](https://github.com/padrino/padrino-framework/commit/e59c2e9899ec2aa55b59c4fa37d4eb20d4a3604d)
--   Controller now supports conditions at multiple levels (Thanks [bernerdschaefer](https://github.com/bernerdschaefer)) [commit](https://github.com/padrino/padrino-framework/commit/6e30adf7788071bb1945f91aca034a9e5b3dc950)
--   Gemspecs and config.ru are now executable (Thanks botanicus): [[commit](https://github.com/padrino/padrino-framework/commit/ceb3d879db8819a030119f5b194056652d89b86a), [commit](https://github.com/padrino/padrino-framework/commit/07afbd745a8f58740b713b384fc859eed934f434)]
--   Add support for `padrino s` for starting the padrino server [commit](https://github.com/padrino/padrino-framework/commit/29d08e8550abffab586344e7557a4393fe4187ec)
--   Fix field generation for DataMapper [commit](https://github.com/padrino/padrino-framework/commit/b1c949a47266a5482cf1f06a214f4b26d32c28aa)
--   Fixes issue with DM length for strings [commit](https://github.com/padrino/padrino-framework/commit/1b79dca7ca51221c79020eff0942dc2c5a3d2077)
--   Fixes double loading for boot.rb in rake tasks [commit](https://github.com/padrino/padrino-framework/commit/0ff251405458500820c3a3e85720a88ea140265e)
--   Cleanup padrino-core dependencies in support\_lite [commit](https://github.com/padrino/padrino-framework/commit/dda2b77ca37b34cb7c1f5cbcc80d13d03fb81b3f)
--   Bundler is now auto-loaded in our binaries [commit](https://github.com/padrino/padrino-framework/commit/a8ef567a6d74d8df0c0e2da3fa5dccee58830e31)
--   Adds access to “current\_controller” as part of the public API [commit](https://github.com/padrino/padrino-framework/commit/8f678af970c4d1fb1520da12786a968e02680e97)
--   Changes DM instructions to recommend `rake dm:auto:upgrade` [commit](https://github.com/padrino/padrino-framework/commit/67606df1d84c9fcb191debbf113f1931a716d9db)
+- Adds support for the Ripple ORM (Thanks pepe) [commit](https://github.com/padrino/padrino-framework/commit/916f9502cfe0b2644fe7dac7516b2b36caf004d4)
+- Hungarian translations added (Thanks Kormány Zsolt) [commit](https://github.com/padrino/padrino-framework/commit/e59c2e9899ec2aa55b59c4fa37d4eb20d4a3604d)
+- Controller now supports conditions at multiple levels (Thanks [bernerdschaefer](https://github.com/bernerdschaefer)) [commit](https://github.com/padrino/padrino-framework/commit/6e30adf7788071bb1945f91aca034a9e5b3dc950)
+- Gemspecs and config.ru are now executable (Thanks botanicus): [[commit](https://github.com/padrino/padrino-framework/commit/ceb3d879db8819a030119f5b194056652d89b86a), [commit](https://github.com/padrino/padrino-framework/commit/07afbd745a8f58740b713b384fc859eed934f434)]
+- Add support for `padrino s` for starting the padrino server [commit](https://github.com/padrino/padrino-framework/commit/29d08e8550abffab586344e7557a4393fe4187ec)
+- Fix field generation for DataMapper [commit](https://github.com/padrino/padrino-framework/commit/b1c949a47266a5482cf1f06a214f4b26d32c28aa)
+- Fixes issue with DM length for strings [commit](https://github.com/padrino/padrino-framework/commit/1b79dca7ca51221c79020eff0942dc2c5a3d2077)
+- Fixes double loading for boot.rb in rake tasks [commit](https://github.com/padrino/padrino-framework/commit/0ff251405458500820c3a3e85720a88ea140265e)
+- Cleanup padrino-core dependencies in support\_lite [commit](https://github.com/padrino/padrino-framework/commit/dda2b77ca37b34cb7c1f5cbcc80d13d03fb81b3f)
+- Bundler is now auto-loaded in our binaries [commit](https://github.com/padrino/padrino-framework/commit/a8ef567a6d74d8df0c0e2da3fa5dccee58830e31)
+- Adds access to “current\_controller” as part of the public API [commit](https://github.com/padrino/padrino-framework/commit/8f678af970c4d1fb1520da12786a968e02680e97)
+- Changes DM instructions to recommend `rake dm:auto:upgrade` [commit](https://github.com/padrino/padrino-framework/commit/67606df1d84c9fcb191debbf113f1931a716d9db)
+

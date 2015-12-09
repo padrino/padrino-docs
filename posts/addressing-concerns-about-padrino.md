@@ -3,7 +3,7 @@ date: 2010-04-04
 author: Nathan
 email: nesquena@gmail.com
 categories: Ruby
-tags: padrino, concerns, questions
+tags: padrino concerns questions
 title: Addressing Concerns about Padrino
 ---
 
@@ -13,7 +13,6 @@ The [chatter on twitter](http://search.twitter.com/search?q=padrino+framework) a
 
 At the same time, there have been a couple questions that have popped up along with some valid criticisms and/or confusion as to what the Padrino framework is all about. I would like to take this blog post as an opportunity to address many of these concerns as well as talk a little bit about the future of Padrino.
 
-<break>
 
 **Why another web framework? Aren’t there enough out there already?**
 
@@ -48,3 +47,4 @@ Another common question that I have seen emerge is an explanation on how Padrino
 In addition, there are admittedly lots of libraries that provide small subsets of the functionality afforded by Padrino. Many of these libraries are great and there is nothing about Padrino that prevents them from being used! In fact, any library that you can use in Sinatra can be used the exact same way with Padrino. Padrino simply gives you a very strong starting point for building powerful Sinatra applications.
 
 For more information on Padrino, be sure to read our page devoted to [why to use our framework](http://www.padrinorb.com/pages/why) which contains additional explanations and comparisons.
+
