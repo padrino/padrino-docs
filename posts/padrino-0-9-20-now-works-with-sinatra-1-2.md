@@ -2,8 +2,8 @@
 date: 2011-01-18
 author: Nathan
 email: nesquena@gmail.com
-categories: Update
-tags: padrino, sinatra, ruby
+categories: update
+tags: padrino sinatra ruby
 title: Padrino 0.9.20 - now works with Sinatra 1.2
 ---
 
@@ -11,9 +11,9 @@ Today, we have released a new version of Padrino 0.9.20 which is fully compatibl
 
 The major things that have been modified in this release are the easier management of middleware, fixing datamapper issues, adds erubis support, fixes to project generation, slim support, and namespaced application support in mounter. A more detailed list of changes is included below.
 
-<break>
 
 There are no breaking changes from the previous version. Other than Sinatra 1.1.X and 1.2 support, the following are the major changes in 0.9.20:
+
 
 ## Middleware Management
 
@@ -27,6 +27,7 @@ You can also clear all middleware with:
 
 See [this commit](https://github.com/padrino/padrino-framework/commit/0a9d11a01c51b5c351bb98b310cff55e4b659c1f) for more information about this.
 
+
 ## New Rendering Components
 
 Padrino now supports slim and erubis rendering engines out of the box. To use slim or erubis, just use the generators:
@@ -35,9 +36,10 @@ Padrino now supports slim and erubis rendering engines out of the box. To use sl
 
 This will generate the project to use those templates by default and properly include them in the Gemfile!
 
+
 ## Namespaced Mounter Support
 
-Padrino’s project mounter now supports namespaced applications properly as follows:
+Padrino's project mounter now supports namespaced applications properly as follows:
 
     module ::SomeNamespace
       class AnApp < Padrino::Application; end
@@ -49,8 +51,10 @@ See [this commit](https://github.com/padrino/padrino-framework/commit/b7f5bb94d7
 
 There were also a lot of other bugfixes in this release as we try to become more and more stable towards a 1.0 release.
 
+
 ## Next Step
 
 We are already working towards a 0.9.21 release and will likely include more bugfixes, more components, etc. If you run into a problem please do let us know on [Github Issues](https://github.com/padrino/padrino-framework/issues) or better yet with a [Pull Request](https://github.com/padrino/padrino-framework/pulls) .
 
 You can also check out the [full changelog](http://www.padrinorb.com/changes) as well.
+

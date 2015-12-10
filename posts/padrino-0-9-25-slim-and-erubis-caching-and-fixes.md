@@ -2,8 +2,8 @@
 date: 2011-04-04
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
-categories: Update
-tags: ruby, updates
+categories: update
+tags: ruby updates
 title: Padrino 0.9.25 - Slim and Erubis, Caching, and Fixes
 ---
 
@@ -13,7 +13,6 @@ The biggest changes with this release are the introductions of **Padrino Cache**
 
 For more details, check out the rest of this post below for the feature highlights.
 
-<break>
 
 ## Padrino Cache
 
@@ -27,7 +26,7 @@ For more information, check out the [README](https://github.com/padrino/padrino-
 
 Thanks to core member Joshua Hull for the majority of the caching implementation and Joshua Morris (Onethirtyfive), Arthur Chiu, and DAddYE for the Caching documentation.
 
-Here’s an example of the caching gem usage:
+Here's an example of the caching gem usage:
 
     # app/app.rb
     class Sample < Padrino::Application
@@ -63,11 +62,12 @@ Here’s an example of the caching gem usage:
 
 You can start using this now in your Padrino and Sinatra applications. Let us know what you think.
 
+
 ## UJS Adapters
 
 Padrino has been waiting on unobtrusive javascript handling for a while now as well. This enables support for ‘remote’ links and forms as well as setting link ‘methods’ and having the unobtrusive javascript adapters make that ‘just work’.
 
-For more information on these unobtrusive javascript handlers, check out the [Helpers Guide](http://www.padrinorb.com/guides/application-helpers#unobtrusive-javascript-helpers) which will give you a good overview of what’s now available once the ujs adapter is included in your project.
+For more information on these unobtrusive javascript handlers, check out the [Helpers Guide](http://www.padrinorb.com/guides/application-helpers#unobtrusive-javascript-helpers) which will give you a good overview of what's now available once the UJS adapter is included in your project.
 
 Not all of the adapters are finished for each javascript framework yet, but we intend on getting them integrated soon. Of course, we could always **use your help!** jquery and prototype UJS adapters are complete but the others are only in partial states of completion.
 
@@ -102,6 +102,7 @@ which will generate the following unobtrusive markup:
 
 This feature should make javascript and ajax handling in Sinatra / Padrino easier then ever before.
 
+
 ## Routing Enhancements
 
 In this release, **Joshua Hull** has also completely rewrote [http\_router](https://github.com/joshbuddy/http_router), the router library that powers **Padrino** under the hood.
@@ -110,7 +111,7 @@ This rewrite does **not** break compatibility with previous padrino releases and
 
 The changes are mostly abstracted away from usage in Padrino, but the router is now leaner, faster and easier to extend.
 
-Since it was designed to be more flexible, it also supports multiple named parameter captures and other things that weren’t support in the previous release of Padrino.
+Since it was designed to be more flexible, it also supports multiple named parameter captures and other things that weren't support in the previous release of Padrino.
 
 Some examples:
 
@@ -130,6 +131,7 @@ Some examples:
     end
 
 Our new router is still under continued development but should not cause any breaking changes when you upgrade your applications. If you run into any issues please [let us know!](https://github.com/padrino/padrino-framework/issues).
+
 
 ## Erubis and Slim Helper Support
 
@@ -151,6 +153,7 @@ For example:
 
 This has been a tremendous effort getting these engines to work together and to provide full helper support for Slim, Erubis, ERB, and HAML. Thanks specifically to **DAddYE** of our core team for the implementation. Also **RKH** from the Sinatra team for his help.
 
+
 ## Sessions and Flash
 
 `Rack::Flash` is no longer dependent on rack’s default sessions, so you are able to use `Rack::Flash` with other session engines such as memcached, datamapper, mongomapper etc…
@@ -160,6 +163,7 @@ Unfortunately you’ll now need to update your projects to specifically enable s
     class PadrinoWeb < Padrino::Application
       enable :sessions
     end
+
 
 ## Select Tag Enhancements
 
@@ -173,6 +177,7 @@ or pass in a grouped options set:
     select_tag(:name, :grouped_options => grouped_options)
 
 All previous select tag options should work without any breaking compatibility issues.
+
 
 ## Secret key for sessions
 
@@ -190,6 +195,7 @@ Some code:
     $ padrino-dev rake secret
     => Executing Rake secret ...
     7043bc560e73c46f0d5eabedbabd217f9f5277e6935047bb9430296ab7b47a44
+
 
 ## Logger Improvements
 
@@ -214,13 +220,15 @@ An example:
     DEBUG - [08/Apr/2011 22:03:10] "GET Cache (0.0002ms) /"
     DEBUG - [08/Apr/2011 22:03:10] "GET (0.0083ms) 127.0.0.1 - - / HTTP/1.1 - 200 18475"
 
+
 ## Other significant changes
 
--   Padrino logger can now be disabled – [commit](https://github.com/padrino/padrino-framework/commit/99df83fc83f75c4da901dad23bcb7478a0e3159b)
--   Uses official mongomapper release – [commit](https://github.com/padrino/padrino-framework/commit/e777d29fe62260e3a626a892db439e2a5f98460a)
--   Fixes issue with ERB capture support in certain edge cases – [commit](https://github.com/padrino/padrino-framework/commit/ab6f2cb33d659b63702db0ce15bdec8aaa5f59db)
--   Fixes ajax jquery detection [Thanks funny-falcon!] – [commit](https://github.com/padrino/padrino-framework/commit/b1448586f1cbaa81bf6b89bc0e1624a7ad033f31)
--   Added Lib to folders to be reloaded in development – [commit](https://github.com/padrino/padrino-framework/commit/39a08b2878801cf5d8570c6ad2c5313d31a56e7e)
--   Added mounted app name to the log for debugging – [commit](https://github.com/padrino/padrino-framework/commit/a7796bd0b037c6f50d408f908e05a9e9af79bf69)
--   Fixes to Form Builder and object name generation [Thanks funny-falcon!] – [commit](https://github.com/padrino/padrino-framework/commit/99fb4a71bc9cd3c7e4c2327e35d161ba202559e3)
--   stylesheet\_link\_tag and javascript\_include\_tag (allow array input) – [pull](https://github.com/padrino/padrino-framework/pull/465)
+- Padrino logger can now be disabled – [commit](https://github.com/padrino/padrino-framework/commit/99df83fc83f75c4da901dad23bcb7478a0e3159b)
+- Uses official mongomapper release – [commit](https://github.com/padrino/padrino-framework/commit/e777d29fe62260e3a626a892db439e2a5f98460a)
+- Fixes issue with ERB capture support in certain edge cases – [commit](https://github.com/padrino/padrino-framework/commit/ab6f2cb33d659b63702db0ce15bdec8aaa5f59db)
+- Fixes ajax jquery detection [Thanks funny-falcon!] – [commit](https://github.com/padrino/padrino-framework/commit/b1448586f1cbaa81bf6b89bc0e1624a7ad033f31)
+- Added Lib to folders to be reloaded in development – [commit](https://github.com/padrino/padrino-framework/commit/39a08b2878801cf5d8570c6ad2c5313d31a56e7e)
+- Added mounted app name to the log for debugging – [commit](https://github.com/padrino/padrino-framework/commit/a7796bd0b037c6f50d408f908e05a9e9af79bf69)
+- Fixes to Form Builder and object name generation [Thanks funny-falcon!] – [commit](https://github.com/padrino/padrino-framework/commit/99fb4a71bc9cd3c7e4c2327e35d161ba202559e3)
+- stylesheet\_link\_tag and javascript\_include\_tag (allow array input) – [pull](https://github.com/padrino/padrino-framework/pull/465)
+

@@ -2,7 +2,8 @@
 date: 2011-04-09
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
-tags: padrino, ruby, sinatra
+categories: press  ruby
+tags: padrino ruby sinatra
 title: Padrino Slides
 ---
 
@@ -11,6 +12,4 @@ We are waiting the new version of [tilt](https://github.com/rtomayko/tilt/commit
 Instead waiting you can learn (*fast*) some concepts of **Padrino** with our updated presentation.
 
 Please share it with yours friends and help us to improve our community!
-
-<break>
 

@@ -2,8 +2,8 @@
 date: 2011-10-06
 author: Nathan
 email: nesquena@gmail.com
-categories: Update
-tags: padrino, release
+categories: update
+tags: padrino release
 title: Padrino 0.10.4 - Hot Fix Release, YARD Documentation, and more
 ---
 
@@ -11,16 +11,16 @@ Following the recent [release of 0.10.3](http://www.padrinorb.com/blog/padrino-0
 
 We have also subsequently released one more minor fix in 0.10.5.
 
-<break>
 
 ## Two important fixes
 
 Recently, [Etienne Lemay](https://github.com/EtienneLem) brought two important bug reports to our attention after the 0.10.3 release. Both of them were issues affecting newcomers and were addressed in this release:
 
--   Fixes issue with new “sinatra-flash” dependency in generated Gemfile: [commit](https://github.com/padrino/padrino-framework/commit/f4014fca5a6e706e88d110e9321459c208c06582)
--   Fix exception when template rendering is logged in certain cases: [commit](https://github.com/padrino/padrino-framework/commit/fc7fbe92a994f2687fe8bce1dbdf13b3c01fd641)
+- Fixes issue with new "sinatra-flash" dependency in generated Gemfile: [commit](https://github.com/padrino/padrino-framework/commit/f4014fca5a6e706e88d110e9321459c208c06582)
+- Fix exception when template rendering is logged in certain cases: [commit](https://github.com/padrino/padrino-framework/commit/fc7fbe92a994f2687fe8bce1dbdf13b3c01fd641)
 
 Glad these were reported quickly so we could fix them as soon as possible. Regression tests were put in place to ensure these issues cannot happen again.
+
 
 ## Documentation
 
@@ -30,10 +30,12 @@ Additional work has been put in to reach 100% documentation coverage for all the
 
 There is still a lot of documentation work to be done both for the code and for our guides. We would very much appreciate any [help with docs](http://www.padrinorb.com/pages/contribute#want-to-help-with-documentation).
 
+
 ## Miscellaneous
 
--   Ensures that static\_cache\_control is respected when serving static files: [commit](https://github.com/padrino/padrino-framework/commit/da0201aecf76d39fbbd8f056e8e87c55164174e2)
--   Improved logger for cache calls: [commit](https://github.com/padrino/padrino-framework/commit/f5e9fe6c2ffaa6488fafda023b1c42526a211436)
--   Added status code to request logs [Thanks [udzura](https://github.com/udzura)] [commit](https://github.com/padrino/padrino-framework/commit/d7d3e5619b31fba63572dc8a438edea48a4694fc)
+- Ensures that static\_cache\_control is respected when serving static files: [commit](https://github.com/padrino/padrino-framework/commit/da0201aecf76d39fbbd8f056e8e87c55164174e2)
+- Improved logger for cache calls: [commit](https://github.com/padrino/padrino-framework/commit/f5e9fe6c2ffaa6488fafda023b1c42526a211436)
+- Added status code to request logs [Thanks [udzura](https://github.com/udzura)] [commit](https://github.com/padrino/padrino-framework/commit/d7d3e5619b31fba63572dc8a438edea48a4694fc)
 
 That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “\#padrinorb” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.
+

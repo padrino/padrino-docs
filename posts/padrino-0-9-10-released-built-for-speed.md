@@ -2,8 +2,8 @@
 date: 2010-04-20
 author: Nathan
 email: nesquena@gmail.com
-categories: Ruby, Update
-tags: ruby, sinatra, padrino, benches
+categories: ruby update
+tags: ruby sinatra padrino benches
 title: Padrino 0.9.10 Released - Built for speed!
 ---
 
@@ -12,12 +12,11 @@ Our team is pleased to announce the 0.9.10 release of the Padrino Framework!
 We have been working hard on Padrino since our first ‘public’ announcement and we have gotten a lot of amazing feedback and suggestions! This new release contains three major types of changes:
 
 1) Performance Optimizations
- 2) Added Features
- 3) Bug Fixes
+2) Added Features
+3) Bug Fixes
 
 In the full post below, we will take you through a detailed tour of the biggest changes in this release (for a more compact view, see our [changelog](http://www.padrinorb.com/changes)). Also, the full post contains benchmarks comparing Padrino to other popular ruby frameworks!
 
-<break>
 
 ## Performance Optimizations
 
@@ -45,7 +44,7 @@ For our benchmarks, we chose to test three different sample applications. The [f
 
       # Rendering a simulated simple app
       Padrino 0.9.10    => 675.79 rps
-      Sinatra 1.0.0     => 652.0 rps  
+      Sinatra 1.0.0     => 652.0 rps
       Merb 1.1.0        => 642.29 rps
       Rails 3.0.beta3   => 201.86 rps
       Ramaze 2010.04.04 => 130.62 rps
@@ -54,23 +53,25 @@ For our benchmarks, we chose to test three different sample applications. The [f
 
 As you can see Padrino is very competitive in terms of speed in 0.9.10! In every case, Padrino is on par speed-wise with the equivalent Sinatra application. Be sure to check out the code for our benchmarks and let us know how we can improve them!
 
+
 ## New Localized Translations
 
 We added four new languages to the admin, helpers and error message translations:
 
--   Danish [Thanks to [Molte](http://github.com/molte)]
--   French [Thanks to [Mickey](http://github.com/mickey)]
--   Russian [Thanks to [Imm](http://github.com/imm)]
--   Brazilian [Thanks to [Deminew](http://github.com/deminew)]
+- Danish [Thanks to [Molte](http://github.com/molte)]
+- French [Thanks to [Mickey](http://github.com/mickey)]
+- Russian [Thanks to [Imm](http://github.com/imm)]
+- Brazilian [Thanks to [Deminew](http://github.com/deminew)]
 
 If you want to contribute a translation for another language, please follow the [translation guide](/guides/localization) and fork/send us your translations.
+
 
 ## New Persistence Adapters
 
 We are very very glad to announce that **Padrino** can now build the admin interface with these orm adapters:
 
--   Couchdb [Thanks to [Ghostm](http://github.com/ghostm)]
--   Sequel [Thanks to [Aemadrid](http://github.com/aemadrid)]
+- Couchdb [Thanks to [Ghostm](http://github.com/ghostm)]
+- Sequel [Thanks to [Aemadrid](http://github.com/aemadrid)]
 
 This means **Padrino** now fully supports the following persistence engines: MongoMapper, MongoId, CouchDb, ActiveRecord and Sequel.
 
@@ -78,15 +79,16 @@ In the future, we are also planning to integrate: [OHM](http://github.com/sovera
 
 If you want to contribute a component, be sure to checkout the [guide for adding components](http://www.padrinorb.com/guides/adding-new-components) which explains how to add a component to the generator and admin.
 
+
 ## Enhanced Router Capabilities
 
 In this version of **Padrino**, we have introduced the [Padrino\#router](http://github.com/padrino/padrino-framework/blob/master/padrino-core/lib/padrino-core/router.rb)
 
 This class is an extended version of [Rack::URLMap](http://github.com/rack/rack/blob/master/lib/rack/urlmap.rb) which is responsible for:
 
--   Mapping a path to the specified App (like URLMap)
--   Ignoring server names (this solve several issues with virtual hosts and domain aliases)
--   Using hosts instead of server name for match mappings (this help us with our vhost and domain aliases)
+- Mapping a path to the specified App (like URLMap)
+- Ignoring server names (this solve several issues with virtual hosts and domain aliases)
+- Using hosts instead of server name for match mappings (this help us with our vhost and domain aliases)
 
 Padrino is principally designed to support [mountable applications](/pages/why#mountable-applications) and now with `Padrino#router` things are much simpler because you can match for a host pattern:
 
@@ -96,6 +98,7 @@ Padrino is principally designed to support [mountable applications](/pages/why#m
     Padrino.mount("Foo").to("/foo").host("bar.example.org")
 
 In addition to these changes, **Padrino** has also been improved to work out of the box (with no special configuration) when deploying projects on [Passenger](http://www.modrails.com) and even when [deploying to Sub-URIs](http://www.modrails.com/documentation/Users%20guide%20Nginx.html#deploying_rails_to_sub_uri).
+
 
 ## Route Provides and Conditions
 
@@ -126,6 +129,7 @@ Remember that now you also can build your custom conditions (like in Sinatra):
         "Only foo can see this"
       end
 
+
 ## Scoped Filters and Layouts
 
 **Padrino** now scopes both filters and layouts for each controller. This means that layouts and/or route filters defined in a `controller` do not interfere with those defined in the main application or in other controllers.
@@ -147,6 +151,7 @@ Remember that now you also can build your custom conditions (like in Sinatra):
     end
 
 As you can see each controller is now scoped allowing for easy grouping of layouts and filters for all routes within a particular controller.
+
 
 ## Default Values
 
@@ -170,38 +175,42 @@ and in this way you can build urls like:
 
 and the default controller settings will be automatically appended to the route.
 
+
 ## Minor Features
 
 Padrino 0.9.10 also features support for a host of minor improvements:
 
--   Added support for ext-core as javascript engine [Thanks to [Imm](http://github.com/imm)]
--   Mailer now supports explicitly setting the template path to render for a mail method
--   Beautiful colorized logging support
--   Ruby 1.9.2-head compatibility
--   Now sessions (like Sinatra) are disabled as default
--   Updated jquery to v1.4.2
--   Added `padrino rake routes`
+- Added support for ext-core as javascript engine [Thanks to [Imm](http://github.com/imm)]
+- Mailer now supports explicitly setting the template path to render for a mail method
+- Beautiful colorized logging support
+- Ruby 1.9.2-head compatibility
+- Now sessions (like Sinatra) are disabled as default
+- Updated jQuery to v1.4.2
+- Added `padrino rake routes`
+
 
 ## Bug Fixes
 
--   Removed always “index” from our routes name
--   Fixes SASS reload plugin issue on 1.9.X
--   Fixes an issue with generator not casing controller / model names
--   Fixed `padrino g` and `padrino gen` aliases
--   Fixes issue with mounter and locating the app file
--   Removed VERSION files. This prevent problems described here: http://github.com/nex3/haml/issues/issue/24
--   Fixed a bug with layouts that prevent double rendering
--   ActiveSupport 3.0 Compatibility fixes
+- Removed always “index” from our routes name
+- Fixes SASS reload plugin issue on 1.9.X
+- Fixes an issue with generator not casing controller / model names
+- Fixed `padrino g` and `padrino gen` aliases
+- Fixes issue with mounter and locating the app file
+- Removed VERSION files. This prevent problems described here: http://github.com/nex3/haml/issues/issue/24
+- Fixed a bug with layouts that prevent double rendering
+- ActiveSupport 3.0 Compatibility fixes
+
 
 ## Summary
 
 As you can see there are some important fixes and new features but we want to point out a few things:
 
--   Padrino is already quite stable (remember that since version 0.7 our team has been using it in the real world)
--   This project is very actively contributed to and our team is committed to this framework and fix bugs quickly.
+- Padrino is already quite stable (remember that since version 0.7 our team has been using it in the real world)
+- This project is very actively contributed to and our team is committed to this framework and fix bugs quickly.
 
 And what is next for Padrino?
 
 We can anticipate right now that our team will soon be completing **padrino templates and plugins**, the **tiny app generator** and the **padrino-cache** gem.
 
 After we complete these items and fix any bugs that crop up, Padrino can be ready for ONE-DOT-ZERO release!
+

@@ -2,7 +2,7 @@
 date: 2013-02-08
 author: Florian
 email: florian.gilcher@asquera.de
-categories: Update
+categories: update
 tags: security
 title: Upgrade Rack immediately
 ---
@@ -14,3 +14,4 @@ To upgrade, use:
     bundle update rack
 
 And make sure that you installed any of these versions: 1.5.2, 1.4.5, 1.3.10, 1.2.8, 1.1.6.
+
