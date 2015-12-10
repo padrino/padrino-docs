@@ -3,6 +3,7 @@ date: 2015-10-15
 author: Igor Bochkariov
 email: ujifgc@gmail.com
 title: Mounting Grape
+sidebar: 'guides/sidebar'
 ---
 
 Create your new project. It can be a regular one:

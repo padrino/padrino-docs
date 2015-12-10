@@ -7,7 +7,7 @@ tags: padrino, sinatra, ruby
 title: Padrino 0.13.0 - Mustermann Router, Performance Enhancements, Streaming Support, and Much More
 ---
 
-                    Padrino 0.12.4 was shipped on October 19th 2014. Hard to believe that just about a year has flown by since then as we have been working towards our next major release of Padrino. While there have been betas available for some time, we are excited to announce the final release of Padrino 0.13.0! This version has a huge host of improvements and upgrades, both big and small.
+Padrino 0.12.4 was shipped on October 19th 2014. Hard to believe that just about a year has flown by since then as we have been working towards our next major release of Padrino. While there have been betas available for some time, we are excited to announce the final release of Padrino 0.13.0! This version has a huge host of improvements and upgrades, both big and small.
 
 This 0.13.0 release brings several major changes and updates including a completely redesigned router, significant performance enhancements, streaming support, bug fixes and a ton of code cleanup. Full details for this release are below. You should also check out the [0.13.0 upgrade guide](http://www.padrinorb.com/blog/upgrading-padrino-from-0-12-x-to-0-13-0-guide) as well for a detailed look at moving up from 0.12.X.
 
@@ -21,7 +21,7 @@ Project-wide Configuration
 
 With 0.13.0 comes project-wide global configuration options with environment support. This is inspired by the Sinatra configuration system but is project-wide rather than app-specific. Configuration can be done anywhere in your project including `config/apps.rb`:
 
-```ruby
+~~~ruby
 Padrino.config.value1 = 42
 
 Padrino.configure :development do |config|
@@ -35,14 +35,14 @@ end
 Padrino.configure do |config|
   config.value2 = ‘any environment’
 end
-```
+~~~
 
 and then these values can be accessed with:
 
-~~~~ {lang="ruby"}
+~~~ruby
 Padrino.config.value1 # => 42
 Padrino.config.value2 # => 'any environment'
-~~~~
+~~~
 
 Thanks to [@ujifgc](https://github.com/ujifgc) for implementing this. More details can [be found in the PR](https://github.com/padrino/padrino-framework/pull/1909).
 
@@ -51,11 +51,11 @@ Sinatra Upgrades
 
 In this release, we have upgraded Sinatra to the latest 1.4.6 release which allowed us to clean up several previous workarounds. The result is an even cleaner integration with Sinatra. This includes the following Sinatra compatibility improvements:
 
-* FIX [Remove temporary `show_exceptions` code](https://github.com/padrino/padrino-framework/pull/1899) 
-* FIX [#1867](https://github.com/padrino/padrino-framework/issues/1867) Update ShowExceptions to suit latest rack master ([@namusyaka](https://github.com/namusyaka)) 
-* FIX [#1950](https://github.com/padrino/padrino-framework/issues/1950) Padrino now follows Sinatra’s charset policy ([@ujifgc](https://github.com/ujifgc)) 
-* FIX [Sinatra async streaming callbacks](https://github.com/padrino/padrino-framework/issues/1704) 
-* FIX [#1880](https://github.com/padrino/padrino-framework/issues/1880) rendering issue by accepting string content types ([@ujifgc](https://github.com/ujifgc)) 
+* FIX [Remove temporary `show_exceptions` code](https://github.com/padrino/padrino-framework/pull/1899)
+* FIX [#1867](https://github.com/padrino/padrino-framework/issues/1867) Update ShowExceptions to suit latest rack master ([@namusyaka](https://github.com/namusyaka))
+* FIX [#1950](https://github.com/padrino/padrino-framework/issues/1950) Padrino now follows Sinatra’s charset policy ([@ujifgc](https://github.com/ujifgc))
+* FIX [Sinatra async streaming callbacks](https://github.com/padrino/padrino-framework/issues/1704)
+* FIX [#1880](https://github.com/padrino/padrino-framework/issues/1880) rendering issue by accepting string content types ([@ujifgc](https://github.com/ujifgc))
 * FIX [#1942](https://github.com/padrino/padrino-framework/issues/1942) maintain Sinatra params indifference ([@ujifgc](https://github.com/ujifgc))
 
 We are committed to compatibility with our Sinatra core and this release marks a solid step forward in that regard.
@@ -65,11 +65,11 @@ Component Updates
 
 There are several component updates and tweaks in this release including but not limited to:
 
-* NEW [#1133](https://github.com/padrino/padrino-framework/issues/1133) switch default renderer to none ([@ujifgc](https://github.com/ujifgc)) 
-* FIX Update [rack-test to 0.6.3](https://github.com/padrino/padrino-framework/commit/1a3b2644413cdb865c8f93d26e35af135c5d562a) and remove old patch ([@ujifgc](https://github.com/ujifgc)) 
-* NEW [#1908](https://github.com/padrino/padrino-framework/issues/1908) Adds test-unit as a test component ([@namusyaka](https://github.com/namusyaka)) 
-* FIX [#1932](https://github.com/padrino/padrino-framework/issues/1932) Replace ConnectionManagement with ConnectionPoolManagement ([@namusyaka](https://github.com/namusyaka)) 
-* NEW [#1940](https://github.com/padrino/padrino-framework/issues/1940) Add IdentityMap middleware to datamapper ([@namusyaka](https://github.com/namusyaka)) 
+* NEW [#1133](https://github.com/padrino/padrino-framework/issues/1133) switch default renderer to none ([@ujifgc](https://github.com/ujifgc))
+* FIX Update [rack-test to 0.6.3](https://github.com/padrino/padrino-framework/commit/1a3b2644413cdb865c8f93d26e35af135c5d562a) and remove old patch ([@ujifgc](https://github.com/ujifgc))
+* NEW [#1908](https://github.com/padrino/padrino-framework/issues/1908) Adds test-unit as a test component ([@namusyaka](https://github.com/namusyaka))
+* FIX [#1932](https://github.com/padrino/padrino-framework/issues/1932) Replace ConnectionManagement with ConnectionPoolManagement ([@namusyaka](https://github.com/namusyaka))
+* NEW [#1940](https://github.com/padrino/padrino-framework/issues/1940) Add IdentityMap middleware to datamapper ([@namusyaka](https://github.com/namusyaka))
 * FIX [#1895](https://github.com/padrino/padrino-framework/issues/1895) Use compass-blueprint gem for improved compass generator ([@myokoym](https://github.com/myokoym))
 
 Performance Improvements
@@ -77,10 +77,10 @@ Performance Improvements
 
 We are committed to making Padrino as lightweight and comparable to raw Sinatra speed as possible. In that vein, we have made the following improvements:
 
-* NEW [#1857](https://github.com/padrino/padrino-framework/issues/1857) Precompile routes when loading Padrino ([@namusyaka](https://github.com/namusyaka)) 
-* FIX [#1792](https://github.com/padrino/padrino-framework/issues/1792) Faster code using reverse_each to iterate gems ([@glaucocustodio](https://github.com/glaucocustodio)) 
-* FIX [#1793](https://github.com/padrino/padrino-framework/issues/1793) Faster codeusing #sub instead of #gsub ([@glaucocustodio](https://github.com/glaucocustodio)) 
-* FIX [#1959](https://github.com/padrino/padrino-framework/issues/1959) simplify the mounter class ([@dnesteryuk](https://github.com/dnesteryuk)) 
+* NEW [#1857](https://github.com/padrino/padrino-framework/issues/1857) Precompile routes when loading Padrino ([@namusyaka](https://github.com/namusyaka))
+* FIX [#1792](https://github.com/padrino/padrino-framework/issues/1792) Faster code using reverse_each to iterate gems ([@glaucocustodio](https://github.com/glaucocustodio))
+* FIX [#1793](https://github.com/padrino/padrino-framework/issues/1793) Faster codeusing #sub instead of #gsub ([@glaucocustodio](https://github.com/glaucocustodio))
+* FIX [#1959](https://github.com/padrino/padrino-framework/issues/1959) simplify the mounter class ([@dnesteryuk](https://github.com/dnesteryuk))
 * FIX [#1891](https://github.com/padrino/padrino-framework/issues/1891) Refactorings for more reliable dependency loading ([@hcatlin](https://github.com/hcatlin), [@namusyaka](https://github.com/namusyaka))
 
 We’ve also introduced a benchmark test suite to test speed for padrino core and router:
