@@ -1,6 +1,6 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-11
 author: Uchio
 email: udzura@udzura.jp
 title: Standalone Usage in Sinatra
@@ -19,9 +19,11 @@ enhancements and use them in your existing Sinatra application. Fortunately,
 Padrino is committed to allowing you to do exactly that! Each major component
 within Padrino can be used in isolation and applied to an existing Sinatra
 application. This guide will walk you through that process for each component.
-You can also find some examples [here](http://github.com/padrino/single-apps).
+You can also find some examples
+[here](https://github.com/padrino/padrino-integration/tree/master/fixtures/single-apps "link to padrino single-apps").
 
 ---
+
 
 ## Padrino Helpers
 
@@ -31,8 +33,9 @@ more. Most of the basic methods should be very familiar to anyone who has used
 rails view helpers.
 
 You can check out the details of these helpers in the
-[Application Helpers](/guides/application-helpers) guide. To register these
+[Application Helpers](/guides/application-helpers "Application Helpers guide") guide. To register these
 helpers within your Sinatra application:
+
 
 ~~~ ruby
 # app.rb
@@ -44,6 +47,7 @@ class Application < Sinatra::Base
 end
 ~~~
 
+
 ---
 
 ## Padrino Mailer
@@ -54,8 +58,9 @@ well as for file attachments. The Padrino Mailer has many similarities to
 ActionMailer but is much lighter-weight and easier to use.
 
 You can check out the details of the mailer in the
-[Padrino Mailer](/guides/padrino-mailer) guide. To register this mailer within
+[Padrino Mailer](/guides/padrino-mailer "Padrino Mailer guide") guide. To register this mailer within
 your Sinatra application:
+
 
 ~~~ ruby
 # app.rb
@@ -84,6 +89,7 @@ end
 You can check out the details of the routing system in the
 [Routing](/guides/controllers) guide. To register the routing and controller
 functionality within your Sinatra application:
+
 
 ~~~ ruby
 # app.rb
@@ -129,6 +135,7 @@ MyApp.run!(:port => 3000)
 
 ---
 
+
 ## Padrino Rendering
 
 Padrino enhances the Sinatra ‘render’ method to have support for automatic
@@ -147,12 +154,13 @@ class Application < Sinatra::Base
 end
 ~~~
 
+
 ---
 
 ## Padrino Cache
 
-**Note that the padrino-cache** gem does not currently do anything! This is a
-  placeholder for when this gem has been implemented.
+**Note that the padrino-cache** gem does not currently do anything! This is a placeholder for when this gem has been implemented.
+
 
 ~~~ ruby
 # app.rb
@@ -163,6 +171,7 @@ class Application < Sinatra::Base
   register Padrino::Cache
 end
 ~~~
+
 
 This will allow for use of the caching functionality within Sinatra.
 
