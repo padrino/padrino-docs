@@ -1,0 +1,5 @@
+h4.sidebar__header--first Blog
+h5.sidebar__header Latest Posts
+ul.sidebar__items
+  - blog.articles.first(5).each do |article|
+    li.sidebar__item= nav_link_to article.title, article.url, class: 'sidebar__link'
