@@ -376,7 +376,7 @@ guide.
 To support UJS in a given javascript framework, simply create a new file such as
 ‘jquery-ujs’ in your [padrino-static](https://github.com/padrino/padrino-static)
 fork and then follow the UJS
-[adapter template](https://github.com/padrino/padrino-static/blob/master/ujs/jquery-ujs.js)
+[adapter template](https://github.com/padrino/padrino-static/blob/master/ujs/jquery.js)
 used by the existing implementation.
 
 ~~~javascript
@@ -462,7 +462,7 @@ component_option :test, "testing framework", :choices => [:rspec, :shoulda]
 
 Next, let’s define the actual integration of the testing library into the
 generator in
-[padrino-gen/generators/components/tests/shoulda\_test.rb](http://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/tests/shoulda_test.rb):
+[padrino-gen/generators/components/tests/shoulda.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/tests/shoulda.rb):
 
 ~~~ ruby
 # padrino-gen/lib/padrino-gen/generators/components/tests/shoulda_test.rb
