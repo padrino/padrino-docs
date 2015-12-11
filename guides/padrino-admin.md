@@ -129,12 +129,12 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :settings, "/settings"
+    role.protect_module :settings, "/settings"
   end
 
   access_control.roles_for :editor do |role|
-    role.project_module :posts, "/posts"
-    role.project_module :categories, "/categories"
+    role.protect_module :posts, "/posts"
+    role.protect_module :categories, "/categories"
   end
 end
 ~~~
