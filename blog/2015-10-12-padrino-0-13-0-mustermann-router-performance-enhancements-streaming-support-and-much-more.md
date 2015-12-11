@@ -3,7 +3,7 @@ date: 2015-10-12
 author: Nathan Esquenazi
 email: nesquena@gmail.com
 categories: Ruby, Update
-tags: padrino, sinatra, ruby
+tags: padrino, sinatra, ruby, release
 title: Padrino 0.13.0 - Mustermann Router, Performance Enhancements, Streaming Support, and Much More
 ---
 
