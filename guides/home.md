@@ -44,9 +44,9 @@ Padrino consists of multiple modules which enhance Sinatra in different ways. Th
 -   [Controllers and Routing](/guides/controllers)
 -   [Development and Terminal Commands](/guides/development-commands)
 -   [Mounting Sub-applications](/guides/mounting-applications)
--   [Delivering Mail](/guides/padrino-mailer)
 -   [Admin and Authentication](/guides/padrino-admin)
--   [Site Caching](/guides/caching-support)
+-   [Delivering Mail](/guides/padrino-mailer)
+-   [Site Caching](/guides/padrino-cache)
 
 Note that as a user of Padrino, each of the major components can be used [standalone](/guides/standalone-usage-in-sinatra) in an existing Sinatra application or used together for a full-stack Padrino project.
 
