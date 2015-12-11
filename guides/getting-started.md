@@ -16,7 +16,7 @@ Sinatra + Padrino aficionado.
 
 You may want to skim through sections you already are familiar with. If you are
 already familiar with Padrino and just want to access reference materials, you
-may want to jump to [our api docs](http://www.padrinorb.com/api/index.html) or
+may want to jump to [our api docs](http://www.rubydoc.info/github/padrino/padrino-framework) or
 the [guides homepage](http://www.padrinorb.com/guides).
 
 If you have any questions be sure to contact us at:
@@ -234,7 +234,7 @@ functionality. These are definitely recommended reading:
   Padrino applications
 - [Admin and Authentication](/guides/padrino-admin) – Admin dashboard and
   authentication system
-- [Site Caching](/guides/caching-support) – Page and fragment caching system
+- [Site Caching](/guides/padrino-cache) – Page and fragment caching system
 - [Mounting Sub-applications](/guides/mounting-applications) – Explanation of
   the “application” mounting process
 - [Development and Terminal Commands](/guides/development-commands) – Important
