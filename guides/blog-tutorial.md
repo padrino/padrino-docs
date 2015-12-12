@@ -309,7 +309,7 @@ controller.
 # app/controllers/posts.rb
 SampleBlog::App.controllers :posts do
   get :index do
-    @posts = Post.all(:order => 'created_at desc')
+    @posts = Post.order('created_at DESC').all
     render 'posts/index'
   end
 
