@@ -1,6 +1,6 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-14
 author: Nathan
 email: nesquena@gmail.com
 title: Rake Tasks
@@ -10,7 +10,7 @@ sidebar: 'guides/sidebar'
 # Rake Tasks
 
 After generating a new padrino project, you will not find any Rakefile in your
-generated project folder structure; in fact it’s not strictly needed to build a
+generated project folder structure; in fact it's not strictly needed to build a
 new one because we can already use padrino rake:
 
 ~~~ shell
@@ -35,7 +35,8 @@ Padrino by default has some useful tasks.
 ## Basic
 
 Like other frameworks we have an *:environment* task that loads our
-`environment` and apps. Example:
+`environment` and `apps`. Example:
+
 
 ~~~ ruby
 # This is a custom task
@@ -46,6 +47,7 @@ end
 ~~~
 
 ---
+
 
 ## Routes
 
@@ -74,9 +76,10 @@ Application: foo
 
 ---
 
+
 ## Testing
 
-When testing with Padrino you have a builtin `padrino rake test` or for rspec
+When testing with Padrino you have a built-in `padrino rake test` or for rspec
 `padrino rake spec`.
 
 ~~~ shell
@@ -87,6 +90,7 @@ padrino rake spec # => for rspec
 you can customize *test/test.rake* or *spec/spec.rake*
 
 ---
+
 
 ## I18n
 
@@ -101,19 +105,22 @@ See [Localization](/guides/localization) for detailed instructions.
 
 ---
 
+
 ## ORM
 
 Padrino has rake tasks for *DataMapper* , *ActiveRecord*, *Sequel*,
 *Mongomapper*,and *Mongoid* with some **bonuses**.
 
+
 **NOTE**: we have a **namespace** for each orm, because of this, Padrino can
 mount several applications and each of them can use different orms without
 conflict, so that you can have multiple applications living together and one
 of them can use DataMapper, while another
-*ActiveRecord/MongoMapper/Couch/Sequel* instead. In this way we prevent
+`ActiveRecord/MongoMapper/Couch/Sequel` instead. In this way we prevent
 collisions.
 
 ---
+
 
 ## ActiveRecord Tasks:
 
@@ -145,9 +152,9 @@ rake ar:version                        # Retrieves the current schema version nu
 
 **rake ar:auto:upgrade**
 
-This is some sort of super cool and useful task for people like me who don’t
-love migrations (especially for small apps). It’s a forked version of
-[auto\_migrations](http://github.com/pjhyett/auto_migrations)
+This is some sort of super cool and useful task for people like me who don't
+love migrations (especially for small apps). It's a forked version of
+[auto\_migrations](http://github.com/pjhyett/auto_migrations).
 
 Basically, instead of writing migrations you can directly edit your
 **schema.rb** and perform *a non destructive* migration with `padrino rake
@@ -155,18 +162,19 @@ ar:auto:upgrade`.
 
 ---
 
+
 ## DataMapper Tasks:
 
 ~~~ shell
-rake dm:auto:migrate           # Performs an automigration (resets your db data)
-rake dm:auto:upgrade           # Performs a non destructive automigration
-rake dm:create                 # Creates the database
-rake dm:drop                   # Drops the database (postgres and mysql only)
-rake dm:migrate                # Migrates the database to the latest version
-rake dm:migrate:down[version]  # Migrates down using migrations
-rake dm:migrate:up[version]    # Migrates up using migrations
-rake dm:reset                  # Drops the database, and migrates from scratch
-rake dm:setup                  # Create the database migrate and initialize with the seed data
+rake dm:auto:migrate          # Performs an automigration (resets your db data)
+rake dm:auto:upgrade          # Performs a non destructive automigration
+rake dm:create                # Creates the database
+rake dm:drop                  # Drops the database (postgres and mysql only)
+rake dm:migrate               # Migrates the database to the latest version
+rake dm:migrate:down[version] # Migrates down using migrations
+rake dm:migrate:up[version]   # Migrates up using migrations
+rake dm:reset                 # Drops the database, and migrates from scratch
+rake dm:setup                 # Create the database migrate and initialize with the seed data
 ~~~
 
 ---
@@ -174,14 +182,15 @@ rake dm:setup                  # Create the database migrate and initialize with
 ## Sequel Tasks:
 
 ~~~ shell
-rake sq:migrate:auto           # Perform automigration (reset your db data)
-rake sq:migrate:to[version]    # Perform migration up/down to VERSION
-rake sq:migrate:up             # Perform migration up to latest migration available
-rake sq:migrate:down           # Perform migration down (erase all data)
-rake sq:reset                  # Drops the database, and migrates from scratch
+rake sq:migrate:auto        # Perform automigration (reset your db data)
+rake sq:migrate:to[version] # Perform migration up/down to VERSION
+rake sq:migrate:up          # Perform migration up to latest migration available
+rake sq:migrate:down        # Perform migration down (erase all data)
+rake sq:reset               # Drops the database, and migrates from scratch
 ~~~
 
 ---
+
 
 ## Mongomapper Tasks:
 
@@ -190,6 +199,7 @@ rake mm:translate              # Generates .yml files for I18n translations
 ~~~
 
 ---
+
 
 ## Mongoid Tasks:
 
@@ -204,10 +214,12 @@ rake mi:cleanup_old_collections # Clean up old collections backed up by objectid
 
 ---
 
+
 ## Seed:
 
-Like in Rails we can populate our db using *db/seeds.rb* here’s an example (from
-our padrino-admin):
+Like in Rails we can populate our db using *db/seeds.rb* here's an example (from
+our [padrino-admin](/guides/padrino-admin/)):
+
 
 ~~~ ruby
 email     = shell.ask "Which email do you want use for loggin into admin?"
