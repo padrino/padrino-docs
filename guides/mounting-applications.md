@@ -1,6 +1,6 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-15
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
 title: Mounting Applications
@@ -15,18 +15,20 @@ multiple applications. This allows for better organization of complex
 applications, re-usable applications that can be applied (i.e admin, auth, blog)
 and even more flexibility.
 
-You can think of mountable applications as a "full-featured" Merb slice or Rails
+You can think of mountable applications as a "full-featured" [Merb](https://github.com/merb/merb "Merb") slice or Rails
 engine. Instead of a separate construct, any application can simply be packaged
 and mounted into another project.
 
 ---
 
+
 ## Mounting Syntax
 
 Padrino stores application mounting information by default within
 `config/apps.rb`. This file is intended to keep all information regarding what
-applications are mounted to which uri’s. An `apps.rb` file has the following
+applications are mounted to which uri's. An `apps.rb` file has the following
 structure:
+
 
 ~~~ ruby
 Padrino.mount("blog").to("/blog")
@@ -34,11 +36,13 @@ Padrino.mount("website").to("/website")
 Padrino.mount("app").to("/")
 ~~~
 
+
 This would mount three applications onto the Padrino project, one served from
 the ‘/blog’ uri namespace one with ‘/website’ uri namespace and the other served
 from the ‘/’ uri namespace.
 
 ---
+
 
 ## Advanced Mounting Support
 
@@ -53,6 +57,7 @@ extends the ability to mount applications to a specified path, or specify host
 and subdomains to match to an application. For example, you could put the
 following in your `config/apps.rb` file:
 
+
 ~~~ ruby
 # Adds support for matching an app to a host string or pattern
 Padrino.mount("Blog").to("/").host("blog.example.org")
@@ -61,8 +66,10 @@ Padrino.mount("WebSite").host(/.*\.?example.org/)
 Padrino.mount("Foo").to("/foo").host("bar.example.org")
 ~~~
 
+
 This will configure each application to match to the given host pattern
 simplifying routing considerably.
 
 [Next Section &ndash; Blog Tutorial](/guides/blog-tutorial){: .button}
 {: .excerpt}
+
