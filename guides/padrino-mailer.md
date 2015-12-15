@@ -1,6 +1,6 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-21
 author: Arthur
 email: mr.arthur.chiu@gmail.com
 title: Padrino Mailer
@@ -10,7 +10,7 @@ sidebar: 'guides/sidebar'
 # Padrino Mailer
 
 This component creates an easy and intuitive interface for delivering email
-within a Sinatra application. The [mail](http://github.com/mikel/mail) library
+within a Sinatra application. The [mail](http://github.com/mikel/mail "mail") library
 is utilized to do the bulk of the work. There is full support for rendering
 email templates, using an html content type and for file attachments. The
 Padrino Mailer uses a familiar Sinatra syntax similar to that of defining routes
@@ -18,11 +18,13 @@ for a controller.
 
 ---
 
+
 ## Configuration
 
-Let’s take a look at using the Mailer in an application. By default, the mailer
-uses the built-in sendmail binary on the server. However, smtp is also supported
+Let's take a look at using the Mailer in an application. By default, the mailer
+uses the built-in sendmail binary on the server. However, SMTP is also supported
 using the following declaration in your application:
+
 
 ~~~ ruby
 # app/app.rb
@@ -36,11 +38,12 @@ set :delivery_method, :smtp => {
 }
 ~~~
 
-Once those have been defined, the default will become smtp delivery unless
+Once those have been defined, the default will become SMTP delivery unless
 overwritten in an individual mail definition.
 
 You can also configure the mailer to not send emails during development or
 testing. This can be done with:
+
 
 ~~~ ruby
 # app/app.rb
@@ -49,13 +52,15 @@ set :delivery_method, :test
 
 ---
 
+
 ## Quick Usage
 
-Padrino supports sending any arbitrary email (using either sendmail or smtp)
+Padrino supports sending any arbitrary email (using either sendmail or SMTP)
 right from your controllers. This is ideal for ‘one-off’ emails where the ‘full’
 mailer object is simply unnecessary or too heavy for your simple task.
 
 Delivering an email within your controller is simple:
+
 
 ~~~ ruby
 # app/controllers/session.rb
@@ -64,9 +69,11 @@ post :create do
 end
 ~~~
 
+
 This simple helper will accept any of the standard email attributes and deliver
 your email in a single command. You can also use a block, render a template for
 the body and specify a delivery method:
+
 
 ~~~ ruby
 # app/controllers/session.rb
@@ -81,15 +88,18 @@ post :create do
 end
 ~~~
 
+
 This is all you need to send simple emails. However, Padrino also supports a
 more ‘structured’ mailer system as well.
 
 ---
 
+
 ## Mailer Usage
 
 To use the structured mailer syntax, we should define a custom mailer using the
 `mailer` block:
+
 
 ~~~ ruby
 # app/mailers/sample_mailer.rb
@@ -106,19 +116,23 @@ MyAppName.mailer :sample do
 end
 ~~~
 
+
 Note that this can be created much easier by using the padrino-mailer generator
 in the terminal:
+
 
 ~~~sh
 $ padrino g mailer Sample registration_email
 ~~~
 
-This mailer defines a mail route called ‘`registration_mail`’ within the
-'`sample`' mailer. The '`registration_email`' route accepts the name and email
+
+This mailer defines a mail route called `registration_mail` within the
+`sample` mailer. The `registration_email` route accepts the name and email
 arguments. Arguments are passed to the email body template via the `locals`
 method. The render command renders the email body template with the local
 variables, which should be defined in
 `[views_path]/mailers/sample/registration_email.erb` as shown below:
+
 
 ~~~erb
 # ./views/mailers/sample/registration_email.erb
@@ -126,25 +140,31 @@ This is the body of the email and can access the <%= name %> variable.
 That's all there is to defining the body of the email which can be in plain text or html.
 ~~~
 
+
 Note that the mailer has full support for content type resolution and the email
 could also be in the path `./views/mailers/sample/registration_email.html.erb`
 or `./views/mailers/sample/registration_email.plain.erb` specifying the mime
 type in the file name as well.
 
+
 Once the mailer has been defined and the template written, the email route can
 be invoked by the `deliver` method:
+
 
 ~~~ ruby
 deliver(:sample, :registration_email, "Bob", "bob@bobby.com")
 ~~~
 
-And that will then deliver the email according the the configured options.
+
+And that will then deliver the email according the configured options.
 
 ---
+
 
 ## Multipart Emails
 
 The mailer supports multipart emails quite easily:
+
 
 ~~~ ruby
 # app/mailers/sample_mailer.rb
@@ -158,7 +178,9 @@ mailer :sample do
 end
 ~~~
 
+
 You can even specify multiple part types using the `provides` declaration:
+
 
 ~~~ ruby
 # app/mailers/sample_mailer.rb
@@ -173,10 +195,12 @@ mailer :sample do
 end
 ~~~
 
+
 These will deliver a multipart/alternative email with the appropriate plain text
 and html sections.
 
 ---
+
 
 ## File Attachments
 
@@ -195,15 +219,18 @@ mailer :sample do
 end
 ~~~
 
+
 This will deliver your email with the appropriate body and the specified files
 attached.
 
 ---
 
+
 ## Defaults
 
 To define mailer defaults for a message, we can do so app-wide or within a
 `mailer` block.
+
 
 ~~~ ruby
 # app/app.rb
@@ -223,14 +250,17 @@ MyAppName.mailers :sample do
 end
 ~~~
 
+
 Using defaults makes sending email even easier when certain attributes are
 repeated between messages.
 
 ---
 
+
 ## Rendering Variations
 
 To render a short body inline:
+
 
 ~~~ ruby
 # app/mailers/sample_mailer.rb
@@ -242,7 +272,9 @@ mailer :sample do
 end
 ~~~
 
+
 To render a different template:
+
 
 ~~~ ruby
 # app/mailers/sample_mailer.rb
@@ -256,3 +288,4 @@ end
 
 [Next Section &ndash; Padrino Cache](/guides/padrino-cache){: .button}
 {: .excerpt}
+
