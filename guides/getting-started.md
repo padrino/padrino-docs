@@ -124,7 +124,7 @@ Sinatra, the ruby DSL for the web.
 ## Learning to Love Sinatra
 
 Padrino is a framework which builds on the existing functionality of the
-[Sinatra](http://sinatrarb.com) Ruby web DSL and provides a variety of
+[Sinatra](http://sinatrarb.com "Sinatra) Ruby web DSL and provides a variety of
 additional tools and helpers to extend this foundation. To use Padrino, one
 should be familiar with the basic usage of Sinatra itself.
 
@@ -148,7 +148,9 @@ get '/hi' do
 end
 ~~~
 
+
 and then you can start the application with this in your terminal:
+
 
 ~~~ shell
 $ ruby -rubygems app.rb
@@ -160,6 +162,7 @@ and then visit <http://localhost:4567/hi> in your web browser. It really is that
 easy, but there’s a lot more to learn!
 
 Resources for Sinatra are listed below:
+
 
 - [Sinatra Introduction](http://www.sinatrarb.com/intro.html "Sinatra Introduction")
 - [Sinatra Book](https://github.com/sinatra/sinatra-book "Sinatra Book")
@@ -210,7 +213,7 @@ more information about the individual modules.
 If you are able to convert your project to Padrino or start a new application
 from scratch, we recommend using the full Padrino stack which makes starting a
 new project much easier. The best way to get familiar with Padrino is to first
-check out the [Blog Tutorial](/guides/blog-tutorial) which takes you step by
+check out the [Blog Tutorial](/guides/blog-tutorial "Blog Tutorial") which takes you step by
 step through creating a blog in Padrino with an accompanying screencast. You may
 also want to checkout the [Why Padrino (broken)](http://www.padrinorb.com/pages/why "Why Padrino")
 guide to understand the benefits of using Padrino.
@@ -230,40 +233,43 @@ And then read up on these components:
 
 - [DataMapper](http://datamapper.org/docs/ "DataMapper") – Great Object Relational Mapper for
   interacting with data
-- [Haml](http://haml-lang.com/docs.html) – Solid templating choice for views
-- [jQuery](http://jquery.com/) – Excellent javascript framework for frontend
+- [Haml](http://haml.info/ "Haml") – Solid templating choice for views
+- [jQuery](http://jquery.com/ "jQuery") – Excellent javascript framework for frontend
   development
-- [Riot](https://github.com/thumblemonks/riot) – Popular unit testing framework
+- [Riot](https://github.com/thumblemonks/riot "Riot") – Popular unit testing framework
   for ruby
-- [Mocha](http://mocha.rubyforge.org/) – Popular mocking and stubbing for tests
+- [Mocha](http://www.rubydoc.info/github/floehopper/mocha/Mocha/Mock "Mocha") – Popular mocking and stubbing for tests
+
 
 There are also a few important guides that cover the vast majority of Padrino’s
 functionality. These are definitely recommended reading:
 
-- [Blog Tutorial](/guides/blog-tutorial) – Step by step blog tutorial using
+
+- [Blog Tutorial](/guides/blog-tutorial "Blog Tutorial") – Step by step blog tutorial using
   Padrino
-- [Generators](/guides/generators) – A reference guide for the generator and the
+- [Generators](/guides/generators "Generators") – A reference guide for the generator and the
   various components
-- [Project Types](/guides/basic-projects) – Overview of the various project
+- [Project Types](/guides/basic-projects "Project Types") – Overview of the various project
   types
-- [Application Helpers](/guides/application-helpers) – A reference guide for the
+- [Application Helpers](/guides/application-helpers "Application Helpers") – A reference guide for the
   view helpers available
-- [Controllers and Routing](/guides/controllers) – An overview of the enhanced
+- [Controllers and Routing](/guides/controllers "Controllers and Routing") – An overview of the enhanced
   routing system
-- [Delivering Mail](/guides/padrino-mailer) – Overview of how to deliver mail in
+- [Delivering Mail](/guides/padrino-mailer "Delivering Mails") – Overview of how to deliver mail in
   Padrino applications
-- [Admin and Authentication](/guides/padrino-admin) – Admin dashboard and
+- [Admin and Authentication](/guides/padrino-admin "Admin and Authentication") – Admin dashboard and
   authentication system
-- [Site Caching](/guides/caching-support) – Page and fragment caching system
-- [Mounting Sub-applications](/guides/mounting-applications) – Explanation of
+- [Caching](/guides/padrino-cache) – Page and fragment caching system
+- [Mounting Sub-applications](/guides/mounting-applications "Mounting Sub-applications") – Explanation of
   the “application” mounting process
-- [Development and Terminal Commands](/guides/development-commands) – Important
+- [Development and Terminal Commands](/guides/development-commands "Development and Terminal Commands") – Important
   notes about development
 
 These guides should shed light on the various aspects that make Padrino helpful
 while developing Sinatra-based applications.
 
 ---
+
 
 ## Extending Padrino Projects
 
@@ -272,9 +278,10 @@ additional functionality not built into Padrino itself. Thankfully finding and
 using modular libraries that add additional functionality to your Sinatra and
 Padrino applications is quite painless.
 
-In order to manage dependencies for a project, Padrino relies on another RubyGem
-called [Bundler](http://gembundler.com). A default Padrino Gemfile looks akin to
+In order to manage dependencies for a project, Padrino relies on another `gem`
+called [Bundler](http://bundler.io/ "Bundler"). A default Padrino Gemfile looks akin to
 this:
+
 
 ~~~ ruby
 # Gemfile
@@ -285,48 +292,57 @@ gem 'rake'
 gem 'sinatra-flash'
 # Component requirements
 # ...more gems...
-gem 'padrino', '0.10.2'
+gem 'padrino', '0.13.0'
 ~~~
+
 
 All dependencies and libraries required for your project should be declared in
 the Bundler `Gemfile` which is generated automatically with every Padrino
 application. Once the dependencies have been declared, simply run
 
+
 ~~~ shell
 $ bundle install
 ~~~
 
+
 which will resolve and install all the required libraries. Check out the
-[Bundler documentation](http://gembundler.com/) for more details about how this
-works.
+[Bundler documentation](http://bundler.io/v1.11/man/bundle.1.html "Bundler documentation")
+for more details about how this works.
+
 
 The best extensions to look for are those that have already been included as
-“recipes” in our [padrino-recipes](http://github.com/padrino/padrino-recipes)
+“recipes” in our [padrino-recipes](https://github.com/padrino/padrino-recipes "padrino-recipes")
 repository. Any recipe included there represents a one command installation of
 the specified functionality. For instance, suppose you want to setup pagination
 in your application for a resource. Installing the
-[will\_paginate](https://github.com/mislav/will_paginate) gem is as simple as
+[will\_paginate](https://github.com/mislav/will_paginate "will paginate") gem is as simple as
 applying the recipe:
+
 
 ~~~ shell
 $ padrino g plugin will_paginate
 ~~~
 
+
 which will install that gem into your project (and Gemfile) automatically. If
 you can’t find a recipe in the
-[Recipe Box](http://github.com/padrino/padrino-recipes) then be sure to search
-for rack middlewares or sinatra compatible libraries to use in your app:
+[Recipe Box](http://github.com/padrino/padrino-recipes "Recipe Box") then be sure to search
+for rack middlewares or Sinatra compatible libraries to use in your app:
 
-- [Rack Middlewares](http://coderack.org/middlewares)
-- [Sinatra Extensions](http://www.sinatrarb.com/extensions-wild.html)
-- [Padrino Extensions](https://github.com/padrino/padrino-framework/wiki/Extensions)
-- [Padrino Integrations](https://github.com/padrino/padrino-framework/wiki/Integrations)
 
-and of course never underestimate searching [GitHub](https://github.com) and
+- [Rack Middlewares](https://github.com/rack/rack/wiki/List-of-Middleware "Rack Middlewares")
+- [Sinatra Extensions](http://www.sinatrarb.com/extensions-wild.html "Sinatra Extensions")
+- [Padrino Extensions](https://github.com/padrino/padrino-framework/wiki/Extensions "Padrino Extensions")
+- [Padrino Integrations](https://github.com/padrino/padrino-framework/wiki/Integrations "Padrino Integrations")
+
+
+and of course never underestimate searching [GitHub](https://github.com "GitHub") and
 finding Rack or Sinatra compatible repositories. Any Rack/Sinatra/Padrino
 libraries will all generally work seamlessly in Padrino projects. Consider
-[adding a recipe](http://github.com/padrino/padrino-recipes) for your favorite
+[adding a recipe](http://github.com/padrino/padrino-recipes "adding a recipe") for your favorite
 extensions!
 
 [Next Section &ndash; Installation](/guides/installation){: .button}
 {: .excerpt}
+
