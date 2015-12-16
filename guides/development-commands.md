@@ -1,6 +1,6 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-17
 author: Nathan
 email: nesquena@gmail.com
 title: Development Commands
@@ -15,7 +15,8 @@ an environment-specific log file `log/development.log` in test and production
 environments.
 
 You can modify the logging behavior or disable logging altogether (more docs
-[here](http://www.padrinorb.com/api/classes/Padrino/Logger.html)):
+[here](http://www.rubydoc.info/github/padrino/padrino-framework/Padrino/Logger "logger")):
+
 
 ~~~ ruby
 # boot.rb
@@ -23,8 +24,10 @@ Padrino::Logger::Config[:development][:stream] = :to_file
 Padrino.load!
 ~~~
 
+
 To use the logger within a Padrino application, simply refer to the `logger`
 method accessible within your app and any controller or views:
+
 
 ~~~ ruby
 # controllers/example.rb
@@ -33,13 +36,16 @@ SimpleApp.controllers do
 end
 ~~~
 
+
 The logger automatically supports severity through the use of `logger.info`,
 `logger.warn`, `logger.error`, et al.
 
 For more information about the logger, check out our
-[Logger RDOC](http://www.padrinorb.com/api/classes/Padrino/Logger.html)
+[Logger RDoc](http://www.rubydoc.info/github/padrino/padrino-framework/Padrino/Logger "Logger RDoc")
+
 
 ---
+
 
 ## Development Reloader
 
@@ -55,6 +61,7 @@ makes requests take much longer to complete.
 An application can explicitly enable / disable reloading through the use of
 options:
 
+
 ~~~ ruby
 # app.rb
 class SimpleApp < Padrino::Application
@@ -65,12 +72,14 @@ end
 
 ---
 
+
 ## Gemfile Dependency Resolution
 
 Padrino has native support for `bundler` and the Gemfile system. If your Padrino
 application was generated with `padrino g`, a Gemfile has already been created
 for your application. This file will contain a list of all the dependencies for
 our application.
+
 
 ~~~ ruby
 # /Gemfile
@@ -79,8 +88,9 @@ gem 'sinatra',  :require => 'sinatra/base'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 ~~~
 
+
 This manifest file uses the standard `bundler` gem syntax of which details can
-be found in the [Bundler WebSite](http://gembundler.com).
+be found in the [Bundler Website](http://bundler.io/ "Bundle Website").
 
 This gem allows us to place all our dependencies into a single file. Padrino
 will then automatically require all necessary files (if they exist on the
@@ -95,6 +105,7 @@ explained later).
 
 ---
 
+
 ## Auto Load Paths
 
 Padrino also intelligently supports requiring useful files within your
@@ -104,9 +115,10 @@ your application into separate files. Padrino automatically requires
 any files within the `lib` folder will be required automatically by Padrino.
 
 This is powered by the fact that Padrino will automatically load (and reload)
-any directory patterns within the ‘prequesite paths’. Additional directory
+any directory patterns within the ‘perquisite paths’. Additional directory
 patterns can be added to the set of reloaded files as needed by simply appending
 to the `prerequisites` within your application:
+
 
 ~~~ ruby
 # config/boot.rb
@@ -117,11 +129,13 @@ end
 Padrino.load!
 ~~~
 
+
 This will instruct Padrino to autoload these files (and reload them when changes
 are detected). By default, the load path contains certain paths known to contain
 important files such as controllers, mailers, models, urls, and helpers.
 
 ---
+
 
 ## Terminal Commands
 
@@ -130,6 +144,7 @@ activated to perform common tasks such as starting / stopping the application,
 executing the unit tests or activating an irb session.
 
 The following commands are available:
+
 
 ~~~ shell
 # starts the app server (non-daemonized)
@@ -153,12 +168,15 @@ $ padrino runner 'puts Padrino.env' -e development
 $ padrino r script/my_script.rb
 ~~~
 
+
 The last command “padrino rake” look for rake files in:
+
 
 - `lib/tasks/**/*.rake`
 - `tasks/**/*.rake`
 - `test/test.rake`
 - `spec/spec.rake`
+
 
 In this way you can customize project tasks.
 
@@ -167,9 +185,11 @@ smoother.
 
 ---
 
+
 ## Special Folders
 
 Padrino load these paths:
+
 
 ~~~ shell
 # special folders
@@ -180,24 +200,30 @@ project/shared/models
 project/each_app/models
 ~~~
 
+
 This mean that you are free to store for example `models` where you prefer, if
 you have two or more apps with same models you can use `project/shared/models`
 or `root/models`.
 
 If you have only one app you still use `project/app/models`(this is the default
-padrino g choice)
+`padrino g` choice)
 
 Remember that if you need to load other paths you can use:
+
 
 ~~~ ruby
 Padrino.set_load_paths("path/one")
 ~~~
 
+
 and if you need to load dependencies use:
+
 
 ~~~ ruby
 Padrino.require_dependencies("path/one/**/*.rb")
 ~~~
 
+
 [Next Section &ndash; Mounting Applications](/guides/mounting-applications){: .button}
 {: .excerpt}
+
