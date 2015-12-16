@@ -1,13 +1,17 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-17
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
 title: Examples
 sidebar: 'guides/sidebar'
 ---
 
-Padrino is a relatively new framework, but many coders agree the best way to get familiar with a framework is to see examples of existing applications. Soon, we hope to compile a list of developed using Padrino.
+# Examples
+
+Padrino is a relatively new framework, but many coders agree the best way to get
+familiar with a framework is to see examples of existing applications. Soon, we
+hope to compile a list of developed using Padrino.
  
 
 ## Open-source Applications
