@@ -45,7 +45,7 @@ end
 ~~~
 
 
-By default the "cache\_key" in these instances is the `request.path_info` and
+By default the “cache\_key“ in these instances is the `request.path_info` and
 the query string is not considered. You can also provide a custom `cache_key`
 for any route:
 
@@ -116,7 +116,7 @@ a very active part of your domain.
 
 ### Page Caching
 
-As described above in the "Caching Quickstart" section, page caching is very
+As described above in the “Caching Quickstart“ section, page caching is very
 easy to integrate into your application. To turn it on, simply provide the
 `:cache => true` option on either a controller or one of its routes.
 
@@ -209,7 +209,7 @@ end
 
 
 This example adds a key to the cache of format `feed_for_#{username}` which
-contains the contents of that user's feed. Any subsequent action within the next
+contains the contents of that user‘s feed. Any subsequent action within the next
 3 seconds will fetch the pre-rendered version of `feed_for_#{username}` from the
 cache instead of re-rendering it. The rest of the page code will, however, be
 re-executed.
@@ -303,9 +303,9 @@ re-generate.
 
 #### Fragment-level expiration
 
-Using the example above of a tweet server, let's suppose our users have a
+Using the example above of a tweet server, let‘s suppose our users have a
 tendency to post things they quickly regret. When we query our database for new
-tweets, let's check to see if any have been deleted. If so, we’ll do our user a
+tweets, let‘s check to see if any have been deleted. If so, we’ll do our user a
 favor and instantly re-render the feed.
 
 

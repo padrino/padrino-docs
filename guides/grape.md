@@ -17,7 +17,7 @@ $ padrino g project gapp
 ~~~
 
 
-Or a lean one if you don't want any Sinatra apps in it:
+Or a lean one if you don‘t want any Sinatra apps in it:
 
 
 ~~~ shell

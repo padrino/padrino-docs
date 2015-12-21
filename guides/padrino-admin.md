@@ -68,7 +68,7 @@ $ padrino start
 ~~~
 
 
-That's it! Browse to <http://localhost:3000/admin> and access your model by
+That‘s it! Browse to <http://localhost:3000/admin> and access your model by
 clicking on the newly created tab on your admin navbar: there you can create,
 edit, destroy and display your objects.
 
@@ -84,7 +84,7 @@ permissions (User Authentication and Authorization).
 
 ## Scenario E-commerce (User Authentication)
 
-To make some practical example, let's examine some common e-commerce application
+To make some practical example, let‘s examine some common e-commerce application
 scenario, where we usually need to restrain some users to get access to some of
 our controllers actions; we can easily accomplish this by editing `app.rb`
 accordingly:
@@ -120,7 +120,7 @@ When successfully logged in, he will be granted access to those two pages.
 
 ## Admin Scenario (User Authorization)
 
-For Another example, let's suppose that you need your **admin** account to do
+For Another example, let‘s suppose that you need your **admin** account to do
 certain things and have access to certain controller actions, and your
 **editor** account needs to be restrained to get access to those same admin
 actions.

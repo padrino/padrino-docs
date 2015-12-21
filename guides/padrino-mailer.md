@@ -21,7 +21,7 @@ for a controller.
 
 ## Configuration
 
-Let's take a look at using the Mailer in an application. By default, the mailer
+Let‘s take a look at using the Mailer in an application. By default, the mailer
 uses the built-in sendmail binary on the server. However, SMTP is also supported
 using the following declaration in your application:
 
@@ -137,7 +137,7 @@ variables, which should be defined in
 ~~~erb
 # ./views/mailers/sample/registration_email.erb
 This is the body of the email and can access the <%= name %> variable.
-That's all there is to defining the body of the email which can be in plain text or html.
+That‘s all there is to defining the body of the email which can be in plain text or html.
 ~~~
 
 

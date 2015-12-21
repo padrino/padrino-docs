@@ -7,6 +7,8 @@ title: The Bleeding Edge
 sidebar: 'guides/sidebar'
 ---
 
+# The Bleeding Edge
+
 You have three ways of using Padrino edge; the first one is using the git source code in a gem file, the second one is using a vendored version, and the third is to install edge into system gems from repository.
 
 
@@ -89,7 +91,7 @@ padrino-framework$ sudo rake fresh
 ~~~
 
 
-this will install the latest ‘edge’ gems into rubygems. Be sure to verify your project's Gemfile depends on the edge version you installed:
+this will install the latest ‘edge’ gems into rubygems. Be sure to verify your project‘s Gemfile depends on the edge version you installed:
 
 
 ~~~ ruby

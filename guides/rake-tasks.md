@@ -10,7 +10,7 @@ sidebar: 'guides/sidebar'
 # Rake Tasks
 
 After generating a new padrino project, you will not find any Rakefile in your
-generated project folder structure; in fact it's not strictly needed to build a
+generated project folder structure; in fact it‘s not strictly needed to build a
 new one because we can already use padrino rake:
 
 ~~~ shell
@@ -152,8 +152,8 @@ rake ar:version                        # Retrieves the current schema version nu
 
 **rake ar:auto:upgrade**
 
-This is some sort of super cool and useful task for people like me who don't
-love migrations (especially for small apps). It's a forked version of
+This is some sort of super cool and useful task for people like me who don‘t
+love migrations (especially for small apps). It‘s a forked version of
 [auto\_migrations](http://github.com/pjhyett/auto_migrations).
 
 Basically, instead of writing migrations you can directly edit your
@@ -217,7 +217,7 @@ rake mi:cleanup_old_collections # Clean up old collections backed up by objectid
 
 ## Seed:
 
-Like in Rails we can populate our db using *db/seeds.rb* here's an example (from
+Like in Rails we can populate our db using *db/seeds.rb* here‘s an example (from
 our [padrino-admin](/guides/padrino-admin/)):
 
 

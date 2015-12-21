@@ -22,7 +22,7 @@ and admin dashboard. The set of available components is determined by libraries
 actually used or noted by the core developers and the existing community.
 However, adding additional components to Padrino is not only possible but highly
 recommended. In fact, this is possibly *the best* way for a developer to get
-started [contributing to Padrino](/contribute).
+started [contributing to Padrino](/contribute "contributing to Padrino").
 
 This guide will outline in detail how to properly contribute new components to
 Padrino and get them included into the next Padrino generator as quickly and

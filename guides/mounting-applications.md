@@ -15,7 +15,7 @@ multiple applications. This allows for better organization of complex
 applications, re-usable applications that can be applied (i.e admin, auth, blog)
 and even more flexibility.
 
-You can think of mountable applications as a "full-featured" [Merb](https://github.com/merb/merb "Merb") slice or Rails
+You can think of mountable applications as a “full-featured“ [Merb](https://github.com/merb/merb "Merb") slice or Rails
 engine. Instead of a separate construct, any application can simply be packaged
 and mounted into another project.
 
@@ -26,7 +26,7 @@ and mounted into another project.
 
 Padrino stores application mounting information by default within
 `config/apps.rb`. This file is intended to keep all information regarding what
-applications are mounted to which uri's. An `apps.rb` file has the following
+applications are mounted to which uri‘s. An `apps.rb` file has the following
 structure:
 
 
