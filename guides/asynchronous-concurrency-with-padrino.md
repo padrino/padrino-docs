@@ -1,18 +1,25 @@
 ---
 date: 2011-09-22
-update: 2014-11-21
+update: 2015-12-18
 author: Nathan
 email: nesquena@gmail.com
-title: Application Helpers
+title: Asynchronous Concurrency
 sidebar: 'guides/sidebar'
 ---
 
-## Introduction
+# Asynchronous Concurrency
 
-Lately, the Ruby community has become fascinated by asynchronous and concurrent web servers, the newest of which is called [Goliath](http://www.igvita.com/2011/03/08/goliath-non-blocking-ruby-19-web-server). This can be advantageous for your application especially if you have a lot of traffic and slow IO or Database calls (like HTTP calls to external APIs) since this substantially increases the number of clients your application can serve per process.
+Lately, the Ruby community has become fascinated by asynchronous and concurrent web
+servers, the newest of which is called
+[Goliath](http://www.igvita.com/2011/03/08/goliath-non-blocking-ruby-19-web-server "Goliath").
+This can be advantageous for your application especially if you have a lot of traffic
+and slow IO or Database calls (like HTTP calls to external APIs) since this substantially
+increases the number of clients your application can serve per process.
 
 
-This guide is dedicated to documenting how to achieve non-blocking, asynchronous requests while still using Sinatra and Padrino. For a more detailed guide be sure to checkout the [Sinatra Synchrony](http://kyledrake.net/sinatra-synchrony/) docs.
+This guide is dedicated to documenting how to achieve non-blocking, asynchronous requests
+while still using Sinatra and Padrino. For a more detailed guide be sure to checkout the
+[Sinatra Synchrony](https://github.com/kyledrake/sinatra-synchrony "Sinatra Synchrony") docs.
  
 
 ## Setup
@@ -38,7 +45,7 @@ end
 ```
 
 
-And that is really all you need for the basics. However be sure to use [non-blocking drivers](http://kyledrake.net/sinatra-synchrony/#caveats) for best performance. Also, you may want to take a look at [Rubinius](http://rubini.us) or [JRuby](http://jruby.org) ruby runtimes.
+And that is really all you need for the basics. Also, you may want to take a look at [Rubinius](http://rubini.us "Rubinius") or [JRuby](http://jruby.org "JRuby") ruby runtimes.
  
 
 ## Benchmarks

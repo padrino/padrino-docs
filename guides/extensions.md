@@ -1,6 +1,6 @@
 ---
 date: 2010-03-01
-update: 2014-11-21
+update: 2015-12-17
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
 title: Extensions
@@ -18,9 +18,10 @@ ActiveRecord/MongoMapper/DataMapper, etc..) that are useful for web developers.
 
 ---
 
+
 ## Usage
 
-If the extension is a gem put it in Gemfile otherwise create a file under your
+If the extension is a gem put it in Gemfile, otherwise create a file under your
 lib directory.
 
 ---
@@ -39,3 +40,4 @@ lib directory.
 
 [Next Section &ndash; Rake Tasks](/guides/rake-tasks){: .button}
 {: .excerpt}
+
