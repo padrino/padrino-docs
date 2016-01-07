@@ -15,8 +15,8 @@ In this release, we've introduced a new project generator flag of `--api`. When 
 
  * Project only has `padrino-core` and `padrino-gen` listed as dependencies in the Gemfile.
  * `Padrino::Mailer` and `Padrino::Helpers` are not registered or referenced in the project.
- * Automatically sets `:renderer`, `:scripts`, and `:stylesheet` to `none` in .components.
-t
+ * Automatically sets `:renderer`, `:scripts`, and `:stylesheet` to `none` in `.components`.
+
 You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to [@ujifgc](https://github.com/ujifgc for implementing this). 
 
 ## Minimize ActiveSupport Dependence
