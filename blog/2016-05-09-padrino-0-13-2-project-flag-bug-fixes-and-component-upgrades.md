@@ -16,8 +16,8 @@ In this release, we've introduced a new project generator flag of `--api`. When 
  * Project only has `padrino-core` and `padrino-gen` listed as dependencies in the Gemfile.
  * `Padrino::Mailer` and `Padrino::Helpers` are not registered or referenced in the project.
  * Automatically sets `:renderer`, `:scripts`, and `:stylesheet` to `none` in .components.
-
-You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to "@ujifgc":https://github.com/ujifgc for implementing this. 
+t
+You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to [@ujifgc](https://github.com/ujifgc for implementing this). 
 
 ## Minimize ActiveSupport Dependence
 
@@ -34,32 +34,32 @@ For those interested, we've removed many ActiveSupport methods from internal usa
  * [hash#reverse_merge](https://github.com/padrino/padrino-framework/commit/a335e0d8328d841e5481a9bc567ed3ad928e8eba)
  * [alias_method_chain](https://github.com/padrino/padrino-framework/commit/da54bef74d48db154ca1c1a5150aac4391165217)
 
-Thanks to "@ujifgc":https://github.com/ujifgc for leading these efforts. 
+Thanks to [@ujifgc](https://github.com/ujifgc) for leading these efforts. 
 
 ## Component Upgrades
 
 We've upgraded or fixed a few components:
 
-- FIX "#1789":https://github.com/padrino/padrino-framework/issues/1789 Relax Tilt version to allow Tilt 2 (>= 1.4.1, < 3) ("@ujifgc":https://github.com/ujifgc)
-- FIX "#2011":https://github.com/padrino/padrino-framework/issues/2011 Update mongoid database configuration ("@serradura":https://github.com/serradura)
+- FIX [#1789](https://github.com/padrino/padrino-framework/issues/1789) Relax Tilt version to allow Tilt 2 (>= 1.4.1, < 3) ([@ujifgc](https://github.com/ujifgc))
+- FIX [#2011](https://github.com/padrino/padrino-framework/issues/2011) Update mongoid database configuration ([@serradura](https://github.com/serradura))
 
 ## Bug Fixes and Miscellaneous
 
 There are several bug fixes and other updates:
 
-- WARN "#1989":https://github.com/padrino/padrino-framework/issues/1989 Warn about coming behavior change ("@ujifgc":https://github.com/ujifgc)
-- NEW "#1987":https://github.com/padrino/padrino-framework/issues/1987 Generator now failes with invalid namespace ("@ujifgc":https://github.com/ujifgc)
-- FIX "#2007":https://github.com/padrino/padrino-framework/issues/2007 Respect Regexp#names at the time of route search ("@namusyaka":https://github.com/namusyaka)
-- FIX "#2004":https://github.com/padrino/padrino-framework/issues/2004 Set default alt attribute for image_tag ("@namusyaka":https://github.com/namusyaka)
-- FIX "#2008":https://github.com/padrino/padrino-framework/issues/2008 Login button on the admin app now looks as expected ("@namusyaka":https://github.com/namusyaka)
-- FIX Remove empty rows and cols from textarea tag ("@ujifgc":https://github.com/ujifgc)
-- FIX "#2015":https://github.com/padrino/padrino-framework/issues/2015 Update broken links in the README and docs ("@mariozig":https://github.com/mariozig)
-- FIX "#2023":https://github.com/padrino/padrino-framework/issues/2023 Preserve `default_builder` set in configure_apps ("@ujifgc":https://github.com/ujifgc)
-- FIX "#2025":https://github.com/padrino/padrino-framework/issues/2025 Match plugin names with dashes in their names ("@wikimatze":https://github.com/wikimatze)
-- FIX "#2029":https://github.com/padrino/padrino-framework/issues/2029 Don't set a value attribute on label tags ("@sshaw":https://github.com/sshaw)
-- WARN Notice about removing ObjectSpace.classes and ObjectSpace.new_classes in 0.14 ("@ujifgc":https://github.com/ujifgc)
-- FIX "#2027":https://github.com/padrino/padrino-framework/issues/2027 Use Module#name instead of Module#to_s ("@namusyaka":https://github.com/namusyaka)
-- NEW Logger option :sanitize_encoding ("@ujifgc":https://github.com/ujifgc)
-- FIX "#2006":https://github.com/padrino/padrino-framework/issues/2006 load missing AR models before calling seeds.rb ("@ujifgc":https://github.com/ujifgc)
+- WARN [#1989](https://github.com/padrino/padrino-framework/issues/1989) Warn about coming behavior change ([@ujifgc](https://github.com/ujifgc))
+- NEW [#1987](https://github.com/padrino/padrino-framework/issues/1987) Generator now fails with invalid namespace ([@ujifgc](https://github.com/ujifgc))
+- FIX [#2007](https://github.com/padrino/padrino-framework/issues/2007) Respect Regexp#names at the time of route search ([@namusyaka](https://github.com/namusyaka))
+- FIX [#2004](https://github.com/padrino/padrino-framework/issues/2004) Set default alt attribute for image_tag ([@namusyaka](https://github.com/namusyaka))
+- FIX [#2008](https://github.com/padrino/padrino-framework/issues/2008) Login button on the admin app now looks as expected ([@namusyaka](https://github.com/namusyaka))
+- FIX Remove empty rows and cols from textarea tag ([@ujifgc](https://github.com/ujifgc))
+- FIX [#2015](https://github.com/padrino/padrino-framework/issues/2015) Update broken links in the README and docs ([@mariozig](https://github.com/mariozig))
+- FIX [#2023](https://github.com/padrino/padrino-framework/issues/2023) Preserve `default_builder` set in configure_apps ([@ujifgc](https://github.com/ujifgc))
+- FIX [#2025](https://github.com/padrino/padrino-framework/issues/2025) Match plugin names with dashes in their names ([@wikimatze](https://github.com/wikimatze))
+- FIX [#2029](https://github.com/padrino/padrino-framework/issues/2029) Don't set a value attribute on label tags ([@sshaw](https://github.com/sshaw))
+- WARN Notice about removing ObjectSpace.classes and ObjectSpace.new_classes in 0.14 ([@ujifgc](https://github.com/ujifgc))
+- FIX [#2027](https://github.com/padrino/padrino-framework/issues/2027) Use Module#name instead of Module#to_s ([@namusyaka](https://github.com/namusyaka))
+- NEW Logger option :sanitize_encoding ([@ujifgc](https://github.com/ujifgc))
+- FIX [#2006](https://github.com/padrino/padrino-framework/issues/2006) load missing AR models before calling seeds.rb ([@ujifgc](https://github.com/ujifgc))
 
 Please report any issues you encounter with this release! We are working very actively on Padrino and want to make the framework as stable and reliable as possible. That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “#padrino” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.
