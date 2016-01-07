@@ -17,7 +17,30 @@ In this release, we've introduced a new project generator flag of `--api`. When 
  * `Padrino::Mailer` and `Padrino::Helpers` are not registered or referenced in the project.
  * Automatically sets `:renderer`, `:scripts`, and `:stylesheet` to `none` in `.components`.
 
-You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to [@ujifgc](https://github.com/ujifgc for implementing this). 
+You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to [@ujifgc](https://github.com/ujifgc) for implementing this. 
+
+## Simplified Initializers
+
+Many apps have configuration code that needs to run first as the project starts up before the application is loaded. Padrino has always supported this with initializers in `lib/NAME_initializer.rb`. However, there were no guarantees that this code would run before other project code leading to dependency issues due to loading order. In this release, we have introduced the `config/initializers` folder which get loaded once during startup before any other app code is loaded. Initializers look like this:
+
+```ruby
+# config/initializers/some_useful.rb
+# code run once after Padrino.before_load before Padrino.after_load
+# good place to define some plugin-related constants
+module SomeUsefulInitializer
+  def self.registered(app)
+    # this is where we setup components or configuration for the project
+  end
+end
+```
+
+In your app code, for example `app/app.rb`, we can register this with:
+
+```ruby
+register SomeUsefulInitializer
+```
+
+You can see more about this in [pull request #2032](https://github.com/padrino/padrino-framework/pull/2032). Thanks to [@ujifgc](https://github.com/ujifgc) for implementing this.
 
 ## Minimize ActiveSupport Dependence
 
