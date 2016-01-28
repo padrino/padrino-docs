@@ -25,15 +25,15 @@ With 0.13.0 comes project-wide global configuration options with environment sup
 Padrino.config.value1 = 42
 
 Padrino.configure :development do |config|
-  config.value2 = ‘only development’
+  config.value2 = "only development"
 end
 
 Padrino.configure :development, :production do |config|
-  config.value2 = ‘both development and production’
+  config.value2 = "both development and production"
 end
 
 Padrino.configure do |config|
-  config.value2 = ‘any environment’
+  config.value2 = "any environment"
 end
 ~~~
 
