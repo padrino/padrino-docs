@@ -383,7 +383,7 @@ a `form_for` or `fields_for`:
 
 - `error_messages(options={})`
   - Displays list html for the errors on form object
-  - `f.errors_messages`
+  - `f.error_messages`
 - `label(field, options={})`
   - `f.label :name, :class => ‘long’`
 - `text_field(field, options={})`
