@@ -4,7 +4,6 @@ update: 2015-12-18
 author: Nathan
 email: nesquena@gmail.com
 title: Application Helpers
-sidebar: 'guides/sidebar'
 ---
 
 # Application Helpers

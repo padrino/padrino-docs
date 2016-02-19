@@ -4,7 +4,6 @@ update: 2015-12-16
 author: Nathan
 email: nesquena@gmail.com
 title: Getting Started
-sidebar: 'guides/sidebar'
 ---
 
 # Getting Started

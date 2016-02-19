@@ -4,7 +4,6 @@ update: 2015-12-17
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
 title: Examples
-sidebar: 'guides/sidebar'
 ---
 
 # Examples

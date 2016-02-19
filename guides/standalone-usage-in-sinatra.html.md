@@ -4,7 +4,6 @@ update: 2015-12-11
 author: Uchio
 email: udzura@udzura.jp
 title: Standalone Usage in Sinatra
-sidebar: 'guides/sidebar'
 ---
 
 # Standalone Usage in Sinatra

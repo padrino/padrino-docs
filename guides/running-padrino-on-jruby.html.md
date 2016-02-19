@@ -4,7 +4,6 @@ update: 2015-12-14
 author: Uchio
 email: udzura@udzura.jp
 title: Running Padrino on JRuby
-sidebar: 'guides/sidebar'
 ---
 
 # Running Padrino on JRuby

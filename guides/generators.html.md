@@ -4,7 +4,6 @@ update: 2015-12-17
 author: Nathan
 email: nesquena@gmail.com
 title: Generators
-sidebar: 'guides/sidebar'
 ---
 
 # Generators

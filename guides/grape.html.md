@@ -4,7 +4,6 @@ update: 2015-12-15
 author: Igor Bochkariov
 email: ujifgc@gmail.com
 title: Mounting Grape
-sidebar: 'guides/sidebar'
 ---
 
 # Mounting Grape

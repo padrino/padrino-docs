@@ -4,7 +4,6 @@ update: 2015-12-18
 author: Nathan
 email: nesquena@gmail.com
 title: Adding New Components
-sidebar: 'guides/sidebar'
 ---
 
 # Adding New Components

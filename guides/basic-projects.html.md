@@ -4,7 +4,6 @@ update: 2015-12-17
 author: Uchio
 email: udzura@udzura.jp
 title: 'Guides: Basic Projects'
-sidebar: 'guides/sidebar'
 ---
 
 # Basic Projects

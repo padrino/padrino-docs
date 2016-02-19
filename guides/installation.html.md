@@ -4,7 +4,6 @@ update: 2015-12-15
 author: Nathan
 email: nesquena@gmail.com
 title: Installation
-sidebar: 'guides/sidebar'
 ---
 
 # Installation

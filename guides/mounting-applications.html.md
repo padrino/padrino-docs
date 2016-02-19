@@ -4,7 +4,6 @@ update: 2015-12-15
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
 title: Mounting Applications
-sidebar: 'guides/sidebar'
 ---
 
 # Mounting Applications

@@ -4,7 +4,6 @@ update: 2015-12-18
 author: Nathan
 email: nesquena@gmail.com
 title: Asynchronous Concurrency
-sidebar: 'guides/sidebar'
 ---
 
 # Asynchronous Concurrency

@@ -4,7 +4,6 @@ update: 2015-12-21
 author: Arthur
 email: mr.arthur.chiu@gmail.com
 title: Padrino Mailer
-sidebar: 'guides/sidebar'
 ---
 
 # Padrino Mailer

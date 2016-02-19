@@ -4,7 +4,6 @@ update: 2015-12-18
 author: Ortuna
 email: ortuna@gmail.com
 title: 3rd Party Plugins
-sidebar: 'guides/sidebar'
 ---
 
 # 3rd Party Plugins

@@ -4,7 +4,6 @@ update: 2015-12-11
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
 title: The Bleeding Edge
-sidebar: 'guides/sidebar'
 ---
 
 # The Bleeding Edge

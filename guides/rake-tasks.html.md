@@ -4,7 +4,6 @@ update: 2015-12-14
 author: Nathan
 email: nesquena@gmail.com
 title: Rake Tasks
-sidebar: 'guides/sidebar'
 ---
 
 # Rake Tasks
