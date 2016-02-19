@@ -1,6 +1,14 @@
 ---
+<<<<<<< HEAD:guides/02_getting-started/02_basic-projects.md
 chapter: Getting Started
 title: Basic Projects
+=======
+date: 2010-03-01
+update: 2015-12-17
+author: Uchio
+email: udzura@udzura.jp
+title: 'Guides: Basic Projects'
+>>>>>>> upstream/master:guides/basic-projects.html.md
 ---
 
 # Basic Projects
