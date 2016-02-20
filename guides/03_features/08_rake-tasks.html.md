@@ -33,7 +33,6 @@ Padrino by default has some useful tasks.
 Like other frameworks we have an *:environment* task that loads our
 `environment` and `apps`. Example:
 
-
 ~~~ ruby
 # This is a custom task
 # task/version.rake
@@ -43,7 +42,6 @@ end
 ~~~
 
 ---
-
 
 ## Routes
 
@@ -72,7 +70,6 @@ Application: foo
 
 ---
 
-
 ## Testing
 
 When testing with Padrino you have a built-in `padrino rake test` or for rspec
@@ -87,7 +84,6 @@ you can customize *test/test.rake* or *spec/spec.rake*
 
 ---
 
-
 ## I18n
 
 You can auto generate a *yml* file for localizing your models using this
@@ -101,12 +97,10 @@ See [Localization](/guides/localization) for detailed instructions.
 
 ---
 
-
 ## ORM
 
 Padrino has rake tasks for *DataMapper* , *ActiveRecord*, *Sequel*,
 *Mongomapper*,and *Mongoid* with some **bonuses**.
-
 
 **NOTE**: we have a **namespace** for each orm, because of this, Padrino can
 mount several applications and each of them can use different orms without
@@ -116,7 +110,6 @@ of them can use DataMapper, while another
 collisions.
 
 ---
-
 
 ## ActiveRecord Tasks:
 
@@ -158,7 +151,6 @@ ar:auto:upgrade`.
 
 ---
 
-
 ## DataMapper Tasks:
 
 ~~~ shell
@@ -187,7 +179,6 @@ rake sq:reset               # Drops the database, and migrates from scratch
 
 ---
 
-
 ## Mongomapper Tasks:
 
 ~~~ shell
@@ -195,7 +186,6 @@ rake mm:translate              # Generates .yml files for I18n translations
 ~~~
 
 ---
-
 
 ## Mongoid Tasks:
 
@@ -210,12 +200,10 @@ rake mi:cleanup_old_collections # Clean up old collections backed up by objectid
 
 ---
 
-
 ## Seed:
 
 Like in Rails we can populate our db using *db/seeds.rb* here‘s an example (from
 our [padrino-admin](/guides/padrino-admin/)):
-
 
 ~~~ ruby
 email     = shell.ask "Which email do you want use for loggin into admin?"
@@ -240,6 +228,3 @@ else
   account.errors.full_messages.each { |m| shell.say "   - #{m}" }
 end
 ~~~
-
-[Next Section &ndash; The Bleeding Edge](/guides/the-bleeding-edge){: .button}
-{: .excerpt}

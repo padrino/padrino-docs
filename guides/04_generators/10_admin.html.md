@@ -18,7 +18,7 @@ application in your project:
   skip\_migration|false|-s|skip migration generation
   renderer||-e|the default value is a renderer used in the main app
   destroy|false|-d|removes all generated files
-{: .excerpt--small }
+{: .excerpt--inline.excerpt--small }
 
 ```shell
 $ padrino g admin

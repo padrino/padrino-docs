@@ -18,34 +18,28 @@ following features:
 
 ---
 
-
 ## Admin Usage
 
 Create a new project:
-
 
 ~~~ shell
 $ padrino g project fun-test -d datamapper
 $ cd fun-test
 ~~~
 
-
 Create the admin application:
-
 
 ~~~ shell
 $ padrino g admin
 ~~~
 
-
 Follow the instructions in your terminal and provide some valid email and
 password for your newly created admin account:
 
-
 - edit your config/database.rb
-- migrate your database: `$ padrino rake ar:migrate` or `$ padrino rake dm:migrate`
+- migrate your database: `$ padrino rake ar:migrate` or `$ padrino rake
+  dm:migrate`
 - seed your database with some data \# padrino rake seed
-
 
 Your admin section is now “setup”: you can start padrino `padrino start` and
 point your web browser to <http://localhost:3000/admin> and log in with your
@@ -55,14 +49,12 @@ If you need to create some sort of “scaffold” (basic CRUD actions) create a
 *model*, migrate your database, generate your scaffolding folder structure and
 views and add those to your admin section by running this series of commands:
 
-
 ~~~ shell
 $ padrino g model post title:string body:text
 $ padrino rake dm:migrate # or ar:migrate
 $ padrino g admin_page post
 $ padrino start
 ~~~
-
 
 That‘s it! Browse to <http://localhost:3000/admin> and access your model by
 clicking on the newly created tab on your admin navbar: there you can create,
@@ -77,7 +69,6 @@ permissions (User Authentication and Authorization).
 
 ---
 
-
 ## Scenario E-commerce (User Authentication)
 
 To make some practical example, let‘s examine some common e-commerce application
@@ -85,8 +76,7 @@ scenario, where we usually need to restrain some users to get access to some of
 our controllers actions; we can easily accomplish this by editing `app.rb`
 accordingly:
 
-
-~~~ruby
+~~~ ruby
 class MyEcommerce < Padrino::Application
   register Padrino::Admin::AccessControl
 
@@ -101,7 +91,6 @@ class MyEcommerce < Padrino::Application
 end
 ~~~
 
-
 In the above example we are protecting those paths starting with
 `/customer/orders` and `/cart/checkout`. The result will be that an
 unauthenticated user will not be able to access those actions, and he will be
@@ -113,7 +102,6 @@ When successfully logged in, he will be granted access to those two pages.
 
 ---
 
-
 ## Admin Scenario (User Authorization)
 
 For Another example, let‘s suppose that you need your **admin** account to do
@@ -124,8 +112,7 @@ actions.
 Padrino admin generator, will create for you a new `Account` model with a
 default `role` attribute.
 
-
-~~~ruby
+~~~ ruby
 class Admin < Padrino::Application
   register Padrino::Admin::AccessControl
 
@@ -162,7 +149,6 @@ access **only** to the `/posts` and `/categories` paths instead.
 
 ---
 
-
 ## Sharing Sessions Between Mounted Applications
 
 Sessions can be shared between mounted applications by setting a `:session_id`
@@ -170,15 +156,12 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 
 ---
 
-
 ## Contributing Persistence Adapters
 
 If you are planning to use padrino with other adapters rather than the currently
 supported ones, and you want to contribute to the project by extending its
-support with additional adapters like [ohm](https://github.com/soveran/ohm "ohm"),
-[cassandra](https://github.com/cassandra-rb/cassandra "cassandra") and so on, be sure to check
-out the [adding new components](/guides/adding-new-components "adding new components") guide.
-
-[Next Section &ndash; Padrino Mailer](/guides/padrino-mailer){: .button}
-{: .excerpt}
-
+support with additional adapters like [ohm](https://github.com/soveran/ohm
+"ohm"), [cassandra](https://github.com/cassandra-rb/cassandra "cassandra") and
+so on, be sure to check out the
+[adding new components](/guides/adding-new-components "adding new components")
+guide.

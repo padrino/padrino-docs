@@ -7,14 +7,11 @@ title: Localization
 
 Padrino supports full localization in:
 
-
 - padrino-core (date formats, time formats etc ...)
 - padrino-admin (admin language, orm fields, orm errors, etc ...)
 - padrino-helpers (currency, percentage, precision, duration etc ...)
 
-
 At the moment we support the following list of languages:
-
 
 - Czech
 - Danish
@@ -36,7 +33,6 @@ At the moment we support the following list of languages:
 
 ---
 
-
 ## Provide your translations
 
 Download and translate these files:
@@ -50,12 +46,10 @@ zip your files and send it to [padrinorb@gmail.com](mailto:padrinorb@gmail.org)
 
 ---
 
-
 ## How to localize your app
 
 The first thing that you need to do is to set your locale by appending it to
 `boot.rb`:
-
 
 ~~~ ruby
 # config/boot.rb
@@ -64,25 +58,20 @@ Padrino.before_load do
 end
 ~~~
 
-
 By default Padrino will search for all `.yml` or `.rb` files located in
 `app/locale`; as an example try to add the following to your
 `app/locale/de.yml`:
-
 
 ~~~ yml
 de:
   foo: Bar
 ~~~
 
-
 in your view or controller or wherever you prefer add:
-
 
 ~~~ ruby
 I18n.t("foo")
 ~~~
-
 
 you will get:
 
@@ -90,13 +79,12 @@ you will get:
 
 ---
 
-
 ## Translate Models (ActiveRecord)
 
-Translating models via Padrino requires few seconds thanks to a built-in rake task!
+Translating models via Padrino requires few seconds thanks to a built-in rake
+task!
 
 Assuming the following Account model:
-
 
 ~~~ ruby
 create_table :accounts do |t|
@@ -109,9 +97,7 @@ create_table :accounts do |t|
 end
 ~~~
 
-
 add this to your `boot.rb` (or anywhere else):
-
 
 ~~~ ruby
 Padrino.before_load do
@@ -119,18 +105,14 @@ Padrino.before_load do
 end
 ~~~
 
-
 run padrino rake task for localizing your model:
-
 
 ~~~ shell
 padrino rake ar:translate
 ~~~
 
-
-a new `it.yml` file will be created into `/app/locale/models/account/it.yml` with
-the following:
-
+a new `it.yml` file will be created into `/app/locale/models/account/it.yml`
+with the following:
 
 ~~~ yml
 it:
@@ -147,10 +129,8 @@ it:
         role: Role
 ~~~
 
-
 you can now edit your generated `it.yml` file to reflect your current locale
 (Italian):
-
 
 ~~~ yml
 it:
@@ -167,12 +147,10 @@ it:
         role: Role
 ~~~
 
-
 padrino-admin will now use your newly created yml file for translating the
 column names of grids, forms, error\_messages etc ...
 
 ---
-
 
 ## Bonus
 
@@ -193,7 +171,3 @@ Using *form\_builder* like:
 ~~~
 
 the tag **label** automatically translates for **you** the field name!
-
-[Next Section &ndash; Extensions](/guides/extensions){: .button}
-{: .excerpt}
-
