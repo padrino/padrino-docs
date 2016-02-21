@@ -48,6 +48,6 @@ end
 ```
 
 Use these in situations where you wish to cleanup your controller or your view
-code. Helpers are particularly useful for DRY’ing up repeated use of the same
+code. Helpers are particularly useful for DRY'ing up repeated use of the same
 markup or behavior. **Note** that helper methods and objects should be reloaded
 automatically for you in development.

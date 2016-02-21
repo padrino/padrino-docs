@@ -10,14 +10,12 @@ Padrino application. Note that the models (and migrations) generated are
 specifically tailored towards the ORM component and testing framework chosen
 during application generation.
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  root|.|-r|specify the root destination path
-  app|.|-a|specify the application destination path
-  skip\_migration|false|-s|skip migration generation
-  destroy|false|-d|removes all generated files
-{: .excerpt--small }
+Options         | Default | Aliases | Description
+--------------- | ------- | ------- | ----------------------------------------
+root            | .       | -r      | specify the root destination path
+app             | .       | -a      | specify the application destination path
+skip\_migration | false   | -s      | skip migration generation
+destroy         | false   | -d      | removes all generated files
 
 Very important to note that model generators are intended primarily to work
 within applications created through the Padrino application generator and that

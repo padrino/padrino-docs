@@ -7,12 +7,11 @@ title: Tasks
 
 Padrino provides generator for quickly generating new task for your app.
 
->
-  Options|Default|Aliases|Description
-  root|.|-r|the root destination path for the project
-  description|nil|-d|specify the description of your application task
-  namespace|nil|-n|specify the namespace of your application task
-{: .excerpt--small }
+Options     | Default | Aliases | Description
+----------- | ------- | ------- | ------------------------------------------------
+root        | .       | -r      | the root destination path for the project
+description | nil     | -d      | specify the description of your application task
+namespace   | nil     | -n      | specify the namespace of your application task
 
 ## Examples
 

@@ -8,13 +8,11 @@ title: Sub-Applications
 Unlike other Ruby frameworks, Padrino is principally designed for mounting
 multiple apps at the same time.
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  tiny|false|-i|generate tiny app skeleton
-  root|.|-r|specify the root destination path
-  destroy|false|-d|removes all generated files
-{: .excerpt--small }
+Options | Default | Aliases | Description
+------- | ------- | ------- | ---------------------------------
+tiny    | false   | -i      | generate tiny app skeleton
+root    | .       | -r      | specify the root destination path
+destroy | false   | -d      | removes all generated files
 
 First you need to create a project:
 

@@ -5,7 +5,7 @@ title: Custom Conditions
 
 # Custom Conditions
 
-Padrino has support for Sinatra’s custom route conditions as well. This allows
+Padrino has support for Sinatra's custom route conditions as well. This allows
 you to apply custom condition checks to evaluate before a route is executed for
 an incoming request:
 

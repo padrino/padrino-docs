@@ -8,12 +8,10 @@ title: Components
 The available components and their default options are same as the Project
 Generator.
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  root|.|-r|the root destination path for the project
-  adapter|sqlite|-a|specify orm db adapter (mysql, sqlite, postgres)
-{: .excerpt--small }
+Options | Default | Aliases | Description
+------- | ------- | ------- | ------------------------------------------------
+root    | .       | -r      | the root destination path for the project
+adapter | sqlite  | -a      | specify orm db adapter (mysql, sqlite, postgres)
 
 ## Examples
 

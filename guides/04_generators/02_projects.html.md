@@ -68,33 +68,29 @@ them would also be appreciated).
 
 The project generator has several available configuration options:
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  bundle|false|-b|execute bundler dependencies installation
-  root|.|-r|the root destination path for the project
-  dev|false|none|use edge version from local git checkout
-  app|nil|-n|specify app name different from the project name
-  tiny|false|-i|generate tiny project skeleton
-  adapter|sqlite|-a|specify orm db adapter (mysql, sqlite, postgres)
-{: .excerpt--small }
+Options | Default | Aliases | Description
+------- | ------- | ------- | ------------------------------------------------
+bundle  | false   | -b      | execute bundler dependencies installation
+root    | .       | -r      | the root destination path for the project
+dev     | false   | none    | use edge version from local git checkout
+app     | nil     | -n      | specify app name different from the project name
+tiny    | false   | -i      | generate tiny project skeleton
+adapter | sqlite  | -a      | specify orm db adapter (mysql, sqlite, postgres)
 
 The available components and their default options are listed below:
 
->
-  Component|Default|Aliases|Options
-  :--------|:------|:------|:------
-  orm|none|-d|mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
-  test|none|-t|bacon, shoulda, cucumber, testunit, riot, rspec, minitest, steak
-  script|none|-s|prototype, rightjs, jquery, mootools, extcore, dojo
-  renderer|haml|-e|erb, haml, slim, liquid
-  stylesheet|none|-c|sass, less, scss, compass
-  mock|none|-m|rr, mocha
-{: .excerpt--small }
+Component  | Default | Aliases | Options
+---------- | ------- | ------- | ---------------------------------------------------------------------------------------
+orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
+test       | none    | -t      | bacon, shoulda, cucumber, testunit, riot, rspec, minitest, steak
+script     | none    | -s      | prototype, rightjs, jquery, mootools, extcore, dojo
+renderer   | haml    | -e      | erb, haml, slim, liquid
+stylesheet | none    | -c      | sass, less, scss, compass
+mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your
 project name, or any models or controllers overlap. Avoid naming your app
-“Posts” and then your controller or subapp with the same name.
+"Posts" and then your controller or subapp with the same name.
 
 ## Examples
 

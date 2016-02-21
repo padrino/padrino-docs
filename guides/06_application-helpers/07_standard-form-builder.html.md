@@ -6,7 +6,7 @@ title: Standard Form Builder
 # Standard Form Builder
 
 There is also an additional StandardFormBuilder which builds on the abstract
-fields that can be used within a form\_for.
+fields that can be used within a form_for.
 
 A `form_for` using these standard fields might be:
 
@@ -37,21 +37,36 @@ containing a label):
 ## List of Standard Form Builder Helpers
 
 The following are fields provided by StandardFormBuilder that can be used within
-a form\_for or fields\_for:
+a form_for or fields_for:
 
 - `text_field_block(field, options={}, label_options={})`
-  - `text_field_block(:nickname, :class => ‘big’, :caption => “Username”)`
+
+  - `text_field_block(:nickname, :class => 'big', :caption => "Username")`
+
 - `text_area_block(field, options={}, label_options={})`
-  - `text_area_block(:about, :class => ‘big’)`
+
+  - `text_area_block(:about, :class => 'big')`
+
 - `password_field_block(field, options={}, label_options={})`
-  - `password_field_block(:code, :class => ‘big’)`
+
+  - `password_field_block(:code, :class => 'big')`
+
 - `file_field_block(field, options={}, label_options={})`
-  - `file_field_block(:photo, :class => ‘big’)`
+
+  - `file_field_block(:photo, :class => 'big')`
+
 - `check_box_block(field, options={}, label_options={})`
-  - `check_box_block(:remember_me, :class => ‘big’)`
+
+  - `check_box_block(:remember_me, :class => 'big')`
+
 - `select_block(field, options={}, label_options={})`
-  - `select_block(:country, :option => [‘USA’, ‘Canada’])`
+
+  - `select_block(:country, :option => ['USA', 'Canada'])`
+
 - `submit_block(caption, options={})`
-  - `submit_block(:username, :class => ‘big’)`
+
+  - `submit_block(:username, :class => 'big')`
+
 - `image_submit_block(source, options={})`
-  - `image_submit_block(‘submit.png’, :class => ‘big’)`
+
+  - `image_submit_block('submit.png', :class => 'big')`

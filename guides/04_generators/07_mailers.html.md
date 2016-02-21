@@ -8,14 +8,12 @@ title: Mailers
 Padrino provides generator support for quickly creating new mailers within your
 Padrino application.
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  app|nil|-n|specify the application
-  root|.|-r|specify the root destination path
-  namespace||-n|specify the name space of your padrino project
-  destroy|false|-d|removes all generated files
-{: .excerpt--small }
+Options   | Default | Aliases | Description
+--------- | ------- | ------- | ----------------------------------------------
+app       | nil     | -n      | specify the application
+root      | .       | -r      | specify the root destination path
+namespace |         | -n      | specify the name space of your padrino project
+destroy   | false   | -d      | removes all generated files
 
 Very important to note that mailer generators are intended primarily to work
 within applications created through the Padrino application generator and that

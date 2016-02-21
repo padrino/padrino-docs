@@ -9,7 +9,7 @@ In addition to components, we also encourage developers to send us their locale
 translations allowing Padrino to support a wide variety of different languages.
 
 In order to add locale translations, simply port the following YAML files to
-your favorite language. For this example, let’s port over Padrino to Russian.
+your favorite language. For this example, let's port over Padrino to Russian.
 The following YAML files must be translated:
 
 - [padrino-helpers/locale/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-helpers/lib/padrino-helpers/locale/ru.yml)

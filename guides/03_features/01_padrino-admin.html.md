@@ -8,30 +8,30 @@ title: Padrino Admin
 Padrino comes shipped with a slick and beautiful Admin Interface, with the
 following features:
 
->
-  |**Orm Agnostic**|Adapters for datamapper, sequel, activerecord, mongomapper, mongoid, couchrest|
-  |**Authentication**|User Authentication Support, User Authorization Management|
-  |**Template Agnostic**|Erb and Haml Rendering Support|
-  |**Scaffold**|You can create a new “admin interface” by providing a single Model|
-  |**MultiLanguage**|English, German, Russian, Danish, French, Brazilian and Italian localizations|
-{: .excerpt--small }
+Feature               | Description
+--------------------- | ------------------------------------------------------------------------------
+**Orm Agnostic**      | Adapters for datamapper, sequel, activerecord, mongomapper, mongoid, couchrest
+**Authentication**    | User Authentication Support, User Authorization Management
+**Template Agnostic** | Erb and Haml Rendering Support
+**Scaffold**          | You can create a new "admin interface" by providing a single Model
+**MultiLanguage**     | English, German, Russian, Danish, French, Brazilian and Italian localizations
 
----
+--------------------------------------------------------------------------------
 
 ## Admin Usage
 
 Create a new project:
 
-~~~ shell
+```shell
 $ padrino g project fun-test -d datamapper
 $ cd fun-test
-~~~
+```
 
 Create the admin application:
 
-~~~ shell
+```shell
 $ padrino g admin
-~~~
+```
 
 Follow the instructions in your terminal and provide some valid email and
 password for your newly created admin account:
@@ -39,44 +39,44 @@ password for your newly created admin account:
 - edit your config/database.rb
 - migrate your database: `$ padrino rake ar:migrate` or `$ padrino rake
   dm:migrate`
-- seed your database with some data \# padrino rake seed
+- seed your database with some data # padrino rake seed
 
-Your admin section is now “setup”: you can start padrino `padrino start` and
+Your admin section is now "setup": you can start padrino `padrino start` and
 point your web browser to <http://localhost:3000/admin> and log in with your
 admin account credentials.
 
-If you need to create some sort of “scaffold” (basic CRUD actions) create a
-*model*, migrate your database, generate your scaffolding folder structure and
+If you need to create some sort of "scaffold" (basic CRUD actions) create a
+_model_, migrate your database, generate your scaffolding folder structure and
 views and add those to your admin section by running this series of commands:
 
-~~~ shell
+```shell
 $ padrino g model post title:string body:text
 $ padrino rake dm:migrate # or ar:migrate
 $ padrino g admin_page post
 $ padrino start
-~~~
+```
 
-That‘s it! Browse to <http://localhost:3000/admin> and access your model by
+That's it! Browse to <http://localhost:3000/admin> and access your model by
 clicking on the newly created tab on your admin navbar: there you can create,
 edit, destroy and display your objects.
 
----
+--------------------------------------------------------------------------------
 
 ## Admin Authentication
 
 Padrino Admin uses a single model Account for managing roles, memberships and
 permissions (User Authentication and Authorization).
 
----
+--------------------------------------------------------------------------------
 
 ## Scenario E-commerce (User Authentication)
 
-To make some practical example, let‘s examine some common e-commerce application
+To make some practical example, let's examine some common e-commerce application
 scenario, where we usually need to restrain some users to get access to some of
 our controllers actions; we can easily accomplish this by editing `app.rb`
 accordingly:
 
-~~~ ruby
+```ruby
 class MyEcommerce < Padrino::Application
   register Padrino::Admin::AccessControl
 
@@ -89,7 +89,7 @@ class MyEcommerce < Padrino::Application
     role.protect "/cart/checkout"
   end
 end
-~~~
+```
 
 In the above example we are protecting those paths starting with
 `/customer/orders` and `/cart/checkout`. The result will be that an
@@ -100,11 +100,11 @@ email and password).
 
 When successfully logged in, he will be granted access to those two pages.
 
----
+--------------------------------------------------------------------------------
 
 ## Admin Scenario (User Authorization)
 
-For Another example, let‘s suppose that you need your **admin** account to do
+For Another example, let's suppose that you need your **admin** account to do
 certain things and have access to certain controller actions, and your
 **editor** account needs to be restrained to get access to those same admin
 actions.
@@ -112,7 +112,7 @@ actions.
 Padrino admin generator, will create for you a new `Account` model with a
 default `role` attribute.
 
-~~~ ruby
+```ruby
 class Admin < Padrino::Application
   register Padrino::Admin::AccessControl
 
@@ -134,10 +134,10 @@ class Admin < Padrino::Application
     role.protect_module :categories, "/categories"
   end
 end
-~~~
+```
 
-In the above example, we *protect* the entire admin section (all paths starting
-with “/”) with the only exception for all those paths starting with `/sessions`
+In the above example, we _protect_ the entire admin section (all paths starting
+with "/") with the only exception for all those paths starting with `/sessions`
 giving our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
@@ -147,14 +147,14 @@ access **only** to the `/settings` path.
 If we are logged in as an **editor** (`account.role == 'editor'`) we will have
 access **only** to the `/posts` and `/categories` paths instead.
 
----
+--------------------------------------------------------------------------------
 
 ## Sharing Sessions Between Mounted Applications
 
 Sessions can be shared between mounted applications by setting a `:session_id`
 with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 
----
+--------------------------------------------------------------------------------
 
 ## Contributing Persistence Adapters
 

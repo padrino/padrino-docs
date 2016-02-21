@@ -6,12 +6,12 @@ title: Testing Library
 # Testing Library
 
 Contributing an additional testing library to Padrino is actually quite
-straightforward. For this guide, let’s assume we want to add `shoulda` as a
+straightforward. For this guide, let's assume we want to add `shoulda` as a
 testing component integrated into Padrino.
 
 ## Generators
 
-First, let’s add `shoulda` to the project generator’s available components in
+First, let's add `shoulda` to the project generator's available components in
 [padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L36):
 
 ```ruby
@@ -20,7 +20,7 @@ First, let’s add `shoulda` to the project generator’s available components i
 component_option :test, "testing framework", :choices => [:rspec, :shoulda]
 ```
 
-Next, let’s define the actual integration of the testing library into the
+Next, let's define the actual integration of the testing library into the
 generator in
 [padrino-gen/generators/components/tests/shoulda.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/tests/shoulda.rb):
 
@@ -58,9 +58,9 @@ end
 
 ## Tests
 
-Let’s also add a test to ensure the new testing component generates as expected
+Let's also add a test to ensure the new testing component generates as expected
 in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L580):
+[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L580):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -76,8 +76,8 @@ end
 
 ## README
 
-Finally, let’s update the README for `padrino-gen` to reflect the new
-component in
+Finally, let's update the README for `padrino-gen` to reflect the new component
+in
 [padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 
 ```ruby
@@ -88,8 +88,8 @@ test:: rspec (default), bacon, shoulda, cucumber, testspec, riot
 
 ## Contribute to Padrino
 
-This completes the full integration of a testing library into Padrino. Once
-all of this has been finished in your GitHub fork, send us a pull request and
+This completes the full integration of a testing library into Padrino. Once all
+of this has been finished in your GitHub fork, send us a pull request and
 assuming you followed these instructions properly and the library actually works
 when generated, we will include the component into the next Padrino version
 crediting you for the contribution!

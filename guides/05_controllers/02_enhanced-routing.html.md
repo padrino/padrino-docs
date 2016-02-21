@@ -48,7 +48,6 @@ These routes can then be referenced anywhere in the application:
 The routing plugin also supports inline route definitions in which the explicit
 URL and the named alias are both defined:
 
-
 ```ruby
 # app/main.rb
 
@@ -64,8 +63,7 @@ class Demoer < Padrino::Application
 end
 ```
 
-Routes defined inline this way can be accessed and treated the same way as
-traditional named aliases:
+Routes defined inline this way can be accessed and treated the same way as traditional named aliases:
 
 ```haml
 # app/views/example.haml
@@ -97,7 +95,7 @@ end
 
 You can then reference these routes using the same `url_for` method:
 
-``` haml
+```haml
 -# app/views/admin.haml
 
 = link_to 'admin show page', url_for(:admin, :index)

@@ -8,7 +8,7 @@ title: Standalone Usage in Sinatra
 Padrino is by default a full-stack framework which provides a large number of
 enhancements to Sinatra and uses a new base application `Padrino::Application`.
 However, there are clearly times when even Padrino itself is far too
-‘heavyweight’ for an application.
+'heavyweight' for an application.
 
 In these instances, the ideal situation would be to cherry-pick individual
 enhancements and use them in your existing Sinatra application. Fortunately,
@@ -16,10 +16,10 @@ Padrino is committed to allowing you to do exactly that! Each major component
 within Padrino can be used in isolation and applied to an existing Sinatra
 application. This guide will walk you through that process for each component.
 You can also find some examples
-[here](https://github.com/padrino/padrino-integration/tree/master/fixtures/single-apps "link to padrino single-apps").
+[here](https://github.com/padrino/padrino-integration/tree/master/fixtures/single-apps
+"link to padrino single-apps").
 
----
-
+--------------------------------------------------------------------------------
 
 ## Padrino Helpers
 
@@ -29,11 +29,10 @@ more. Most of the basic methods should be very familiar to anyone who has used
 rails view helpers.
 
 You can check out the details of these helpers in the
-[Application Helpers](/guides/application-helpers "Application Helpers guide") guide. To register these
-helpers within your Sinatra application:
+[Application Helpers](/guides/application-helpers "Application Helpers guide")
+guide. To register these helpers within your Sinatra application:
 
-
-~~~ ruby
+```ruby
 # app.rb
 require 'sinatra/base'
 require 'padrino-helpers'
@@ -41,10 +40,9 @@ require 'padrino-helpers'
 class Application < Sinatra::Base
   register Padrino::Helpers
 end
-~~~
+```
 
-
----
+--------------------------------------------------------------------------------
 
 ## Padrino Mailer
 
@@ -54,11 +52,10 @@ well as for file attachments. The Padrino Mailer has many similarities to
 ActionMailer but is much lighter-weight and easier to use.
 
 You can check out the details of the mailer in the
-[Padrino Mailer](/guides/padrino-mailer "Padrino Mailer guide") guide. To register this mailer within
-your Sinatra application:
+[Padrino Mailer](/guides/padrino-mailer "Padrino Mailer guide") guide. To
+register this mailer within your Sinatra application:
 
-
-~~~ ruby
+```ruby
 # app.rb
 require 'sinatra/base'
 require 'padrino-mailer'
@@ -76,9 +73,9 @@ class Application < Sinatra::Base
     end
   end
 end
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Padrino Routing
 
@@ -86,8 +83,7 @@ You can check out the details of the routing system in the
 [Routing](/guides/controllers) guide. To register the routing and controller
 functionality within your Sinatra application:
 
-
-~~~ ruby
+```ruby
 # app.rb
 require 'sinatra/base'
 require 'padrino-core/application/routing'
@@ -127,17 +123,16 @@ class MyApp < Sinatra::Application
 end # MyApp
 
 MyApp.run!(:port => 3000)
-~~~
+```
 
----
-
+--------------------------------------------------------------------------------
 
 ## Padrino Rendering
 
-Padrino enhances the Sinatra ‘render’ method to have support for automatic
+Padrino enhances the Sinatra 'render' method to have support for automatic
 template engine detection, among other more advanced features.
 
-~~~ ruby
+```ruby
 # app.rb
 require 'sinatra/base'
 require 'padrino-core/application/rendering'
@@ -148,17 +143,16 @@ class Application < Sinatra::Base
   get('/')  { render 'example/demo' } # Auto-renders 'views/example/demo.haml'
   get('/demo') { render :haml, 'example/demo' } # Renders 'views/example/demo.haml'
 end
-~~~
+```
 
-
----
+--------------------------------------------------------------------------------
 
 ## Padrino Cache
 
-**Note that the padrino-cache** gem does not currently do anything! This is a placeholder for when this gem has been implemented.
+**Note that the padrino-cache** gem does not currently do anything! This is a
+  placeholder for when this gem has been implemented.
 
-
-~~~ ruby
+```ruby
 # app.rb
 require 'sinatra/base'
 require 'padrino-cache'
@@ -166,10 +160,6 @@ require 'padrino-cache'
 class Application < Sinatra::Base
   register Padrino::Cache
 end
-~~~
-
+```
 
 This will allow for use of the caching functionality within Sinatra.
-
-[Next Section &ndash; Running Padrino on JRuby](/guides/running-padrino-on-jruby){: .button}
-{: .excerpt}

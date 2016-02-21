@@ -3,7 +3,7 @@ chapter: Controllers
 title: Route Filters
 ---
 
-## Route Filters
+# Route Filters
 
 Before filters are evaluated before each request within the context of the
 request and can modify the request and response. Instance variables set in
@@ -26,7 +26,7 @@ end
 ```
 
 This is now standard in Sinatra, but Padrino adds support for filters being
-*scoped by controller* which means that unlike Sinatra in which a filter is
+_scoped by controller_ which means that unlike Sinatra in which a filter is
 global, in Padrino you can run different filters for each controller:
 
 ```ruby

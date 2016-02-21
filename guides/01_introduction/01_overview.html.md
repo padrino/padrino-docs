@@ -36,6 +36,6 @@ These guides should provide a pretty good overview but if you have any questions
 be sure to contact us: [@padrinorb](http://twitter.com/padrinorb "@padrinorb"),
 discuss things on the
 [google groups](https://groups.google.com/forum/?hl=en#!forum/padrino "google
-groups"), join us on freenode IRC at “\#padrinorb” or
+groups"), join us on freenode IRC at "#padrinorb" or
 [open an issue](https://github.com/padrino/padrino-framework/issues "open an
 issue") on GitHub.

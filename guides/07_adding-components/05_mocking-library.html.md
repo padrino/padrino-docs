@@ -6,13 +6,13 @@ title: Mocking Library
 # Mocking Library
 
 Contributing an additional mocking library to Padrino is actually quite
-straightforward. For this guide, let’s assume we want to add
+straightforward. For this guide, let's assume we want to add
 [Mocha](https://github.com/freerange/mocha) as a mocking component integrated
 into Padrino.
 
 ## Generators
 
-First, let’s add `mocha` to the project generator’s available components in
+First, let's add `mocha` to the project generator's available components in
 [padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L36):
 
 ```ruby
@@ -21,7 +21,7 @@ First, let’s add `mocha` to the project generator’s available components in
 component_option :mock, "mocking library", :choices => [:mocha, :rr]
 ```
 
-Next, let’s define the actual integration of the mocking library into the
+Next, let's define the actual integration of the mocking library into the
 generator in
 [padrino-gen/generators/components/mocks/mocha.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/mocks/mocha.rb):
 
@@ -36,9 +36,9 @@ end
 
 ## Tests
 
-Let’s also add a test to ensure the new mocking component generates as expected
+Let's also add a test to ensure the new mocking component generates as expected
 in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L248):
+[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L248):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -53,8 +53,8 @@ end
 
 ## README
 
-Finally, let’s update the README for `padrino-gen` to reflect the new
-component in
+Finally, let's update the README for `padrino-gen` to reflect the new component
+in
 [padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 
 ```ruby

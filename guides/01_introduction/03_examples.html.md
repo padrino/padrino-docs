@@ -13,16 +13,12 @@ hope to compile a list of developed apps using Padrino.
 
 Below is the current list of known open-source Padrino applications.
 
->
-  Name|Description|In Production|Author
-  :---|:----------|:------------|:-----
-  [test-app](http://github.com/padrino/test-app)|Sample padrino blog|No|Padrino Team
-{: .excerpt--inline.excerpt--small }
+Name                                           | Description         | In Production | Author
+---------------------------------------------- | ------------------- | ------------- | ------------
+[test-app](http://github.com/padrino/test-app) | Sample padrino blog | No            | Padrino Team
 
 ## Closed-source Applications
 
->
-  Name|Description|In Production|Author
-  :---|:----------|:------------|:-----
-  [Padrino Website](http://padrinorb.com)|Offical Padrino Website|Yes|Padrino Team
-{: .excerpt--inline.excerpt--small }
+Name                                    | Description             | In Production | Author
+--------------------------------------- | ----------------------- | ------------- | ------------
+[Padrino Website](http://padrinorb.com) | Offical Padrino Website | Yes           | Padrino Team

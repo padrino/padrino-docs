@@ -6,13 +6,13 @@ title: Stylesheet Engine
 # Stylesheet Engine
 
 Contributing an additional stylesheet engine to Padrino is actually quite
-straightforward. For this guide, let’s assume we want to add
+straightforward. For this guide, let's assume we want to add
 [Less](http://lesscss.org) as a stylesheet engine component integrated into
 Padrino.
 
 ## Generators
 
-First, let’s add `less` to the project generator’s available components in
+First, let's add `less` to the project generator's available components in
 [padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L33):
 
 ```ruby
@@ -21,7 +21,7 @@ First, let’s add `less` to the project generator’s available components in
 component_option :stylesheet, "stylesheet engine", :choices => [:sass, :less]
 ```
 
-Next, let’s define the actual integration of the stylesheet engine into the
+Next, let's define the actual integration of the stylesheet engine into the
 generator in
 [padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
 
@@ -46,9 +46,9 @@ end
 
 ## Tests
 
-Let’s also add a test to ensure the new stylesheet engine component generates as
+Let's also add a test to ensure the new stylesheet engine component generates as
 expected in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L656):
+[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L656):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -65,8 +65,8 @@ end
 
 ## README
 
-Finally, let’s update the README for `padrino-gen` to reflect the new
-component in
+Finally, let's update the README for `padrino-gen` to reflect the new component
+in
 [padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 
 ```ruby

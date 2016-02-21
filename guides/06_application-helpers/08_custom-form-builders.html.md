@@ -22,7 +22,7 @@ class MyCustomFormBuilder < AbstractFormBuilder
 end
 ```
 
-Once a custom builder is defined, any call to form\_for can use the new builder:
+Once a custom builder is defined, any call to form_for can use the new builder:
 
 ```haml
 = form_for @user, '/register', :builder => 'MyCustomFormBuilder', :id => 'register' do |f|
@@ -38,5 +38,5 @@ set :default_builder, 'MyCustomFormBuilder'
 ```
 
 And there you have it, a fairly complete form builder solution for Padrino (and
-Sinatra). I hope to create or merge in an even better ‘default’ form\_builder in
+Sinatra). I hope to create or merge in an even better 'default' form_builder in
 the near future.

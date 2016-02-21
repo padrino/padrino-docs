@@ -11,7 +11,7 @@ would like to integrate [Datamapper](http://datamapper.org) into Padrino.
 
 ## Generators
 
-First, let’s add Datamapper to the project generator’s available components in
+First, let's add Datamapper to the project generator's available components in
 [padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb):
 
 ```ruby
@@ -21,7 +21,7 @@ component_option :orm, "database engine", :choices => [:activerecord, :datamappe
 
 Here, we needed to append `:datamapper` as an option for the `:orm`
 `component_option` in the project generator. Once we have defined Datamapper as
-an option for the ORM component, let’s actually define the specific integration
+an option for the ORM component, let's actually define the specific integration
 tasks for the generator in
 [padrino-gen/generators/components/orms/datamapper.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb):
 
@@ -92,9 +92,9 @@ end
 
 ## Unit Tests
 
-Next, let’s add the appropriate unit tests to ensure our new component works as
+Next, let's add the appropriate unit tests to ensure our new component works as
 intended in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L359):
+[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L359):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -128,7 +128,7 @@ persistence engine of choice and is **highly** recommended.
 ## Padrino Admin Support
 
 Adding `padrino-admin` support for your persistence engine is actually fairly
-straightforward. First, let’s add Datamapper to the set of supported admin ORM
+straightforward. First, let's add Datamapper to the set of supported admin ORM
 engines in
 [padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/generators/actions.rb#L29):
 
@@ -273,7 +273,7 @@ class Account
 end
 ```
 
-Finally, let’s update the `padrino-admin` README file at
+Finally, let's update the `padrino-admin` README file at
 [padrino-admin/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/README.rdoc)
 to reflect our newly support component:
 

@@ -24,7 +24,8 @@ $ padrino g project my_project --template https://gist.github.com/356156
 ```
 
 You can also execute template files directly from
-[the official templates repo](http://github.com/padrino/padrino-recipes/tree/master/templates "the official templates repo"):
+[the official templates repo](http://github.com/padrino/padrino-recipes/tree/master/templates
+"the official templates repo"):
 
 ```shell
 $ padrino g project my_project --template sampleblog
@@ -38,7 +39,8 @@ $ padrino g plugin path/to/my_plugin.rb
 ```
 
 You can also execute plugin files directly from
-[the official plugins repo](https://github.com/padrino/padrino-recipes/tree/master/plugins/ "the official plugins repo"):
+[the official plugins repo](https://github.com/padrino/padrino-recipes/tree/master/plugins/
+"the official plugins repo"):
 
 ```shell
 $ cd path/to/existing/padrino/app
@@ -77,4 +79,5 @@ git :commit, "second commit"
 ```
 
 Keep in mind that the template file is pure Ruby and has full access to
-[all available thor actions](https://github.com/erikhuda/thor/blob/master/lib/thor/actions.rb "thor actions").
+[all available thor actions](https://github.com/erikhuda/thor/blob/master/lib/thor/actions.rb
+"thor actions").

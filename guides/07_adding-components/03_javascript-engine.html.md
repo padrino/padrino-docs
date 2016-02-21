@@ -6,13 +6,12 @@ title: JavaScript Engine
 # JavaScript Engine
 
 Contributing an additional JavaScript library to Padrino is actually quite
-straightforward. For this guide, let’s assume we want to add `extcore` as a
+straightforward. For this guide, let's assume we want to add `extcore` as a
 JavaScript component integrated into Padrino.
 
 ## Generators
 
-First, let’s add `extcore` to the
-project generator’s available components in
+First, let's add `extcore` to the project generator's available components in
 [padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L36):
 
 ```ruby
@@ -21,7 +20,7 @@ project generator’s available components in
 component_option :script, "javascript library", :choices => [:jquery, :prototype, :extcore]
 ```
 
-Next, let’s define the actual integration of the javascript into the generator
+Next, let's define the actual integration of the javascript into the generator
 in
 [padrino-gen/generators/components/scripts/extcore.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb):
 
@@ -35,7 +34,7 @@ end
 ```
 
 This will copy the script into the `public/javascripts` folder of a newly
-generated project and construct the `application.js` file. Next, let’s copy the
+generated project and construct the `application.js` file. Next, let's copy the
 latest version of the javascript library to the templates folder:
 
 ```javascript
@@ -46,9 +45,9 @@ latest version of the javascript library to the templates folder:
 
 ## Tests
 
-Let’s also add a test to ensure the new JavaScript component generates as
+Let's also add a test to ensure the new JavaScript component generates as
 expected in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L517):
+[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L517):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -64,7 +63,7 @@ end
 
 ## README
 
-Finally, let’s update the README for `padrino-gen` to reflect the new component
+Finally, let's update the README for `padrino-gen` to reflect the new component
 in
 [padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 
@@ -77,13 +76,13 @@ script:: none  (default), jquery, prototype, mootools, rightjs, , dojo, extcore
 ## Unobtrusive JavaScript Adapter
 
 Although optional, you can also provide a unobtrusive JavaScript (UJS) adapter
-which provides ‘remote’ and ‘method’ support to a project using a particular
+which provides 'remote' and 'method' support to a project using a particular
 JavaScript framework. For more information about UJS, check out the
 [UJS Helpers](https://www.padrinorb.com/guides/application-helpers#unobtrusive-javascript-helpers)
 guide.
 
 To support UJS in a given JavaScript framework, simply create a new file such as
-‘jquery-ujs’ in your [padrino-static](https://github.com/padrino/padrino-static)
+'jquery-ujs' in your [padrino-static](https://github.com/padrino/padrino-static)
 fork and then follow the UJS
 [adapter template](https://github.com/padrino/padrino-static/blob/master/ujs/jquery.js)
 used by the existing implementation.

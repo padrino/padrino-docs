@@ -7,7 +7,7 @@ title: Overview
 
 Suppose we wanted to add routes to our Padrino application, and we want to
 organize a set of related routes within a more structured grouping. Padrino has
-the notion of a ‘controller’ block which can group related routes and make URL
+the notion of a 'controller' block which can group related routes and make URL
 generation much easier. Simply add a `controllers.rb` file or `app/controllers`
 folder and create a file as such:
 

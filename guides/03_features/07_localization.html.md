@@ -31,7 +31,7 @@ At the moment we support the following list of languages:
 - Simplified Chinese
 - Japanese
 
----
+--------------------------------------------------------------------------------
 
 ## Provide your translations
 
@@ -44,40 +44,42 @@ Download and translate these files:
 
 zip your files and send it to [padrinorb@gmail.com](mailto:padrinorb@gmail.org)
 
----
+--------------------------------------------------------------------------------
 
 ## How to localize your app
 
 The first thing that you need to do is to set your locale by appending it to
 `boot.rb`:
 
-~~~ ruby
+```ruby
 # config/boot.rb
 Padrino.before_load do
   I18n.locale = :de
 end
-~~~
+```
 
 By default Padrino will search for all `.yml` or `.rb` files located in
 `app/locale`; as an example try to add the following to your
 `app/locale/de.yml`:
 
-~~~ yml
+```yml
 de:
   foo: Bar
-~~~
+```
 
 in your view or controller or wherever you prefer add:
 
-~~~ ruby
+```ruby
 I18n.t("foo")
-~~~
+```
 
 you will get:
 
-    => "Bar"
+```
+=> "Bar"
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Translate Models (ActiveRecord)
 
@@ -86,7 +88,7 @@ task!
 
 Assuming the following Account model:
 
-~~~ ruby
+```ruby
 create_table :accounts do |t|
   t.string :surname
   t.string :name
@@ -95,26 +97,26 @@ create_table :accounts do |t|
   t.string :crypted_password
   t.string :role
 end
-~~~
+```
 
 add this to your `boot.rb` (or anywhere else):
 
-~~~ ruby
+```ruby
 Padrino.before_load do
   I18n.locale = :it
 end
-~~~
+```
 
 run padrino rake task for localizing your model:
 
-~~~ shell
+```shell
 padrino rake ar:translate
-~~~
+```
 
 a new `it.yml` file will be created into `/app/locale/models/account/it.yml`
 with the following:
 
-~~~ yml
+```yml
 it:
   models:
     account:
@@ -127,12 +129,12 @@ it:
         salt: Salt
         crypted_password: Crypted password
         role: Role
-~~~
+```
 
 you can now edit your generated `it.yml` file to reflect your current locale
 (Italian):
 
-~~~ yml
+```yml
 it:
   models:
     account:
@@ -145,18 +147,18 @@ it:
         salt: Salt
         crypted_password: Crypted password
         role: Role
-~~~
+```
 
 padrino-admin will now use your newly created yml file for translating the
-column names of grids, forms, error\_messages etc ...
+column names of grids, forms, error_messages etc ...
 
----
+--------------------------------------------------------------------------------
 
 ## Bonus
 
-Using *form\_builder* like:
+Using _form_builder_ like:
 
-~~~ haml
+```haml
 -form_for :account, url(:accounts_create, :format => :js), :remote => true do |f|
   %table
     %tr
@@ -168,6 +170,6 @@ Using *form\_builder* like:
     %tr
       %td=f.label :role
       %td=f.select :role, :options => access_control.roles
-~~~
+```
 
 the tag **label** automatically translates for **you** the field name!

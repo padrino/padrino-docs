@@ -10,17 +10,15 @@ your Padrino application. Note that the controller tests are generated
 specifically tailored towards the testing framework chosen during application
 generation.
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  app|/app|-a|specify the application
-  root|.|-r|specify the root destination
-  namespace||-n|specify the name space of your padrino project
-  layout||-l|specify the layout
-  parent||-p|specify the parent
-  provides| |-f|specify the formats for this controller
-  destroy|false|-d|removes all generated files
-{: .excerpt--small }
+Options   | Default | Aliases | Description
+--------- | ------- | ------- | ----------------------------------------------
+app       | /app    | -a      | specify the application
+root      | .       | -r      | specify the root destination
+namespace |         | -n      | specify the name space of your padrino project
+layout    |         | -l      | specify the layout
+parent    |         | -p      | specify the parent
+provides  |         | -f      | specify the formats for this controller
+destroy   | false   | -d      | removes all generated files
 
 Very important to note that controller generators are intended primarily to work
 within applications created through the Padrino application generator and that

@@ -5,7 +5,7 @@ title: Sessions
 
 # Sessions
 
-*Kindly borrowed from Sinatra's docs :)*
+_Kindly borrowed from Sinatra's docs :)_
 
 A session is used to keep state during requests. If activated, you have one
 session hash per user session:

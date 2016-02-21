@@ -13,7 +13,7 @@ javascript adapter, you can utilize the baked in support with the `link_to` and
 
 ## Remote Forms
 
-To generate a ‘remote’ form in a view:
+To generate a 'remote' form in a view:
 
 ```haml
 # /app/views/users/new.html.haml
@@ -50,7 +50,7 @@ response as javascript.
 
 ## Remote Links
 
-To generate a ‘remote’ link in a view:
+To generate a 'remote' link in a view:
 
 ```ruby
 link_to "add item", url(:items, :new, :format => :js), :remote => true
@@ -67,7 +67,7 @@ url and then evaluates the response as javascript.
 
 ## Link Confirmations
 
-To generate a ‘confirmation’ link in a view:
+To generate a 'confirmation' link in a view:
 
 ```ruby
 link_to "delete item", url(:items, :destroy, :format => :js), :confirm => "Are You Sure?"
@@ -84,7 +84,7 @@ confirming the action before invoking the link.
 
 ## Custom Method Links
 
-To generate a ‘method’ link in a view:
+To generate a 'method' link in a view:
 
 ```ruby
 link_to "logout", url(:session, :destroy, :format => :js), :method => :delete
@@ -97,7 +97,7 @@ which will generate the following unobtrusive markup:
 ```
 
 A link with a custom method, when clicked by the user, visits the link using the
-http method specified rather than via the ‘GET’ method.
+http method specified rather than via the 'GET' method.
 
 ## Enabling UJS Adapter
 

@@ -21,7 +21,7 @@ rendering of your choice (erb, haml, slim).
 render :haml, 'account/index'
 ```
 
-Padrino also automatically considers your current locale and/or content\_type.
+Padrino also automatically considers your current locale and/or content_type.
 
 ```ruby
 # app/controllers/example.rb
@@ -33,7 +33,7 @@ end
 ```
 
 When you visit the `:show` route with `I18n.locale == :ru` enabled, Padrino will
-first try to look for “admin/show.ru.js.\*” if nothing matches that criteria, it
-will try “admin/show.ru.\*” then “admin/show.js.\*”. As a last resort, if he
-finds nothing matching your criteria, it will return “admin/show.erb” (or
+first try to look for "admin/show.ru.js.*" if nothing matches that criteria, it
+will try "admin/show.ru.*" then "admin/show.js.*". As a last resort, if he finds
+nothing matching your criteria, it will return "admin/show.erb" (or
 admin/show.haml)

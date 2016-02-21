@@ -5,12 +5,12 @@ title: Padrino Cache
 
 # Padrino Cache
 
-This component enables caching of an application’s response contents on both
+This component enables caching of an application's response contents on both
 page- and fragment-levels. Output cached in this manner is persisted, until it
 expires or is actively expired, in a configurable store of your choosing.
 Several common caching stores are supported out of the box.
 
----
+--------------------------------------------------------------------------------
 
 ## Caching Quickstart
 
@@ -22,10 +22,10 @@ your project root. Entries in this store correspond directly to the request
 issued to your server. In other words, responses are cached based on request
 URL, with one cache entry per URL.
 
-This behavior is referred to as “page-level caching.” If this strategy meets
+This behavior is referred to as "page-level caching." If this strategy meets
 your needs, you can enable it very easily:
 
-~~~ ruby
+```ruby
 # Basic, page-level caching
 class SimpleApp < Padrino::Application
   register Padrino::Cache
@@ -36,13 +36,13 @@ class SimpleApp < Padrino::Application
     'Hello world'
   end
 end
-~~~
+```
 
-By default the “cache\_key“ in these instances is the `request.path_info` and
-the query string is not considered. You can also provide a custom `cache_key`
-for any route:
+By default the "cache_key" in these instances is the `request.path_info` and the
+query string is not considered. You can also provide a custom `cache_key` for
+any route:
 
-~~~ ruby
+```ruby
 class SimpleApp < Padrino::Application
   register Padrino::Cache
   enable :caching
@@ -52,14 +52,15 @@ class SimpleApp < Padrino::Application
     cache_key :my_name
   end
 end
-~~~
+```
 
-In this way you can manually expire cache with `CachedApp.cache.delete(:my_name)`
-for example from the Post model after an update.
+In this way you can manually expire cache with
+`CachedApp.cache.delete(:my_name)` for example from the Post model after an
+update.
 
 You can also cache on a controller-wide basis:
 
-~~~ ruby
+```ruby
 # Controller-wide caching example
 
 class SimpleApp < Padrino::Application
@@ -88,37 +89,37 @@ class SimpleApp < Padrino::Application
     end
   end
 end
-~~~
+```
 
 If you specify `:cache => true` but do not invoke `expires_in`, the response
 will be cached indefinitely. Most of the time, you will want to specify the
-expiry of a cache entry by `expires_in`. Even a relatively low value—1 or 2
-seconds—can greatly increase application efficiency, especially when enabled on
+expiry of a cache entry by `expires_in`. Even a relatively low value--1 or 2
+seconds--can greatly increase application efficiency, especially when enabled on
 a very active part of your domain.
 
----
+--------------------------------------------------------------------------------
 
 ## Caching Helpers
 
 ### Page Caching
 
-As described above in the “Caching Quickstart“ section, page caching is very
+As described above in the "Caching Quickstart" section, page caching is very
 easy to integrate into your application. To turn it on, simply provide the
 `:cache => true` option on either a controller or one of its routes.
 
-By default, cached content is persisted with a “file store”—that is, in a
+By default, cached content is persisted with a "file store"--that is, in a
 subdirectory of your application root.
 
 #### expires\_in(seconds)
 
 This helper is used within a controller or route to indicate how often cached
-*page-level* content should persist in the cache.
+_page-level_ content should persist in the cache.
 
 After `seconds` seconds have passed, content previously cached will be discarded
-and re-rendered. Code associated with that route will *not* be executed; rather,
+and re-rendered. Code associated with that route will _not_ be executed; rather,
 its previous output will be sent to the client with a 200 OK status code.
 
-~~~ ruby
+```ruby
 # Setting content expiry time
 class CachedApp < Padrino::Application
   register Padrino::Cache  # includes helpers
@@ -139,10 +140,9 @@ class SimpleApp < Padrino::Application
     @post = Post.find(params[:id])
   end
 end
-~~~
+```
 
-This will modify the cache key to include the `name` and `page` query
-parameters.
+This will modify the cache key to include the `name` and `page` query parameters.
 
 ### Fragment Caching
 
@@ -153,7 +153,7 @@ at whatever level you choose.
 
 Possible uses for fragment caching might include:
 
-- a ‘feed’ of some items on a page
+- a 'feed' of some items on a page
 - output fetched (by proxy) from an API on a third-party site
 - parts of your page which are largely static/do not need re-rendering every
   request
@@ -164,7 +164,7 @@ Possible uses for fragment caching might include:
 This helper is used anywhere in your application you would like to associate a
 fragment to be cached. It can be used in within a route:
 
-~~~ ruby
+```ruby
 # Caching a fragment
 class MyTweets < Padrino::Application
   register Padrino::Cache
@@ -184,10 +184,10 @@ class MyTweets < Padrino::Application
     end
   end
 end
-~~~
+```
 
 This example adds a key to the cache of format `feed_for_#{username}` which
-contains the contents of that user‘s feed. Any subsequent action within the next
+contains the contents of that user's feed. Any subsequent action within the next
 3 seconds will fetch the pre-rendered version of `feed_for_#{username}` from the
 cache instead of re-rendering it. The rest of the page code will, however, be
 re-executed.
@@ -195,7 +195,7 @@ re-executed.
 Note that any other action will reference the same content if it uses the same
 key:
 
-~~~ ruby
+```ruby
 # Multiple routes sharing the same cached fragment
 class MyTweets < Padrino::Application
   register Padrino::Cache  # includes helpers
@@ -226,14 +226,14 @@ class MyTweets < Padrino::Application
     end
   end
 end
-~~~
+```
 
 The `opts` argument is actually passed to the underlying store. All stores
 included with Padrino support the `:expires_in` option out of the box.
 
 Finally, to DRY up things a bit, we might do:
 
-~~~ ruby
+```ruby
 # Multiple routes sharing the same cached fragment
 class MyTweets < Padrino::Application
   register Padrino::Cache  # includes helpers
@@ -257,7 +257,7 @@ class MyTweets < Padrino::Application
     end
   end
 end
-~~~
+```
 
 Of course, this example assumes the markup generated by rendering
 `partials/feedcontent` would be suitable for both feed formats. This may or may
@@ -274,12 +274,12 @@ re-generate.
 
 #### Fragment-level expiration
 
-Using the example above of a tweet server, let‘s suppose our users have a
+Using the example above of a tweet server, let's suppose our users have a
 tendency to post things they quickly regret. When we query our database for new
-tweets, let‘s check to see if any have been deleted. If so, we’ll do our user a
+tweets, let's check to see if any have been deleted. If so, we'll do our user a
 favor and instantly re-render the feed.
 
-~~~ ruby
+```ruby
 # Expiring fragment-level cached content
 class MyTweets < Padrino::Application
   register Padrino::Cache
@@ -307,7 +307,7 @@ class MyTweets < Padrino::Application
     end
   end
 end
-~~~
+```
 
 Normally, this example will only re-cache feed content every 60 seconds, but it
 will do so immediately if any tweets have been deleted.
@@ -319,7 +319,7 @@ your controller.
 
 The key is typically `env['PATH_INFO']`.
 
----
+--------------------------------------------------------------------------------
 
 ## Cache Stores
 
@@ -327,42 +327,42 @@ You can set a global caching option or a per app caching options.
 
 ### Global Caching Options
 
-~~~ ruby
+```ruby
 Padrino.cache = Padrino::Cache::Store::Memcache.new(::Memcached.new('127.0.0.1:11211', :exception_retry_limit => 1))
 Padrino.cache = Padrino::Cache::Store::Memcache.new(::Dalli::Client.new('127.0.0.1:11211', :exception_retry_limit => 1))
 Padrino.cache = Padrino::Cache::Store::Redis.new(::Redis.new(:host => '127.0.0.1', :port => 6379, :db => 0))
 Padrino.cache = Padrino::Cache::Store::Memory.new(50)
 Padrino.cache = Padrino::Cache::Store::File.new(/my/cache/path)
-~~~
+```
 
 You can manage your cache from anywhere in your app:
 
-~~~ ruby
+```ruby
 Padrino.cache = Padrino::Cache::Store::Memcache.new(::Memcached.new('127.0.0.1:11211', :exception_retry_limit => 1))
 Padrino.cache = Padrino::Cache::Store::Memcache.new(::Dalli::Client.new('127.0.0.1:11211', :exception_retry_limit => 1))
 Padrino.cache = Padrino::Cache::Store::Redis.new(::Redis.new(:host => '127.0.0.1', :port => 6379, :db => 0))
 Padrino.cache = Padrino::Cache::Store::Memory.new(50)
 Padrino.cache = Padrino::Cache::Store::File.new(/my/cache/path)
-~~~
+```
 
 ### Application Caching Options
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::Memcache.new(::Memcached.new('127.0.0.1:11211', :exception_retry_limit => 1))
 set :cache, Padrino::Cache::Store::Memcache.new(::Dalli::Client.new('127.0.0.1:11211', :exception_retry_limit => 1))
 set :cache, Padrino::Cache::Store::Redis.new(::Redis.new(:host => '127.0.0.1', :port => 6379, :db => 0))
 set :cache, Padrino::Cache::Store::Memory.new(50)
 set :cache, Padrino::Cache::Store::File.new(Padrino.root('tmp', app_name, 'cache') # default choice
-~~~
+```
 
 You can manage your cache from anywhere in your app:
 
-~~~ ruby
+```ruby
 MyApp.cache.set('val', 'test')
 MyApp.cache.get('val') # => 'test'
 MyApp.cache.delete('val')
 MyApp.cache.flush
-~~~
+```
 
 ### Cache Store Adapters
 
@@ -371,39 +371,39 @@ Cache comes shipped with:
 
 #### Memory
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::Memory.new(10000)
-~~~
+```
 
 The Memory Store takes an integer that sets the size to use.
 
 #### File
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::File.new("/path/to/")
-~~~
+```
 
 The File Store takes a path to store the cache
 
 #### Memcache
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::Memcache.new(::Memcached.new)
-~~~
+```
 
 The Memcache Store takes a memcache client instance. If you wanted to use
 another memcached library such as
 [Dalli](https://github.com/petergoldstein/dalli "Dalli") instead, you would do:
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::Memcache.new(::Dalli::Client.new)
-~~~
+```
 
 #### Redis
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::Redis.new(::Redis.new)
-~~~
+```
 
 The [Redis Store](https://github.com/redis-store/redis-store "Redis Store")
 takes a [Redis client](https://github.com/redis/redis-rb "Redis client")
@@ -411,8 +411,8 @@ instance.
 
 #### Mongo
 
-~~~ ruby
+```ruby
 set :cache, Padrino::Cache::Store::Mongo.new(::Mongo::Connection.new(...))
-~~~
+```
 
 The Mongo Store takes a Mongo connection instance.

@@ -6,57 +6,57 @@ title: Rake Tasks
 # Rake Tasks
 
 After generating a new padrino project, you will not find any Rakefile in your
-generated project folder structure; in fact it‘s not strictly needed to build a
+generated project folder structure; in fact it's not strictly needed to build a
 new one because we can already use padrino rake:
 
-~~~ shell
+```shell
 padrino rake
 # or for a list of tasks
 padrino rake -T
-~~~
+```
 
 If you need custom tasks you can add those to:
 
-- *your\_project*/**lib/tasks**
-- *your\_project*/**tasks**
-- *your\_project*/**test**
-- *your\_project*/**spec**
+- _your_project_/**lib/tasks**
+- _your_project_/**tasks**
+- _your_project_/**test**
+- _your_project_/**spec**
 
 Padrino will look recursively for any `*.rake` file in any of these directories.
 
 Padrino by default has some useful tasks.
 
----
+--------------------------------------------------------------------------------
 
 ## Basic
 
-Like other frameworks we have an *:environment* task that loads our
+Like other frameworks we have an _:environment_ task that loads our
 `environment` and `apps`. Example:
 
-~~~ ruby
+```ruby
 # This is a custom task
 # task/version.rake
 task :version => :environment do
   puts Padrino.version
 end
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Routes
 
-*currently not in stable release (coming in 0.9.10)*
+_currently not in stable release (coming in 0.9.10)_
 
 We have support for retrieving a list of named routes within your application
 for easy access.
 
-~~~ shell
+```shell
 padrino rake routes
-~~~
+```
 
 which will return all the named routes for your project:
 
-~~~ shell
+```shell
 Application: core
                  URL  REQUEST  PATH
   (:guides, :search)    GET    /guides/search
@@ -66,54 +66,54 @@ Application: core
 Application: foo
      (:blog, :index)    GET    /blog
       (:blog, :show)    GET    /blog/:id
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Testing
 
 When testing with Padrino you have a built-in `padrino rake test` or for rspec
 `padrino rake spec`.
 
-~~~ shell
+```shell
 padrino rake test # => for bacon, riot, shoulda
 padrino rake spec # => for rspec
-~~~
+```
 
-you can customize *test/test.rake* or *spec/spec.rake*
+you can customize _test/test.rake_ or _spec/spec.rake_
 
----
+--------------------------------------------------------------------------------
 
 ## I18n
 
-You can auto generate a *yml* file for localizing your models using this
+You can auto generate a _yml_ file for localizing your models using this
 command:
 
-~~~ shell
+```shell
 padrino rake locale:models
-~~~
+```
 
 See [Localization](/guides/localization) for detailed instructions.
 
----
+--------------------------------------------------------------------------------
 
 ## ORM
 
-Padrino has rake tasks for *DataMapper* , *ActiveRecord*, *Sequel*,
-*Mongomapper*,and *Mongoid* with some **bonuses**.
+Padrino has rake tasks for _DataMapper_ , _ActiveRecord_, _Sequel_,
+_Mongomapper_,and _Mongoid_ with some **bonuses**.
 
 **NOTE**: we have a **namespace** for each orm, because of this, Padrino can
-mount several applications and each of them can use different orms without
-conflict, so that you can have multiple applications living together and one
-of them can use DataMapper, while another
-`ActiveRecord/MongoMapper/Couch/Sequel` instead. In this way we prevent
-collisions.
+  mount several applications and each of them can use different orms without
+  conflict, so that you can have multiple applications living together and one
+  of them can use DataMapper, while another
+  `ActiveRecord/MongoMapper/Couch/Sequel` instead. In this way we prevent
+  collisions.
 
----
+--------------------------------------------------------------------------------
 
 ## ActiveRecord Tasks:
 
-~~~ shell
+```shell
 rake ar:abort_if_pending_migrations    # Raises an error if there are pending migrations.
 rake ar:auto:upgrade                   # Uses schema.rb to auto-upgrade.
 rake ar:charset                        # Retrieves database charset.
@@ -137,23 +137,23 @@ rake ar:schema:to_migration_with_reset # Creates a migration and resets the migr
 rake ar:setup                          # Creates the database, loads the schema, and seeds data.
 rake ar:structure:dump                 # Dumps the database structure to a SQL file.
 rake ar:version                        # Retrieves the current schema version number.
-~~~
+```
 
 **rake ar:auto:upgrade**
 
-This is some sort of super cool and useful task for people like me who don‘t
-love migrations (especially for small apps). It‘s a forked version of
-[auto\_migrations](http://github.com/pjhyett/auto_migrations).
+This is some sort of super cool and useful task for people like me who don't
+love migrations (especially for small apps). It's a forked version of
+[auto_migrations](http://github.com/pjhyett/auto_migrations).
 
 Basically, instead of writing migrations you can directly edit your
-**schema.rb** and perform *a non destructive* migration with `padrino rake
+**schema.rb** and perform _a non destructive_ migration with `padrino rake
 ar:auto:upgrade`.
 
----
+--------------------------------------------------------------------------------
 
 ## DataMapper Tasks:
 
-~~~ shell
+```shell
 rake dm:auto:migrate          # Performs an automigration (resets your db data)
 rake dm:auto:upgrade          # Performs a non destructive automigration
 rake dm:create                # Creates the database
@@ -163,49 +163,49 @@ rake dm:migrate:down[version] # Migrates down using migrations
 rake dm:migrate:up[version]   # Migrates up using migrations
 rake dm:reset                 # Drops the database, and migrates from scratch
 rake dm:setup                 # Create the database migrate and initialize with the seed data
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Sequel Tasks:
 
-~~~ shell
+```shell
 rake sq:migrate:auto        # Perform automigration (reset your db data)
 rake sq:migrate:to[version] # Perform migration up/down to VERSION
 rake sq:migrate:up          # Perform migration up to latest migration available
 rake sq:migrate:down        # Perform migration down (erase all data)
 rake sq:reset               # Drops the database, and migrates from scratch
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Mongomapper Tasks:
 
-~~~ shell
+```shell
 rake mm:translate              # Generates .yml files for I18n translations
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Mongoid Tasks:
 
 Available in 0.9.21
 
-~~~ shell
+```shell
 rake mi:drop                    # Drops all the collections for the database for the current environment
 rake mi:create_indexes          # Create the indexes defined on your mongoid models
 rake mi:objectid_convert        # Convert string objectids in mongo database to ObjectID type
 rake mi:cleanup_old_collections # Clean up old collections backed up by objectid_convert
-~~~
+```
 
----
+--------------------------------------------------------------------------------
 
 ## Seed:
 
-Like in Rails we can populate our db using *db/seeds.rb* here‘s an example (from
+Like in Rails we can populate our db using _db/seeds.rb_ here's an example (from
 our [padrino-admin](/guides/padrino-admin/)):
 
-~~~ ruby
+```ruby
 email     = shell.ask "Which email do you want use for loggin into admin?"
 password  = shell.ask "Tell me the password to use:"
 
@@ -227,4 +227,4 @@ else
   shell.say ""
   account.errors.full_messages.each { |m| shell.say "   - #{m}" }
 end
-~~~
+```

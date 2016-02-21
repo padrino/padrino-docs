@@ -9,12 +9,10 @@ Padrino provides generator for quickly generating new migrations to change or
 manipulate the database schema. These migrations generated will be tailored
 towards the ORM chosen when generating the application.
 
->
-  Options|Default|Aliases|Description
-  :------|:------|:------|:----------
-  root|.|-r|specify the root destination path
-  destroy|false|-d|removes all generated files
-{: .excerpt--small }
+Options | Default | Aliases | Description
+------- | ------- | ------- | ---------------------------------
+root    | .       | -r      | specify the root destination path
+destroy | false   | -d      | removes all generated files
 
 Very important to note that migration generators are intended primarily to work
 within applications created through the Padrino application generator and that

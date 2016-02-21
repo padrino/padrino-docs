@@ -7,7 +7,7 @@ title: Installation
 
 In order to use Padrino, you need a few prerequisite libraries.
 
----
+--------------------------------------------------------------------------------
 
 ## Ruby & RubyGems
 
@@ -32,16 +32,16 @@ A caveat: If you are on Windows, we recommend the
 [RubyInstaller](http://rubyinstaller.org "RubyInstaller") project which takes
 care of the above steps for you.
 
----
+--------------------------------------------------------------------------------
 
 ## Padrino
 
 Once you have ruby and rubygems installed properly, you just need to install the
 Padrino framework with the `padrino` gem:
 
-~~~ shell
+```shell
 $ gem install padrino
-~~~
+```
 
 This will install all the necessary padrino dependencies to get you started
 creating applications. Now you are ready to use this gem to

@@ -25,7 +25,8 @@ SimpleApp.controllers :admin do
 end
 ```
 
-These formatted route paths can be accessed easily using `url_for` and then `format` option:
+These formatted route paths can be accessed easily using `url_for` and then
+`format` option:
 
 ```haml
 = link_to 'admin show page', url_for(:admin, show, :id => 25, :format => :js)

@@ -7,7 +7,7 @@ title: Nested Object Form Support
 
 Available in the 0.9.21 Padrino release is support for nested object form
 helpers. This allows forms to have arbitrarily complex nested forms that can
-build multiple related objects together. Let’s take a simple example of a person
+build multiple related objects together. Let's take a simple example of a person
 with an address. Here are the related pseudo models:
 
 ```ruby
@@ -42,7 +42,7 @@ following view will allow nested form creation:
     = submit_tag "Save"
 ```
 
-This will present a form that allows the person’s name and color to be set along
+This will present a form that allows the person's name and color to be set along
 with their first address. Using this functionality, the controller does not need
 to change whatsoever as the nested data will be passed in and instantiated as
 part of the parent model.
