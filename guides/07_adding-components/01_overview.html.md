@@ -10,7 +10,7 @@ built from the ground up to easily allow support for any arbitrary number of
 different developer choices with respect to object permanence, stylesheet
 templates, JavaScript libraries, testing libraries, mocking libraries and
 rendering engines. For a detailed overview of the available components, check
-out the [Generators guide](/guides/generators "generators guide").
+out the [Generators guide](/guides/generators/overview "generators guide").
 
 Although Padrino is fundamentally agnostic, in practice only a very limited set
 of available components have actually been integrated into the Padrino generator

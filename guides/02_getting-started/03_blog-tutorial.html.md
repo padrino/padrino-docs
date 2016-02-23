@@ -45,7 +45,7 @@ $ padrino g project sample_blog --template sampleblog
 ```
 
 To learn more about our template generator, be sure to check out the
-[generators guide](/guides/generators "generators guide").
+[generators guide](/guides/generators/overview "generators guide").
 
 --------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ $ gem install padrino
 ```
 
 For more details on installation, check out the
-[installation guide](/guides/installation "installation guide"). Once this has
+[installation guide](/guides/getting-started/installation "installation guide"). Once this has
 been finished, all necessary dependencies should be ready and we can begin
 developing our sample blog.
 
@@ -74,7 +74,7 @@ Padrino generator. Similar to Rails, Padrino has a project generator which will
 create a skeleton application with all the files you need to being development
 of your new idea. Padrino is an agnostic framework and supports using a variety
 of different template, testing, JavaScript and database components. You can
-learn more by reading the [generators guide](/guides/generators "generators
+learn more by reading the [generators guide](/guides/generators/overview "generators
 guide").
 
 For this sample application, we will use the ActiveRecord ORM, the Haml
@@ -160,7 +160,7 @@ root URL of the application. The second route defines a one-line 'about' page
 inline using Haml which is then explicitly mapped to the '/about_us' URL. The
 symbol `:about` is used to reference the route later.
 
-Be sure to check out the [controllers guide](/guides/controllers "controllers
+Be sure to check out the [controllers guide](/guides/controllers/overview "controllers
 guide") for a comprehensive overview of the routing system.
 
 --------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ During this process, you will be prompted to enter an email and password to use
 for the admin dashboard. Be sure to remember this for use later in development.
 
 To read more about the features of the admin panel, check out the
-[Admin Panel Guide](/guides/padrino-admin "Admin Panel Guide").
+[Admin Panel Guide](/guides/features/padrino-admin "Admin Panel Guide").
 
 --------------------------------------------------------------------------------
 
@@ -220,7 +220,7 @@ You should see no errors, and the terminal should output:
 ```
 
 To read more about available terminal commands, checkout the
-[Development and Terminal Commands](/guides/development-commands "Development
+[Development and Terminal Commands](/guides/features/development-commands "Development
 and Terminal Commands") guide.
 
 Your application now exists on <http://localhost:3000>. Visit this URL in the
@@ -232,7 +232,7 @@ We can also visit the admin panel by going to the URL:
 specified during the `rake seed` command performed earlier. Feel free to explore
 this area and checkout the existing accounts. We will come back to this in more
 detail later. To read more about the features of the admin panel, check out the
-[Admin Panel Guide](/guides/padrino-admin "Admin Panel Guide").
+[Admin Panel Guide](/guides/features/padrino-admin "Admin Panel Guide").
 
 Worth noting here is that Padrino has full support for code reloading in
 development mode. This means you can keep the Padrino server running and change

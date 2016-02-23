@@ -54,7 +54,7 @@ This can also be done manually through executing command `bundle install` in the
 terminal at the root of the generated application.
 
 For more examples of using the project generator in common cases, check out the
-[Basic Projects](/guides/basic-projects "Basic Projects") guide.
+[Basic Projects](/guides/getting-started/basic-projects "Basic Projects") guide.
 
 The generator framework within Padrino is extensible and additional components
 and tools can be added easily. This would be achieved through forking our
@@ -141,5 +141,5 @@ This will create a new padrino project in `/usr/local/padrino/your_project/`
 padrino g project your_project [--dev] # Use padrino from a git checkout
 ```
 
-Visit [The Bleeding Edge](/guides/the-bleeding-edge "The Bleeding Edge") for
+Visit [The Bleeding Edge](/guides/introduction/the-bleeding-edge "The Bleeding Edge") for
 more info how to setup a **dev** environment.

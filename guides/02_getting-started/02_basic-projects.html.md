@@ -5,9 +5,9 @@ title: Basic Projects
 
 # Basic Projects
 
-Be sure to read the [Installation](/guides/installation "Installation")
+Be sure to read the [Installation](/guides/getting-started/installation "Installation")
 instructions first. You might also want to check out the
-[Getting Started](/guides/getting-started "Getting Started") guide for a better
+[Why Use Padrino?](/guides/introduction/why-use-padrino "Why Use Padrino?") guide for a better
 understanding of Sinatra and Padrino if you are new to the stack.
 
 --------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $ padrino g project custom_project -t rspec -d activerecord -s prototype
 ```
 
 For a breakdown of all the available components options please refer to the
-[Generators](/guides/generators "Generators") page.
+[Generators](/guides/generators/overview "Generators") page.
 
 ### Persistence Engine
 

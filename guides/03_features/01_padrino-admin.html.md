@@ -163,5 +163,5 @@ supported ones, and you want to contribute to the project by extending its
 support with additional adapters like [ohm](https://github.com/soveran/ohm
 "ohm"), [cassandra](https://github.com/cassandra-rb/cassandra "cassandra") and
 so on, be sure to check out the
-[adding new components](/guides/adding-new-components "adding new components")
+[adding components](/guides/adding-components/overview "adding components")
 guide.

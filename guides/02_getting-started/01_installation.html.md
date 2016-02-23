@@ -45,8 +45,8 @@ $ gem install padrino
 
 This will install all the necessary padrino dependencies to get you started
 creating applications. Now you are ready to use this gem to
-[enhance your Sinatra projects](/guides/standalone-usage-in-sinatra "enhance
+[enhance your Sinatra projects](/guides/advanced-usage/standalone-usage-in-sinatra "enhance
 your Sinatra projects") or to create new Padrino applications. If you are new to
 Ruby or Sinatra, be sure to check out the
-[Getting Started](/guides/getting-started "Getting Started") guide for more
+[Why Use Padrino?](/guides/introduction/why-use-padrino "Why Use Padrino?") guide for more
 information.

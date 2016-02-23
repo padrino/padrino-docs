@@ -29,7 +29,7 @@ more. Most of the basic methods should be very familiar to anyone who has used
 rails view helpers.
 
 You can check out the details of these helpers in the
-[Application Helpers](/guides/application-helpers "Application Helpers guide")
+[Application Helpers](/guides/application-helpers/overview "Application Helpers guide")
 guide. To register these helpers within your Sinatra application:
 
 ```ruby
@@ -52,7 +52,7 @@ well as for file attachments. The Padrino Mailer has many similarities to
 ActionMailer but is much lighter-weight and easier to use.
 
 You can check out the details of the mailer in the
-[Padrino Mailer](/guides/padrino-mailer "Padrino Mailer guide") guide. To
+[Padrino Mailer](/guides/features/padrino-mailer "Padrino Mailer guide") guide. To
 register this mailer within your Sinatra application:
 
 ```ruby
@@ -80,7 +80,7 @@ end
 ## Padrino Routing
 
 You can check out the details of the routing system in the
-[Routing](/guides/controllers) guide. To register the routing and controller
+[Enhanced Routing](/guides/controllers/enhanced-routing) guide. To register the routing and controller
 functionality within your Sinatra application:
 
 ```ruby

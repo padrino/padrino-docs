@@ -93,7 +93,7 @@ command:
 padrino rake locale:models
 ```
 
-See [Localization](/guides/localization) for detailed instructions.
+See [Localization](/guides/features/localization) for detailed instructions.
 
 --------------------------------------------------------------------------------
 

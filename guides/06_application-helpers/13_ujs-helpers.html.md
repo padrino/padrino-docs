@@ -7,7 +7,7 @@ title: Unobtrusive JavaScript Helpers
 
 Certain helpers have certain unobtrusive JavaScript options that are available
 to be used with any of the javascript adapters packaged with padrino. Once your
-app has been [generated](/guides/generators "generated") with a particular
+app has been [generated](/guides/generators/overview "generated") with a particular
 javascript adapter, you can utilize the baked in support with the `link_to` and
 `form_for` tags.
 

@@ -168,13 +168,13 @@ Once you have a solid understanding of Sinatra then you can also already
 understand the simplest functionality of Padrino. This is because Padrino acts
 as a super-set of Sinatra.
 
-First, check out the [Installation](/guides/installation "Installation") guide
+First, check out the [Installation](/guides/getting-started/installation "Installation") guide
 to get Padrino setup on your computer through RubyGems.
 
 Padrino itself is a set of modular extensions for Sinatra. These extensions are
 actually fairly standalone and you can actually use many Padrino modules in your
 existing Sinatra apps through the
-[Standalone Usage](/guides/standalone-usage-in-sinatra "Standalone Usage")
+[Standalone Usage](/guides/advanced-usage/standalone-usage-in-sinatra "Standalone Usage")
 guide. This usage is intended for applications that have already been built that
 would benefit from a particular aspect of Padrino such as a mailer or view
 helpers. Check out
@@ -184,7 +184,7 @@ docs") for more information about the individual modules.
 If you are able to convert your project to Padrino or start a new application
 from scratch, we recommend using the full Padrino stack which makes starting a
 new project much easier. The best way to get familiar with Padrino is to first
-check out the [Blog Tutorial](/guides/blog-tutorial "Blog Tutorial") which takes
+check out the [Blog Tutorial](/guides/getting-started/blog-tutorial "Blog Tutorial") which takes
 you step by step through creating a blog in Padrino with an accompanying
 screencast. You may also want to checkout the
 [Why Padrino (broken)](http://www.padrinorb.com/pages/why "Why Padrino") guide
@@ -213,24 +213,24 @@ And then read up on these components:
 
 There are also a few important guides that cover the vast majority of Padrino's functionality. These are definitely recommended reading:
 
-- [Blog Tutorial](/guides/blog-tutorial "Blog Tutorial") – Step by step blog
+- [Blog Tutorial](/guides/getting-started/blog-tutorial "Blog Tutorial") – Step by step blog
   tutorial using Padrino
-- [Generators](/guides/generators "Generators") – A reference guide for the
+- [Generators](/guides/generators/overview "Generators") – A reference guide for the
   generator and the various components
-- [Project Types](/guides/basic-projects "Project Types") – Overview of the
+- [Project Types](/guides/getting-started/basic-projects "Project Types") – Overview of the
   various project types
-- [Application Helpers](/guides/application-helpers "Application Helpers") – A
+- [Application Helpers](/guides/application-helpers/overview "Application Helpers") – A
   reference guide for the view helpers available
-- [Controllers and Routing](/guides/controllers "Controllers and Routing") – An
+- [Controllers and Routing](/guides/controllers/overview "Controllers and Routing") – An
   overview of the enhanced routing system
-- [Delivering Mail](/guides/padrino-mailer "Delivering Mails") – Overview of how
+- [Delivering Mail](/guides/features/padrino-mailer "Delivering Mails") – Overview of how
   to deliver mail in Padrino applications
-- [Admin and Authentication](/guides/padrino-admin "Admin and Authentication") –
+- [Admin and Authentication](/guides/features/padrino-admin "Admin and Authentication") –
   Admin dashboard and authentication system
-- [Caching](/guides/padrino-cache) – Page and fragment caching system
-- [Mounting Sub-applications](/guides/mounting-applications "Mounting
+- [Caching](/guides/features/padrino-cache) – Page and fragment caching system
+- [Mounting Sub-applications](/guides/features/mounting-applications "Mounting
   Sub-applications") – Explanation of the "application" mounting process
-- [Development and Terminal Commands](/guides/development-commands "Development
+- [Development and Terminal Commands](/guides/features/development-commands "Development
   and Terminal Commands") – Important notes about development
 
 These guides should shed light on the various aspects that make Padrino helpful
