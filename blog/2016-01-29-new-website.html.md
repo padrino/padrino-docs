@@ -113,7 +113,7 @@ surely a big step forward to Padrino 1.0.0 stable release.
 ## Contribute
 
 We are working very actively on Padrino documentation and want to make the framework as stable and reliable as possible.
-If you want to help us, check the [issues](https://github.com/padrino/padrino-web-new/issues) - even the new website is
+If you want to help us, check the [issues](https://github.com/padrino/padrino-web/issues) - even the new website is
 out, there is plenty of work left.
 
 If you want to keep up with Padrino updates, be sure to follow us on twitter:
