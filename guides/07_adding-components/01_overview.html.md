@@ -23,3 +23,13 @@ started [contributing to Padrino](/contribute "contributing to Padrino").
 The following guides will outline in detail how to properly contribute new
 components to Padrino and get them included into the next Padrino generator as
 quickly and efficiently as possible.
+
+
+- [Persistence Engine](/guides/application-helpers/persistence-engine "Persistence Engine")
+- [Javascript Library](/guides/application-helpers/javascript-engine "Javascript Library")
+- [Testing Library](/guides/application-helpers/testing-library "Testing Library")
+- [Rendering Engine (tbd)](/guides/application-helpers/ "Rendering Engine")
+- [Mocking Library](/guides/application-helpers/mocking-library "Mocking Library")
+- [Stylesheet Engine](/guides/application-helpers/stylesheet-engine "Stylesheet Engine")
+- [Locale Translations](/guides/application-helpers/locale-translations "Locale Translations")
+
