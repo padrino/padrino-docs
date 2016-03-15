@@ -7,7 +7,7 @@ title: Basic Projects
 
 Be sure to read the [Installation](/guides/getting-started/installation "Installation")
 instructions first. You might also want to check out the
-[Why Use Padrino?](/guides/introduction/why-use-padrino "Why Use Padrino?") guide for a better
+[Why Learn Padrino?](/guides/introduction/why-learn-padrino "Why Learn Padrino?") guide for a better
 understanding of Sinatra and Padrino if you are new to the stack.
 
 --------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ Padrino has also built-in support for several different mocking, testing,
 rendering, ORM, and JavaScript components.
 
 ```shell
-$ padrino g project custom_project -t rspec -d activerecord -s prototype
+$ padrino g project custom_project -t rspec -d activerecord -s jquery
 ```
 
 For a breakdown of all the available components options please refer to the
