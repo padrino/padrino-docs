@@ -41,11 +41,15 @@ to use by flagging the `padrino g` command with the `-d` option followed by the
 name of your ORM:
 
 ```shell
-$ padrino g project your_project -d activerecord # Uses ActiveRecord
-$ padrino g project your_project -d datamapper   # Uses Datamapper
-$ padrino g project your_project -d mongomapper  # Uses MongoMapper
-$ padrino g project your_project -d sequel       # Uses Sequel
-$ padrino g project your_project -d couchrest    # Uses CouchRest
+$ padrino g project your_project -d mongoid
+$ padrino g project your_project -d activerecord
+$ padrino g project your_project -d datamapper
+$ padrino g project your_project -d couchrest
+$ padrino g project your_project -d mongomatic
+$ padrino g project your_project -d ohm
+$ padrino g project your_project -d ripple
+$ padrino g project your_project -d sequel
+$ padrino g project your_project -d dynamoid
 ```
 
 For the SQL-based persistence engines, you can even specify the RDBMS adapter to
