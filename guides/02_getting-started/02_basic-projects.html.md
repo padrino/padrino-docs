@@ -110,7 +110,7 @@ Install all project dependencies:
 
 ```shell
 $ cd blog
-$ bundle install
+$ bundle
 ```
 
 Padrino ships with a beautiful Admin interface, highly inspired by the
@@ -121,21 +121,23 @@ multiple applications at the same time. Under this perspective, our **admin**
 section is nothing but a new Padrino **application**:
 
 ```shell
-$ padrino g admin
+$ padrino g admin -e slim
 ```
 
-You need to configure your database settings in `config/database.rb` and run
-your migrations to add tables and columns to your database:
+Beside slim, you can also use `erb` or `haml`. You need to configure your database
+settings in `config/database.rb` and run your migrations to add tables
+and columns to your database:
 
 ```shell
-$ padrino rake ar:migrate
+$ bundle exec rake db:create
+$ bundle exec rake db:migrate
 ```
 
 Create your first admin account; this is easily achieved by seeding your
 database with default admin data, stored in your `seed.rb` file:
 
 ```shell
-$ padrino rake seed
+$ bundle exec rake db:seed
 ```
 
 You will see this in your terminal:
@@ -144,11 +146,12 @@ You will see this in your terminal:
 Which email do you want use to log into admin? info@padrino.local
 Tell me the password to use: foobar
 
-Perfect! Your account was created.
-
-Now you can start your server with Padrino start and then log into /admin with:
-    email: info@padrino.local
-    password: foobar
+=================================================================
+Account has been successfully created, now you can login with:
+=================================================================
+   email: info@padrino.local
+   password: ******
+=================================================================
 ```
 
 You are now ready to start your webserver:
@@ -174,7 +177,7 @@ Run the migrations to add database table columns to our database for our newly
 created Post model:
 
 ```shell
-$ padrino rake ar:migrate
+$ bundle exec rake db:migrate
 ```
 
 Create a new admin section for managing (creating, updating, deleting) our blog
