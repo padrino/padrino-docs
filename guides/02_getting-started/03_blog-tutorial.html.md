@@ -77,12 +77,12 @@ of different template, testing, JavaScript and database components. You can
 learn more by reading the [generators guide](/guides/generators/overview "generators
 guide").
 
-For this sample application, we will use the ActiveRecord ORM, the Haml
-templating language, the Shoulda testing framework and the jQuery JavaScript
+For this sample application, we will use the ActiveRecord ORM, the Slim
+templating language, the RSpec testing framework and the jQuery JavaScript
 library. With that in mind, let us generate our new project:
 
 ```shell
-$ padrino g project sample_blog -t shoulda -e haml -c sass -s jquery -d activerecord -b
+$ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d activerecord -b
 ```
 
 This command will generate our basic Padrino project and the print out a nice
@@ -120,7 +120,7 @@ The following important directories are also generated:
   in your project.
 - `public` – This is where images, style sheets and JavaScript files should be
   stored.
-- `test` – This is where your model and controller tests should be stored.
+- `spec` – This is where your model and controller tests should be stored.
 
 Now, let us examine the `config/database.rb` file to make sure the database
 connection settings are correct. For now, the defaults are OK for this tutorial.
@@ -133,11 +133,10 @@ following routes:
 
 ```ruby
 # app/app.rb
-module SampleBlog
+module SampleBlogUpdated
   class App < Padrino::Application
-    register SassInitializer
-    use ActiveRecord::ConnectionAdapters::ConnectionManagement
-    register Padrino::Rendering
+    register ScssInitializer
+    use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
 
@@ -157,7 +156,7 @@ end
 
 Note that the first route here sets up a simple string to be returned at the
 root URL of the application. The second route defines a one-line 'about' page
-inline using Haml which is then explicitly mapped to the '/about_us' URL. The
+inline using Slim which is then explicitly mapped to the '/about_us' URL. The
 symbol `:about` is used to reference the route later.
 
 Be sure to check out the [controllers guide](/guides/controllers/overview "controllers
@@ -173,21 +172,20 @@ and enter:
 
 ```shell
 $ padrino g admin
-$ bundle install
+$ bundle
 ```
 
 This will create the admin sub-application within your project and mount it
 within the `config/apps.rb` file. The output of this command can be viewed in
-[this gist](http://gist.github.com/324298 "this gist") file.
+[this gist](https://gist.github.com/wikimatze/59220279f272a5339806 "this gist") file.
 
 Now, we should follow the instructions and create our database, run our
 migrations and run the seed tasks which has been generated in `db/seeds.rb`. Go
 to the terminal and run:
 
 ```shell
-$ padrino rake ar:create
-$ padrino rake ar:migrate
-$ padrino rake seed
+$ bundle exec rake db:migrate'
+$ bundle exec rake db:seed'
 ```
 
 During this process, you will be prompted to enter an email and password to use
