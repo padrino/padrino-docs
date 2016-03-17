@@ -204,17 +204,16 @@ Padrino application server. This is quite easy to do with the built-in Padrino
 tasks. Simply execute the following in the terminal:
 
 ```shell
-$ padrino start
+$ padrino s
 ```
 
 You should see no errors, and the terminal should output:
 
 ```shell
-=> Located unlocked Gemfile for development
-=> Padrino/0.10.2 has taken the stage development on port 3000
->> Thin web server (v1.2.7 codename This Is Not A Web Server)
->> Maximum connections set to 1024
->> Listening on localhost:3000, CTRL+C to stop
+=> Padrino/0.13.1 has taken the stage development at http://127.0.0.1:3000
+[2016-03-17 06:09:51] INFO  WEBrick 1.3.1
+[2016-03-17 06:09:51] INFO  ruby 2.2.1 (2015-02-26) [i686-linux]
+[2016-03-17 06:09:51] INFO  WEBrick::HTTPServer#start: pid=24413 port=3000
 ```
 
 To read more about available terminal commands, checkout the
@@ -247,45 +246,30 @@ implement the functionality to view our blog posts and even add the ability to
 create new posts!
 
 Let's start off by generating the model into our app directory. As of version
-**0.10.0**, the models will default to generating at the top level 'models'
+**0.13.1**, the models will default to generating at the top level 'models'
 directory in a project. We can specify the location by appending the -a option
 which will generate the models into the designated sub-app directory.
 
 ```shell
 $ padrino g model post title:string body:text -a app
-=> Located unlocked Gemfile for development
-create  app/models/post.rb
-create  test/models/post_test.rb
-create  db/migrate/002_create_posts.rb
-```
-
-Let's add a timestamp for the Post Model in the migration.
-
-```ruby
-# db/migrate/002_create_posts.rb
-class CreatePosts < ActiveRecord::Migration
-  def self.up
-    create_table :posts do |t|
-      t.string :title
-      t.text :body
-      t.timestamps
-    end
-  end
-
-  def self.down
-    drop_table :posts
-  end
-end
+       apply  orms/activerecord
+       apply  tests/rspec
+      create  app/models/post.rb
+      create  spec/app/models/post_spec.rb
+      create  db/migrate/002_create_posts.rb
 ```
 
 Go ahead and migrate the database now.
 
 ```shell
 $ padrino rake ar:migrate
-=> Executing Rake ar:migrate ...
-==  CreatePosts: migrating ====================================================
--- create_table("posts", {})
-==  CreatePosts: migrated (0.0016s) ===========================================
+=> Executing Rake db:migrate ...
+  DEBUG -  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+   INFO -  Migrating to CreatePosts (2)
+  DEBUG -   (0.1ms)  begin transaction
+== 2 CreatePosts: migrating ===================================================
+-- create_table(:posts)
+...
 ```
 
 This creates the post model. Next, let's create the controller to allow the
@@ -293,11 +277,13 @@ basic viewing functionality.
 
 ```shell
 $ padrino g controller posts get:index get:show
-=> Located unlocked Gemfile for development
-create  app/controllers/posts.rb
-create  app/helpers/posts_helper.rb
-create  app/views/posts
-create  test/controllers/posts_controller_test.rb
+      create  app/controllers/posts.rb
+      create  app/views/posts
+       apply  tests/rspec
+      create  spec/app/controllers/posts_controller_spec.rb
+      create  app/helpers/posts_helper.rb
+       apply  tests/rspec
+      create  spec/app/helpers/posts_helper_spec.rb
 ```
 
 We'll want to attached some of the standard routes (`:index` and `:show`) to the
@@ -305,7 +291,7 @@ controller.
 
 ```ruby
 # app/controllers/posts.rb
-SampleBlog::App.controllers :posts do
+SampleBlogUpdated::App.controllers :posts do
   get :index do
     @posts = Post.order('created_at DESC').all
     render 'posts/index'
@@ -363,7 +349,7 @@ create  admin/views/posts/new.haml
 inject  admin/app.rb
 ```
 
-Let's make sure the server is running (`padrino start`) and give this admin
+Let's make sure the server is running (`padrino s`) and give this admin
 interface a try.
 
 Visit <http://localhost:3000/admin> and login using the credentials you had
@@ -388,6 +374,13 @@ routes` command:
 
 ```shell
 $ padrino rake routes
+
+Application: SampleBlogUpdated::Admin
+    URL                           REQUEST  PATH
+    (:sessions, :new)               GET    /admin/sessions/new
+    ...
+
+Application: SampleBlogUpdated::App
     URL                 REQUEST  PATH
     (:about)              GET    /about_us
     (:posts, :index)      GET    /posts
