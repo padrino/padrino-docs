@@ -341,12 +341,12 @@ manage posts using Padrino Admin, run this command.
 ```shell
 $ padrino g admin_page post
 => Located unlocked Gemfile for development
-create  admin/controllers/posts.rb
-create  admin/views/posts/_form.haml
-create  admin/views/posts/edit.haml
-create  admin/views/posts/index.haml
-create  admin/views/posts/new.haml
-inject  admin/app.rb
+      create  admin/controllers/posts.rb
+      create  admin/views/posts/_form.haml
+      create  admin/views/posts/edit.haml
+      create  admin/views/posts/index.haml
+      create  admin/views/posts/new.haml
+      inject  admin/app.rb
 ```
 
 Let's make sure the server is running (`padrino s`) and give this admin
@@ -399,11 +399,11 @@ start by adding a new migration to attach an Account to a Post.
 
 ```shell
 $ padrino g migration AddAccountToPost account_id:integer
-=> Located unlocked Gemfile for development
-create  db/migrate/003_add_account_to_post.rb
+       apply  orms/activerecord
+      create  db/migrate/003_add_account_to_post.rb
 ```
 
-This creates a new migration with the desired field attaching the account_id to
+This creates a new migration with the desired field attaching the `account_id` to
 the post.
 
 Let's modify the migration file to assign a user to all existing posts:
@@ -419,7 +419,12 @@ class AddAccountToPost < ActiveRecord::Migration
     first_account = Account.first
     Post.all.each { |p| p.update_attribute(:account, first_account) }
   end
-  # ...
+
+  def self.down
+    change_table :posts do |t|
+      t.remove :account_id
+    end
+  end
 end
 ```
 
@@ -438,11 +443,12 @@ end
 Every time we change the database, we need to migrate the database.
 
 ```shell
-$ padrino rake ar:migrate
-==  AddAccountToPost: migrating ===============================================
+$ padrino rake db:migrate
+=> Executing Rake db:migrate ...
+   INFO -  Migrating to AddAccountToPost (3)
+  DEBUG -   (0.1ms)  begin transaction
+== 3 AddAccountToPost: migrating ==============================================
 -- change_table(:posts)
-==  AddAccountToPost: migrated (0.0009s) ====================================== 7:04
-=> Executing Rake ar:migrate ...
 ```
 
 Our Post now has the appropriate associations and validations. We'll need to go
@@ -498,9 +504,10 @@ author:
 ```
 
 Now, lets add another user. Revisit <http://localhost:3000/admin> and click on
-the Account tab. Now create a new Account record. Once you have a new account,
-try logging into it and then adding one more post in the admin interface. There
-you have it, multiple users and posts!
+the Account tab. Now create a new Account record (don't forget to give the new
+account the admin role). Once you have a new account, try logging into it and
+then adding one more post in the admin interface. There you have it,
+multiple users and posts!
 
 See the effects of our changes by visiting <http://localhost:3000/posts> to see
 our newly created posts linked to the author that wrote them.
