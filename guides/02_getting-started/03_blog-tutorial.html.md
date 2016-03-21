@@ -532,7 +532,7 @@ directory:
 %html
   %head
     %title= [@title, "Padrino Sample Blog"].compact.join(" | ")
-    = stylesheet_link_tag 'reset', 'application'
+    = stylesheet_link_tag 'normalize', 'application'
     = javascript_include_tag 'jquery', 'application'
     = yield_content :include
   %body
@@ -573,20 +573,18 @@ of our site. The layout also includes some dummy elements such as a fake search
 and stubs for list items left as an exercise for the reader.
 
 Next, we simply need to setup the style sheets. There are two we will use for
-this demo. The first is a generic CSS reset by Eric Meyers. The
-[full reset style sheet](https://github.com/padrino/sample_blog/blob/master/public/stylesheets/reset.css
-"full reset style sheet") can be found in the
-[sample blog repository](https://github.com/padrino/sample_blog/blob/master/public/stylesheets/reset.css
+this demo. The first is a generic [normalize CSS reset by Nicolas Gallagher](https://necolas.github.io/normalize.css/). The
+full reset style sheet can be found in the
+[sample blog repository](https://github.com/padrino/sample_blog_updated/blob/master/public/stylesheets/normalize.css
 "sambple blog repository") and should be put into
-`public/stylesheets/reset.css`.
+`public/stylesheets/normalize.css`.
 
 The second style sheet is the application style sheet to give our blog a better
 look and feel. The
-[full contents of the style sheet](https://github.com/padrino/sample_blog/blob/master/app/stylesheets/application.sass
-"full contents of the style sheet") can be found in the
-[sample blog repository](https://github.com/padrino/sample_blog/blob/master/app/stylesheets/application.sass
+full contents of the style sheet can be found in the
+[sample blog repository](https://github.com/padrino/sample_blog_updated/blob/master/app/stylesheets/application.scss
 "sample blog repository") and should be put into
-`app/stylesheets/application.sass`.
+`app/stylesheets/application.scss`.
 
 With the layout and these two stylesheets in place, the blog will now have a
 much improved look and feel! See the new style by visiting
@@ -604,7 +602,7 @@ that it should respond to HTML, RSS and Atom formats.
 
 ```ruby
 # app/controllers/posts.rb
-SampleBlog::App.controllers :posts do
+SampleBlogUpdated::App.controllers :posts do
 # ...
   get :index, :provides => [:html, :rss, :atom] do
     @posts = Post.all(:order => 'created_at desc')
@@ -617,7 +615,7 @@ end
 Note that this route also instructs the rendering engine to avoid rendering the
 layout when using RSS or atom formats.
 
-Back in the `index.haml` file, we'll use the auto_discovery_link_tag helpers to
+Back in the `index.haml` file, we'll use the `auto_discovery_link_tag` helpers to
 generate the RSS feed using builder.
 
 ```haml
