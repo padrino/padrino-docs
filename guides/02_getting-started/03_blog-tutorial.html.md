@@ -564,7 +564,7 @@ directory:
           %li Item 2 - Lorem ipsum dolorum itsum estem
           %li Item 3 - Lorem ipsum dolorum itsum estem
     #footer
-      Copyright (c) 2009-2010 Padrino
+      Copyright (c) 2009-2016 Padrino
 ```
 
 This layout creates a basic structure for the blog and requires the necessary
@@ -629,7 +629,7 @@ generate the RSS feed using builder.
 #posts= partial 'posts/post', :collection => @posts
 ```
 
-Next, let us add the templates for atom using builder templates:
+Next, let us add the templates for atom using [builder](https://github.com/jimweirich/builder) templates:
 
 ```ruby
 # app/views/posts/index.atom.builder
@@ -659,7 +659,7 @@ and also the template for rss using builder:
 ```ruby
 # app/views/posts/index.rss.builder
 xml.instruct!
-xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+xml.rss "version" => "2.0", "xmlns:dc" => "http://dublincore.org/documents/dc-xml-guidelines/" do
   xml.channel do
     xml.title "Padrino Blog"
     xml.description "The fantastic padrino sample blog"
@@ -677,6 +677,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
 end
 ```
 
+Please note, that you have to add `builder` in your `Gemfile` and run `bundle`.
 Let's check out our changes. View the available feeds at
 <http://localhost:3000/posts> . You now have rss and atom feeds available for
 your blog!
