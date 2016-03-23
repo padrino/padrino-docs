@@ -693,8 +693,8 @@ now.
 
 The best way to get started using Heroku is by following the
 [Heroku Quickstart Guide](https://devcenter.heroku.com/start "Heroku Quickstart
-guide") . As explained in the guide, be sure to have Git installed and
-[setup a Heroku account](https://signup.heroku.com/ "setup a Heroku account") as
+guide"). As explained in the guide, be sure to have Git installed and
+[setup a Heroku account](https://signup.heroku.com/dc "setup a Heroku account") as
 well as
 [install the Heroku command-line tool](https://devcenter.heroku.com/articles/heroku-command
 "install the Heroku command-line tool") before continuing this tutorial.
@@ -703,28 +703,26 @@ Now, to deploy to Heroku, the application needs to be set up as a Git
 repository:
 
 ```shell
+$ cd sample-blog-updated
 $ git init
 $ git add .
 $ git commit -m "initial commit for app"
 ```
 
 This initializes the Git repository, adds all the contents and commit them to
-the repo. Next, the application must be set up on Heroku.
-
-```shell
-sample-blog $ heroku create --stack bamboo-ree-1.8.7
-sample-blog $ git push heroku master
-```
-
-That's it, your app is now running on Heroku!
-
-Run `heroku open` to open your site in your default web browser.
+the repo.
 
 Currently Padrino defaults to **SQLite** but Heroku only supports
-**PostgreSQL**, so we'll need to add `pg` as a dependency.
+**PostgreSQL**, so we'll need to add `pg` as a dependency for production as well add `sqlite3`
+for development.
 
 ```ruby
 # Gemfile
+...
+group :development do
+  gem 'sqlite3'
+end
+
 group :production do
   gem 'pg'
 end
@@ -734,10 +732,47 @@ Now you can run the following on your local machine to avoid the installation of
 the `pg` gem:
 
 ```shell
-sample-blog $ bundle install --without production
+$ bundle --without production
 ```
 
-It's also necessary to configure the `config/database.rb` for production.
+Next, the application must be set up on Heroku.
+
+```shell
+$ heroku login
+  Enter your Heroku credentials.
+  Email: <your-email>
+  Password (typing will be hidden):
+  Logged in as <your-email>
+$ heroku create
+  Creating app... done, stack is cedar-14
+  https://calm-tor-92217.herokuapp.com/ | https://git.heroku.com/calm-tor-92217.git
+$ git push heroku master
+```
+
+That's it, your app is now running on Heroku!
+
+```sh
+$ heroku addons
+  Add-on                                       Plan       Price
+  ───────────────────────────────────────────  ─────────  ─────
+  heroku-postgresql (postgresql-shaped-79758)  hobby-dev  free
+   └─ as DATABASE
+
+  The table above shows add-ons and the attachments to the current app (calm-tor-92217) or other apps.
+```
+
+
+Next we need to get the credentials of the database
+
+```sh
+$ heroku config
+=== calm-tor-92217 Config Vars
+DATABASE_URL:               postgres://qsqrhctujjyioy:_lurVOusyuRrOa5TxJPPsOnld0@ec2-107-22-248-166.compute-1.amazonaws.com:5432/dfl2jbqk0hhvj9
+LANG:                       en_US.UTF-8
+RACK_ENV:                   production
+```
+
+and configure the `config/database.rb` for production:
 
 ```ruby
 # config/database.rb
@@ -746,31 +781,15 @@ postgres = URI.parse(ENV['DATABASE_URL'] || '')
 ActiveRecord::Base.configurations[:production] = {
   :adapter  => 'postgresql',
   :encoding => 'utf8',
-  :database => postgres.path[1..-1],
   :username => postgres.user,
   :password => postgres.password,
-  :host     => postgres.host
+  :host     => postgres.host,
+  :database => postgres.path[1..-1],
+  :port     => 5432
 }
 ```
 
-Now we need to create a Rakefile since we don't have shell access to `padrino
-rake`. Simply use the handy Rakefile generator:
-
-```shell
-$ padrino rake gen
-```
-
-And a Rakefile will be generated automatically that looks like this:
-
-```ruby
-# Rakefile
-require 'bundler/setup'
-require 'padrino-core/cli/rake'
-
-PadrinoTasks.use(:database)
-PadrinoTasks.use(:activerecord)
-PadrinoTasks.init
-```
+Run `heroku open` to open your site in your default web browser.
 
 Finally we need to tweak our `seed.rb`:
 
@@ -816,41 +835,42 @@ $ git push heroku master
 
 Now run our `migrations/seeds`:
 
+
 ```shell
-$ heroku rake ar:migrate
-$ heroku rake seed
+$ heroku run rake ar:migrate
+$ heroku run rake seed
 ```
 
 You'll see something like:
 
 ```shell
-$ heroku rake ar:migrate
-(in /disk1/home/slugs/151491_a295681_03f1/mnt)
-=> Located locked Gemfile for production
-==  CreateAccounts: migrating =================================================
--- create_table("accounts", {})
-   -> 0.0185s
-==  CreateAccounts: migrated (0.0229s) ========================================
+$ heroku run rake ar:migrate
+Running rake ar:migrate on calm-tor-92217.... up, run.7316
+== 1 CreateAccounts: migrating ================================================
+-- create_table(:accounts)
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /app/db/migrate/001_create_accounts.rb:9)
+   -> 0.0162s
+== 1 CreateAccounts: migrated (0.0164s) =======================================
 
-==  CreatePosts: migrating ====================================================
--- create_table("posts", {})
-   -> 0.0178s
-==  CreatePosts: migrated (0.0218s) ===========================================
+== 2 CreatePosts: migrating ===================================================
+-- create_table(:posts)
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /app/db/migrate/002_create_posts.rb:6)
+   -> 0.0078s
+== 2 CreatePosts: migrated (0.0080s) ==========================================
 
-==  AddAccountToPost: migrating ===============================================
+== 3 AddAccountToPost: migrating ==============================================
 -- change_table(:posts)
-   -> 0.0026s
-==  AddAccountToPost: migrated (0.0028s) ======================================
+   -> 0.0048s
+== 3 AddAccountToPost: migrated (0.0254s) =====================================
 
-MacBook:sample_blog DAddYE$ heroku rake seed
-(in /disk1/home/slugs/151491_7576c59_03f1/mnt)
-=> Located locked Gemfile for production
+$ heroku run rake seed
+Running rake seed on calm-tor-92217.... up, run.9169
 
 =================================================================
 Account has been successfully created, now you can login with:
 =================================================================
    email: info@padrinorb.com
-   password: admin
+   password: *****
 =================================================================
 ```
 
@@ -859,5 +879,8 @@ Now let's open our newly deployed app:
 ```shell
 $ heroku open
 ```
+
+and surf. You can see [posts](https://calm-tor-92217.herokuapp.com/posts "posts") and the
+[admin screen](https://calm-tor-92217.herokuapp.com/admin/sessions/new "admin screen").
 
 Enjoy!
