@@ -1,6 +1,7 @@
 ---
 chapter: Getting Started
 title: Blog Tutorial
+updated: 2016-03-23
 ---
 
 # Blog Turorial
@@ -718,7 +719,7 @@ for development.
 
 ```ruby
 # Gemfile
-...
+# ...
 group :development do
   gem 'sqlite3'
 end
@@ -749,7 +750,8 @@ $ heroku create
 $ git push heroku master
 ```
 
-That's it, your app is now running on Heroku!
+That's it, your app is now running on Heroku! To see if we have a database addon connected
+to out heroku app, run `heroku addons`:
 
 ```sh
 $ heroku addons
@@ -759,17 +761,6 @@ $ heroku addons
    └─ as DATABASE
 
   The table above shows add-ons and the attachments to the current app (calm-tor-92217) or other apps.
-```
-
-
-Next we need to get the credentials of the database
-
-```sh
-$ heroku config
-=== calm-tor-92217 Config Vars
-DATABASE_URL:               postgres://qsqrhctujjyioy:_lurVOusyuRrOa5TxJPPsOnld0@ec2-107-22-248-166.compute-1.amazonaws.com:5432/dfl2jbqk0hhvj9
-LANG:                       en_US.UTF-8
-RACK_ENV:                   production
 ```
 
 and configure the `config/database.rb` for production:
@@ -785,6 +776,31 @@ ActiveRecord::Base.configurations[:production] = {
   :password => postgres.password,
   :host     => postgres.host,
   :database => postgres.path[1..-1],
+  :port     => 5432
+}
+```
+
+To understand where the `postgres` variable get's it's information we can check
+the credentials with `heroku config`:
+
+```sh
+$ heroku config
+=== calm-tor-92217 Config Vars
+DATABASE_URL:               postgres://qsqrhctujjyioy:_lurVOusyuRrOa5TxJPPsOnld0@ec2-107-22-248-166.compute-1.amazonaws.com:5432/dfl2jbqk0hhvj9
+LANG:                       en_US.UTF-8
+RACK_ENV:                   production
+```
+
+And we can use these in our `config/database.rb`:
+
+```ruby
+ActiveRecord::Base.configurations[:production] = {
+  :adapter  => 'postgresql',
+  :encoding => 'utf8',
+  :username => 'qsqrhctujjyioy',
+  :password => '_lurVOusyuRrOa5TxJPPsOnld0',
+  :host     => 'ec2-107-22-248-166.compute-1.amazonaws.com',
+  :database => 'dfl2jbqk0hhvj9',
   :port     => 5432
 }
 ```
@@ -848,13 +864,11 @@ $ heroku run rake ar:migrate
 Running rake ar:migrate on calm-tor-92217.... up, run.7316
 == 1 CreateAccounts: migrating ================================================
 -- create_table(:accounts)
-DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /app/db/migrate/001_create_accounts.rb:9)
    -> 0.0162s
 == 1 CreateAccounts: migrated (0.0164s) =======================================
 
 == 2 CreatePosts: migrating ===================================================
 -- create_table(:posts)
-DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /app/db/migrate/002_create_posts.rb:6)
    -> 0.0078s
 == 2 CreatePosts: migrated (0.0080s) ==========================================
 
