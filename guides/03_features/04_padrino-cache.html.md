@@ -22,23 +22,23 @@ your project root. Entries in this store correspond directly to the request
 issued to your server. In other words, responses are cached based on request
 URL, with one cache entry per URL.
 
-This behavior is referred to as "page-level caching." If this strategy meets
+This behavior is referred to as **"page-level caching"**. If this strategy meets
 your needs, you can enable it very easily:
 
 ```ruby
-# Basic, page-level caching
+#page-level caching
 class SimpleApp < Padrino::Application
   register Padrino::Cache
   enable :caching
 
   get '/foo', :cache => true do
-    expires_in 30 # expire cached version at least every 30 seconds
+    expires_in 30 # cached expired at least every 30 seconds
     'Hello world'
   end
 end
 ```
 
-By default the "cache_key" in these instances is the `request.path_info` and the
+By default the `cache_key` in these instances is the `request.path_info` and the
 query string is not considered. You can also provide a custom `cache_key` for
 any route:
 
@@ -58,11 +58,10 @@ In this way you can manually expire cache with
 `CachedApp.cache.delete(:my_name)` for example from the Post model after an
 update.
 
-You can also cache on a controller-wide basis:
+You can also **cache on a controller-wide** basis:
 
 ```ruby
-# Controller-wide caching example
-
+# controller-wide caching
 class SimpleApp < Padrino::Application
   register Padrino::Cache
   enable :caching
@@ -93,8 +92,8 @@ end
 
 If you specify `:cache => true` but do not invoke `expires_in`, the response
 will be cached indefinitely. Most of the time, you will want to specify the
-expiry of a cache entry by `expires_in`. Even a relatively low value--1 or 2
-seconds--can greatly increase application efficiency, especially when enabled on
+expiry of a cache entry by `expires_in`. Even a relatively low value (1 or 2
+seconds) can greatly increase application efficiency, especially when enabled on
 a very active part of your domain.
 
 --------------------------------------------------------------------------------
