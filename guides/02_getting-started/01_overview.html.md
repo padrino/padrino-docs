@@ -1,6 +1,7 @@
 ---
 chapter: Getting Started
 title: Overview
+updated: 2016-03-13
 ---
 
 # Overview
@@ -12,8 +13,8 @@ Sinatra + Padrino aficionado.
 
 You may want to skim through sections you already are familiar with. If you are
 already familiar with Padrino and just want to access reference materials,
-you may want to jump to [our api docs](http://www.rubydoc.info/github/padrino/padrino-framework "our api docs").
-or the [guides homepage](/guides/ "guides homepage")
+you may want to jump to [our api docs](http://www.rubydoc.info/github/padrino/padrino-framework "our api docs")
+or the [guides homepage](/guides/ "guides homepage").
 
 
 - [Why Learn Padrino?](/guides/introduction/why-learn-padrino "Why Learn Padrino?")
