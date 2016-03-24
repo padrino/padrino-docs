@@ -1,6 +1,7 @@
 ---
 chapter: Features
 title: Padrino Admin
+updated: 2016-03-24
 ---
 
 # Padrino Admin
@@ -23,25 +24,25 @@ Feature               | Description
 Create a new project:
 
 ```shell
-$ padrino g project fun-test -d datamapper
-$ cd fun-test
+$ padrino g project admin-test-sample -d datamapper
+$ cd admin-test-sample && bundle
 ```
 
 Create the admin application:
 
 ```shell
-$ padrino g admin
+$ padrino g admin -e erb
 ```
 
 Follow the instructions in your terminal and provide some valid email and
 password for your newly created admin account:
 
 - edit your config/database.rb
-- migrate your database: `$ padrino rake ar:migrate` or `$ padrino rake
-  dm:migrate`
-- seed your database with some data # padrino rake seed
+- create the database: `$ bundle exec rake db:create`
+- migrate your database: `$ bundle exec rake db:migrate`
+- seed your database with some data: `$ bundle exec rake db:seed`
 
-Your admin section is now "setup": you can start padrino `padrino start` and
+Your admin section is now "setup": you can start padrino `padrino s` and
 point your web browser to <http://localhost:3000/admin> and log in with your
 admin account credentials.
 
@@ -51,14 +52,16 @@ views and add those to your admin section by running this series of commands:
 
 ```shell
 $ padrino g model post title:string body:text
-$ padrino rake dm:migrate # or ar:migrate
+$ padrino rake db:migrate
 $ padrino g admin_page post
-$ padrino start
+$ padrino s
 ```
 
 That's it! Browse to <http://localhost:3000/admin> and access your model by
 clicking on the newly created tab on your admin navbar: there you can create,
 edit, destroy and display your objects.
+
+You can find the sample app on [github](https://github.com/padrino/admin-test-sample "github").
 
 --------------------------------------------------------------------------------
 
