@@ -71,10 +71,10 @@ for your application. This file will contain a list of all the dependencies for
 our application.
 
 ```ruby
-# /Gemfile
-source :rubygems
-gem 'sinatra',  :require => 'sinatra/base'
-gem 'sinatra-flash', :require => 'sinatra/flash'
+# Gemfile
+source 'https://rubygems.org'
+gem 'rake'
+gem 'padrino', '0.13.1'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can
