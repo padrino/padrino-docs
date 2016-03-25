@@ -10,17 +10,17 @@ generated project folder structure; in fact it's not strictly needed to build a
 new one because we can already use padrino rake:
 
 ```shell
-padrino rake
+$ padrino rake
 # or for a list of tasks
-padrino rake -T
+$ padrino rake -T
 ```
 
 If you need custom tasks you can add those to:
 
-- _your_project_/**lib/tasks**
-- _your_project_/**tasks**
-- _your_project_/**test**
-- _your_project_/**spec**
+- `your_project_/**lib/tasks**`
+- `your_project_/**tasks**`
+- `your_project_/**test**`
+- `your_project_/**spec**`
 
 Padrino will look recursively for any `*.rake` file in any of these directories.
 
@@ -30,7 +30,7 @@ Padrino by default has some useful tasks.
 
 ## Basic
 
-Like other frameworks we have an _:environment_ task that loads our
+Like other frameworks we have an `:environment` task that loads our
 `environment` and `apps`. Example:
 
 ```ruby
@@ -45,27 +45,42 @@ end
 
 ## Routes
 
-_currently not in stable release (coming in 0.9.10)_
-
 We have support for retrieving a list of named routes within your application
 for easy access.
 
 ```shell
-padrino rake routes
+$ padrino rake routes
 ```
 
 which will return all the named routes for your project:
 
 ```shell
-Application: core
-                 URL  REQUEST  PATH
-  (:guides, :search)    GET    /guides/search
-   (:guides, :index)    GET    /guides
-    (:guides, :show)    GET    /guides/:id
+Application: SampleBlogUpdated::Admin
+    URL                           REQUEST  PATH
+    (:sessions, :new)               GET    /admin/sessions/new
+    (:sessions, :create)           POST    /admin/sessions/create
+    (:sessions, :destroy)         DELETE   /admin/sessions/destroy
+    (:base, :index)                 GET    /admin/
+    (:accounts, :index)             GET    /admin/accounts
+    (:accounts, :new)               GET    /admin/accounts/new
+    (:accounts, :create)           POST    /admin/accounts/create
+    (:accounts, :edit)              GET    /admin/accounts/edit/:id
+    (:accounts, :update)            PUT    /admin/accounts/update/:id
+    (:accounts, :destroy)         DELETE   /admin/accounts/destroy/:id
+    (:accounts, :destroy_many)    DELETE   /admin/accounts/destroy_many
+    (:posts, :index)                GET    /admin/posts
+    (:posts, :new)                  GET    /admin/posts/new
+    (:posts, :create)              POST    /admin/posts/create
+    (:posts, :edit)                 GET    /admin/posts/edit/:id
+    (:posts, :update)               PUT    /admin/posts/update/:id
+    (:posts, :destroy)            DELETE   /admin/posts/destroy/:id
+    (:posts, :destroy_many)       DELETE   /admin/posts/destroy_many
 
-Application: foo
-     (:blog, :index)    GET    /blog
-      (:blog, :show)    GET    /blog/:id
+Application: SampleBlogUpdated::App
+    URL                 REQUEST  PATH
+    (:about)              GET    /about_us
+    (:posts, :index)      GET    /posts(.:format)?
+    (:posts, :show)       GET    /posts/show/:id
 ```
 
 --------------------------------------------------------------------------------
@@ -76,11 +91,11 @@ When testing with Padrino you have a built-in `padrino rake test` or for rspec
 `padrino rake spec`.
 
 ```shell
-padrino rake test # => for bacon, riot, shoulda
-padrino rake spec # => for rspec
+$ padrino rake test # => for bacon, riot, shoulda
+$ padrino rake spec # => for rspec
 ```
 
-you can customize _test/test.rake_ or _spec/spec.rake_
+you can customize `test/test.rake` or `spec/spec.rake`
 
 --------------------------------------------------------------------------------
 
@@ -90,10 +105,10 @@ You can auto generate a _yml_ file for localizing your models using this
 command:
 
 ```shell
-padrino rake locale:models
+$ padrino rake locale:models
 ```
 
-See [Localization](/guides/features/localization) for detailed instructions.
+See [Localization](/guides/features/localization "Localization") for detailed instructions.
 
 --------------------------------------------------------------------------------
 
@@ -111,7 +126,7 @@ _Mongomapper_,and _Mongoid_ with some **bonuses**.
 
 --------------------------------------------------------------------------------
 
-## ActiveRecord Tasks:
+## ActiveRecord Tasks
 
 ```shell
 rake ar:abort_if_pending_migrations    # Raises an error if there are pending migrations.
@@ -151,7 +166,7 @@ ar:auto:upgrade`.
 
 --------------------------------------------------------------------------------
 
-## DataMapper Tasks:
+## DataMapper Tasks
 
 ```shell
 rake dm:auto:migrate          # Performs an automigration (resets your db data)
@@ -167,7 +182,7 @@ rake dm:setup                 # Create the database migrate and initialize with 
 
 --------------------------------------------------------------------------------
 
-## Sequel Tasks:
+## Sequel Tasks
 
 ```shell
 rake sq:migrate:auto        # Perform automigration (reset your db data)
@@ -179,7 +194,7 @@ rake sq:reset               # Drops the database, and migrates from scratch
 
 --------------------------------------------------------------------------------
 
-## Mongomapper Tasks:
+## Mongomapper Tasks
 
 ```shell
 rake mm:translate              # Generates .yml files for I18n translations
@@ -187,7 +202,7 @@ rake mm:translate              # Generates .yml files for I18n translations
 
 --------------------------------------------------------------------------------
 
-## Mongoid Tasks:
+## Mongoid Tasks
 
 Available in 0.9.21
 
@@ -200,7 +215,7 @@ rake mi:cleanup_old_collections # Clean up old collections backed up by objectid
 
 --------------------------------------------------------------------------------
 
-## Seed:
+## Seed
 
 Like in Rails we can populate our db using _db/seeds.rb_ here's an example (from
 our [padrino-admin](/guides/padrino-admin/)):
