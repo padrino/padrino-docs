@@ -8,7 +8,7 @@ title: Padrino Mailer
 This component creates an easy and intuitive interface for delivering email
 within a Sinatra application. The [mail](http://github.com/mikel/mail "mail")
 library is utilized to do the bulk of the work. There is full support for
-rendering email templates, using an html content type and for file attachments.
+rendering email templates, using a html content type and for file attachments.
 The Padrino Mailer uses a familiar Sinatra syntax similar to that of defining
 routes for a controller.
 
@@ -17,8 +17,9 @@ routes for a controller.
 ## Configuration
 
 Let's take a look at using the Mailer in an application. By default, the mailer
-uses the built-in sendmail binary on the server. However, SMTP is also supported
-using the following declaration in your application:
+uses the [built-in sendmail](https://en.wikipedia.org/wiki/Sendmail "built-in sendmail")
+binary on the server. However, SMTP is also supported using the following
+declaration in your application:
 
 ```ruby
 # app/app.rb
@@ -56,7 +57,11 @@ Delivering an email within your controller is simple:
 ```ruby
 # app/controllers/session.rb
 post :create do
-  email(:from => "tony@reyes.com", :to => "john@smith.com", :subject => "Welcome!", :body=>"Body")
+  email(:from => "tony@reyes.com",
+    :to => "john@smith.com",
+    :subject => "Welcome!",
+    :body=>"Body"
+  )
 end
 ```
 
@@ -96,8 +101,8 @@ MyAppName.mailer :sample do
     subject 'Welcome to the site!'
     locals :name => name, :email => email
     render 'sample/registration_email'
-    content_type :html       # optional, defaults to :plain
-    via :sendmail            # optional, to smtp if defined otherwise sendmail
+    content_type :html # optional, defaults to :plain
+    via :sendmail      # optional, to smtp if defined otherwise sendmail
   end
 end
 ```
@@ -141,7 +146,8 @@ And that will then deliver the email according the configured options.
 
 ## Multipart Emails
 
-The mailer supports multipart emails quite easily:
+The mailer supports [multipart emails](https://en.wikipedia.org/wiki/MIME "multipart emails")
+quite easily:
 
 ```ruby
 # app/mailers/sample_mailer.rb
@@ -205,7 +211,7 @@ To define mailer defaults for a message, we can do so app-wide or within a
 ```ruby
 # app/app.rb
 # Application-wide mailer defaults
-set :mailer_defaults, :from => 'admin@site.com'
+set :mailer_defaults, :from => 'admin@padrinorb.com'
 
 # app/mailers/sample_mailer.rb
 MyAppName.mailers :sample do
