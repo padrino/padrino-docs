@@ -1,7 +1,6 @@
 ---
 chapter: Features
 title: Mounting Applications
-updated: 2016-03-24
 ---
 
 # Mounting Applications

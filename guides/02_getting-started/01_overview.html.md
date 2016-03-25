@@ -1,7 +1,6 @@
 ---
 chapter: Getting Started
 title: Overview
-updated: 2016-03-13
 ---
 
 # Overview

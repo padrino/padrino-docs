@@ -1,7 +1,6 @@
 ---
 chapter: Features
 title: Padrino Admin
-updated: 2016-03-24
 ---
 
 # Padrino Admin
