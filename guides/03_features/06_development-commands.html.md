@@ -35,7 +35,7 @@ The logger automatically supports severity through the use of `logger.info`,
 
 For more information about the logger, check out our
 [Logger RDoc](http://www.rubydoc.info/github/padrino/padrino-framework/Padrino/Logger
-"Logger RDoc")
+"Logger RDoc").
 
 --------------------------------------------------------------------------------
 

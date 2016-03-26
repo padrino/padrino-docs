@@ -8,7 +8,7 @@ title: Projects
 The usage for the project generator is quite simple:
 
 ```shell
-$ padrino g project <the_app_name> </path/to/create/app> --<component-name> <value>
+$ padrino g project <app_name> </path/to/create/app> --<component-name> <value>
 ```
 
 The simplest possible command to generate a base application would be:
@@ -18,7 +18,7 @@ $ padrino g project demo_project
 ```
 
 This would construct a Padrino application DemoApp (which extends from
-`Padrino::Application`) inside the folder `demo\_project` at our current path.
+`Padrino::Application`) inside the folder `demo_project` at our current path.
 Inside the application there would be configuration and setup performed for the
 default components.
 

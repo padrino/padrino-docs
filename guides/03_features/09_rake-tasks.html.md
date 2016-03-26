@@ -204,8 +204,6 @@ rake mm:translate              # Generates .yml files for I18n translations
 
 ## Mongoid Tasks
 
-Available in 0.9.21
-
 ```shell
 rake mi:drop                    # Drops all the collections for the database for the current environment
 rake mi:create_indexes          # Create the indexes defined on your mongoid models
@@ -217,8 +215,8 @@ rake mi:cleanup_old_collections # Clean up old collections backed up by objectid
 
 ## Seed
 
-Like in Rails we can populate our db using _db/seeds.rb_ here's an example (from
-our [padrino-admin](/guides/padrino-admin/)):
+Like in Rails we can populate our db using `db/seeds.rb` here's an example (from
+our [padrino-admin](/guides/padrino-admin/ "padrino-admin)):
 
 ```ruby
 email     = shell.ask "Which email do you want use for loggin into admin?"
