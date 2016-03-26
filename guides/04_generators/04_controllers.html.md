@@ -52,7 +52,7 @@ name of the controller and the route name. For example:
 $ padrino g controller User get:index
 ```
 
-will create a url route for `:index` mapping to `/user/index`.
+will create a URL route for `:index` mapping to `/user`.
 
 You may also specify layout, parent and provides respectively:
 
