@@ -33,20 +33,20 @@ By default these apps are mounted under:
 - `/one`
 - `/two`
 
-but you can edit `config/apps.rb` and change it.
+fee free to change the routing in `config/apps.rb`.
 
-And create controllers:
+You can create controllers:
 
 ```shell
-$ padrino g controller base --app foo # This will be created for app Foo
-$ padrino g controller base           # This will be created for Core app
-$ padrino g controller base --app bar # This will be created for app Bar
+$ padrino g controller base --app one # create controller for app one
+$ padrino g controller base           # create controller for main app
+$ padrino g controller base --app two # create controller for app two
 ```
 
 Or mailers:
 
 ```shell
-$ padrino g mailer registration --app foo  # This will be created for app Foo
-$ padrino g mailer registration            # This will be created for Core app
-$ padrino g mailer registration --app bar  # This will be created for app Bar
+$ padrino g mailer registration --app one # create mailer for app one
+$ padrino g mailer registration           # create mailer for main app
+$ padrino g mailer registration --app two # create mailer for app one
 ```
