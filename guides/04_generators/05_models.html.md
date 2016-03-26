@@ -39,7 +39,7 @@ on your ORM component. Usually the model file will generate files similar to the
 following:
 
 - Model definition file (`models/user.rb`)
-- Migration declaration (`db/migrate/xxx\_create\_users.rb`)
+- Migration declaration (`db/migrate/xxx_create_users.rb`)
 - Model unit test file (`test/models/user_test.rb`)
 
 You can define as many models as you would like in a Padrino application using
