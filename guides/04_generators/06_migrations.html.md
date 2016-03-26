@@ -43,5 +43,3 @@ it to true. Default is false.
 ```shell
 $ padrino g migration AddFieldsToUsers -d
 ```
-
-This removes the migration file.
