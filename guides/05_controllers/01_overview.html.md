@@ -15,8 +15,6 @@ folder and create a file as such:
 # app/controllers/main.rb or controllers.rb
 
 SimpleApp.controller do
-  # url_for(:admin, :other, :id => 5, :name => "hey")
-  #   => "/admin/other/5/hey"
   get "/test" do
     "Text to return"
   end
