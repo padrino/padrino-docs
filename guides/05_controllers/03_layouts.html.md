@@ -18,7 +18,7 @@ class SimpleApp < Padrino::Application
 end
 ```
 
-Note that layouts are _scoped by controller_, so you can apply different layouts
+Note that layouts are *scoped by controller*, so you can apply different layouts
 to different controllers:
 
 ```ruby

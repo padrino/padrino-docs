@@ -46,8 +46,7 @@ unnecessary filters running on every route. As of Padrino 0.10.0, there is also
 a much more powerful route selection system that has been setup:
 
 ```ruby
-# app/controllers/example_controller.rb
-DemoApp.controller :example do
+SimpleApp.controller :example do
   # Based on a symbol
   before :index do
     # Code here to be executed

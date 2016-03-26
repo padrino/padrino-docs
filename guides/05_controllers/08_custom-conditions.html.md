@@ -10,7 +10,6 @@ you to apply custom condition checks to evaluate before a route is executed for
 an incoming request:
 
 ```ruby
-# app/controllers/example.rb
 SimpleApp.controllers do
   def protect(*args)
     condition {
@@ -29,7 +28,6 @@ end
 Conditions can also be specified at the controller and route levels:
 
 ```ruby
-# app/controllers/example.rb
 # You can specify conditions to run for all routes:
 
 SimpleApp.controller :conditions => {:protect => true} do
