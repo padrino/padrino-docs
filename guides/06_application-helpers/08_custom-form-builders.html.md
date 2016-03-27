@@ -38,5 +38,4 @@ set :default_builder, 'MyCustomFormBuilder'
 ```
 
 And there you have it, a fairly complete form builder solution for Padrino (and
-Sinatra). I hope to create or merge in an even better 'default' form_builder in
-the near future.
+Sinatra).

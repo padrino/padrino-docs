@@ -69,27 +69,20 @@ have been built to work for both haml and erb templates using the same syntax.
 ## List of Output Helpers
 
 - `content_for(key, &block)`
-
   - Capture a block of content to be rendered at a later time.
   - Existence can be checked using the `content_for?(key)` method.
   - `content_for(:head) { ...content... }`
   - Also supports arguments passed to the content block
   - `content_for(:head) { |param1, param2| ...content... }`
-
 - `yield_content(key, *args)`
-
   - Render the captured content blocks for a given key.
   - `yield_content :head`
   - Also supports arguments yielded to the content block
   - `yield_content :head, param1, param2`
-
 - `capture_html(*args, &block)`
-
   - Captures the html from a block of template code for erb or haml
   - `capture_html(&block)` => "...html..."
-
 - `concat_content(text="")`
-
   - Outputs the given text to the templates buffer directly in erb or haml
   - `concat_content("This will be output to the template buffer in erb or
     haml")`
