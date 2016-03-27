@@ -24,7 +24,7 @@ render :haml, 'account/index'
 Padrino also automatically considers your current locale and/or content_type.
 
 ```ruby
-SimpleApp.controllers :admin do
+Demo::App.controllers :admin do
   get :show, :with => :id, :provides => [:html, :js] do
     render "admin/show"
   end

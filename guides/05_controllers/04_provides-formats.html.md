@@ -9,7 +9,7 @@ With Padrino you can simply declare which formats a request will respond to by
 using the `provides` route configuration:
 
 ```ruby
-SimpleApp.controllers :admin do
+Demo::App.controllers :admin do
   get :show, :with => :id, :provides => :js do
     # url is generated as "/admin/show/#{params[:id]}.#{params[:format]}"
     # url_for(:admin, :show, :id => 5, :format => :js) => "/admin/show/5.js"

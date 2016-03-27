@@ -30,12 +30,12 @@ _scoped by controller_ which means that unlike Sinatra in which a filter is
 global, in Padrino you can run different filters for each controller:
 
 ```ruby
-SimpleApp.controllers :posts do
+Demo::App.controllers :posts do
   before { @foo = "bar" }
   get("/posts") { render :haml, "Has access to @foo variable" }
 end
 
-SimpleApp.controllers :accounts do
+Demo::App.controllers :accounts do
   before { @bar = "foo" }
   get("/accounts") { render :haml, "Has access to @bar variable" }
 end
@@ -46,7 +46,7 @@ unnecessary filters running on every route. As of Padrino 0.10.0, there is also
 a much more powerful route selection system that has been setup:
 
 ```ruby
-SimpleApp.controller :example do
+Demo::App.controllers :example do
   # Based on a symbol
   before :index do
     # Code here to be executed

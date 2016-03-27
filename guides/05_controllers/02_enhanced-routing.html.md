@@ -18,7 +18,7 @@ The routing system supports named aliases by using symbols instead of strings
 for your routes:
 
 ```ruby
-class Demo < Padrino::Application
+Demo::App.controllers :page do
   get :index do
     # url is generated as '/'
     # url_for(:index) => "/"
@@ -45,7 +45,7 @@ The routing plugin also supports inline route definitions in which the explicit
 URL and the named alias are both defined:
 
 ```ruby
-class Demoer < Padrino::Application
+Demo::App.controllers :acount do
   get :index, :map => '/index/example' do
     # url_for(:index) => "/index/example"
   end
@@ -70,7 +70,7 @@ There is also support for namespaced routes which are organized into a named
 controller group:
 
 ```ruby
-SimpleApp.controllers :admin do
+Demo::App.controllers :admin do
   get :index do
     # url is generated as '/admin/'
     # url_for(:admin, :index) => "/admin"
@@ -94,7 +94,7 @@ If you prefer explicit URLs to named aliases, that is also supported within a
 specified controller group:
 
 ```ruby
-SimpleApp.controllers "/admin" do
+Demo::App.controllers "/admin" do
   get "/show" do
     # url is generated as "/admin/show"
   end
@@ -110,7 +110,7 @@ end
 With Padrino you can also specify named parameters within your route definition:
 
 ```ruby
-SimpleApp.controllers :admin do
+Demo::App.controllers :admin do
   get :show, :with => :id do
     # url is generated as "/admin/show/#{params[:id]}"
     # url_for(:admin, :show, :id => 5) => "/admin/show/5"
@@ -136,7 +136,7 @@ You can specify parent resources in padrino with the `:parent` option on the
 controller:
 
 ```ruby
-SimpleApp.controllers :product, :parent => :user do
+Demo::App.controllers :product, :parent => :user do
   get :index do
     # url is generated as "/user/#{params[:user_id]}/product"
     # url_for(:product, :index, :user_id => 5) => "/user/5/product"
@@ -152,7 +152,7 @@ If need be the parent resource can also be specified on inline routes in
 addition:
 
 ```ruby
-SimpleApp.controllers :product, :parent => :user do
+Demo::App.controllers :product, :parent => :user do
   get :index, :parent => :project do
    # url is generated as "/user/#{params[:user_id]}/project/#{params[:project_id]}/product"
    # url(:product, :index, :user_id => 5, :project_id => 8) => "/user/5/project/8/product"
