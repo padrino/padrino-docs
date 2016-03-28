@@ -11,16 +11,7 @@ JavaScript component integrated into Padrino.
 
 ## Generators
 
-First, let's add `extcore` to the project generator's available components in
-[padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L36):
-
-```ruby
-# padrino-gen/lib/padrino-gen/generators/project.rb
-
-component_option :script, "javascript library", :choices => [:jquery, :prototype, :extcore]
-```
-
-Next, let's define the actual integration of the javascript into the generator
+First, let's define the actual integration of the javascript into the generator
 in
 [padrino-gen/generators/components/scripts/extcore.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb):
 
@@ -28,8 +19,12 @@ in
 # padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb
 
 def setup_script
-  copy_file('templates/scripts/ext-core.js', destination_root("/public/javascripts/ext-core.js"))
-  create_file(destination_root('/public/javascripts/application.js'), "// Put scripts here")
+  begin
+    get('https://raw.github.com/padrino/padrino-static/master/js/ext.js',  destination_root("/public/javascripts/ext.js"))
+  rescue
+    copy_file('templates/static/js/ext.js',  destination_root("/public/javascripts/ext.js"))
+  end
+  create_file(destination_root('/public/javascripts/application.js'), "// Put your application scripts here")
 end
 ```
 
@@ -69,8 +64,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-
-script:: none  (default), jquery, prototype, mootools, rightjs, , dojo, extcore
+script:: none  (default), jquery, prototype, mootools, rightjs, extcore, dojo
 ```
 
 ## Unobtrusive JavaScript Adapter
@@ -78,7 +72,7 @@ script:: none  (default), jquery, prototype, mootools, rightjs, , dojo, extcore
 Although optional, you can also provide a unobtrusive JavaScript (UJS) adapter
 which provides 'remote' and 'method' support to a project using a particular
 JavaScript framework. For more information about UJS, check out the
-[UJS Helpers](https://www.padrinorb.com/guides/application-helpers#unobtrusive-javascript-helpers)
+[UJS Helpers](/guides/application-helpers/ujs-helpers/)
 guide.
 
 To support UJS in a given JavaScript framework, simply create a new file such as
@@ -128,31 +122,29 @@ UJS file to the generator in Padrino:
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb
-
 def setup_script
-  get('https://github.com/padrino/padrino-static/raw/master/js/jquery.js',
-     destination_root("/public/javascripts/jquery.js"))
-  get('https://github.com/padrino/padrino-static/raw/master/ujs/jquery-ujs.js',
-     destination_root("/public/javascripts/jquery-ujs.js"))
-  create_file(destination_root('/public/javascripts/application.js'),
-     "// Put your application scripts here")
+  begin
+    get('https://raw.github.com/padrino/padrino-static/master/ujs/ext.js', destination_root("/public/javascripts/ext-ujs.js"))
+  rescue
+    copy_file('templates/static/ujs/ext.js', destination_root("/public/javascripts/ext-ujs.js"))
+  end
+  create_file(destination_root('/public/javascripts/application.js'), "// Put your application scripts here")
 end
 ```
 
-and update the tests:
+and update the [tests](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L483):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
-
-context "the generator for script component" do
-  should "properly generate for jquery" do
-    # ...
-    assert_match(/Applying.*?jquery.*?script/, buffer)
-    assert_file_exists("#{@apptmp}/sample_project/public/javascripts/jquery.js")
-    assert_file_exists("#{@apptmp}/sample_project/public/javascripts/jquery-ujs.js")
-    assert_file_exists("#{@apptmp}/sample_project/public/javascripts/application.js")
-  end
-  # ...
+describe "the generator for script component" do
+   it 'should properly generate for jquery' do
+     out, err = capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--script=jquery') }
+     assert_match(/applying.*?jquery.*?script/, out)
+     assert_file_exists("#{@apptmp}/sample_project/public/javascripts/jquery.js")
+     assert_file_exists("#{@apptmp}/sample_project/public/javascripts/jquery-ujs.js")
+     assert_file_exists("#{@apptmp}/sample_project/public/javascripts/application.js")
+   end
+   ...
 end
 ```
 
