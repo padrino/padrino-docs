@@ -12,33 +12,35 @@ Padrino.
 
 ## Generators
 
-First, let's add `less` to the project generator's available components in
-[padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L33):
-
-```ruby
-# padrino-gen/lib/padrino-gen/generators/project.rb
-
-component_option :stylesheet, "stylesheet engine", :choices => [:sass, :less]
-```
-
-Next, let's define the actual integration of the stylesheet engine into the
+First, let's define the actual integration of the stylesheet engine into the
 generator in
 [padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb
 
-LESS_INIT = (<<-LESS).gsub(/^ {6}/, '')
-require 'rack/less'
-Rack::Less.configure do |config|
-  config.compress = true
-end
-app.use Rack::Less, :root => app.root, :source  => 'stylesheets/',
-                    :public    => 'public/', :hosted_at => '/stylesheets'
+LESS_INIT = <<-LESS unless defined?(LESS_INIT)
+    # Enables support for Less template reloading for rack.
+    # Store Less files by default within 'app/stylesheets/'.
+    # See http://github.com/kelredd/rack-less for more details.
+    require 'rack/less'
+    # optional - use as necessary
+    Rack::Less.configure do |config|
+      config.compress = true
+      # config.cache = true
+      # other configs ...
+    end
+    app.use Rack::Less,
+      :root      => Padrino.root,
+      :source    => 'app/stylesheets',
+      :public    => 'public',
+      :hosted_at => 'stylesheets'
 LESS
 
 def setup_stylesheet
-  require_dependencies 'less', 'rack-less'
+  require_dependencies 'less'
+  require_dependencies 'rack-less'
+  require_dependencies 'therubyracer'
   initializer :less, LESS_INIT
   empty_directory destination_root('/app/stylesheets')
 end
@@ -48,18 +50,16 @@ end
 
 Let's also add a test to ensure the new stylesheet engine component generates as
 expected in
-[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L656):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L656):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
-
-should "properly generate for less" do
-  buffer = silence_logger { @project.start(['sample_project', '--root=/tmp', '--stylesheet=less']) }
-  assert_match_in_file(/gem 'less'/, '/tmp/sample_project/Gemfile')
-  assert_match_in_file(/gem 'rack-less'/, '/tmp/sample_project/Gemfile')
-  assert_match_in_file(/module LessInitializer.*Rack::Less/m, '/tmp/sample_project/lib/less_init.rb')
-  assert_match_in_file(/register LessInitializer/m, '/tmp/sample_project/app/app.rb')
-  assert_dir_exists('/tmp/sample_project/app/stylesheets')
+it 'should properly generate for less' do
+  capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--renderer=haml','--script=none','--stylesheet=less') }
+  assert_match_in_file(/gem 'rack-less'/, "#{@apptmp}/sample_project/Gemfile")
+  assert_match_in_file(/module LessInitializer.*Rack::Less/m, "#{@apptmp}/sample_project/lib/less_initializer.rb")
+  assert_match_in_file(/register LessInitializer/m, "#{@apptmp}/sample_project/app/app.rb")
+  assert_dir_exists("#{@apptmp}/sample_project/app/stylesheets")
 end
 ```
 
@@ -71,8 +71,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-
-stylesheet:: sass (default), less
+stylesheet:: none  (default), less, compass, sass, scss
 ```
 
 ## Contribute to Padrino
