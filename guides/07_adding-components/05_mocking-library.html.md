@@ -12,16 +12,7 @@ into Padrino.
 
 ## Generators
 
-First, let's add `mocha` to the project generator's available components in
-[padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L36):
-
-```ruby
-# padrino-gen/lib/padrino-gen/generators/project.rb
-
-component_option :mock, "mocking library", :choices => [:mocha, :rr]
-```
-
-Next, let's define the actual integration of the mocking library into the
+First, let's define the actual integration of the mocking library into the
 generator in
 [padrino-gen/generators/components/mocks/mocha.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/mocks/mocha.rb):
 
@@ -29,8 +20,14 @@ generator in
 # padrino-gen/lib/padrino-gen/generators/components/mocks/mocha.rb
 
 def setup_mock
-  require_dependencies 'mocha', :group => 'test'
-  insert_mocking_include "Mocha::API"
+  require_dependencies 'mocha', :group => 'test', :require => false
+  case options[:test].to_s
+    when 'rspec'
+      inject_into_file 'spec/spec_helper.rb', "  conf.mock_with :mocha\n", :after => "RSpec.configure do |conf|\n"
+    else
+      inject_into_file 'test/test_config.rb', "require 'mocha/api'\n", :after => "require File.expand_path(File.dirname(__FILE__) + \"/../config/boot\")\n"
+      insert_mocking_include "Mocha::API"
+  end
 end
 ```
 
@@ -38,16 +35,15 @@ end
 
 Let's also add a test to ensure the new mocking component generates as expected
 in
-[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L248):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L248):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
-
-should "properly generate for mocha and rspec" do
-  buffer = silence_logger {@project.start(['sample_project', '--root=/tmp', '--mock=mocha'])}
-  assert_match /Applying.*?mocha.*?mock/, buffer
-  assert_match_in_file(/gem 'mocha'/, '/tmp/sample_project/Gemfile')
-  assert_match_in_file(/conf.mock_with :mocha/m, '/tmp/sample_project/spec/spec_helper.rb')
+it 'should properly generate for mocha and rspec' do
+  out, err = capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}",'--test=rspec', '--mock=mocha', '--script=none') }
+  assert_match(/applying.*?mocha.*?mock/, out)
+  assert_match_in_file(/gem 'mocha'/, "#{@apptmp}/sample_project/Gemfile")
+  assert_match_in_file(/conf.mock_with :mocha/m, "#{@apptmp}/sample_project/spec/spec_helper.rb")
 end
 ```
 
