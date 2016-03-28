@@ -24,7 +24,6 @@ The following guides will outline in detail how to properly contribute new
 components to Padrino and get them included into the next Padrino generator as
 quickly and efficiently as possible.
 
-
 - [Persistence Engine](/guides/application-helpers/persistence-engine "Persistence Engine")
 - [Javascript Library](/guides/application-helpers/javascript-engine "Javascript Library")
 - [Testing Library](/guides/application-helpers/testing-library "Testing Library")

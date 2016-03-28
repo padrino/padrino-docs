@@ -42,7 +42,7 @@ latest version of the javascript library to the templates folder:
 
 Let's also add a test to ensure the new JavaScript component generates as
 expected in
-[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L517):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L517):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
