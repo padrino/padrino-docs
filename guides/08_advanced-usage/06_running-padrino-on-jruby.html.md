@@ -114,6 +114,6 @@ If you are ready, run:
 warble war
 ```
 
-You would get `jrack-test.war` (the same name as your project diresctory name),
+You would get `jrack-test.war` (the same name as your project directory name),
 and you can deploy this war file to tomcat! I tested on tomcat 6.0.20, and it
 works well with quick response.
