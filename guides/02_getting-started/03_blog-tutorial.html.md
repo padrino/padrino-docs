@@ -51,6 +51,9 @@ $ padrino g project sample_blog --template sampleblog
 To learn more about our template generator, be sure to check out the
 [generators guide](/guides/generators/overview "generators guide").
 
+Please note that you can find the code for code for Padrino 0.12.2 under
+[blog tutorial repository](http://github.com/padrino/sample_blog "blog tutorial repository").
+
 --------------------------------------------------------------------------------
 
 ## Installation
@@ -91,12 +94,12 @@ $ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d ac
 
 This command will generate our basic Padrino project and the print out a nice
 report of the files generated. The output of this generation command can be
-viewed in [this gist](http://gist.github.com/337148) file. Notice the `-b` flag
+viewed in [this gist](https://gist.github.com/wikimatze/a399cf4a143d0360fb262de92cdf8f8e) file. Notice the `-b` flag
 in the previous command which automatically instructs bundler to install all
 dependencies. All we need to do now is `cd` into our brand new application.
 
 ```shell
-$ cd sample_blog
+$ cd sample_blog_updated
 ```
 
 Now, the terminal should be inside the root of our newly generated application
