@@ -1,7 +1,6 @@
 ---
 chapter: Getting Started
 title: Blog Tutorial
-updated: 2016-03-23
 ---
 
 # Blog Turorial
