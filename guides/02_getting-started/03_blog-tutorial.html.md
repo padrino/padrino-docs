@@ -23,21 +23,24 @@ There is also a screencast available for this tutorial. You can check it out by:
 <iframe src="//player.vimeo.com/video/10522357" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/10522357">Blog Tutorial</a> from <a href="http://vimeo.com/user3479413">Padrino Framework</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 </div>
 
+Please note that the screencast was written for Padrino 0.12.2, so some things
+mentioned there may not be valid.
+
 --------------------------------------------------------------------------------
 
 ## Study Guide
 
 To skip this tutorial or immediately see the complete blog tutorial project, you
 can either checkout the
-[blog tutorial repository](http://github.com/padrino/sample_blog "blog tutorial
+[blog tutorial repository](https://github.com/padrino/sample_blog_updated "blog tutorial
 repository") using Git:
 
 ```shell
-$ git clone git://github.com/padrino/sample_blog.git
+$ git clone git@github.com:padrino/sample_blog_updated.git
 ```
 
 or even execute the
-[blog tutorial project template](http://gist.github.com/357045 "blog tutorial
+[blog tutorial project template](https://github.com/padrino/padrino-recipes/blob/master/templates/sampleblog_template.rb "blog tutorial
 project template") which will automatically build the blog project step by step
 using our excellent template runner. You can do this simply by invoking:
 
