@@ -33,13 +33,13 @@ Create the admin application:
 $ padrino g admin
 ```
 
-Follow the instructions in your terminal and provide some valid email and
+Follow the instructions in your terminal and provide a valid email and
 password for your newly created admin account:
 
 - edit your config/database.rb
 - migrate your database: `$ padrino rake ar:migrate` or `$ padrino rake
   dm:migrate`
-- seed your database with some data # padrino rake seed
+- seed your database with data # padrino rake seed
 
 Your admin section is now "setup": you can start padrino `padrino start` and
 point your web browser to <http://localhost:3000/admin> and log in with your
@@ -71,10 +71,9 @@ permissions (User Authentication and Authorization).
 
 ## Scenario E-commerce (User Authentication)
 
-To make some practical example, let's examine some common e-commerce application
-scenario, where we usually need to restrain some users to get access to some of
-our controllers actions; we can easily accomplish this by editing `app.rb`
-accordingly:
+For a practical example, let's examine a common e-commerce application
+scenario, where we need to prevent user access to some controller actions. 
+We can easily accomplish this by editing `app.rb` accordingly:
 
 ```ruby
 class MyEcommerce < Padrino::Application
@@ -106,10 +105,10 @@ When successfully logged in, he will be granted access to those two pages.
 
 For Another example, let's suppose that you need your **admin** account to do
 certain things and have access to certain controller actions, and your
-**editor** account needs to be restrained to get access to those same admin
+**editor** account needs to be prevented from accessing those same admin
 actions.
 
-Padrino admin generator, will create for you a new `Account` model with a
+The padrino admin generator can create a new `Account` model with a
 default `role` attribute.
 
 ```ruby
@@ -126,33 +125,33 @@ class Admin < Padrino::Application
   end
 
   access_control.roles_for :admin do |role|
-    role.protect_module :settings, "/settings"
+    role.project_module :settings, "/settings"
   end
 
   access_control.roles_for :editor do |role|
-    role.protect_module :posts, "/posts"
-    role.protect_module :categories, "/categories"
+    role.project_module :posts, "/posts"
+    role.project_module :categories, "/categories"
   end
 end
 ```
 
 In the above example, we _protect_ the entire admin section (all paths starting
-with "/") with the only exception for all those paths starting with `/sessions`
-giving our `unauthenticated` users the possibility to log in by redirecting them
+with "/") with the only exception being those paths starting with `/sessions`.
+This gives  our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
-If we are logged in as an **admin** (`account.role == 'admin'`) we will have
-access **only** to the `/settings` path.
+If we are logged in as an **admin** (`account.role == 'admin'`) we can **only** 
+access the `/settings` path.
 
-If we are logged in as an **editor** (`account.role == 'editor'`) we will have
-access **only** to the `/posts` and `/categories` paths instead.
+If we are logged in as an **editor** (`account.role == 'editor'`) we can **only**
+access the `/posts` and `/categories` paths instead.
 
 --------------------------------------------------------------------------------
 
 ## Sharing Sessions Between Mounted Applications
 
 Sessions can be shared between mounted applications by setting a `:session_id`
-with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
+with the line `set :session_id, "your_session_id"` in each app's `app.rb`.
 
 --------------------------------------------------------------------------------
 
@@ -161,7 +160,6 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 If you are planning to use padrino with other adapters rather than the currently
 supported ones, and you want to contribute to the project by extending its
 support with additional adapters like [ohm](https://github.com/soveran/ohm
-"ohm"), [cassandra](https://github.com/cassandra-rb/cassandra "cassandra") and
-so on, be sure to check out the
-[adding components](/guides/adding-components/overview "adding components")
+"ohm"), [cassandra](https://github.com/cassandra-rb/cassandra "cassandra"), 
+be sure to check out the [adding components](/guides/adding-components/overview "adding components")
 guide.
