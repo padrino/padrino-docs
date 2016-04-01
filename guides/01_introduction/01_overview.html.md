@@ -1,6 +1,7 @@
 ---
 chapter: Introduction
 title: Overview
+support: true
 ---
 
 # Guides
@@ -33,12 +34,3 @@ Note that as a user of Padrino, each of the major components can be used
 [standalone](/guides/advanced-usage/standalone-usage-in-sinatra "standalone") in an existing
 Sinatra application or used together for a full-stack Padrino project.
 
-## Support
-
-These guides should provide a pretty good overview but if you have any questions
-be sure to contact us: [@padrinorb](http://twitter.com/padrinorb "@padrinorb"),
-discuss things on the
-[google groups](https://groups.google.com/forum/?hl=en#!forum/padrino "google
-groups"), join us on freenode IRC at "#padrinorb" or
-[open an issue](https://github.com/padrino/padrino-framework/issues "open an
-issue") on GitHub.

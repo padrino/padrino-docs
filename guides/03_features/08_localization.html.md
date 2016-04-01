@@ -156,7 +156,7 @@ column names of grids, forms, error_messages etc ...
 
 ## Bonus
 
-Using _form_builder_ like:
+Using `form_builder` like:
 
 ```haml
 -form_for :account, url(:accounts_create, :format => :js), :remote => true do |f|

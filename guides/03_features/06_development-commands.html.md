@@ -35,7 +35,7 @@ The logger automatically supports severity through the use of `logger.info`,
 
 For more information about the logger, check out our
 [Logger RDoc](http://www.rubydoc.info/github/padrino/padrino-framework/Padrino/Logger
-"Logger RDoc")
+"Logger RDoc").
 
 --------------------------------------------------------------------------------
 
@@ -71,10 +71,10 @@ for your application. This file will contain a list of all the dependencies for
 our application.
 
 ```ruby
-# /Gemfile
-source :rubygems
-gem 'sinatra',  :require => 'sinatra/base'
-gem 'sinatra-flash', :require => 'sinatra/flash'
+# Gemfile
+source 'https://rubygems.org'
+gem 'rake'
+gem 'padrino', '0.13.1'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can

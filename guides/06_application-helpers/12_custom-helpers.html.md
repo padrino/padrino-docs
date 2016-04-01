@@ -15,7 +15,6 @@ application. Methods can be made available within you controller by simply
 wrapping the methods in the `helpers` block:
 
 ```ruby
-# app/helpers/some_helper.rb
 MyAppName.helpers do
   def some_method
     # ...do something here...
@@ -26,7 +25,6 @@ end
 You can also define entire classes for use as helpers just as easily:
 
 ```ruby
-# app/helpers/some_helper.rb
 class SomeHelper
   def self.do_something
     # ...do something here...
@@ -38,10 +36,9 @@ These helpers can then easily be invoked in any controllers or templates within
 your application:
 
 ```ruby
-# app/controllers/posts.rb
 MyAppName.controllers :posts do
   get :index do
-    some_method # helper method
+    some_method             # helper method
     SomeHelper.do_something # helper class
   end
 end

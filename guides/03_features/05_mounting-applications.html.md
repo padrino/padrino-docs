@@ -22,7 +22,7 @@ another project.
 
 Padrino stores application mounting information by default within
 `config/apps.rb`. This file is intended to keep all information regarding what
-applications are mounted to which uri's. An `apps.rb` file has the following
+applications are mounted to which URI's. An `apps.rb` file has the following
 structure:
 
 ```ruby
@@ -41,11 +41,11 @@ from the '/' uri namespace.
 
 In addition to the basic mounting capabilities afforded by Padrino for each
 application within a project, the
-[Padrino::Router](http://github.com/padrino/padrino-framework/blob/master/padrino-core/lib/padrino-core/router.rb)
+[Padrino Router](http://github.com/padrino/padrino-framework/blob/master/padrino-core/lib/padrino-core/router.rb)
 also allows for more advanced mounting conditions.
 
 The `Padrino::Router` is an enhanced version of
-[Rack::UrlMap](http://github.com/rack/rack/blob/master/lib/rack/urlmap.rb) which
+[Rack UrlMap](http://github.com/rack/rack/blob/master/lib/rack/urlmap.rb) which
 extends the ability to mount applications to a specified path, or specify host
 and subdomains to match to an application. For example, you could put the
 following in your `config/apps.rb` file:

@@ -5,8 +5,7 @@ title: Nested Object Form Support
 
 # Nested Object Form Support
 
-Available in the 0.9.21 Padrino release is support for nested object form
-helpers. This allows forms to have arbitrarily complex nested forms that can
+Nested This allows forms to have arbitrarily complex nested forms that can
 build multiple related objects together. Let's take a simple example of a person
 with an address. Here are the related pseudo models:
 
@@ -27,7 +26,6 @@ Given those models and enabling nested attributes for the association, the
 following view will allow nested form creation:
 
 ```haml
-# app/views/person/_form.html.haml
 = form_for @person, '/person/create'  do |f|
   = f.text_field :name
   = f.text_field :favorite_color

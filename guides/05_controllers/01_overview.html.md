@@ -15,8 +15,6 @@ folder and create a file as such:
 # app/controllers/main.rb or controllers.rb
 
 SimpleApp.controller do
-  # url_for(:admin, :other, :id => 5, :name => "hey")
-  #   => "/admin/other/5/hey"
   get "/test" do
     "Text to return"
   end
@@ -30,3 +28,16 @@ end
 In this case, the controller merely acts as a structured grouping mechanism to
 allow better organization of routes. Controllers actually have other benefits as
 well when used in conjunction with the enhanced Padrino routing system.
+
+
+- [Enhanced Routing](/guides/controllers/enhanced-routing "Enhanced Routing")
+- [Layouts](/guides/controllers/layouts "Layouts")
+- [Provides Formats](/guides/controllers/provides-formats "Provides Formats")
+- [Route Filters](/guides/controllers/route-filters "Route Filters")
+- [Prioritized Routes](/guides/controllers/prioritized-routes "Prioritized Routes")
+- [Custom Conditions](/guides/controllers/custom-conditions "Custom Conditions")
+- [Parsing Params](/guides/controllers/parsing-params "Parsing Params")
+- [Rendering](/guides/controllers/rendering "Rendering")
+- [Sessions](/guides/controllers/sessions "Sessions")
+- [Params Whitelisting](/guides/controllers/params-whitelisting "Params Whitelisting")
+

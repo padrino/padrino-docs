@@ -16,7 +16,6 @@ javascript adapter, you can utilize the baked in support with the `link_to` and
 To generate a 'remote' form in a view:
 
 ```haml
-# /app/views/users/new.html.haml
 = form_for :user, url(:create, :format => :js), :remote => true do |f|
   .content=partial "/users/form"
 ```
@@ -102,8 +101,8 @@ http method specified rather than via the 'GET' method.
 ## Enabling UJS Adapter
 
 **Note**: In order for the unobstrusive javascript to work, you must be sure to
-  include the chosen javascript framework and ujs adapter in your views (or
-  layout). For instance, if I selected jquery for my project:
+include the chosen javascript framework and ujs adapter in your views (or
+layout). For instance, if I selected jquery for my project:
 
 ```haml
 -# /apps/views/layouts/application.haml

@@ -12,13 +12,14 @@ controllers, the first with a "catch-all" route:
 
 ```ruby
 # app/controllers/pages.rb
-MyApp.controller :pages do
+Demo::App.controllers :pages do
   get :show, :map => '/*page' do
     "Catchall route"
   end
 end
 
 # app/controllers/projects.rb
+Demo::App.controllers :projects do
 MyApp.controller :projects do
   get :index do
     "Index"
@@ -32,7 +33,7 @@ accessible. To solve this, you can do the following:
 
 ```ruby
 # app/controllers/pages.rb
-MyApp.controller :pages do
+Demo::App.controllers :pages do
   # NOTE that this route is now marked as low priority
   get :show, :map => '/*page', :priority => :low do
     "Catchall route"
@@ -40,7 +41,7 @@ MyApp.controller :pages do
 end
 
 # app/controllers/projects.rb
-MyApp.controller :projects do
+Demo::App.controllers :projects do
   get :index do
     "Index"
   end

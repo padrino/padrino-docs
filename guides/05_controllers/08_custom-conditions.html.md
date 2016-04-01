@@ -10,8 +10,7 @@ you to apply custom condition checks to evaluate before a route is executed for
 an incoming request:
 
 ```ruby
-# app/controllers/example.rb
-SimpleApp.controllers do
+Demo::App.controllers :projects do
   def protect(*args)
     condition {
       unless username == "foo" && password == "bar"
@@ -29,10 +28,8 @@ end
 Conditions can also be specified at the controller and route levels:
 
 ```ruby
-# app/controllers/example.rb
 # You can specify conditions to run for all routes:
-
-SimpleApp.controller :conditions => {:protect => true} do
+Demo::App.controllers :projects, :conditions => {:protect => true}  do
   def self.protect(protected)
     condition do
       halt 403, "No secrets for you!" unless params[:key] == "s3cr3t"

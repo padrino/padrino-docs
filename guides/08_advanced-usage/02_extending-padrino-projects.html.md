@@ -26,7 +26,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '0.13.0'
+gem 'padrino', '0.13.1'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -35,7 +35,7 @@ application. Once the dependencies have been declared, simply run Bundler's
 install command:
 
 ```shell
-$ bundle install
+$ bundle
 ```
 
 This will resolve and install all the required libraries. Check out the

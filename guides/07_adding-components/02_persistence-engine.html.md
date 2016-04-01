@@ -98,15 +98,16 @@ intended in
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
-
-should "properly generate default for datamapper" do
-  buffer = silence_logger {@project.start(['sample_project', '--root=/tmp', '--orm=datamapper'])}
-  assert_match /Applying.*?datamapper.*?orm/, buffer
-  assert_match_in_file(/gem 'data_objects'/, '/tmp/sample_project/Gemfile')
-  assert_match_in_file(/gem 'datamapper'/, '/tmp/sample_project/Gemfile')
-  assert_match_in_file(/DataMapper.setup/, '/tmp/sample_project/config/database.rb')
-  assert_dir_exists('/tmp/sample_project/app/models')
+...
+it 'should properly generate default' do
+  out, err = capture_io { generate(:project, 'project.com', "--root=#{@apptmp}", '--orm=datamapper', '--script=none') }
+  assert_match(/applying.*?datamapper.*?orm/, out)
+  assert_match_in_file(/gem 'dm-core'/, "#{@apptmp}/project.com/Gemfile")
+  assert_match_in_file(/gem 'dm-sqlite-adapter'/, "#{@apptmp}/project.com/Gemfile")
+  assert_match_in_file(/DataMapper.setup/, "#{@apptmp}/project.com/config/database.rb")
+  assert_match_in_file(/project_com/, "#{@apptmp}/project.com/config/database.rb")
 end
+...
 ```
 
 ## README

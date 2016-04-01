@@ -18,6 +18,7 @@ to install edge into system gems from repository.
 **Path in Gemfile** is recommended for developers because they can share their
   changes and merge repos between projects.
 
+
 ## Git in Gemfile
 
 ```ruby
@@ -49,11 +50,11 @@ $ bundle exec padrino g model post
 ```
 
 You can find more info about bundler usage on their [site](http://bundler.io/
-"Link bundler site")
+"Link bundler site").
 
 --------------------------------------------------------------------------------
 
-## System Gems from Repository
+## System Gems
 
 If you want to install the padrino edge gems into your system rubygems, simply
 follow the following steps. First, clone the padrino repository:
@@ -92,7 +93,7 @@ or you can generate a new project easily and you can use padrino commands
 normally:
 
 ```shell
-padrino g project test-project
+$ padrino g project test-project
 ```
 
 This should allow you to use the latest padrino code from your system.

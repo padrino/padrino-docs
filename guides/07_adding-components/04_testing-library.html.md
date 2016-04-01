@@ -11,40 +11,62 @@ testing component integrated into Padrino.
 
 ## Generators
 
-First, let's add `shoulda` to the project generator's available components in
-[padrino-gen/generators/project.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/project.rb#L36):
-
-```ruby
-# padrino-gen/lib/padrino-gen/generators/project.rb
-
-component_option :test, "testing framework", :choices => [:rspec, :shoulda]
-```
-
-Next, let's define the actual integration of the testing library into the
+First, let's define the actual integration of the testing library into the
 generator in
 [padrino-gen/generators/components/tests/shoulda.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/tests/shoulda.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/tests/shoulda.rb
 
-SHOULDA_SETUP = (<<-TEST).gsub(/^ {10}/, '')
-PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
+SHOULDA_SETUP = (<<-TEST).gsub(/^ {10}/, '') unless defined?(SHOULDA_SETUP)
+RACK_ENV = 'test' unless defined?(RACK_ENV)
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
+Dir[File.expand_path(File.dirname(__FILE__) + "/../app/helpers/**/*.rb")].each(&method(:require))
+
+require "test/unit"
 
 class Test::Unit::TestCase
   include Rack::Test::Methods
 
-  def app
-    CLASS_NAME
+  # You can use this method to custom specify a Rack app
+  # you want rack-test to invoke:
+  #
+  #   app CLASS_NAME
+  #   app CLASS_NAME.tap { |a| }
+  #   app(CLASS_NAME) do
+  #     set :foo, :bar
+  #   end
+  #
+  def app(app = nil, &blk)
+    @app ||= block_given? ? app.instance_eval(&blk) : app
+    @app ||= Padrino.application
   end
 end
 TEST
 
+SHOULDA_RAKE = (<<-TEST).gsub(/^ {10}/, '') unless defined?(SHOULDA_RAKE)
+require 'rake/testtask'
+
+test_tasks = Dir['test/*/'].map { |d| File.basename(d) }
+
+test_tasks.each do |folder|
+  Rake::TestTask.new("test:\#{folder}") do |test|
+    test.pattern = "test/\#{folder}/**/*_test.rb"
+    test.verbose = true
+  end
+end
+
+desc "Run application test suite"
+task 'test' => test_tasks.map { |f| "test:\#{f}" }
+TEST
+
 def setup_test
+  require_dependencies 'rack-test', :require => 'rack/test', :group => 'test'
   require_dependencies 'shoulda', :group => 'test'
   insert_test_suite_setup SHOULDA_SETUP
   create_file destination_root("test/test.rake"), SHOULDA_RAKE
 end
+
 
 # Generates a controller test given the controllers name
 def generate_controller_test(name)
@@ -60,17 +82,22 @@ end
 
 Let's also add a test to ensure the new testing component generates as expected
 in
-[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L580):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L580):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
-
-should "properly generate for shoulda" do
-  buffer = silence_logger {@project.start(['sample_project', '--root=/tmp', '--test=shoulda', '--script=none'])}
-  assert_match /Applying.*?shoulda.*?test/, buffer
-  assert_match_in_file(/gem 'shoulda'/, '/tmp/sample_project/Gemfile')
-  assert_match_in_file(/Test::Unit::TestCase/, '/tmp/sample_project/test/test_config.rb')
-  assert_file_exists('/tmp/sample_project/test/test.rake')
+it 'should properly generate for shoulda' do
+  out, err = capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--test=shoulda', '--script=none') }
+  assert_match(/applying.*?shoulda.*?test/, out)
+  assert_match_in_file(/gem 'rack-test'/, "#{@apptmp}/sample_project/Gemfile")
+  assert_match_in_file(/:require => 'rack\/test'/, "#{@apptmp}/sample_project/Gemfile")
+  assert_match_in_file(/:group => 'test'/, "#{@apptmp}/sample_project/Gemfile")
+  assert_match_in_file(/gem 'shoulda'/, "#{@apptmp}/sample_project/Gemfile")
+  assert_match_in_file(/RACK_ENV = 'test' unless defined\?\(RACK_ENV\)/, "#{@apptmp}/sample_project/test/test_config.rb")
+  assert_match_in_file(/Test::Unit::TestCase/, "#{@apptmp}/sample_project/test/test_config.rb")
+  assert_file_exists("#{@apptmp}/sample_project/test/test.rake")
+  assert_match_in_file(/Rake::TestTask\.new\("test:\#/,"#{@apptmp}/sample_project/test/test.rake")
+  assert_match_in_file(/task 'test' => test_tasks/,"#{@apptmp}/sample_project/test/test.rake")
 end
 ```
 
@@ -82,8 +109,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-
-test:: rspec (default), bacon, shoulda, cucumber, testspec, riot
+test:: none  (default), bacon, shoulda, cucumber, riot, rspec, minitest, steak
 ```
 
 ## Contribute to Padrino

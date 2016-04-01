@@ -22,23 +22,23 @@ your project root. Entries in this store correspond directly to the request
 issued to your server. In other words, responses are cached based on request
 URL, with one cache entry per URL.
 
-This behavior is referred to as "page-level caching." If this strategy meets
+This behavior is referred to as **"page-level caching"**. If this strategy meets
 your needs, you can enable it very easily:
 
 ```ruby
-# Basic, page-level caching
+#page-level caching
 class SimpleApp < Padrino::Application
   register Padrino::Cache
   enable :caching
 
   get '/foo', :cache => true do
-    expires_in 30 # expire cached version at least every 30 seconds
+    expires_in 30 # cached expired at least every 30 seconds
     'Hello world'
   end
 end
 ```
 
-By default the "cache_key" in these instances is the `request.path_info` and the
+By default the `cache_key` in these instances is the `request.path_info` and the
 query string is not considered. You can also provide a custom `cache_key` for
 any route:
 
@@ -58,11 +58,10 @@ In this way you can manually expire cache with
 `CachedApp.cache.delete(:my_name)` for example from the Post model after an
 update.
 
-You can also cache on a controller-wide basis:
+You can also **cache on a controller-wide** basis:
 
 ```ruby
-# Controller-wide caching example
-
+# controller-wide caching
 class SimpleApp < Padrino::Application
   register Padrino::Cache
   enable :caching
@@ -93,8 +92,8 @@ end
 
 If you specify `:cache => true` but do not invoke `expires_in`, the response
 will be cached indefinitely. Most of the time, you will want to specify the
-expiry of a cache entry by `expires_in`. Even a relatively low value--1 or 2
-seconds--can greatly increase application efficiency, especially when enabled on
+expiry of a cache entry by `expires_in`. Even a relatively low value (1 or 2
+seconds) can greatly increase application efficiency, especially when enabled on
 a very active part of your domain.
 
 --------------------------------------------------------------------------------
@@ -103,27 +102,28 @@ a very active part of your domain.
 
 ### Page Caching
 
-As described above in the "Caching Quickstart" section, page caching is very
-easy to integrate into your application. To turn it on, simply provide the
-`:cache => true` option on either a controller or one of its routes.
+As described above in the [Caching Quickstart section](/guides/features/padrino-cache/ "Caching Quickstart section"),
+page caching is very easy to integrate into your application.
+To turn it on, simply provide the `:cache => true` option on either a controller
+or one of its routes.
 
-By default, cached content is persisted with a "file store"--that is, in a
+By default, cached content is persisted with a "file store" - that is, in a
 subdirectory of your application root.
 
 #### expires\_in(seconds)
 
 This helper is used within a controller or route to indicate how often cached
-_page-level_ content should persist in the cache.
+*page-level* content should persist in the cache.
 
 After `seconds` seconds have passed, content previously cached will be discarded
-and re-rendered. Code associated with that route will _not_ be executed; rather,
+and re-rendered. Code associated with that route will *not* be executed; rather,
 its previous output will be sent to the client with a 200 OK status code.
 
 ```ruby
 # Setting content expiry time
 class CachedApp < Padrino::Application
-  register Padrino::Cache  # includes helpers
-  enable :caching          # turns on caching
+  register Padrino::Cache # includes helpers
+  enable :caching         # turns on caching
 
   controller '/blog', :cache => true do
     expires_in 15
@@ -134,7 +134,7 @@ class CachedApp < Padrino::Application
   end
 end
 
-class SimpleApp < Padrino::Application
+class CachedApp < Padrino::Application
   get '/post/:id', :cache => true do
     cache_key { request.path_info + "?" + params.slice("name", "page").to_param }
     @post = Post.find(params[:id])
@@ -142,7 +142,7 @@ class SimpleApp < Padrino::Application
 end
 ```
 
-This will modify the cache key to include the `name` and `page` query parameters.
+This will modify the `cache_key` to include the `name` and `page` query parameters.
 
 ### Fragment Caching
 
@@ -179,7 +179,7 @@ class MyTweets < Padrino::Application
         render 'partials/feedcontent'
       end
 
-      # Below outputs @feed somewhere in its markup
+      # Below outputs @feed in its markup
       render 'feeds/show'
     end
   end
@@ -272,7 +272,7 @@ re-generate.
 
 #### expire(\*key)
 
-#### Fragment-level expiration
+##### Fragment-level expiration
 
 Using the example above of a tweet server, let's suppose our users have a
 tendency to post things they quickly regret. When we query our database for new
@@ -284,9 +284,9 @@ favor and instantly re-render the feed.
 class MyTweets < Padrino::Application
   register Padrino::Cache
   enable :caching
-  enable :session         # we'll use this to store last time visited
+  enable :session # we'll use this to store last time visited
 
-  COMPANY_FOUNDING = Time.utc( 2010, "April" )
+  COMPANY_FOUNDING = Time.utc( 2016, "April" )
 
   controller :tweets do
     get :feed, :map => '/:username' do
@@ -312,7 +312,7 @@ end
 Normally, this example will only re-cache feed content every 60 seconds, but it
 will do so immediately if any tweets have been deleted.
 
-#### Page-level expiration
+##### Page-level expiration
 
 Page-level expiration works exactly like the example above by using `expire` in
 your controller.
@@ -383,7 +383,7 @@ The Memory Store takes an integer that sets the size to use.
 set :cache, Padrino::Cache::Store::File.new("/path/to/")
 ```
 
-The File Store takes a path to store the cache
+The File Store takes a path to store the cache.
 
 #### Memcache
 

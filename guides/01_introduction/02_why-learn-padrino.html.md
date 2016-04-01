@@ -148,8 +148,6 @@ There are several good Sinatra tutorials as well:
 - [Singing with Sinatra](http://code.tutsplus.com/tutorials/singing-with-sinatra--net-18965
   "Singing with Sinatra")
   – Excellent beginners guide to learning Sinatra.
-- [TitusD Sinatra (broken link)](http://titusd.co.uk/2010/04/07/a-beginners-sinatra-tutorial)
-  – Step by step beginners tutorial for Sinatra.
 - [Sinatra Usage Examples](http://blog.maxaller.name/2010/01/a-brief-introduction-to-ruby-sinatra-and-haml
   "Sinatra Usage Examples")
   – Great set of examples for how to use Sinatra in code snippets.
