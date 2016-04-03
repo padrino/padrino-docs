@@ -33,7 +33,7 @@ Create the admin application:
 $ padrino g admin -e erb
 ```
 
-Follow the instructions in your terminal and provide some valid email and
+Follow the instructions in your terminal and provide a valid email and
 password for your newly created admin account:
 
 - edit your config/database.rb
@@ -45,9 +45,9 @@ Your admin section is now "setup": you can start padrino `padrino s` and
 point your web browser to <http://localhost:3000/admin> and log in with your
 admin account credentials.
 
-If you need to create some sort of "scaffold" (basic CRUD actions) create a
+If you need to create a "scaffold", (basic CRUD actions) create a
 _model_, migrate your database, generate your scaffolding folder structure and
-views and add those to your admin section by running this series of commands:
+views and add those to your admin section by running the following commands:
 
 ```shell
 $ padrino g model post title:string body:text
@@ -73,10 +73,9 @@ permissions (User Authentication and Authorization).
 
 ## Scenario E-commerce (User Authentication)
 
-To make some practical example, let's examine some common e-commerce application
-scenario, where we usually need to restrain some users to get access to some of
-our controllers actions; we can easily accomplish this by editing `app.rb`
-accordingly:
+To use a practical example, let's examine a common e-commerce application
+scenario, where we need to limit access to some of our controllers actions; 
+we can easily accomplish this by editing `app.rb` accordingly:
 
 ```ruby
 class MyEcommerce < Padrino::Application
@@ -93,26 +92,26 @@ class MyEcommerce < Padrino::Application
 end
 ```
 
-In the above example we are protecting those paths starting with
-`/customer/orders` and `/cart/checkout`. The result will be that an
-unauthenticated user will not be able to access those actions, and he will be
-asked to authenticate first by visiting our `:login_page` defined as `/login`
-and by providing his login credentials (default authentication behaviour is
-email and password).
+In the above example we protect paths starting with `/customer/orders` 
+and `/cart/checkout`. The result will be that an unauthenticated user will 
+not be able to access those actions, and they will be asked to authenticate; 
+first by visiting our `:login_page` defined as `/login` and by providing their 
+login credentials (default authentication behaviour will use email and password).
 
-When successfully logged in, he will be granted access to those two pages.
+When successfully logged in, they will be granted access to the two protected pages.
 
 --------------------------------------------------------------------------------
 
 ## Admin Scenario (User Authorization)
+Another common scenario is needing multiple roles with various level of access,
+instead of providing all management functionality to all logged in users.
 
-For Another example, let's suppose that you need your **admin** account to do
-certain things and have access to certain controller actions, and your
-**editor** account needs to be restrained to get access to those same admin
-actions.
+Consider a site where you want to allow unauthenticated users to login, an 
+**editor** to manage posts and categories, and an **admin** role to manage settings.
 
-Padrino admin generator, will create for you a new `Account` model with a
-default `role` attribute.
+The Padrino admin generator will by default create an `Account` model with a 
+`role` attribute which you can combine with the `project_module` method to 
+easily manage which functionality is available to your users. 
 
 ```ruby
 class Admin < Padrino::Application
@@ -127,13 +126,13 @@ class Admin < Padrino::Application
     role.allow "/sessions"
   end
 
-  access_control.roles_for :admin do |role|
-    role.protect_module :settings, "/settings"
+    access_control.roles_for :admin do |role|
+    role.project_module :settings, "/settings"
   end
 
   access_control.roles_for :editor do |role|
-    role.protect_module :posts, "/posts"
-    role.protect_module :categories, "/categories"
+    role.project_module :posts, "/posts"
+    role.project_module :categories, "/categories"
   end
 end
 ```
@@ -143,11 +142,11 @@ with "/") with the only exception for all those paths starting with `/sessions`
 giving our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
-If we are logged in as an **admin** (`account.role == 'admin'`) we will have
-access **only** to the `/settings` path.
+If we are logged in as an **admin** (`account.role == 'admin'`) we will **only** 
+have access to the `/settings` path.
 
-If we are logged in as an **editor** (`account.role == 'editor'`) we will have
-access **only** to the `/posts` and `/categories` paths instead.
+If we are logged in as an **editor** (`account.role == 'editor'`) we will **only**
+have access to the `/posts` and `/categories` paths.
 
 --------------------------------------------------------------------------------
 
