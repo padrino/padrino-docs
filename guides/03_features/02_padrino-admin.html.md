@@ -74,7 +74,7 @@ permissions (User Authentication and Authorization).
 ## Scenario E-commerce (User Authentication)
 
 To use a practical example, let's examine a common e-commerce application
-scenario, where we need to limit access to some of our controllers actions; 
+scenario, where we need to limit access to some of our controllers actions;
 we can easily accomplish this by editing `app.rb` accordingly:
 
 ```ruby
@@ -92,10 +92,10 @@ class MyEcommerce < Padrino::Application
 end
 ```
 
-In the above example we protect paths starting with `/customer/orders` 
-and `/cart/checkout`. The result will be that an unauthenticated user will 
-not be able to access those actions, and they will be asked to authenticate; 
-first by visiting our `:login_page` defined as `/login` and by providing their 
+In the above example we protect paths starting with `/customer/orders`
+and `/cart/checkout`. The result will be that an unauthenticated user will
+not be able to access those actions, and they will be asked to authenticate;
+first by visiting our `:login_page` defined as `/login` and by providing their
 login credentials (default authentication behaviour will use email and password).
 
 When successfully logged in, they will be granted access to the two protected pages.
@@ -106,12 +106,12 @@ When successfully logged in, they will be granted access to the two protected pa
 Another common scenario is needing multiple roles with various level of access,
 instead of providing all management functionality to all logged in users.
 
-Consider a site where you want to allow unauthenticated users to login, an 
+Consider a site where you want to allow unauthenticated users to login, an
 **editor** to manage posts and categories, and an **admin** role to manage settings.
 
-The Padrino admin generator will by default create an `Account` model with a 
-`role` attribute which you can combine with the `project_module` method to 
-easily manage which functionality is available to your users. 
+The Padrino admin generator will by default create an `Account` model with a
+`role` attribute which you can combine with the `project_module` method to
+easily manage which functionality is available to your users.
 
 ```ruby
 class Admin < Padrino::Application
@@ -142,7 +142,7 @@ with "/") with the only exception for all those paths starting with `/sessions`
 giving our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
-If we are logged in as an **admin** (`account.role == 'admin'`) we will **only** 
+If we are logged in as an **admin** (`account.role == 'admin'`) we will **only**
 have access to the `/settings` path.
 
 If we are logged in as an **editor** (`account.role == 'editor'`) we will **only**
@@ -162,7 +162,7 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 If you are planning to use padrino with other adapters rather than the currently
 supported ones, and you want to contribute to the project by extending its
 support with additional adapters like [ohm](https://github.com/soveran/ohm
-"ohm"), [cassandra](https://github.com/cassandra-rb/cassandra "cassandra") and
+"ohm"), [ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver") and
 so on, be sure to check out the
 [adding components](/guides/adding-components/overview "adding components")
 guide.
