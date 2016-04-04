@@ -77,7 +77,14 @@ end
 Finally, run the `fresh` rake command to install the latest version:
 
 ```shell
-padrino-framework$ sudo rake fresh
+padrino-framework$ rake fresh
+  ~/.rvm/rubies/ruby-2.2.1/bin/ruby -S rake install
+  padrino-support 0.13.1 built to pkg/padrino-support-0.13.1.gem.
+  padrino-support (0.13.1) installed.
+  ~/.rvm/rubies/ruby-2.2.1/bin/ruby -S rake install
+  padrino-core 0.13.1 built to pkg/padrino-core-0.13.1.gem.
+  padrino-core (0.13.1) installed.
+  ...
 ```
 
 this will install the latest 'edge' gems into rubygems. Be sure to verify your
@@ -86,7 +93,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', 'X.X.X'  # This should be the version you installed earlier
+gem 'padrino', '0.13.1.beta1'
 ```
 
 or you can generate a new project easily and you can use padrino commands
