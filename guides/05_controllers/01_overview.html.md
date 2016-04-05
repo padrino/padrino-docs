@@ -30,7 +30,7 @@ allow better organization of routes. Controllers actually have other benefits as
 well when used in conjunction with the enhanced Padrino routing system.
 
 
-- [Enhanced Routing](/guides/controllers/enhanced-routing "Enhanced Routing")
+- [Routing](/guides/controllers/routing "Routing")
 - [Layouts](/guides/controllers/layouts "Layouts")
 - [Provides Formats](/guides/controllers/provides-formats "Provides Formats")
 - [Route Filters](/guides/controllers/route-filters "Route Filters")

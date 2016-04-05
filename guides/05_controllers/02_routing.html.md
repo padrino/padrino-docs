@@ -1,9 +1,9 @@
 ---
 chapter: Controllers
-title: Enhanced Routing
+title: Routing
 ---
 
-# Enhanced Routing
+# Routing
 
 Padrino provides advanced routing definition support to make routes and URL
 generation much easier. This routing system supports named route aliases and

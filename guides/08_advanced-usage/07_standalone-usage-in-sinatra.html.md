@@ -80,7 +80,7 @@ end
 ## Padrino Routing
 
 You can check out the details of the routing system in the
-[Enhanced Routing](/guides/controllers/enhanced-routing) guide. To register the routing and controller
+[Routing](/guides/controllers/routing "Routing") guide. To register the routing and controller
 functionality within your Sinatra application:
 
 ```ruby
