@@ -24,11 +24,11 @@ The following guides will outline in detail how to properly contribute new
 components to Padrino and get them included into the next Padrino generator as
 quickly and efficiently as possible.
 
-- [Persistence Engine](/guides/application-helpers/persistence-engine "Persistence Engine")
-- [Javascript Library](/guides/application-helpers/javascript-engine "Javascript Library")
-- [Testing Library](/guides/application-helpers/testing-library "Testing Library")
-- [Rendering Engine (tbd)](/guides/application-helpers/ "Rendering Engine")
-- [Mocking Library](/guides/application-helpers/mocking-library "Mocking Library")
-- [Stylesheet Engine](/guides/application-helpers/stylesheet-engine "Stylesheet Engine")
-- [Locale Translations](/guides/application-helpers/locale-translations "Locale Translations")
+- [Persistence Engine](/guides/adding-components/persistence-engine "Persistence Engine")
+- [Javascript Library](/guides/adding-components/javascript-engine "Javascript Library")
+- [Testing Library](/guides/adding-components/testing-library "Testing Library")
+- [Rendering Engine (tbd)](/guides/adding-components/ "Rendering Engine")
+- [Mocking Library](/guides/adding-components/mocking-library "Mocking Library")
+- [Stylesheet Engine](/guides/adding-components/stylesheet-engine "Stylesheet Engine")
+- [Locale Translations](/guides/adding-components/locale-translations "Locale Translations")
 
