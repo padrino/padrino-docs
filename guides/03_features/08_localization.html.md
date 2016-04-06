@@ -52,7 +52,6 @@ The first thing that you need to do is to set your locale by appending it to
 `boot.rb`:
 
 ```ruby
-# config/boot.rb
 Padrino.before_load do
   I18n.locale = :de
 end
@@ -110,10 +109,10 @@ end
 run padrino rake task for localizing your model:
 
 ```shell
-padrino rake ar:translate
+$ padrino rake ar:translate
 ```
 
-a new `it.yml` file will be created into `/app/locale/models/account/it.yml`
+A new `it.yml` file will be created into `/app/locale/models/account/it.yml`
 with the following:
 
 ```yml
@@ -131,7 +130,7 @@ it:
         role: Role
 ```
 
-you can now edit your generated `it.yml` file to reflect your current locale
+You can now edit your generated `it.yml` file to reflect your current locale
 (Italian):
 
 ```yml
