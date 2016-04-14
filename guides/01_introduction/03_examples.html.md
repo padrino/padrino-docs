@@ -20,7 +20,7 @@ Name                                           | Description         | In Produc
 [itunes\_store\_transporter\_web](https://github.com/sshaw/itunes_store_transporter_web) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | No | [sshaw](https://github.com/sshaw)
 [sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
 [dbd\_notebook](https://github.com/k2052/dbd_notebook) | Source code for notebook.designbreakdown.com (inactive since 2014). | No | [k2052](https://github.com/k2052)
-[manicminer-front](https://github.com/jorgefuertes/manicminer-front) | Manicminer Multicoin Mining Pool - Front App (inactive since 2014). | No (asked) | [jorgefuertes](https://github.com/jorgefuertes)
+[manicminer-front](https://github.com/jorgefuertes/manicminer-front) | Manicminer Multicoin Mining Pool - Front App (inactive since 2014). | No  [jorgefuertes](https://github.com/jorgefuertes)
 [fumblr](https://github.com/pengwynn/fumblr) | Stop fumbling with your Tumblr theme development (inactive since 2013). | No | [pengwynn](https://github.com/pengwynn)
 [machete](https://github.com/gtgames/machete) | Simple mongomapper+padrino driven web site engine (inactive since 2012). | No | [gtgames](https://github.com/gtgames)
 [shortener-demo]( https://github.com/padrino/shortener-demo) | Example Padrino url shortener app (inactive since 2011). | No | [achiu](https://github.com/achiu)
