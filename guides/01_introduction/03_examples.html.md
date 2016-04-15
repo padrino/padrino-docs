@@ -81,7 +81,6 @@ Unknown if they still use Padrino, but I asked them:
 - http://www.clearhaus.com - Acquiring merchant services
 - https://nofity.com - When notes meets social
 - http://landmoda.com - Networks for models in the world!
-- https://home.38degrees.org.uk - Campaign advocacy pages, fundraising and on-the-ground organising for Campaigning group 38 Degrees
 - http://martianoids.com - System administration company at Spain. Products and blog.
 - http://middlemanapp.com - Middleman: A Static Frontend Development Framework
 
