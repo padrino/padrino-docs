@@ -44,7 +44,9 @@ Name                                    | Description             | Author
 [padrino-contrib](https://github.com/padrino/padrino-contrib) | Extra libraries that are useful for use in Padrino. | [Padrino](https://github.com/padrino)
 [padrino-warden](https://github.com/jondot/padrino-warden) | Provides authentication for your Padrino application. | [jondot](https://github.com/jondot)
 [sinatra-simple-navigation](https://github.com/codeplant/sinatra-simple-navigation) | Creates a simple way to do navigation for Padrino and Sinatra. | [codeplant](https://github.com/codeplant)
+[Sinatra Wild Extensions](http://www.sinatrarb.com/extensions-wild.html) | Bunch of Sinatra which can be used alongside with Padrino. | -
 [padrino-pagination](https://github.com/sumskyi/padrino-pagination) | Pagination for Padrino (inactive since 2014). | [sumskyi](https://github.com/sumskyi)
+[rack-recaptcha](https://github.com/achiu/rack-recaptcha) | Rack Middleware for CAPTCHA verification via Recaptcha API | [achiu](https://github.com/achiu)
 [padrino-fields](https://github.com/activestylus/padrino-fields) |  Simple, flexible form helpers for the Padrino Framework (inactive since 2013). | [activestylus](https://github.com/activestylus)
 [padrino-completion](https://github.com/bolshakov/padrino-completion) | Bash completion for Padrino (inactive since 2012). | [bolshakov](https://github.com/bolshakov)
 [vim-padrino](https://github.com/spllr/vim-padrino) | Vim support for Padrino (inactive since 2012). | [spllr](https://github.com/spllr)
