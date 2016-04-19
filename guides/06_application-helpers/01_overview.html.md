@@ -13,7 +13,7 @@ Rails view helpers.
 
 - [Output Helpers](/guides/application-helpers/output-helpers "Output Helpers")
 - [Tag Helpers](/guides/application-helpers/tag-helpers "Tag Helpers")
-- [Asset Helpers](/guides/application-helpers/ "Asset Helpers")
+- [Asset Helpers](/guides/application-helpers/asset-helpers "Asset Helpers")
 - [Form Helpers](/guides/application-helpers/form-helpers "Form Helpers")
 - [Form Builders](/guides/application-helpers/form-builders "Form Builders")
 - [Standard Form Builder](/guides/application-helpers/standard-form-builder "Standard Form Builder")
