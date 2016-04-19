@@ -34,6 +34,7 @@ Name                                           | Description         | In Produc
 [omerta](https://github.com/padrino/omerta) | Simple blog platform using Mongo Mapper, MongoDB and Padrino (inactive since 2010). | No | [zenom](https://github.com/zenom)
 [mashup](https://github.com/mwlang/mashup) | Displays various RSS feeds on one page (inactive since 2010). | No | [mwlang](https://github.com/mwlang)
 [padrino\_questionnaire](https://github.com/pepe/padrino_questionnaire) | Simple questionnaire application (inactive since 2011). | No | [pepe](https://github.com/pepe)
+[getVolunteers](https://github.com/RmMsr/getVolunteers) | Embed an image anywhere to let people know if your event needs more help. | Yes | [RmMsr](https://github.com/RmMsr) |
 
 
 ## Web Libraries
