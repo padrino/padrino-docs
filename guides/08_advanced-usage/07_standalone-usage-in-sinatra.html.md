@@ -96,7 +96,7 @@ require 'padrino-core/application/routing'
 #   http://localhost:3000/bar.js
 #   http://localhost:3000/custom-route/123
 #
-# These routes didn't works:
+# These routes didn't work:
 #
 #   http://localhost:3000/bar.xml
 #   http://localhost:3000/bar.jsl
