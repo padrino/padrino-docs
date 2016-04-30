@@ -2,7 +2,7 @@
 date: 2011-04-09
 author: DAddYE
 email: d.dagostino@lipsiasoft.com
-categories: press  ruby
+categories: press ruby
 tags: padrino ruby sinatra
 title: Padrino Slides
 ---

@@ -2,7 +2,7 @@
 date: 2010-04-04
 author: Nathan
 email: nesquena@gmail.com
-categories: Ruby
+categories: ruby
 tags: padrino concerns questions
 title: Addressing Concerns about Padrino
 ---

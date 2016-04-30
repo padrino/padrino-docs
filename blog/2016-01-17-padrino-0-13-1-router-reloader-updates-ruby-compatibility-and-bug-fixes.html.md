@@ -2,12 +2,12 @@
 date: 2016-01-17
 author: Nathan Esquenazi
 email: nesquena@gmail.com
-categories: Ruby, Update
+categories: ruby update
 tags: padrino, sinatra, ruby, release
 title: Padrino 0.13.1 - Router and Reloader Updates, Ruby Compatibility, and Bug Fixes
 ---
 
-Padrino 0.13.0 was shipped 3 months ago on October 2015 and laid important groundwork towards our eventual 1.0 release but also introduced some new issues. After a few months of effort, we are excited to announce the release of Padrino 0.13.1! This version is filled with routing and reloader optimizations, compatibility updates, and bug fixes. Full details for this release are below. 
+Padrino 0.13.0 was shipped 3 months ago on October 2015 and laid important groundwork towards our eventual 1.0 release but also introduced some new issues. After a few months of effort, we are excited to announce the release of Padrino 0.13.1! This version is filled with routing and reloader optimizations, compatibility updates, and bug fixes. Full details for this release are below.
 
 ## Router and Reloader Updates
 
