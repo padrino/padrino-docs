@@ -51,7 +51,7 @@ To learn more about our template generator, be sure to check out the
 [generators guide](/guides/generators/overview "generators guide").
 
 Please note that you can find the code for code for Padrino 0.12.2 under
-[blog tutorial repository](http://github.com/padrino/sample_blog "blog tutorial repository").
+[blog tutorial repository for Padrino 0.12.2](http://github.com/padrino/sample_blog "blog tutorial repository").
 
 --------------------------------------------------------------------------------
 
@@ -93,9 +93,9 @@ $ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d ac
 
 This command will generate our basic Padrino project and the print out a nice
 report of the files generated. The output of this generation command can be
-viewed in [this gist](https://gist.github.com/wikimatze/a399cf4a143d0360fb262de92cdf8f8e) file. Notice the `-b` flag
-in the previous command which automatically instructs bundler to install all
-dependencies. All we need to do now is `cd` into our brand new application.
+viewed in [this gist](https://gist.github.com/wikimatze/a399cf4a143d0360fb262de92cdf8f8e) file.
+Notice the `-b` flag in the previous command which automatically instructs bundler
+to install all dependencies. All we need to do now is `cd` into our brand new application.
 
 ```shell
 $ cd sample_blog_updated
@@ -128,9 +128,8 @@ The following important directories are also generated:
   stored.
 - `spec` – This is where your model and controller tests should be stored.
 
-Now, let us examine the `config/database.rb` file to make sure the database
-connection settings are correct. For now, the defaults are OK for this tutorial.
-A sqlite3 database will be used that is stored inside
+For now, the defaults for the database connection settings (`config/database.rb`) are
+OK for this tutorial. A sqlite3 database will be used that is stored inside
 `db/sample_blog_development.db`.
 
 Let us also setup a few simple routes in our application to demonstrate the
@@ -161,8 +160,8 @@ end
 ```
 
 Note that the first route here sets up a simple string to be returned at the
-root URL of the application. The second route defines a one-line 'about' page
-inline using Slim which is then explicitly mapped to the '/about_us' URL. The
+root URL of the application. The second route defines a one-line `about` page
+inline using Slim which is then explicitly mapped to the `/about\_us` URL. The
 symbol `:about` is used to reference the route later.
 
 Be sure to check out the [controllers guide](/guides/controllers/overview "controllers
@@ -253,14 +252,15 @@ create new posts!
 
 Let's start off by generating the model into our app directory. As of version
 **0.13.1**, the models will default to generating at the top level 'models'
-directory in a project. We can specify the location by appending the -a option
-which will generate the models into the designated sub-app directory.
+directory in a project. If you want to place your models to another location, you can append
+the `-a` option to the command - this is handy if you would like to have models which
+should be coped only to sub-apps.
 
 ```shell
-$ padrino g model post title:string body:text -a app
+$ padrino g model post title:string body:text
        apply  orms/activerecord
        apply  tests/rspec
-      create  app/models/post.rb
+      create  models/post.rb
       create  spec/app/models/post_spec.rb
       create  db/migrate/002_create_posts.rb
 ```
@@ -446,7 +446,17 @@ class Post < ActiveRecord::Base
 end
 ```
 
-Every time we change the database, we need to migrate the database.
+Before running the migration we need to add the `models` folder to the `dependency\_paths`:
+
+```ruby
+# config/boots.rb
+Padrino.before_load do
+  Padrino.dependency_paths << Padrino.root('models/**/*.rb')
+end
+```
+
+Without it, the migration cannot find the `Account.first`. Now we are ready
+to run the migration:
 
 ```shell
 $ padrino rake db:migrate
