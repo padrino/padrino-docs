@@ -16,6 +16,7 @@ Below is the current list of known open-source Padrino applications.
 Name                                           | Description         | In Production | Author
 ---------------------------------------------- | ------------------- | ------------- | ------------
 [padrino-web](https://github.com/padrino/padrino-web) | Open-sourced padrinorb.com source code. | Yes | [Padrino Team](https://github.com/orgs/padrino/teams/collaborators)
+[middleman](http://middlemanapp.com) | A Static Frontend Development Framework (use Padrino for their template helpers). | Yes | [middleman](https://github.com/middleman/middleman)
 [hasbeen.in](https://github.com/findoutwho/hasbeen.in) | Your geek-friendly travel site. | Yes | [findoutwho](https://github.com/findoutwho)
 [itunes\_store\_transporter\_web](https://github.com/sshaw/itunes_store_transporter_web) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | No | [sshaw](https://github.com/sshaw)
 [sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
@@ -85,5 +86,4 @@ Unknown if they still use Padrino, but I asked them:
 - http://www.clearhaus.com - Acquiring merchant services
 - https://nofity.com - When notes meets social
 - http://landmoda.com - Networks for models in the world!
-- http://middlemanapp.com - Middleman: A Static Frontend Development Framework
 
