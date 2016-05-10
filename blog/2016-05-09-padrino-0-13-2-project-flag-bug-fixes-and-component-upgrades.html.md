@@ -4,7 +4,7 @@ author: Nathan Esquenazi
 email: nesquena@gmail.com
 categories: ruby update
 tags: padrino, sinatra, ruby, release
-title: Padrino 0.13.2 - New project flag, Bug fixes and component upgrades
+title: Padrino 0.13.2 - New Project Flag, Component Upgrades and Bug Fixes
 ---
 
 Padrino 0.13.1 was shipped just over 3 months ago in January 2016 and since then we have had many issues reported and fixed. After a few months of effort, we are excited to announce the release of Padrino 0.13.2! This version is filled with a new project generator flag, minimizing dependence on AS, upgrading a few components and a number of other bug fixes.
