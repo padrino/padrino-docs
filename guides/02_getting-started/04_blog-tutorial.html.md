@@ -3,7 +3,7 @@ chapter: Getting Started
 title: Blog Tutorial
 ---
 
-# Blog Turorial
+# Blog Tutorial
 
 When reading about a new framework, I often find that the best way to get
 familiar is to read a brief tutorial on how to develop a simple application.
