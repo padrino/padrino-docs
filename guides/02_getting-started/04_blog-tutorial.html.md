@@ -136,10 +136,6 @@ To setup environment, set RACK_ENV=enviromentname. This environment can be confi
 ```
 Padrino.configure_apps do
   if RACK_ENV == 'production'
-    set :assets_url, '/assets'
-    set :assets_debug, false
-    set :assets_compile, true
-
     disable :reload
     disable :reload_templates
   else
