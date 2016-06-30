@@ -132,7 +132,7 @@ For now, the defaults for the database connection settings (`config/database.rb`
 OK for this tutorial. A sqlite3 database will be used that is stored inside
 `db/sample_blog_development.db`.
 
-To setup environment, set RACK_ENV=enviromentname. This environment can be configured in config/apps.rb as:
+To setup environment, set RACK_ENV=environment_name. This environment can be used to configure setting in config/apps.rb as:
 ```
 Padrino.configure_apps do
   if RACK_ENV == 'production'
@@ -144,7 +144,7 @@ Padrino.configure_apps do
   end
 end
 ```
-or can be set in app/app.rb as
+or can used in app/app.rb as
 ```
 if Padrino.env == :production
   # do production
