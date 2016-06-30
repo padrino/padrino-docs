@@ -159,6 +159,33 @@ module SampleBlogUpdated
 end
 ```
 
+### Environment
+
+To setup environment, set RACK_ENV=enviromentname. This environment can be configured in config/apps.rb as:
+```
+Padrino.configure_apps do
+  if RACK_ENV == 'production'
+    set :assets_url, '/assets'
+    set :assets_debug, false
+    set :assets_compile, true
+
+    disable :reload
+    disable :reload_templates
+  else
+    enable :reload
+    enable :reload_templates
+  end
+end
+```
+or can be set in app/app.rb as
+```
+if Padrino.env == :production
+  # do production
+else
+  # non production here
+end
+```
+
 Note that the first route here sets up a simple string to be returned at the
 root URL of the application. The second route defines a one-line `about` page
 inline using Slim which is then explicitly mapped to the `/about\_us` URL. The
