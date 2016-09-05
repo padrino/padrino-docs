@@ -64,7 +64,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-script:: none  (default), jquery, prototype, mootools, rightjs, extcore, dojo
+script:: none  (default), jquery, prototype, mootools, extcore, dojo
 ```
 
 ## Unobtrusive JavaScript Adapter
