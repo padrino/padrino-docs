@@ -82,7 +82,7 @@ The available components and their default options are listed below:
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
 orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
-test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest, steak
+test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, rightjs, jquery, mootools, extcore, dojo
 renderer   | haml    | -e      | erb, haml, slim, liquid
 stylesheet | none    | -c      | sass, less, scss, compass
