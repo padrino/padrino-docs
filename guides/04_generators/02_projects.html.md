@@ -82,7 +82,7 @@ The available components and their default options are listed below:
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
 orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
-test       | none    | -t      | bacon, shoulda, cucumber, testunit, riot, rspec, minitest, steak
+test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest, steak
 script     | none    | -s      | prototype, rightjs, jquery, mootools, extcore, dojo
 renderer   | haml    | -e      | erb, haml, slim, liquid
 stylesheet | none    | -c      | sass, less, scss, compass
@@ -109,10 +109,10 @@ will be **Blog**.
 $ padrino g project your_project -d mongoid -b
 ```
 
-**Generate a project with riot test and rr mocking**
+**Generate a project with shoulda test and rr mocking**
 
 ```shell
-$ padrino g project your_project -t riot -m rr
+$ padrino g project your_project -t shoulda -m rr
 ```
 
 **Generate a project with sequel with mysql**

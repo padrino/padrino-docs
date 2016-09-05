@@ -91,7 +91,7 @@ When testing with Padrino you have a built-in `padrino rake test` or for rspec
 `padrino rake spec`.
 
 ```shell
-$ padrino rake test # => for bacon, riot, shoulda
+$ padrino rake test # => for bacon, shoulda
 $ padrino rake spec # => for rspec
 ```
 

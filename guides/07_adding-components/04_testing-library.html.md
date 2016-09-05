@@ -109,7 +109,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-test:: none  (default), bacon, shoulda, cucumber, riot, rspec, minitest, steak
+test:: none  (default), bacon, shoulda, cucumber, rspec, minitest, steak
 ```
 
 ## Contribute to Padrino
