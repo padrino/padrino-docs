@@ -194,7 +194,7 @@ are new to the Ruby community and want to create a Padrino application with a
 good default set of components, generate your project with this command:
 
 ```shell
-$ padrino g project my_project -d datamapper -t riot -s jquery -e haml -m mocha
+$ padrino g project my_project -d datamapper -t shoulda -s jquery -e haml -m mocha
 ```
 
 And then read up on these components:
@@ -204,8 +204,6 @@ And then read up on these components:
 - [Haml](http://haml.info/ "Haml") – Solid templating choice for views
 - [jQuery](http://jquery.com/ "jQuery") – Excellent javascript framework for
   frontend development
-- [Riot](https://github.com/thumblemonks/riot "Riot") – Popular unit testing
-  framework for ruby
 - [Mocha](http://www.rubydoc.info/github/floehopper/mocha/Mocha/Mock "Mocha") –
   Popular mocking and stubbing for tests
 
