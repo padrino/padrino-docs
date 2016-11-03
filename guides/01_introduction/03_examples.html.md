@@ -91,4 +91,5 @@ Unknown if they still use Padrino, but I asked them:
 - https://nofity.com - When notes meets social
 - http://landmoda.com - Networks for models in the world!
 - http://martianoids.com - System administration company at Spain. Products and blog.
+- http://middlemanapp.com - Middleman: A Static Frontend Development Framework
 
