@@ -95,14 +95,20 @@ specified controller group:
 
 ```ruby
 Demo::App.controllers "/admin" do
-  get "/show" do
+  get "/show", :name => :show do
     # url is generated as "/admin/show"
   end
 
-  get "/other/:id" do
+  get "/other/:id", :name => :other do
     # url is generated as "/admin/#{params[:id]}"
   end
 end
+```
+You can then reference these routes using the same `url_for` method:
+
+```haml
+= link_to 'admin show page', url_for(:admin, :show)
+= link_to 'admin index page', url_for(:admin, :other, :id => 25)
 ```
 
 ## Named Parameters
