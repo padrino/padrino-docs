@@ -184,15 +184,3 @@ or `root/models`.
 
 If you have only one app you still use `project/app/models`(this is the default
 `padrino g` choice)
-
-Remember that if you need to load other paths you can use:
-
-```ruby
-Padrino.set_load_paths("path/one")
-```
-
-and if you need to load dependencies use:
-
-```ruby
-Padrino.require_dependencies("path/one/**/*.rb")
-```
