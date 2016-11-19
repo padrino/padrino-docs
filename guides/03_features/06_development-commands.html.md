@@ -102,7 +102,7 @@ your application into separate files. Padrino automatically requires
 any files within the `lib` folder will be required automatically by Padrino.
 
 This is powered by the fact that Padrino will automatically load (and reload)
-any directory patterns within the 'perquisite paths'. Additional directory
+any directory patterns within the 'prerequisite paths'. Additional directory
 patterns can be added to the set of reloaded files as needed by simply appending
 to the `prerequisites` within your application:
 
