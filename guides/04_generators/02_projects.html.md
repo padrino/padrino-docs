@@ -84,7 +84,7 @@ Component  | Default | Aliases | Options
 orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, extcore, dojo
-renderer   | haml    | -e      | erb, haml, slim, liquid
+renderer   | none    | -e      | erb, haml, slim, liquid
 stylesheet | none    | -c      | sass, less, scss, compass
 mock       | none    | -m      | rr, mocha
 
