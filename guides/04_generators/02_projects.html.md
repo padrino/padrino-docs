@@ -17,7 +17,7 @@ The simplest possible command to generate a base application would be:
 $ padrino g project demo_project
 ```
 
-This would construct a Padrino application DemoApp (which extends from
+This would construct a Padrino application DemoProject (which extends from
 `Padrino::Application`) inside the folder `demo_project` at our current path.
 Inside the application there would be configuration and setup performed for the
 default components.
