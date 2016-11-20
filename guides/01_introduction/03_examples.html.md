@@ -18,10 +18,7 @@ Name                                           | Description         | In Produc
 [padrino-web](https://github.com/padrino/padrino-web) | Open-sourced padrinorb.com source code. | Yes | [Padrino Team](https://github.com/orgs/padrino/teams/collaborators)
 [middleman](http://middlemanapp.com) | A Static Frontend Development Framework (use Padrino for their template helpers). | Yes | [middleman](https://github.com/middleman/middleman)
 [hasbeen.in](https://github.com/findoutwho/hasbeen.in) | Your geek-friendly travel site. | Yes | [findoutwho](https://github.com/findoutwho)
-[itunes\_store\_transporter\_web](https://github.com/sshaw/itunes_store_transporter_web) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | No | [sshaw](https://github.com/sshaw)
-[sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
-[dbd\_notebook](https://github.com/k2052/dbd_notebook) | Source code for notebook.designbreakdown.com (inactive since 2014). | No | [k2052](https://github.com/k2052)
-[hasbeen.in](https://github.com/findoutwho/hasbeen.in) | Your geek-friendly travel site. | Yes | [findoutwho](https://github.com/findoutwho)
+[getVolunteers](https://github.com/RmMsr/getVolunteers) | Embed an image anywhere to let people know if your event needs more help. | Yes | [RmMsr](https://github.com/RmMsr) |
 [itunes\_store\_transporter\_web](https://github.com/sshaw/itunes_store_transporter_web) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | No | [sshaw](https://github.com/sshaw)
 [sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
 [dbd\_notebook](https://github.com/k2052/dbd_notebook) | Source code for notebook.designbreakdown.com (inactive since 2014). | No | [k2052](https://github.com/k2052)
@@ -39,7 +36,6 @@ Name                                           | Description         | In Produc
 [omerta](https://github.com/padrino/omerta) | Simple blog platform using Mongo Mapper, MongoDB and Padrino (inactive since 2010). | No | [zenom](https://github.com/zenom)
 [mashup](https://github.com/mwlang/mashup) | Displays various RSS feeds on one page (inactive since 2010). | No | [mwlang](https://github.com/mwlang)
 [padrino\_questionnaire](https://github.com/pepe/padrino_questionnaire) | Simple questionnaire application (inactive since 2011). | No | [pepe](https://github.com/pepe)
-[getVolunteers](https://github.com/RmMsr/getVolunteers) | Embed an image anywhere to let people know if your event needs more help. | Yes | [RmMsr](https://github.com/RmMsr) |
 
 
 ## Web Libraries
@@ -78,6 +74,9 @@ Name                                    | Description             | In Productio
 [martianoids.com](http://martianoids.com) | System administration company at Spain. Products and blog. | Yes | [jorgefuertes](https://github.com/jorgefuertes)
 [demo.biosig.xyz](http://demo.biosig.xyz) | Voice biometric software, where you can enroll and authenticate using voice. | Yes | [jorgefuertes](https://github.com/jorgefuertes)
 [api.biosig.xyz](http://api.biosig.xyz) | The api for demo.biosig.xyz | Yes | [jorgefuertes](https://github.com/jorgefuertes)
+[HRPartner](http://www.hrpartner.io/) | The go-to cloud HR software for small & medium-sized businesses. | Yes | [Devan Sabaratnam](https://github.com/CyberFerret)
+[Logbook HQ](http://www.logbookhq.com/) | An easy and beautiful way to track your mileage, fuel and other car expenses. | Yes | [Devan Sabaratnam](https://github.com/CyberFerret)
+[StaffStatus](http://www.staffstatus.io/) | Allows staff to maintain their in-out status. | Yes | [Devan Sabaratnam](https://github.com/CyberFerret)
 
 
 Unknown if they still use Padrino, but I asked them:
