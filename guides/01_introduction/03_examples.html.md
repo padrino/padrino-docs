@@ -74,6 +74,9 @@ Name                                    | Description             | In Productio
 [martianoids.com](http://martianoids.com) | System administration company at Spain. Products and blog. | Yes | [jorgefuertes](https://github.com/jorgefuertes)
 [demo.biosig.xyz](http://demo.biosig.xyz) | Voice biometric software, where you can enroll and authenticate using voice. | Yes | [jorgefuertes](https://github.com/jorgefuertes)
 [api.biosig.xyz](http://api.biosig.xyz) | The api for demo.biosig.xyz | Yes | [jorgefuertes](https://github.com/jorgefuertes)
+[HRPartner](http://www.hrpartner.io/) | The go-to cloud HR software for small & medium-sized businesses. | Yes | [Devan Sabaratnam](https://github.com/CyberFerret)
+[Logbook HQ](http://www.logbookhq.com/) | An easy and beautiful way to track your mileage, fuel and other car expenses. | Yes | [Devan Sabaratnam](https://github.com/CyberFerret)
+[StaffStatus](http://www.staffstatus.io/) | Allows staff to maintain their in-out status. | Yes | [Devan Sabaratnam](https://github.com/CyberFerret)
 
 
 Unknown if they still use Padrino, but I asked them:
