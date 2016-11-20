@@ -17,7 +17,7 @@ The simplest possible command to generate a base application would be:
 $ padrino g project demo_project
 ```
 
-This would construct a Padrino application DemoApp (which extends from
+This would construct a Padrino application DemoProject (which extends from
 `Padrino::Application`) inside the folder `demo_project` at our current path.
 Inside the application there would be configuration and setup performed for the
 default components.
@@ -50,7 +50,7 @@ executed automatically through the generator with:
 $ padrino g project demo_project --run_bundler # alias -b
 ```
 
-This can also be done manually through executing command `bundle install` in the
+This can also be done manually by executing the command `bundle install` in the
 terminal at the root of the generated application.
 
 For more examples of using the project generator in common cases, check out the
@@ -84,7 +84,7 @@ Component  | Default | Aliases | Options
 orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, extcore, dojo
-renderer   | haml    | -e      | erb, haml, slim, liquid
+renderer   | none    | -e      | erb, haml, slim, liquid
 stylesheet | none    | -c      | sass, less, scss, compass
 mock       | none    | -m      | rr, mocha
 

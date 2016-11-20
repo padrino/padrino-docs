@@ -45,7 +45,7 @@ The routing plugin also supports inline route definitions in which the explicit
 URL and the named alias are both defined:
 
 ```ruby
-Demo::App.controllers :acount do
+Demo::App.controllers :account do
   get :index, :map => '/index/example' do
     # url_for(:index) => "/index/example"
   end
