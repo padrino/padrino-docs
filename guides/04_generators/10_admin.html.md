@@ -33,5 +33,5 @@ The available themes are: `amro`, `bec`, `bec-green`, `blue`, `default`,
 `djime-cerulean`, `kathleene`, `olive`, `orange`, `reidb-greenish`, `ruby`,
 `warehouse`.
 
-This will generate the admin application and mount this at `/admin`. For more
+This will generate the admin application and mount it at `/admin`. For more
 information, check out the [Admin Guide](/guides/features/padrino-admin "Admin Guide").
