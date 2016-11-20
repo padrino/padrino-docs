@@ -9,7 +9,7 @@ You have three ways of using Padrino edge; the first one is using the git source
 code in a gem file, the second one is using a vendored version, and the third is
 to install edge into system gems from repository.
 
-**Git in Gemfile** is suitable for those guys that **only** want Padrino's
+**Git in Gemfile** is suitable for those that **only** want Padrino's
   latest bleeding edge code.
 
 **System Gems** is suitable for people that want to use the latest padrino and
