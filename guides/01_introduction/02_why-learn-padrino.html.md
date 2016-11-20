@@ -5,7 +5,7 @@ title: Why Learn Padrino?
 
 # Why Learn Padrino?
 
-This guide will give an overview the various other guides, resources and steps
+This guide will give an overview of the various other guides, resources and steps
 towards becoming a Sinatra + Padrino aficionado.
 
 --------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ the memory usage, stability and requests per second speak for themselves.
 ### Extensible
 
 The other benefit of Sinatra and Padrino is the rich ecosystem of extensions
-that can be applied at any level of the stack. For rack, there is a
+that can be applied at any level of the stack. For Rack, there is a
 [wealth of middlewares](https://github.com/rack/rack/wiki/List-of-Middleware
 "wealth of middlewares") that can help do almost anything. For Sinatra, there is
 also a [large base](http://www.sinatrarb.com/extensions-wild.html "large base")
@@ -53,7 +53,7 @@ functionality you will need with a single command.
 
 A detailed overview of Ruby is beyond the scope of our documentation, but this
 guide is intended to point you in the right direction and get you familiarized
-with the important terms. The Padrino web framework is built in the
+with the important terms. The Padrino web framework is written in the
 [Ruby programming language](http://www.ruby-lang.org/en/ "Ruby programming
 language"). The Padrino codebase is a set of modular libraries for Ruby which
 are packaged using [RubyGems](https://rubygems.org/ "RubyGems").
@@ -72,7 +72,7 @@ $ gem -v
 ```
 
 These should return with version numbers and no errors if everything is
-installed correctly. Once you have Ruby and Rubygems installed locally, you
+installed correctly. Once you have Ruby and RubyGems installed locally, you
 should become familiar with the Ruby syntax. We recommend a few resources below
 to get yourself familiar with Ruby:
 
@@ -91,9 +91,9 @@ to get yourself familiar with Ruby:
   be mentioned.
 
 Through these guides, learning Ruby the language should be fairly painless and
-hopefully you come to appreciate the elegance and simplicity of the syntax. If
-you enjoy Ruby and want to continue, the next step is to get familiar with
-Sinatra, the ruby DSL for the web.
+hopefully you will come to appreciate the elegance and simplicity of the syntax.
+If you enjoy Ruby and want to continue, the next step is to get familiar with
+Sinatra, the Ruby DSL for the web.
 
 --------------------------------------------------------------------------------
 
@@ -170,18 +170,18 @@ First, check out the [Installation](/guides/getting-started/installation "Instal
 to get Padrino setup on your computer through RubyGems.
 
 Padrino itself is a set of modular extensions for Sinatra. These extensions are
-actually fairly standalone and you can actually use many Padrino modules in your
+actually fairly standalone and you can use many Padrino modules in your
 existing Sinatra apps through the
 [Standalone Usage](/guides/advanced-usage/standalone-usage-in-sinatra "Standalone Usage")
 guide. This usage is intended for applications that have already been built that
 would benefit from a particular aspect of Padrino such as a mailer or view
 helpers. Check out
-[our api docs](http://www.rubydoc.info/github/padrino/padrino-framework "our api
+[our API docs](http://www.rubydoc.info/github/padrino/padrino-framework "our API
 docs") for more information about the individual modules.
 
 If you are able to convert your project to Padrino or start a new application
 from scratch, we recommend using the full Padrino stack which makes starting a
-new project much easier. The best way to get familiar with Padrino is to first
+new project much easier. The best way to become familiar with Padrino is to first
 check out the [Blog Tutorial](/guides/getting-started/blog-tutorial "Blog Tutorial") which takes
 you step by step through creating a blog in Padrino with an accompanying
 screencast. You may also want to checkout the
