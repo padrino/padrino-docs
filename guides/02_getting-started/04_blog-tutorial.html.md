@@ -622,7 +622,7 @@ that it should respond to HTML, RSS and Atom formats.
 SampleBlogUpdated::App.controllers :posts do
 # ...
   get :index, :provides => [:html, :rss, :atom] do
-    @posts = Post.all(:order => 'created_at desc')
+    @posts = Post.order('created_at DESC').all
     render 'posts/index'
   end
 # ...
