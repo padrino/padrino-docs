@@ -132,6 +132,27 @@ For now, the defaults for the database connection settings (`config/database.rb`
 OK for this tutorial. A sqlite3 database will be used that is stored inside
 `db/sample_blog_development.db`.
 
+This environment can be configured in config/apps.rb as:
+```
+Padrino.configure_apps do
+  if RACK_ENV == 'production'
+    disable :reload
+    disable :reload_templates
+  else
+    enable :reload
+    enable :reload_templates
+  end
+end
+```
+or can be configured in app/app.rb as
+```
+if Padrino.env == :production
+  # do production
+else
+  # non production here
+end
+```
+
 Let us also setup a few simple routes in our application to demonstrate the
 Padrino routing system. Let's go into the `app/app.rb` file and enter the
 following routes:
