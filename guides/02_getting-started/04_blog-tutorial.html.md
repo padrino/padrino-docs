@@ -752,6 +752,13 @@ the `pg` gem:
 $ bundle --without production
 ```
 
+and then commit these changes to your git repository:
+
+```shell
+$ git add --all
+$ git commit -m "added pg dependency"
+```
+
 Next, the application must be set up on Heroku.
 
 ```shell
