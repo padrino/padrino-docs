@@ -144,7 +144,7 @@ Padrino.configure_apps do
   end
 end
 ```
-or can used in app/app.rb as
+or can be configured in app/app.rb as
 ```
 if Padrino.env == :production
   # do production
