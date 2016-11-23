@@ -795,50 +795,7 @@ ActiveRecord::Base.configurations[:production] = {
 
 Run `heroku open` to open your site in your default web browser.
 
-Finally we need to tweak our `seed.rb`:
-
-```ruby
-# db/seeds.rb
-email     = "info@padrinorb.com"
-password  = "admin"
-
-shell.say ""
-
-account = Account.create(:email => email,
-                         :name => "Foo",
-                         :surname => "Bar",
-                         :password => password,
-                         :password_confirmation => password,
-                         :role => "admin")
-
-if account.valid?
-  shell.say "================================================================="
-  shell.say "Account has been successfully created, now you can login with:"
-  shell.say "================================================================="
-  shell.say "   email: #{email}"
-  shell.say "   password: #{password}"
-  shell.say "================================================================="
-else
-  shell.say "Sorry but some thing went worng!"
-  shell.say ""
-  account.errors.full_messages.each { |m| shell.say "   - #{m}" }
-end
-
-shell.say ""
-```
-
-Feel free to change the seed values above.
-
-Now run the following in the console:
-
-```shell
-$ git add .
-$ git commit -m "Added Postgres support"
-$ git push heroku master
-```
-
 Now run our `migrations/seeds`:
-
 
 ```shell
 $ heroku run rake ar:migrate
@@ -867,6 +824,9 @@ Running rake ar:migrate on calm-tor-92217.... up, run.7316
 
 $ heroku run rake seed
 Running rake seed on calm-tor-92217.... up, run.9169
+
+Which email do you want use for logging into admin?
+Tell me the password to use:
 
 =================================================================
 Account has been successfully created, now you can login with:
