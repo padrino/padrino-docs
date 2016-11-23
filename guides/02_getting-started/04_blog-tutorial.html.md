@@ -189,8 +189,8 @@ migrations and run the seed tasks which has been generated in `db/seeds.rb`. Go
 to the terminal and run:
 
 ```shell
-$ bundle exec rake db:migrate
-$ bundle exec rake db:seed
+$ padrino rake db:migrate
+$ padrino rake db:seed
 ```
 
 During this process, you will be prompted to enter an email and password to use
