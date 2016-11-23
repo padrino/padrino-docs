@@ -446,17 +446,7 @@ class Post < ActiveRecord::Base
 end
 ```
 
-Before running the migration we need to add the `models` folder to the `dependency\_paths`:
-
-```ruby
-# config/boots.rb
-Padrino.before_load do
-  Padrino.dependency_paths << Padrino.root('models/**/*.rb')
-end
-```
-
-Without it, the migration cannot find the `Account.first`. Now we are ready
-to run the migration:
+Now we are ready to run the migration:
 
 ```shell
 $ padrino rake db:migrate
