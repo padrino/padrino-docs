@@ -793,31 +793,6 @@ ActiveRecord::Base.configurations[:production] = {
 }
 ```
 
-To understand where the `postgres` variable get's it's information we can check
-the credentials with `heroku config`:
-
-```sh
-$ heroku config
-=== calm-tor-92217 Config Vars
-DATABASE_URL:               postgres://qsqrhctujjyioy:_lurVOusyuRrOa5TxJPPsOnld0@ec2-107-22-248-166.compute-1.amazonaws.com:5432/dfl2jbqk0hhvj9
-LANG:                       en_US.UTF-8
-RACK_ENV:                   production
-```
-
-And we can use these in our `config/database.rb`:
-
-```ruby
-ActiveRecord::Base.configurations[:production] = {
-  :adapter  => 'postgresql',
-  :encoding => 'utf8',
-  :username => 'qsqrhctujjyioy',
-  :password => '_lurVOusyuRrOa5TxJPPsOnld0',
-  :host     => 'ec2-107-22-248-166.compute-1.amazonaws.com',
-  :database => 'dfl2jbqk0hhvj9',
-  :port     => 5432
-}
-```
-
 Run `heroku open` to open your site in your default web browser.
 
 Finally we need to tweak our `seed.rb`:
