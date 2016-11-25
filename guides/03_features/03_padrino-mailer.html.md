@@ -18,8 +18,10 @@ routes for a controller.
 
 Let's take a look at using the Mailer in an application. By default, the mailer
 uses the [built-in sendmail](https://en.wikipedia.org/wiki/Sendmail "built-in sendmail")
-binary on the server. However, SMTP is also supported using the following
-declaration in your application:
+binary on the server. However,
+[other methods are supported](http://www.rubydoc.info/gems/mail/file/README.md#Sending_an_email_ "mail config").
+
+For example, to use SMTP, add the following declaration to your application:
 
 ```ruby
 # app/app.rb
@@ -42,6 +44,12 @@ testing. This can be done with:
 ```ruby
 # app/app.rb
 set :delivery_method, :test
+```
+
+When set, messages are added to the test mailer and can be retrieved with:
+
+```ruby
+Mail::TestMailer.deliveries
 ```
 
 --------------------------------------------------------------------------------
@@ -102,7 +110,7 @@ MyAppName.mailer :sample do
     locals :name => name, :email => email
     render 'sample/registration_email'
     content_type :html # optional, defaults to :plain
-    via :sendmail      # optional, to smtp if defined otherwise sendmail
+    via :sendmail, :location => "/usr/bin/sendmail"  # optional, to smtp if defined otherwise sendmail
   end
 end
 ```
