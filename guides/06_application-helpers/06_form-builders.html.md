@@ -41,7 +41,8 @@ A `form_for` using these basic fields might look like:
 - `form_for(object, url, settings={}, &block)`
   - Constructs a form using given or default `form_builder`
   - Supports form methods 'put' and 'delete' through hidden field
-  - Defaults to StandardFormBuilder but you can easily create your own!
+  - Defaults to `StandardFormBuilder` but you can
+  [easily create your own](/guides/application-helpers/custom-form-builders "Custom Form Builders")!
   - `form_for(@user, '/register', :id => 'register') { |f| ...field-elements...  }`
   - `form_for(:user, '/register', :id => 'register') { |f| ...field-elements...  }`
 - `fields_for(object, settings={}, &block)`
