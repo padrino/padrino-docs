@@ -36,7 +36,7 @@ A `form_for` using these basic fields might look like:
     = f.submit "Create", :class => 'button'
 ```
 
-## List of Form Builder Helpers
+## Form Builder Helpers
 
 - `form_for(object, url, settings={}, &block)`
   - Constructs a form using given or default `form_builder`
@@ -51,8 +51,8 @@ A `form_for` using these basic fields might look like:
   - `fields_for @user.assignment do |assignment| ... end`
   - `fields_for :assignment do |assigment| ... end`
 
-The following are fields provided by `AbstractFormBuilder` that can be used
-within a `form_for` or `fields_for`:
+Some of the methods provided by `AbstractFormBuilder` that can be used
+within `form_for` or `fields_for` are:
 
 - `error_messages(options={})`
   - Displays list html for the errors on form object
@@ -92,3 +92,5 @@ within a `form_for` or `fields_for`:
   - `f.submit "Update", :class => 'long'`
 - `image_submit(source, options={})`
   - `f.image_submit "submit.png", :class => 'long'`
+
+For a complete list checkout [the form helper docs](http://www.rubydoc.info/gems/padrino-helpers/Padrino/Helpers/FormHelpers "Form Helper Docs").
