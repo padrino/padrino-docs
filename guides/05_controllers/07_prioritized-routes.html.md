@@ -7,7 +7,7 @@ title: Prioritized Routes
 
 Padrino (0.10.0+) has added support for respecting route order in controllers
 and also allows the developer to specify certain routes as less or more
-"important" then others in the route recognition order. Consider two
+"important" than others in the route recognition order. Consider two
 controllers, the first with a "catch-all" route:
 
 ```ruby
@@ -49,6 +49,6 @@ end
 ```
 
 When setting a routes priority to `:low`, this route is then recognized lower
-then all "high" and "normal" priority routes. You are encouraged in cases where
+than all "high" and "normal" priority routes. You are encouraged in cases where
 there is ambiguity, to mark key routes as `:priority => :high` or catch-all
 routes as `:priority => :low` in order to guarantee expected behavior.
