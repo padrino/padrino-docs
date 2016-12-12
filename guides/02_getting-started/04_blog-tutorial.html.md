@@ -438,7 +438,7 @@ Now, we'll return to the Post Model to setup the `account` association and add a
 few validations.
 
 ```ruby
-# app/models/post.rb
+# models/post.rb
 class Post < ActiveRecord::Base
   belongs_to :account
   validates_presence_of :title
