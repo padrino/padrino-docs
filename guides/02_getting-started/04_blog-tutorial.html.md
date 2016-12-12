@@ -268,7 +268,7 @@ $ padrino g model post title:string body:text
 Go ahead and migrate the database now.
 
 ```shell
-$ padrino rake ar:migrate
+$ padrino rake db:migrate
 => Executing Rake db:migrate ...
   DEBUG -  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
    INFO -  Migrating to CreatePosts (2)
