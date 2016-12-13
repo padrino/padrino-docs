@@ -354,7 +354,3 @@ it will do so immediately if any tweets have been deleted.
 
 Page-level expiration works exactly like the example above--by using `expire`
 in your controller. The key is typically `env['PATH_INFO']`.
-
-## Copyright
-
-Copyright (c) 2011-2015 Padrino. See LICENSE for details.
