@@ -25,7 +25,7 @@ URL, with one cache entry per URL.
 This behavior is referred to as "page-level caching." If this strategy meets
 your needs, you can enable it very easily:
 
-    # Basic, page-level caching
+    # Page-level caching
     class SimpleApp < Padrino::Application
       register Padrino::Cache
       enable :caching
