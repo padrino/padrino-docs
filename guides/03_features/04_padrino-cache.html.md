@@ -266,7 +266,7 @@ You can set a global caching option or a per app caching options.
 
 ### Global Caching Options
 
-    Padrino.cache = Padrino::Cache.new(:LRUHash) # default choice
+    Padrino.cache = Padrino::Cache.new(:LRUHash) # in-memory, the default choice
     Padrino.cache = Padrino::Cache.new(:File, :dir => Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
     Padrino.cache = Padrino::Cache.new(:Memcached) # Uses default server at localhost
     Padrino.cache = Padrino::Cache.new(:Memcached, :server => '127.0.0.1:11211', :exception_retry_limit => 1)
@@ -292,7 +292,7 @@ or use a more exotic backend.
 
 #### Application Caching Options
 
-    set :cache, Padrino::Cache.new(:LRUHash)
+    set :cache, Padrino::Cache.new(:LRUHash) # in-memory
     set :cache, Padrino::Cache.new(:Memcached)
     set :cache, Padrino::Cache.new(:Redis)
     set :cache, Padrino::Cache.new(:File, :dir => Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
