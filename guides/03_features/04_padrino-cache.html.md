@@ -290,7 +290,7 @@ documentation](http://rubydoc.info/gems/moneta) if you have special
 requirements, for example if you want to configure the marshalling mechanism
 or use a more exotic backend.
 
-#### Application Caching Options
+### Application Caching Options
 
     set :cache, Padrino::Cache.new(:LRUHash) # in-memory
     set :cache, Padrino::Cache.new(:Memcached)
