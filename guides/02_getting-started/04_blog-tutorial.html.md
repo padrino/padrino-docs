@@ -417,6 +417,12 @@ Let's modify the migration file to assign a user to all existing posts:
 ```ruby
 # db/migrate/003_add_account_to_post.rb
 class AddAccountToPost < ActiveRecord::Migration
+  # Stub Models
+  class Account < ActiveRecord::Base; end
+  class Post < ActiveRecord::Base
+    belongs_to :account
+  end
+
   def self.up
     change_table :posts do |t|
       t.integer :account_id
