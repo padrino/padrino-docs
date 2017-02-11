@@ -48,11 +48,19 @@ zip your files and send it to [padrinorb@gmail.com](mailto:padrinorb@gmail.org)
 
 ## How to localize your app
 
-The first thing that you need to do is to set your locale by appending it to
-`boot.rb`:
+The request's locale can be set in a [route filter](http://padrinorb.com/guides/controllers/route-filters/):
 
 ```ruby
-Padrino.before_load do
+# Route filter
+before do
+  I18n.locale = :de
+end
+```
+
+Or within a route:
+
+```ruby
+get "/" do
   I18n.locale = :de
 end
 ```
@@ -77,6 +85,8 @@ you will get:
 ```
 => "Bar"
 ```
+
+For more ways to configure the locale see [Sinatra's I18n recipe](http://recipes.sinatrarb.com/p/development/i18n).
 
 --------------------------------------------------------------------------------
 
@@ -153,9 +163,10 @@ column names of grids, forms, error_messages etc ...
 
 --------------------------------------------------------------------------------
 
-## Bonus
+## Form Builders
 
-Using `form_builder` like:
+[Form builder](http://padrinorb.com/guides/application-helpers/form-builders/) labels are
+automatically translated:
 
 ```haml
 -form_for :account, url(:accounts_create, :format => :js), :remote => true do |f|
@@ -171,4 +182,5 @@ Using `form_builder` like:
       %td=f.select :role, :options => access_control.roles
 ```
 
-the tag **label** automatically translates for **you** the field name!
+It looks for translations with a key of `MODEL.attributes.ATTRIBUTE` where `MODEL` is
+the name of the model passed to `form_for` and `ATTRIBUTE` is the given attribute name.
