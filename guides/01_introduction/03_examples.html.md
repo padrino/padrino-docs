@@ -21,6 +21,7 @@ Name                                           | Description         | In Produc
 [getVolunteers](https://github.com/RmMsr/getVolunteers) | Embed an image anywhere to let people know if your event needs more help. | Yes | [RmMsr](https://github.com/RmMsr) |
 [lumen](https://github.com/wordsandwriting/lumen) | Open-source group discussion platform. | Yes | [wordsandwriting](https://github.com/wordsandwriting)
 [itunes\_store\_transporter\_web](https://github.com/sshaw/itunes_store_transporter_web) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | No | [sshaw](https://github.com/sshaw)
+[HOF Studios Website](http://www.hofstudios.com/) | HOF Studios specializes in game development for PC and mobile platforms. | Yes | [HOF Studios](https://github.com/hofstudios)
 [sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
 [dbd\_notebook](https://github.com/k2052/dbd_notebook) | Source code for notebook.designbreakdown.com (inactive since 2014). | No | [k2052](https://github.com/k2052)
 [manicminer-front](https://github.com/jorgefuertes/manicminer-front) | Manicminer Multicoin Mining Pool - Front App (inactive since 2014). | No  [jorgefuertes](https://github.com/jorgefuertes)
@@ -92,4 +93,3 @@ Unknown if they still use Padrino, but I asked them:
 - http://landmoda.com - Networks for models in the world!
 - http://martianoids.com - System administration company at Spain. Products and blog.
 - http://middlemanapp.com - Middleman: A Static Frontend Development Framework
-
