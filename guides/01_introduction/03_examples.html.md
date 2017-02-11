@@ -20,7 +20,7 @@ Name                                           | Description         | In Produc
 [hasbeen.in](https://github.com/findoutwho/hasbeen.in) | Your geek-friendly travel site. | Yes | [findoutwho](https://github.com/findoutwho)
 [getVolunteers](https://github.com/RmMsr/getVolunteers) | Embed an image anywhere to let people know if your event needs more help. | Yes | [RmMsr](https://github.com/RmMsr) |
 [lumen](https://github.com/wordsandwriting/lumen) | Open-source group discussion platform. | Yes | [wordsandwriting](https://github.com/wordsandwriting)
-[itunes\_store\_transporter\_web](https://github.com/sshaw/itunes_store_transporter_web) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | No | [sshaw](https://github.com/sshaw)
+[iTunes Store Transporter: GUI](http://transportergui.com) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | Yes | [sshaw](https://github.com/sshaw)
 [HOF Studios Website](http://www.hofstudios.com/) | HOF Studios specializes in game development for PC and mobile platforms. | Yes | [HOF Studios](https://github.com/hofstudios)
 [sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
 [dbd\_notebook](https://github.com/k2052/dbd_notebook) | Source code for notebook.designbreakdown.com (inactive since 2014). | No | [k2052](https://github.com/k2052)
