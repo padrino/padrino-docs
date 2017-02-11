@@ -94,3 +94,7 @@ within `form_for` or `fields_for` are:
   - `f.image_submit "submit.png", :class => 'long'`
 
 For a complete list checkout [the form helper docs](http://www.rubydoc.info/gems/padrino-helpers/Padrino/Helpers/FormHelpers "Form Helper Docs").
+
+## Localization
+
+See [localization](/guides/features/localization/).
