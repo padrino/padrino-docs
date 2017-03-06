@@ -24,7 +24,7 @@ At the moment we support the following list of languages:
 - Norwegian
 - Russian
 - Polish
-- Brazilian
+- Brazilian Portuguese
 - Turkish
 - Ukrainian
 - Traditional Chinese
