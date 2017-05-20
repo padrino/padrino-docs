@@ -93,17 +93,17 @@ templating language, the RSpec testing framework and the jQuery JavaScript
 library. With that in mind, let us generate our new project:
 
 ```shell
-$ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d activerecord -b
+$ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d sequel -b
 ```
 
 This command will generate our basic Padrino project and the print out a nice
 report of the files generated. The output of this generation command can be
-viewed in [this gist](https://gist.github.com/wikimatze/a399cf4a143d0360fb262de92cdf8f8e) file.
-Notice the `-b` flag in the previous command which automatically instructs bundler
+viewed in [this gist](https://gist.github.com/wikimatze/0f8b63d28bccac84014f8a592f79197d "gist for initial project
+generation") file. Notice the `-b` flag in the previous command which automatically instructs bundler
 to install all dependencies. All we need to do now is `cd` into our brand new application.
 
 ```shell
-$ cd sample_blog_updated
+$ cd blog-tutorial
 ```
 
 Now, the terminal should be inside the root of our newly generated application
@@ -134,8 +134,7 @@ The following important directories are also generated:
 - `spec` – This is where your model and controller tests should be stored.
 
 For now, the defaults for the database connection settings (`config/database.rb`) are
-OK for this tutorial. A sqlite3 database will be used that is stored inside
-`db/sample_blog_development.db`.
+OK for this tutorial.
 
 Let us also setup a few simple routes in our application to demonstrate the
 Padrino routing system. Let's go into the `app/app.rb` file and enter the
@@ -187,7 +186,7 @@ $ bundle
 
 This will create the admin sub-application within your project and mount it
 within the `config/apps.rb` file. The output of this command can be viewed in
-[this gist](https://gist.github.com/wikimatze/59220279f272a5339806 "this gist") file.
+[this gist](https://gist.github.com/wikimatze/2a325cb7d019371a5403d7420cdf2458 "gist for admin generation output") file.
 
 Now, we should follow the instructions and create our database, run our
 migrations and run the seed tasks which has been generated in `db/seeds.rb`. Go
