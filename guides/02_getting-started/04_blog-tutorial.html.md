@@ -142,10 +142,9 @@ following routes:
 
 ```ruby
 # app/app.rb
-module SampleBlogUpdated
+module BlogUpdate
   class App < Padrino::Application
     register ScssInitializer
-    use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
 
@@ -153,11 +152,11 @@ module SampleBlogUpdated
 
     # Add these routes below to the app file...
     get "/" do
-      "Hello World!"
+      'Hello World!'
     end
 
-    get :about, :map => '/about_us' do
-      render :haml, "%p This is a sample blog created to demonstrate how Padrino works!"
+    get :about, :map => '/about-us' do
+      render :haml, '%p This is a sample blog created to demonstrate how Padrino works!'
     end
   end
 end
