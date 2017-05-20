@@ -164,7 +164,7 @@ end
 
 Note that the first route here sets up a simple string to be returned at the
 root URL of the application. The second route defines a one-line `about` page
-inline using Slim which is then explicitly mapped to the `/about\_us` URL. The
+inline using Haml which is then explicitly mapped to the `/about-us` URL. The
 symbol `:about` is used to reference the route later.
 
 Be sure to check out the [controllers guide](/guides/controllers/overview "controllers
