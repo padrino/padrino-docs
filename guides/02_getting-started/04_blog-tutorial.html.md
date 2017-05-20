@@ -31,27 +31,32 @@ mentioned there may not be valid.
 
 To skip this tutorial or immediately see the complete blog tutorial project, you
 can either checkout the
-[blog tutorial repository](https://github.com/padrino/sample_blog_updated "blog tutorial
+[blog tutorial repository](https://github.com/padrino/blog-tutorial "blog tutorial
 repository") using Git:
 
+
 ```shell
-$ git clone git@github.com:padrino/sample_blog_updated.git
+$ git clone git@github.com:padrino/blog-tutorial.git
 ```
+
 
 or even execute the
 [blog tutorial project template](https://github.com/padrino/padrino-recipes/blob/master/templates/sampleblog_template.rb "blog tutorial
 project template") which will automatically build the blog project step by step
 using our excellent template runner. You can do this simply by invoking:
 
+
 ```shell
-$ padrino g project sample_blog --template sampleblog
+$ padrino g project blog-tutorial --template blogtutorial
 ```
+
 
 To learn more about our template generator, be sure to check out the
 [generators guide](/guides/generators/overview "generators guide").
 
 Please note that you can find the code for code for Padrino 0.12.2 under
-[blog tutorial repository for Padrino 0.12.2](http://github.com/padrino/sample_blog "blog tutorial repository").
+[blog tutorial repository for Padrino 0.12.2](http://github.com/padrino/sample_blog "blog tutorial repository for
+Padrino 0.12.2").
 
 --------------------------------------------------------------------------------
 
