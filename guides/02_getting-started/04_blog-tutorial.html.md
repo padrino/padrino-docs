@@ -174,26 +174,26 @@ guide") for a comprehensive overview of the routing system.
 
 ## Admin Dashboard Setup
 
-Next, this is a good time to setup the Padrino Admin panel which allows us to
+Next, this is a good time to setup the Padrino admin panel which allows us to
 easily view, search and modify data for a project. Let's go back to the console
 and enter:
 
 ```shell
 $ padrino g admin
-$ bundle
 ```
 
 This will create the admin sub-application within your project and mount it
 within the `config/apps.rb` file. The output of this command can be viewed in
 [this gist](https://gist.github.com/wikimatze/2a325cb7d019371a5403d7420cdf2458 "gist for admin generation output") file.
 
-Now, we should follow the instructions and create our database, run our
-migrations and run the seed tasks which has been generated in `db/seeds.rb`. Go
-to the terminal and run:
+Now, we should follow the instructions of the output:
 
-```shell
-$ padrino rake db:migrate
-$ padrino rake db:seed
+```sh
+  1) Run 'bundle'
+  2) Run 'bundle exec rake db:create' if you have not created a database yet
+  3) Run 'bundle exec rake db:migrate'
+  4) Run 'bundle exec rake db:seed'
+  5) Visit the admin panel in the browser at '/admin'
 ```
 
 During this process, you will be prompted to enter an email and password to use
