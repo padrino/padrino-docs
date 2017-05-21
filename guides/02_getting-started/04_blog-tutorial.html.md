@@ -93,7 +93,7 @@ templating language, the RSpec testing framework and the jQuery JavaScript
 library. With that in mind, let us generate our new project:
 
 ```shell
-$ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d sequel -b
+$ padrino g project blog-tutorial -t rspec -e haml -c scss -s jquery -d sequel -b
 ```
 
 This command will generate our basic Padrino project and the print out a nice
@@ -142,7 +142,7 @@ following routes:
 
 ```ruby
 # app/app.rb
-module BlogUpdate
+module BlogTutorial
   class App < Padrino::Application
     register ScssInitializer
     register Padrino::Mailer
@@ -186,7 +186,7 @@ This will create the admin sub-application within your project and mount it
 within the `config/apps.rb` file. The output of this command can be viewed in
 [this gist](https://gist.github.com/wikimatze/2a325cb7d019371a5403d7420cdf2458 "gist for admin generation output") file.
 
-Now, we should follow the instructions of the output:
+Now, you should follow the instructions of the output:
 
 ```sh
   1) Run 'bundle'
