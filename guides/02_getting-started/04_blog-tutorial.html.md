@@ -464,25 +464,73 @@ few validations.
 
 ```ruby
 # models/post.rb
-class Post < ActiveRecord::Base
-  belongs_to :account
-  validates_presence_of :title
-  validates_presence_of :body
+
+class Post < Sequel::Model
+  many_to_one :account
+
+  plugin :validation_helpers
+  def validate
+    super
+    validates_presence [:title, :body]
+  end
 end
 ```
 
-Now we are ready to run the migration:
+And add the association to the Account model:
 
-```shell
-$ padrino rake db:migrate
-=> Executing Rake db:migrate ...
-   INFO -  Migrating to AddAccountToPost (3)
-  DEBUG -   (0.1ms)  begin transaction
-== 3 AddAccountToPost: migrating ==============================================
--- change_table(:posts)
+
+```ruby
+class Account < Sequel::Model
+  one_to_one :post
+  ...
+end
 ```
 
-Our Post now has the appropriate associations and validations. We'll need to go
+Now we are ready to run the migration: `$ padrino rake db:migrate`
+
+Let's create another migration to assign the first user to all existing posts:
+
+```shell
+$ padrino g migration MigrateExistingPostsToFirstAccount
+       apply  orms/activerecord
+      create  db/migrate/004_migrate_existing_posts_to_first_account.rb
+```
+
+And change the content of the migration:
+
+```ruby
+# db/migrate/004_migrate_existing_posts_to_first_account.rb
+
+Sequel.migration do
+  class Account < Sequel::Model; end
+  class Post < Sequel::Model
+    many_to_one :account
+  end
+
+  first_account = Account.first
+
+  up do
+    if first_account
+      # and assigns a user to all existing posts
+      Post.all.each { |p| p.update(account_id: first_account.id) }
+    end
+  end
+
+  down do
+    if first_account
+      # and assigns a user to all existing posts
+      Post.all.each { |p| p.update(account_id: nil) }
+    end
+  end
+end
+```
+
+And run the migrations again: `$ padrino rake db:migrate`
+
+Our database now has the appropriate associations and validations.
+
+
+We'll need to go
 inside the generated Padrino Admin and make some changes to include the account
 with the post.
 
@@ -493,21 +541,14 @@ to the creation of a new Post.
 ```ruby
 # admin/controllers/posts.rb
 Admin.controllers :posts do
-# ...
+  ...
+
   post :create do
     @post = Post.new(params[:post])
     @post.account = current_account
-    if @post.save
-      @title = pat(:create_title, :model => "post #{@post.id}")
-      flash[:success] = pat(:create_success, :model => 'Post')
-      params[:save_and_continue] ? redirect(url(:posts, :index)) : redirect(url(:posts, :edit, :id => @post.id))
-    else
-      @title = pat(:create_title, :model => 'post')
-      flash.now[:error] = pat(:create_error, :model => 'post')
-      render 'posts/new'
-    end
+    ...
   end
-# ...
+ ...
 end
 ```
 
