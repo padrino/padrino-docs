@@ -704,8 +704,8 @@ generate the RSS feed using builder.
 - @title = "Welcome"
 
 - content_for :include do
-  = feed_tag(:rss, url(:posts, :index, :format => :rss),:title => "RSS")
-  = feed_tag(:atom, url(:posts, :index, :format => :atom),:title => "ATOM")
+  = feed_tag(:rss, url(:posts, :index, :format => :rss), :title => "RSS")
+  = feed_tag(:atom, url(:posts, :index, :format => :atom), :title => "ATOM")
 
 #posts= partial 'posts/post', :collection => @posts
 ```
@@ -714,12 +714,13 @@ Next, let us add the templates for atom using [builder](https://github.com/jimwe
 
 ```ruby
 # app/views/posts/index.atom.builder
+
 xml.instruct!
 xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
   xml.title   "Padrino Sample Blog"
   xml.link    "rel" => "self", "href" => url_for(:posts, :index)
   xml.id      url_for(:posts, :index)
-  xml.updated @posts.first.updated_at.strftime "%Y-%m-%dT%H:%M:%SZ" if @posts.any?
+  xml.updated @posts.first.created_at.strftime "%Y-%m-%dT%H:%M:%SZ" if @posts.any?
   xml.author  { xml.name "Padrino Team" }
 
   @posts.each do |post|
@@ -727,9 +728,8 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
       xml.title   post.title
       xml.link    "rel" => "alternate", "href" => url_for(:posts, :show, :id => post)
       xml.id      url_for(:posts, :show, :id => post)
-      xml.updated post.updated_at.strftime "%Y-%m-%dT%H:%M:%SZ"
-      xml.author  { xml.name post.account.email }
-      xml.summary post.body
+      xml.updated post.created_at.strftime "%Y-%m-%dT%H:%M:%SZ"
+      xml.author  {}
     end
   end
 end
@@ -739,6 +739,7 @@ and also the template for rss using builder:
 
 ```ruby
 # app/views/posts/index.rss.builder
+
 xml.instruct!
 xml.rss "version" => "2.0", "xmlns:dc" => "http://dublincore.org/documents/dc-xml-guidelines/" do
   xml.channel do
@@ -750,8 +751,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://dublincore.org/documents/dc-xm
       xml.item do
         xml.title post.title
         xml.description post.body
-        xml.pubDate post.created_at.to_s(:rfc822)
-        xml.link url_for(:posts, :show, :id => post)
+        xml.pubDate post.created_at
+        xml.link url_for(:posts, :show, :id => post.id)
       end
     end
   end
@@ -760,8 +761,8 @@ end
 
 Please note, that you have to add `builder` in your `Gemfile` and run `bundle`.
 Let's check out our changes. View the available feeds at
-<http://localhost:3000/posts> . You now have rss and atom feeds available for
-your blog!
+<http://localhost:3000/posts.atom> or <http://localhost:3000/posts.rss>.
+You now have rss and atom feeds available for your blog!
 
 --------------------------------------------------------------------------------
 
