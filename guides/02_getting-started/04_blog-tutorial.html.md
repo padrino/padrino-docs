@@ -229,12 +229,11 @@ To read more about available terminal commands, checkout the
 and Terminal Commands") guide.
 
 Your application now exists on <http://localhost:3000>. Visit this URL in the
-browser and you should see the route render `Hello World!` route that we defined
-earlier in this tutorial.
+browser and you should see the `Hello World!`.
 
 We can also visit the admin panel by going to the URL:
 <http://localhost:3000/admin> and then log in using the admin credentials
-specified during the `rake seed` command performed earlier. Feel free to explore
+specified during the `rake db:seed` command performed earlier. Feel free to explore
 this area and checkout the existing accounts. We will come back to this in more
 detail later. To read more about the features of the admin panel, check out the
 [Admin Panel Guide](/guides/features/padrino-admin "Admin Panel Guide").
@@ -260,29 +259,35 @@ the `-a` option to the command - this is handy if you would like to have models 
 should be coped only to sub-apps.
 
 ```shell
-$ padrino g model post title:string body:text
-       apply  orms/activerecord
+$ padrino g model post title:string body:text created_ad:datetime
+       apply  orms/sequel
        apply  tests/rspec
       create  models/post.rb
-      create  spec/app/models/post_spec.rb
+      create  spec/models/post_spec.rb
       create  db/migrate/002_create_posts.rb
 ```
 
 Go ahead and migrate the database now.
 
 ```shell
-$ padrino rake db:migrate
-=> Executing Rake db:migrate ...
-  DEBUG -  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
-   INFO -  Migrating to CreatePosts (2)
-  DEBUG -   (0.1ms)  begin transaction
-== 2 CreatePosts: migrating ===================================================
--- create_table(:posts)
-...
+$ padrino rake sq:migrate
+=> Executing Rake sq:migrate ...
+   INFO -  (0.000159s) PRAGMA foreign_keys = 1
+   INFO -  (0.000021s) PRAGMA case_sensitive_like = 1
+   INFO -  (0.000080s) SELECT sqlite_version()
+   INFO -  (0.000037s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+   INFO -  (0.000077s) SELECT * FROM `schema_info` LIMIT 1
+   INFO -  (0.000061s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+   INFO -  (0.000058s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+   INFO -  (0.000063s) SELECT `version` FROM `schema_info` LIMIT 1
+   INFO -  Begin applying migration version 2, direction: up
+   INFO -  (0.014988s) CREATE TABLE `posts` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `title` varchar(255), `body` Text, `created_at` date)
+   INFO -  (0.017424s) UPDATE `schema_info` SET `version` = 2
+   INFO -  Finished applying migration version 2, direction: up, took 0.028866 seconds
+<= sq:migrate:up executed
 ```
 
-This creates the post model. Next, let's create the controller to allow the
-basic viewing functionality.
+Next, let's create the controller to allow the basic viewing functionality.
 
 ```shell
 $ padrino g controller posts get:index get:show
@@ -300,14 +305,14 @@ controller.
 
 ```ruby
 # app/controllers/posts.rb
-SampleBlogUpdated::App.controllers :posts do
+BlogTutorial::App.controllers :posts do
   get :index do
-    @posts = Post.order('created_at DESC').all
+    @posts = Post.reverse_order(:created_at).all
     render 'posts/index'
   end
 
   get :show, :with => :id do
-    @post = Post.find_by_id(params[:id])
+    @post = Post[id: params[:id]]
     render 'posts/show'
   end
 end
@@ -349,13 +354,12 @@ manage posts using Padrino Admin, run this command.
 
 ```shell
 $ padrino g admin_page post
-=> Located unlocked Gemfile for development
       create  admin/controllers/posts.rb
       create  admin/views/posts/_form.haml
       create  admin/views/posts/edit.haml
       create  admin/views/posts/index.haml
       create  admin/views/posts/new.haml
-      inject  admin/app.rb
+      insert  admin/app.rb
 ```
 
 Let's make sure the server is running (`padrino s`) and give this admin
@@ -371,7 +375,7 @@ Padrino Admin allows you to easily create new records by clicking "New". It has
 a form all ready complete with the fields you had generated prior in the
 creation of the Post model.
 
-**Note:** make sure to use `padrino g admin_page` **after** the creation of your
+**Note:** make sure to use `padrino g admin_page post` **after** the creation of your
   model and their migration.
 
 Now that you have added a few posts through the admin interface, check out
@@ -384,14 +388,30 @@ routes` command:
 ```shell
 $ padrino rake routes
 
-Application: SampleBlogUpdated::Admin
+Application: BlogTutorial::Admin
     URL                           REQUEST  PATH
     (:sessions, :new)               GET    /admin/sessions/new
-    ...
+    (:sessions, :create)           POST    /admin/sessions/create
+    (:sessions, :destroy)         DELETE   /admin/sessions/destroy
+    (:base, :index)                 GET    /admin/
+    (:accounts, :index)             GET    /admin/accounts
+    (:accounts, :new)               GET    /admin/accounts/new
+    (:accounts, :create)           POST    /admin/accounts/create
+    (:accounts, :edit)              GET    /admin/accounts/edit/:id
+    (:accounts, :update)            PUT    /admin/accounts/update/:id
+    (:accounts, :destroy)         DELETE   /admin/accounts/destroy/:id
+    (:accounts, :destroy_many)    DELETE   /admin/accounts/destroy_many
+    (:posts, :index)                GET    /admin/posts
+    (:posts, :new)                  GET    /admin/posts/new
+    (:posts, :create)              POST    /admin/posts/create
+    (:posts, :edit)                 GET    /admin/posts/edit/:id
+    (:posts, :update)               PUT    /admin/posts/update/:id
+    (:posts, :destroy)            DELETE   /admin/posts/destroy/:id
+    (:posts, :destroy_many)       DELETE   /admin/posts/destroy_many
 
-Application: SampleBlogUpdated::App
+Application: BlogTutorial::App
     URL                 REQUEST  PATH
-    (:about)              GET    /about_us
+    (:about)              GET    /about-us
     (:posts, :index)      GET    /posts
     (:posts, :show)       GET    /posts/show/:id
 ```
@@ -413,35 +433,31 @@ $ padrino g migration AddAccountToPost account_id:integer
 ```
 
 This creates a new migration with the desired field attaching the `account_id` to
-the post.
-
-Let's modify the migration file to assign a user to all existing posts:
+the post. Let's modify this migration to add the accounts FK to posts:
 
 ```ruby
 # db/migrate/003_add_account_to_post.rb
-class AddAccountToPost < ActiveRecord::Migration
-  # Stub Models
-  class Account < ActiveRecord::Base; end
-  class Post < ActiveRecord::Base
-    belongs_to :account
+
+Sequel.migration do
+  class Account < Sequel::Model; end
+  class Post < Sequel::Model
+    many_to_one :account
   end
 
-  def self.up
-    change_table :posts do |t|
-      t.integer :account_id
+  up do
+    alter_table :posts do
+      add_column :account_id, Integer
     end
-    # and assigns a user to all existing posts
-    first_account = Account.first
-    Post.all.each { |p| p.update_attribute(:account, first_account) }
   end
 
-  def self.down
-    change_table :posts do |t|
-      t.remove :account_id
+  down do
+    alter_table :posts do
+      drop_column :account_id
     end
   end
 end
 ```
+
 
 Now, we'll return to the Post Model to setup the `account` association and add a
 few validations.
