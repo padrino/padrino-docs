@@ -218,10 +218,10 @@ $ padrino s
 You should see no errors, and the terminal should output:
 
 ```shell
-=> Padrino/0.13.1 has taken the stage development at http://127.0.0.1:3000
-[2016-03-17 06:09:51] INFO  WEBrick 1.3.1
-[2016-03-17 06:09:51] INFO  ruby 2.2.1 (2015-02-26) [i686-linux]
-[2016-03-17 06:09:51] INFO  WEBrick::HTTPServer#start: pid=24413 port=3000
+=> Padrino/0.14.1.1 has taken the stage development at http://127.0.0.1:3000
+[2017-05-20 09:40:49] INFO  WEBrick 1.3.1
+[2017-05-20 09:40:49] INFO  ruby 2.4.1 (2017-03-22) [i686-linux]
+[2017-05-20 09:40:49] INFO  WEBrick::HTTPServer#start: pid=26641 port=3000
 ```
 
 To read more about available terminal commands, checkout the
