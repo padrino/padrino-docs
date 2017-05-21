@@ -335,7 +335,7 @@ Next, we'll want to create the views for the two controller actions we defined:
 
 -# app/views/posts/_post.haml
 .post
-  .title= link_to post.title, url_for(:posts, :show, :id => post)
+  .title= link_to post.title, url_for(:posts, :show, :id => post.id)
   .date= time_ago_in_words(post.created_at || Time.now) + ' ago'
   .body= simple_format(post.body)
 
@@ -486,7 +486,7 @@ class Account < Sequel::Model
 end
 ```
 
-Now we are ready to run the migration: `$ padrino rake db:migrate`
+Now we are ready to run the migration: `$ padrino rake sq:migrate`
 
 Let's create another migration to assign the first user to all existing posts:
 
@@ -525,7 +525,7 @@ Sequel.migration do
 end
 ```
 
-And run the migrations again: `$ padrino rake db:migrate`
+And run the migrations again: `$ padrino rake sq:migrate`
 
 Our database now has the appropriate associations and validations.
 
@@ -601,43 +601,51 @@ directory:
 
 ```haml
 -# app/views/layouts/application.haml
+
 !!! Strict
 %html
   %head
-    %title= [@title, "Padrino Sample Blog"].compact.join(" | ")
+    %title
+      = [@title, "Padrino Sample Blog"].compact.join(" | ")
     = stylesheet_link_tag 'normalize', 'application'
     = javascript_include_tag 'jquery', 'application'
     = yield_content :include
-  %body
-    #header
-      %h1 Sample Padrino Blog
-      %ul.menu
+    %body
+      #header
+        %h1 Sample Padrino Blog
+        %ul.menu
         %li= link_to 'Blog', url_for(:posts, :index)
         %li= link_to 'About', url_for(:about)
-    #container
-      #main= yield
-      #sidebar
-        = form_tag url_for(:posts, :index), :method => 'get'  do
-          Search for:
-          = text_field_tag 'query', :value => params[:query]
-          = submit_tag 'Search'
-        %p Recent Posts
-        %ul.bulleted
-          %li Item 1 - Lorem ipsum dolorum itsum estem
-          %li Item 2 - Lorem ipsum dolorum itsum estem
-          %li Item 3 - Lorem ipsum dolorum itsum estem
-        %p Categories
-        %ul.bulleted
-          %li Item 1 - Lorem ipsum dolorum itsum estem
-          %li Item 2 - Lorem ipsum dolorum itsum estem
-          %li Item 3 - Lorem ipsum dolorum itsum estem
-        %p Latest Comments
-        %ul.bulleted
-          %li Item 1 - Lorem ipsum dolorum itsum estem
-          %li Item 2 - Lorem ipsum dolorum itsum estem
-          %li Item 3 - Lorem ipsum dolorum itsum estem
-    #footer
-      Copyright (c) 2009-2016 Padrino
+      #container
+        #main= yield
+        #sidebar
+          = form_tag url_for(:posts, :index), :method => 'get'  do
+            Search for:
+            = text_field_tag 'query', :value => params[:query]
+            = submit_tag 'Search'
+          %p
+            Recent Posts
+          %ul.bulleted
+            %li Item 1 - Lorem ipsum dolorum itsum estem
+            %li Item 2 - Lorem ipsum dolorum itsum estem
+            %li Item 3 - Lorem ipsum dolorum itsum estem
+          %p
+            Categories
+            %ul.bulleted
+              %li
+                Item 1 - Lorem ipsum dolorum itsum estem
+              %li
+                Item 2 - Lorem ipsum dolorum itsum estem
+              %li
+                Item 3 - Lorem ipsum dolorum itsum estem
+            %p
+              Latest Comments
+              %ul.bulleted
+                %li Item 1 - Lorem ipsum dolorum itsum estem
+                %li Item 2 - Lorem ipsum dolorum itsum estem
+                %li Item 3 - Lorem ipsum dolorum itsum estem
+      #footer
+        Copyright (c) 2009-2017 Padrino
 ```
 
 This layout creates a basic structure for the blog and requires the necessary
@@ -648,14 +656,14 @@ and stubs for list items left as an exercise for the reader.
 Next, we simply need to setup the style sheets. There are two we will use for
 this demo. The first is a generic [normalize CSS reset by Nicolas Gallagher](https://necolas.github.io/normalize.css/). The
 full reset style sheet can be found in the
-[sample blog repository](https://github.com/padrino/sample_blog_updated/blob/master/public/stylesheets/normalize.css
-"sambple blog repository") and should be put into
+[sample blog repository](https://raw.githubusercontent.com/padrino/blog-tutorial/master/public/stylesheets/normalize.css
+"sample blog repository") and should be put into
 `public/stylesheets/normalize.css`.
 
 The second style sheet is the application style sheet to give our blog a better
 look and feel. The
 full contents of the style sheet can be found in the
-[sample blog repository](https://github.com/padrino/sample_blog_updated/blob/master/app/stylesheets/application.scss
+[sample blog repository]( https://raw.githubusercontent.com/padrino/blog-tutorial/master/app/stylesheets/application.scss
 "sample blog repository") and should be put into
 `app/stylesheets/application.scss`.
 
