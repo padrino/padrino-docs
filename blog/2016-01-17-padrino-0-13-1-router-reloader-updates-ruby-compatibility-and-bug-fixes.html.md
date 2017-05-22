@@ -36,4 +36,3 @@ There are also several bug fixes and other updates:
 - FIX relax mail gem dependency ([@ujifgc](https://github.com/ujifgc))
 - FIX minor doc typos ([@lokyoung](https://github.com/lokyoung), [@markglenfletcher](https://github.com/markglenfletcher))
 
-Please report any issues you encounter with this release! We are working very actively on Padrino and want to make the framework as stable and reliable as possible. That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “#padrino” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.

@@ -22,4 +22,3 @@ There are many important bug fixes and other updates:
 - FIX [#1880](https://github.com/padrino/padrino-framework/issues/1880) Use proper file extention when resolving template for content_type ([@ujifgc](https://github.com/ujifgc))
 - FIX [#1796](https://github.com/padrino/padrino-framework/issues/1796) save and restore layout setting ([@ujifgc](https://github.com/ujifgc))
 
-Please report any issues you encounter with this release! We are working very actively on Padrino and want to make the framework as stable and reliable as possible. That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “#padrino” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.

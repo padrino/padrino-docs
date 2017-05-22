@@ -17,7 +17,7 @@ In this release, we've introduced a new project generator flag of `--api`. When 
  * `Padrino::Mailer` and `Padrino::Helpers` are not registered or referenced in the project.
  * Automatically sets `:renderer`, `:scripts`, and `:stylesheet` to `none` in `.components`.
 
-You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to [@ujifgc](https://github.com/ujifgc) for implementing this. 
+You can see more about this in [pull request #1921](https://github.com/padrino/padrino-framework/issues/1921). Thanks to [@ujifgc](https://github.com/ujifgc) for implementing this.
 
 ## Simplified Initializers
 
@@ -44,7 +44,7 @@ You can see more about this in [pull request #2032](https://github.com/padrino/p
 
 ## Minimize ActiveSupport Dependence
 
-Over the last few releases, we have been working to minimize our dependency on `ActiveSupport`. Note that at this time the library is still a required dependency. However, we are incrementally removing all uses of this library from the internals of Padrino whenever possible. 
+Over the last few releases, we have been working to minimize our dependency on `ActiveSupport`. Note that at this time the library is still a required dependency. However, we are incrementally removing all uses of this library from the internals of Padrino whenever possible.
 
 For those interested, we've removed many ActiveSupport methods from internal usage including but not limited to:
 
@@ -57,7 +57,7 @@ For those interested, we've removed many ActiveSupport methods from internal usa
  * [hash#reverse_merge](https://github.com/padrino/padrino-framework/commit/a335e0d8328d841e5481a9bc567ed3ad928e8eba)
  * [alias_method_chain](https://github.com/padrino/padrino-framework/commit/da54bef74d48db154ca1c1a5150aac4391165217)
 
-Thanks to [@ujifgc](https://github.com/ujifgc) for leading these efforts. 
+Thanks to [@ujifgc](https://github.com/ujifgc) for leading these efforts.
 
 ## Component Upgrades
 
@@ -85,4 +85,3 @@ There are several bug fixes and other updates:
 - NEW Logger option :sanitize_encoding ([@ujifgc](https://github.com/ujifgc))
 - FIX [#2006](https://github.com/padrino/padrino-framework/issues/2006) load missing AR models before calling seeds.rb ([@ujifgc](https://github.com/ujifgc))
 
-Please report any issues you encounter with this release! We are working very actively on Padrino and want to make the framework as stable and reliable as possible. That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “#padrino” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.

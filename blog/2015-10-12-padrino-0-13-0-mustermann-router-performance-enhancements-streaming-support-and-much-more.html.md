@@ -132,4 +132,3 @@ A full list of other changes can be [found on Github](https://github.com/padrino
 
 Want to give a special thanks to the key contributors for this release, working tirelessly to make this Padrino release happen: [@ujifgc](https://github.com/ujifgc), [@namusyaka](https://github.com/namusyaka). Thanks so much!
 
-Please report any issues you encounter with this release! We are working very actively on Padrino and want to make the framework as stable and reliable as possible. That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “#padrino” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.

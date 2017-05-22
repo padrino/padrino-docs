@@ -94,14 +94,3 @@ We have to thank [Darío Javier Cravero](https://github.com/dariocravero "Darío
 We had several versions of the website and all worked enthusiastically to get the new site up and running. This is
 surely a big step forward to Padrino 1.0.0 stable release.
 
-
-## Contribute
-
-We are working very actively on Padrino documentation and want to make the framework as stable and reliable as possible.
-If you want to help us, check the [issues](https://github.com/padrino/padrino-web/issues) - even the new website is
-out, there is plenty of work left.
-
-If you want to keep up with Padrino updates, be sure to follow us on twitter:
-[@padrinorb](https://twitter.com/padrinorb), join us on IRC at “#padrino” on freenode or
-[gitter](https://gitter.im/padrino/padrino-framework)
-
