@@ -790,12 +790,11 @@ This initializes the Git repository, adds all the contents and commit them to
 the repo.
 
 Currently Padrino defaults to **SQLite** but Heroku only supports
-**PostgreSQL**, so we'll need to add `pg` as a dependency for production as well add `sqlite3`
+**PostgreSQL**, so we'll need to add `pg` gem as a dependency for production as well add `sqlite3`
 for development.
 
 ```ruby
 # Gemfile
-# ...
 group :development do
   gem 'sqlite3'
 end
@@ -805,11 +804,10 @@ group :production do
 end
 ```
 
-Now you can run the following on your local machine to avoid the installation of
-the `pg` gem:
+Now you can bundle :
 
 ```shell
-$ bundle --without production
+$ bundle
 ```
 
 and then commit these changes to your git repository:
@@ -828,8 +826,8 @@ $ heroku login
   Password (typing will be hidden):
   Logged in as <your-email>
 $ heroku create
-  Creating app... done, stack is cedar-14
-  https://calm-tor-92217.herokuapp.com/ | https://git.heroku.com/calm-tor-92217.git
+  Creating app... done, ⬢ secret-taiga-32690
+  https://secret-taiga-32690.herokuapp.com/ | https://git.heroku.com/secret-taiga-32690.git
 $ git push heroku master
 ```
 
@@ -840,36 +838,34 @@ to out heroku app, run `heroku addons`:
 $ heroku addons
   Add-on                                       Plan       Price
   ───────────────────────────────────────────  ─────────  ─────
-  heroku-postgresql (postgresql-shaped-79758)  hobby-dev  free
+  heroku-postgresql (postgresql-taiga-32690)   hobby-dev  free
    └─ as DATABASE
-
-  The table above shows add-ons and the attachments to the current app (calm-tor-92217) or other apps.
 ```
 
 and configure the `config/database.rb` for production:
 
 ```ruby
 # config/database.rb
-postgres = URI.parse(ENV['DATABASE_URL'] || '')
 
-ActiveRecord::Base.configurations[:production] = {
-  :adapter  => 'postgresql',
-  :encoding => 'utf8',
-  :username => postgres.user,
-  :password => postgres.password,
-  :host     => postgres.host,
-  :database => postgres.path[1..-1],
-  :port     => 5432
-}
+Sequel::Model.plugin(:schema)
+Sequel::Model.raise_on_save_failure = false # Do not throw exceptions on failure
+Sequel::Model.db = case Padrino.env
+  when :development then Sequel.connect("sqlite://db/blog_tutorial_development.db", :loggers => [logger])
+  when :production  then Sequel.connect("<your-url>",  :loggers => [logger])
+  when :test        then Sequel.connect("sqlite://db/blog_tutorial_test.db",        :loggers => [logger])
+end
 ```
+
+You can get the value of `<your-url>` via `heroku config`.
+
 
 Run `heroku open` to open your site in your default web browser.
 
 Now run our `migrations/seeds`:
 
 ```shell
-$ heroku run rake ar:migrate
-$ heroku run rake seed
+$ heroku run rake sq:migrate
+$ heroku run rake sq:seed
 ```
 
 You'll see something like:
