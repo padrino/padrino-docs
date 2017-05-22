@@ -18,30 +18,15 @@ This blog post will illustrate the process of the work.
 
 ## First draft in 2013
 
-Was created by [Davide D'Agostino](https://github.com/DAddYE).
+Has been disussed under [as issue 30 on github](https://github.com/padrino/padrino-web-classic/issues/30 "as issue 30 on github") and was created by [Davide D'Agostino](https://github.com/DAddYE "Davide D'Agostino").
 
-Here are some images:
 
-<img
-src="https://camo.githubusercontent.com/82fed0320f4d6cac564b0286c2abf869a691d625/687474703a2f2f66732e6461646479652e69742f627970612f444d736875764f362b">
-
-<img
-src="https://camo.githubusercontent.com/c2a5f8804759cd86ff4c0d50eca8280c0be71f6c/687474703a2f2f66732e6461646479652e69742f694a6c652f334a4e43575543312b">
-
-<img
-src="https://camo.githubusercontent.com/a3885fa4ce5c2887280cfd93b6f733ca0a7e210f/687474703a2f2f66732e6461646479652e69742f386635462f326a6c31594b446c2b">
-
-There had been several discussions about the colors but the idea and thread ended. You can follow the [issue on
-github](https://github.com/padrino/padrino-web-classic/issues/30).
+There has been several discussions about the colors but the idea and thread ended.
 
 
 ## Next draft and initial version in 2014
 
-The guys from [UXtemple](https://uxtemple.com/ "UXtemple") created a first draft under
-[padrino.incontentkingdom.com/](http://padrino.incontentkingdom.com/ "padrino.incontentkingdom.com/").
-
-
-Here are some images:
+The guys from [UXtemple](https://uxtemple.com/ "UXtemple") created the next. Here are some images:
 
 <img src="https://farm2.staticflickr.com/1501/24304556436_a56a0d7248_z_d.jpg">
 
@@ -77,7 +62,7 @@ All credits for the new logo goes to [Daniel Polo](https://www.linkedin.com/in/d
 
 <img src="https://farm2.staticflickr.com/1661/24073250940_70864c4ae3_o_d.png">
 
-You can follow the [discussion on github](https://github.com/padrino/padrino-framework/issues/1826).
+You can follow the [discussion on GitHub](https://github.com/padrino/padrino-framework/issues/1826 "discussion on GitHub").
 
 
 ## Further version in January 2015
@@ -94,7 +79,7 @@ Here are some images:
 
 <img src="https://farm2.staticflickr.com/1557/24342623936_a70a6a8be2_o_d.png">
 
-You can follow the [discussion on github](https://github.com/padrino/padrino-framework/issues/1964).
+You can follow the [discussion on GitHub](https://github.com/padrino/padrino-framework/issues/1964).
 
 
 ## A big thank you
