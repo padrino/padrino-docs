@@ -5,7 +5,7 @@ title: Running Padrino on JRuby
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 / 0.10.3 is tested) on JRuby 1.6.4.
+You can run Padrino (0.9.29 ... 0.10.5 is tested) on JRuby 1.7.27
 
 --------------------------------------------------------------------------------
 
@@ -15,14 +15,16 @@ You can easily install Padrino on jruby when you use
 [RVM](https://rvm.io/rvm/install "RVM"):
 
 ```shell
-$ rvm use --create jruby-1.6.4@padrino
-$ gem install padrino
+$ rvm install jruby-1.7.27
+$ rvm use --create jruby-1.7.27@padrino
+$ gem install bundler
+$ gem install padrino -v=0.10.5
 ```
 
 Create Padrino project just as you do when using MRI or REE:
 
 ```shell
-$ padrino g project jrack-test
+$ padrino g project jrack-test -e erb
 ```
 
 `cd ./jrack-test` and you should edit `Gemfile`:
@@ -44,14 +46,15 @@ $ bundle
 Then, create the test controller:
 
 ```shell
-padrino gen controller index get:index get:hello get:show_path
+$ padrino gen controller index get:index get:hello get:show_path
 ```
 
 A controller sample is here:
 
 ```ruby
-# index.rb
-JrackTest.controllers :index do
+# app/controllers/index.rb
+
+JrackTest::App.controllers :index do
   get :index do
     "Hello, JPadrino!"
   end
@@ -69,7 +72,7 @@ end
 Then run:
 
 ```shell
-$ padrino start
+$ padrino s
 ```
 
 To run JRuby on 1.9 compat mode:
@@ -79,16 +82,17 @@ alias padrino='jruby --1.9 -S padrino'
 padrino start
 ```
 
-You can access `localhost:3000` as you run padrino on MRI...
+You can access <http://localhost:3000> as you run padrino on MRI...
 
 --------------------------------------------------------------------------------
 
 ## How to create WAR
 
-Now you should have installed `warbler` gem, so you can:
+Now you should install the `warbler` gem with `$ gem install warbler`, so you can:
 
 ```shell
-warble config
+$ warble config
+$ cp /home/wm/.rvm/gems/jruby-1.7.27@padrino/gems/warbler-2.0.4/warble.rb config/warble.rb
 ```
 
 Edit `config/warble.rb` if you want to apply some customizations. You can access
@@ -99,7 +103,7 @@ For example, if you want to deploy the app to server root directory, just add to
 `config/warble.rb`:
 
 ```ruby
-config.jar_name = "ROOT"
+config.jar_name = "jrack-test"
 ```
 
 Deploying with JRuby on 1.9 compat mode:
@@ -111,7 +115,7 @@ config.webxml.jruby.compat.version = "1.9"
 If you are ready, run:
 
 ```shell
-warble war
+$ warble war
 ```
 
 You would get `jrack-test.war` (the same name as your project directory name),
