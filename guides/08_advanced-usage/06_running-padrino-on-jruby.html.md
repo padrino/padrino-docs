@@ -92,7 +92,6 @@ Now you should install the `warbler` gem with `$ gem install warbler`, so you ca
 
 ```shell
 $ warble config
-$ cp /home/wm/.rvm/gems/jruby-1.7.27@padrino/gems/warbler-2.0.4/warble.rb config/warble.rb
 ```
 
 Edit `config/warble.rb` if you want to apply some customizations. You can access
