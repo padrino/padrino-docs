@@ -14,7 +14,7 @@ explained and links will be provided to further information on different
 relevant topics.
 
 --------------------------------------------------------------------------------
-
+<!--
 ## Screencast
 
 There is also a screencast available for this tutorial. You can check it out by:
@@ -24,6 +24,8 @@ There is also a screencast available for this tutorial. You can check it out by:
 
 Please note that the screencast was written for Padrino 0.12.2, so some things
 mentioned there may not be valid.
+
+-->
 
 --------------------------------------------------------------------------------
 
@@ -55,9 +57,6 @@ $ padrino g project blog-tutorial --template blogtutorial
 To learn more about our template generator, be sure to check out the
 [generators guide](/guides/generators/overview "generators guide").
 -->
-Please note that you can find the code for code for Padrino 0.12.2 under
-[blog tutorial repository for Padrino 0.12.2](http://github.com/padrino/sample_blog "blog tutorial repository for
-Padrino 0.12.2").
 
 --------------------------------------------------------------------------------
 
