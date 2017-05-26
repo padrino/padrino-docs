@@ -476,7 +476,7 @@ And add the association to the Account model:
 
 ```ruby
 class Account < Sequel::Model
-  one_to_many :post
+  one_to_many :posts
   ...
 end
 ```
