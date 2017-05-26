@@ -30,7 +30,7 @@ mentioned there may not be valid.
 ## Study Guide
 
 To skip this tutorial or immediately see the complete blog tutorial project, you
-can either checkout the
+can checkout the
 [blog tutorial repository](https://github.com/padrino/blog-tutorial "blog tutorial
 repository") using Git:
 
@@ -40,6 +40,7 @@ $ git clone git@github.com:padrino/blog-tutorial.git
 ```
 
 
+<!--
 or even execute the
 [blog tutorial project template](https://github.com/padrino/padrino-recipes/blob/master/templates/sampleblog_template.rb "blog tutorial
 project template") which will automatically build the blog project step by step
@@ -53,7 +54,7 @@ $ padrino g project blog-tutorial --template blogtutorial
 
 To learn more about our template generator, be sure to check out the
 [generators guide](/guides/generators/overview "generators guide").
-
+-->
 Please note that you can find the code for code for Padrino 0.12.2 under
 [blog tutorial repository for Padrino 0.12.2](http://github.com/padrino/sample_blog "blog tutorial repository for
 Padrino 0.12.2").
@@ -259,7 +260,7 @@ the `-a` option to the command - this is handy if you would like to have models 
 should be coped only to sub-apps.
 
 ```shell
-$ padrino g model post title:string body:text created_ad:datetime
+$ padrino g model post title:string body:text created_at:datetime
        apply  orms/sequel
        apply  tests/rspec
       create  models/post.rb
@@ -439,11 +440,6 @@ the post. Let's modify this migration to add the accounts FK to posts:
 # db/migrate/003_add_account_to_post.rb
 
 Sequel.migration do
-  class Account < Sequel::Model; end
-  class Post < Sequel::Model
-    many_to_one :account
-  end
-
   up do
     alter_table :posts do
       add_column :account_id, Integer
@@ -481,7 +477,7 @@ And add the association to the Account model:
 
 ```ruby
 class Account < Sequel::Model
-  one_to_one :post
+  one_to_many :post
   ...
 end
 ```
@@ -501,11 +497,6 @@ And change the content of the migration:
 ```ruby
 # db/migrate/004_migrate_existing_posts_to_first_account.rb
 Sequel.migration do
-  class Account < Sequel::Model; end
-  class Post < Sequel::Model
-    many_to_one :account
-  end
-
   up do
     first_account_id = from(:accounts).get(:id)
 
