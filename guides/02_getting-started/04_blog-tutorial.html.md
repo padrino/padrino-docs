@@ -14,7 +14,7 @@ explained and links will be provided to further information on different
 relevant topics.
 
 --------------------------------------------------------------------------------
-
+<!--
 ## Screencast
 
 There is also a screencast available for this tutorial. You can check it out by:
@@ -25,33 +25,38 @@ There is also a screencast available for this tutorial. You can check it out by:
 Please note that the screencast was written for Padrino 0.12.2, so some things
 mentioned there may not be valid.
 
+-->
+
 --------------------------------------------------------------------------------
 
 ## Study Guide
 
 To skip this tutorial or immediately see the complete blog tutorial project, you
-can either checkout the
-[blog tutorial repository](https://github.com/padrino/sample_blog_updated "blog tutorial
+can checkout the
+[blog tutorial repository](https://github.com/padrino/blog-tutorial "blog tutorial
 repository") using Git:
 
+
 ```shell
-$ git clone git@github.com:padrino/sample_blog_updated.git
+$ git clone git@github.com:padrino/blog-tutorial.git
 ```
 
+
+<!--
 or even execute the
 [blog tutorial project template](https://github.com/padrino/padrino-recipes/blob/master/templates/sampleblog_template.rb "blog tutorial
 project template") which will automatically build the blog project step by step
 using our excellent template runner. You can do this simply by invoking:
 
+
 ```shell
-$ padrino g project sample_blog --template sampleblog
+$ padrino g project blog-tutorial --template blogtutorial
 ```
+
 
 To learn more about our template generator, be sure to check out the
 [generators guide](/guides/generators/overview "generators guide").
-
-Please note that you can find the code for code for Padrino 0.12.2 under
-[blog tutorial repository for Padrino 0.12.2](http://github.com/padrino/sample_blog "blog tutorial repository").
+-->
 
 --------------------------------------------------------------------------------
 
@@ -88,17 +93,17 @@ templating language, the RSpec testing framework and the jQuery JavaScript
 library. With that in mind, let us generate our new project:
 
 ```shell
-$ padrino g project sample_blog_updated -t rspec -e haml -c scss -s jquery -d activerecord -b
+$ padrino g project blog-tutorial -t rspec -e haml -c scss -s jquery -d sequel -b
 ```
 
 This command will generate our basic Padrino project and the print out a nice
 report of the files generated. The output of this generation command can be
-viewed in [this gist](https://gist.github.com/wikimatze/a399cf4a143d0360fb262de92cdf8f8e) file.
-Notice the `-b` flag in the previous command which automatically instructs bundler
+viewed in [this gist](https://gist.github.com/wikimatze/0f8b63d28bccac84014f8a592f79197d "gist for initial project
+generation") file. Notice the `-b` flag in the previous command which automatically instructs bundler
 to install all dependencies. All we need to do now is `cd` into our brand new application.
 
 ```shell
-$ cd sample_blog_updated
+$ cd blog-tutorial
 ```
 
 Now, the terminal should be inside the root of our newly generated application
@@ -129,8 +134,7 @@ The following important directories are also generated:
 - `spec` – This is where your model and controller tests should be stored.
 
 For now, the defaults for the database connection settings (`config/database.rb`) are
-OK for this tutorial. A sqlite3 database will be used that is stored inside
-`db/sample_blog_development.db`.
+OK for this tutorial.
 
 This environment can be configured in config/apps.rb as:
 ```
@@ -159,10 +163,9 @@ following routes:
 
 ```ruby
 # app/app.rb
-module SampleBlogUpdated
+module BlogTutorial
   class App < Padrino::Application
     register ScssInitializer
-    use ConnectionPoolManagement
     register Padrino::Mailer
     register Padrino::Helpers
 
@@ -170,11 +173,11 @@ module SampleBlogUpdated
 
     # Add these routes below to the app file...
     get "/" do
-      "Hello World!"
+      'Hello World!'
     end
 
-    get :about, :map => '/about_us' do
-      render :haml, "%p This is a sample blog created to demonstrate how Padrino works!"
+    get :about, :map => '/about-us' do
+      render :haml, '%p This is a sample blog created to demonstrate how Padrino works!'
     end
   end
 end
@@ -182,7 +185,7 @@ end
 
 Note that the first route here sets up a simple string to be returned at the
 root URL of the application. The second route defines a one-line `about` page
-inline using Slim which is then explicitly mapped to the `/about\_us` URL. The
+inline using Haml which is then explicitly mapped to the `/about-us` URL. The
 symbol `:about` is used to reference the route later.
 
 Be sure to check out the [controllers guide](/guides/controllers/overview "controllers
@@ -192,26 +195,26 @@ guide") for a comprehensive overview of the routing system.
 
 ## Admin Dashboard Setup
 
-Next, this is a good time to setup the Padrino Admin panel which allows us to
+Next, this is a good time to setup the Padrino admin panel which allows us to
 easily view, search and modify data for a project. Let's go back to the console
 and enter:
 
 ```shell
 $ padrino g admin
-$ bundle
 ```
 
 This will create the admin sub-application within your project and mount it
 within the `config/apps.rb` file. The output of this command can be viewed in
-[this gist](https://gist.github.com/wikimatze/59220279f272a5339806 "this gist") file.
+[this gist](https://gist.github.com/wikimatze/2a325cb7d019371a5403d7420cdf2458 "gist for admin generation output") file.
 
-Now, we should follow the instructions and create our database, run our
-migrations and run the seed tasks which has been generated in `db/seeds.rb`. Go
-to the terminal and run:
+Now, you should follow the instructions of the output:
 
-```shell
-$ bundle exec rake db:migrate
-$ bundle exec rake db:seed
+```sh
+  1) Run 'bundle'
+  2) Run 'bundle exec rake db:create' if you have not created a database yet
+  3) Run 'bundle exec rake db:migrate'
+  4) Run 'bundle exec rake db:seed'
+  5) Visit the admin panel in the browser at '/admin'
 ```
 
 During this process, you will be prompted to enter an email and password to use
@@ -236,10 +239,10 @@ $ padrino s
 You should see no errors, and the terminal should output:
 
 ```shell
-=> Padrino/0.13.1 has taken the stage development at http://127.0.0.1:3000
-[2016-03-17 06:09:51] INFO  WEBrick 1.3.1
-[2016-03-17 06:09:51] INFO  ruby 2.2.1 (2015-02-26) [i686-linux]
-[2016-03-17 06:09:51] INFO  WEBrick::HTTPServer#start: pid=24413 port=3000
+=> Padrino/0.14.1.1 has taken the stage development at http://127.0.0.1:3000
+[2017-05-20 09:40:49] INFO  WEBrick 1.3.1
+[2017-05-20 09:40:49] INFO  ruby 2.4.1 (2017-03-22) [i686-linux]
+[2017-05-20 09:40:49] INFO  WEBrick::HTTPServer#start: pid=26641 port=3000
 ```
 
 To read more about available terminal commands, checkout the
@@ -247,12 +250,11 @@ To read more about available terminal commands, checkout the
 and Terminal Commands") guide.
 
 Your application now exists on <http://localhost:3000>. Visit this URL in the
-browser and you should see the route render `Hello World!` route that we defined
-earlier in this tutorial.
+browser and you should see the `Hello World!`.
 
 We can also visit the admin panel by going to the URL:
 <http://localhost:3000/admin> and then log in using the admin credentials
-specified during the `rake seed` command performed earlier. Feel free to explore
+specified during the `rake db:seed` command performed earlier. Feel free to explore
 this area and checkout the existing accounts. We will come back to this in more
 detail later. To read more about the features of the admin panel, check out the
 [Admin Panel Guide](/guides/features/padrino-admin "Admin Panel Guide").
@@ -278,29 +280,35 @@ the `-a` option to the command - this is handy if you would like to have models 
 should be coped only to sub-apps.
 
 ```shell
-$ padrino g model post title:string body:text
-       apply  orms/activerecord
+$ padrino g model post title:string body:text created_at:datetime
+       apply  orms/sequel
        apply  tests/rspec
       create  models/post.rb
-      create  spec/app/models/post_spec.rb
+      create  spec/models/post_spec.rb
       create  db/migrate/002_create_posts.rb
 ```
 
 Go ahead and migrate the database now.
 
 ```shell
-$ padrino rake ar:migrate
-=> Executing Rake db:migrate ...
-  DEBUG -  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
-   INFO -  Migrating to CreatePosts (2)
-  DEBUG -   (0.1ms)  begin transaction
-== 2 CreatePosts: migrating ===================================================
--- create_table(:posts)
-...
+$ padrino rake sq:migrate
+=> Executing Rake sq:migrate ...
+   INFO -  (0.000159s) PRAGMA foreign_keys = 1
+   INFO -  (0.000021s) PRAGMA case_sensitive_like = 1
+   INFO -  (0.000080s) SELECT sqlite_version()
+   INFO -  (0.000037s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+   INFO -  (0.000077s) SELECT * FROM `schema_info` LIMIT 1
+   INFO -  (0.000061s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+   INFO -  (0.000058s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+   INFO -  (0.000063s) SELECT `version` FROM `schema_info` LIMIT 1
+   INFO -  Begin applying migration version 2, direction: up
+   INFO -  (0.014988s) CREATE TABLE `posts` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `title` varchar(255), `body` Text, `created_at` date)
+   INFO -  (0.017424s) UPDATE `schema_info` SET `version` = 2
+   INFO -  Finished applying migration version 2, direction: up, took 0.028866 seconds
+<= sq:migrate:up executed
 ```
 
-This creates the post model. Next, let's create the controller to allow the
-basic viewing functionality.
+Next, let's create the controller to allow the basic viewing functionality.
 
 ```shell
 $ padrino g controller posts get:index get:show
@@ -318,14 +326,14 @@ controller.
 
 ```ruby
 # app/controllers/posts.rb
-SampleBlogUpdated::App.controllers :posts do
+BlogTutorial::App.controllers :posts do
   get :index do
-    @posts = Post.order('created_at DESC').all
+    @posts = Post.reverse_order(:created_at).all
     render 'posts/index'
   end
 
   get :show, :with => :id do
-    @post = Post.find_by_id(params[:id])
+    @post = Post[id: params[:id]]
     render 'posts/show'
   end
 end
@@ -348,7 +356,7 @@ Next, we'll want to create the views for the two controller actions we defined:
 
 -# app/views/posts/_post.haml
 .post
-  .title= link_to post.title, url_for(:posts, :show, :id => post)
+  .title= link_to post.title, url_for(:posts, :show, :id => post.id)
   .date= time_ago_in_words(post.created_at || Time.now) + ' ago'
   .body= simple_format(post.body)
 
@@ -367,13 +375,12 @@ manage posts using Padrino Admin, run this command.
 
 ```shell
 $ padrino g admin_page post
-=> Located unlocked Gemfile for development
       create  admin/controllers/posts.rb
       create  admin/views/posts/_form.haml
       create  admin/views/posts/edit.haml
       create  admin/views/posts/index.haml
       create  admin/views/posts/new.haml
-      inject  admin/app.rb
+      insert  admin/app.rb
 ```
 
 Let's make sure the server is running (`padrino s`) and give this admin
@@ -389,7 +396,7 @@ Padrino Admin allows you to easily create new records by clicking "New". It has
 a form all ready complete with the fields you had generated prior in the
 creation of the Post model.
 
-**Note:** make sure to use `padrino g admin_page` **after** the creation of your
+**Note:** make sure to use `padrino g admin_page post` **after** the creation of your
   model and their migration.
 
 Now that you have added a few posts through the admin interface, check out
@@ -402,14 +409,30 @@ routes` command:
 ```shell
 $ padrino rake routes
 
-Application: SampleBlogUpdated::Admin
+Application: BlogTutorial::Admin
     URL                           REQUEST  PATH
     (:sessions, :new)               GET    /admin/sessions/new
-    ...
+    (:sessions, :create)           POST    /admin/sessions/create
+    (:sessions, :destroy)         DELETE   /admin/sessions/destroy
+    (:base, :index)                 GET    /admin/
+    (:accounts, :index)             GET    /admin/accounts
+    (:accounts, :new)               GET    /admin/accounts/new
+    (:accounts, :create)           POST    /admin/accounts/create
+    (:accounts, :edit)              GET    /admin/accounts/edit/:id
+    (:accounts, :update)            PUT    /admin/accounts/update/:id
+    (:accounts, :destroy)         DELETE   /admin/accounts/destroy/:id
+    (:accounts, :destroy_many)    DELETE   /admin/accounts/destroy_many
+    (:posts, :index)                GET    /admin/posts
+    (:posts, :new)                  GET    /admin/posts/new
+    (:posts, :create)              POST    /admin/posts/create
+    (:posts, :edit)                 GET    /admin/posts/edit/:id
+    (:posts, :update)               PUT    /admin/posts/update/:id
+    (:posts, :destroy)            DELETE   /admin/posts/destroy/:id
+    (:posts, :destroy_many)       DELETE   /admin/posts/destroy_many
 
-Application: SampleBlogUpdated::App
+Application: BlogTutorial::App
     URL                 REQUEST  PATH
-    (:about)              GET    /about_us
+    (:about)              GET    /about-us
     (:posts, :index)      GET    /posts
     (:posts, :show)       GET    /posts/show/:id
 ```
@@ -431,64 +454,89 @@ $ padrino g migration AddAccountToPost account_id:integer
 ```
 
 This creates a new migration with the desired field attaching the `account_id` to
-the post.
-
-Let's modify the migration file to assign a user to all existing posts:
+the post. Let's modify this migration to add the accounts FK to posts:
 
 ```ruby
 # db/migrate/003_add_account_to_post.rb
-class AddAccountToPost < ActiveRecord::Migration
-  def self.up
-    change_table :posts do |t|
-      t.integer :account_id
+
+Sequel.migration do
+  up do
+    alter_table :posts do
+      add_column :account_id, Integer
     end
-    # and assigns a user to all existing posts
-    first_account = Account.first
-    Post.all.each { |p| p.update_attribute(:account, first_account) }
   end
 
-  def self.down
-    change_table :posts do |t|
-      t.remove :account_id
+  down do
+    alter_table :posts do
+      drop_column :account_id
     end
   end
 end
 ```
+
 
 Now, we'll return to the Post Model to setup the `account` association and add a
 few validations.
 
 ```ruby
-# app/models/post.rb
-class Post < ActiveRecord::Base
-  belongs_to :account
-  validates_presence_of :title
-  validates_presence_of :body
+# models/post.rb
+
+class Post < Sequel::Model
+  many_to_one :account
+
+  plugin :validation_helpers
+  def validate
+    super
+    validates_presence [:title, :body]
+  end
 end
 ```
 
-Before running the migration we need to add the `models` folder to the `dependency\_paths`:
+And add the association to the Account model:
+
 
 ```ruby
-# config/boots.rb
-Padrino.before_load do
-  Padrino.dependency_paths << Padrino.root('models/**/*.rb')
+class Account < Sequel::Model
+  one_to_many :posts
+  ...
 end
 ```
 
-Without it, the migration cannot find the `Account.first`. Now we are ready
-to run the migration:
+Now we are ready to run the migration: `$ padrino rake sq:migrate`
+
+Let's create another migration to assign the first user to all existing posts:
 
 ```shell
-$ padrino rake db:migrate
-=> Executing Rake db:migrate ...
-   INFO -  Migrating to AddAccountToPost (3)
-  DEBUG -   (0.1ms)  begin transaction
-== 3 AddAccountToPost: migrating ==============================================
--- change_table(:posts)
+$ padrino g migration MigrateExistingPostsToFirstAccount
+       apply  orms/activerecord
+      create  db/migrate/004_migrate_existing_posts_to_first_account.rb
 ```
 
-Our Post now has the appropriate associations and validations. We'll need to go
+And change the content of the migration:
+
+```ruby
+# db/migrate/004_migrate_existing_posts_to_first_account.rb
+Sequel.migration do
+  up do
+    first_account_id = from(:accounts).get(:id)
+
+    if first_account_id
+      from(:posts).update(account_id: first_account_id)
+    end
+  end
+
+  down do
+    from(:posts).update(account_id: nil)
+  end
+end
+```
+
+And run the migrations again: `$ padrino rake sq:migrate`
+
+Our database now has the appropriate associations and validations.
+
+
+We'll need to go
 inside the generated Padrino Admin and make some changes to include the account
 with the post.
 
@@ -499,21 +547,14 @@ to the creation of a new Post.
 ```ruby
 # admin/controllers/posts.rb
 Admin.controllers :posts do
-# ...
+  ...
+
   post :create do
     @post = Post.new(params[:post])
     @post.account = current_account
-    if @post.save
-      @title = pat(:create_title, :model => "post #{@post.id}")
-      flash[:success] = pat(:create_success, :model => 'Post')
-      params[:save_and_continue] ? redirect(url(:posts, :index)) : redirect(url(:posts, :edit, :id => @post.id))
-    else
-      @title = pat(:create_title, :model => 'post')
-      flash.now[:error] = pat(:create_error, :model => 'post')
-      render 'posts/new'
-    end
+    ...
   end
-# ...
+ ...
 end
 ```
 
@@ -566,43 +607,51 @@ directory:
 
 ```haml
 -# app/views/layouts/application.haml
+
 !!! Strict
 %html
   %head
-    %title= [@title, "Padrino Sample Blog"].compact.join(" | ")
+    %title
+      = [@title, "Padrino Sample Blog"].compact.join(" | ")
     = stylesheet_link_tag 'normalize', 'application'
     = javascript_include_tag 'jquery', 'application'
     = yield_content :include
-  %body
-    #header
-      %h1 Sample Padrino Blog
-      %ul.menu
+    %body
+      #header
+        %h1 Sample Padrino Blog
+        %ul.menu
         %li= link_to 'Blog', url_for(:posts, :index)
         %li= link_to 'About', url_for(:about)
-    #container
-      #main= yield
-      #sidebar
-        = form_tag url_for(:posts, :index), :method => 'get'  do
-          Search for:
-          = text_field_tag 'query', :value => params[:query]
-          = submit_tag 'Search'
-        %p Recent Posts
-        %ul.bulleted
-          %li Item 1 - Lorem ipsum dolorum itsum estem
-          %li Item 2 - Lorem ipsum dolorum itsum estem
-          %li Item 3 - Lorem ipsum dolorum itsum estem
-        %p Categories
-        %ul.bulleted
-          %li Item 1 - Lorem ipsum dolorum itsum estem
-          %li Item 2 - Lorem ipsum dolorum itsum estem
-          %li Item 3 - Lorem ipsum dolorum itsum estem
-        %p Latest Comments
-        %ul.bulleted
-          %li Item 1 - Lorem ipsum dolorum itsum estem
-          %li Item 2 - Lorem ipsum dolorum itsum estem
-          %li Item 3 - Lorem ipsum dolorum itsum estem
-    #footer
-      Copyright (c) 2009-2016 Padrino
+      #container
+        #main= yield
+        #sidebar
+          = form_tag url_for(:posts, :index), :method => 'get'  do
+            Search for:
+            = text_field_tag 'query', :value => params[:query]
+            = submit_tag 'Search'
+          %p
+            Recent Posts
+          %ul.bulleted
+            %li Item 1 - Lorem ipsum dolorum itsum estem
+            %li Item 2 - Lorem ipsum dolorum itsum estem
+            %li Item 3 - Lorem ipsum dolorum itsum estem
+          %p
+            Categories
+            %ul.bulleted
+              %li
+                Item 1 - Lorem ipsum dolorum itsum estem
+              %li
+                Item 2 - Lorem ipsum dolorum itsum estem
+              %li
+                Item 3 - Lorem ipsum dolorum itsum estem
+            %p
+              Latest Comments
+              %ul.bulleted
+                %li Item 1 - Lorem ipsum dolorum itsum estem
+                %li Item 2 - Lorem ipsum dolorum itsum estem
+                %li Item 3 - Lorem ipsum dolorum itsum estem
+      #footer
+        Copyright (c) 2009-2017 Padrino
 ```
 
 This layout creates a basic structure for the blog and requires the necessary
@@ -613,14 +662,14 @@ and stubs for list items left as an exercise for the reader.
 Next, we simply need to setup the style sheets. There are two we will use for
 this demo. The first is a generic [normalize CSS reset by Nicolas Gallagher](https://necolas.github.io/normalize.css/). The
 full reset style sheet can be found in the
-[sample blog repository](https://github.com/padrino/sample_blog_updated/blob/master/public/stylesheets/normalize.css
-"sambple blog repository") and should be put into
+[sample blog repository](https://raw.githubusercontent.com/padrino/blog-tutorial/master/public/stylesheets/normalize.css
+"sample blog repository") and should be put into
 `public/stylesheets/normalize.css`.
 
 The second style sheet is the application style sheet to give our blog a better
 look and feel. The
 full contents of the style sheet can be found in the
-[sample blog repository](https://github.com/padrino/sample_blog_updated/blob/master/app/stylesheets/application.scss
+[sample blog repository]( https://raw.githubusercontent.com/padrino/blog-tutorial/master/app/stylesheets/application.scss
 "sample blog repository") and should be put into
 `app/stylesheets/application.scss`.
 
@@ -661,8 +710,8 @@ generate the RSS feed using builder.
 - @title = "Welcome"
 
 - content_for :include do
-  = feed_tag(:rss, url(:posts, :index, :format => :rss),:title => "RSS")
-  = feed_tag(:atom, url(:posts, :index, :format => :atom),:title => "ATOM")
+  = feed_tag(:rss, url(:posts, :index, :format => :rss), :title => "RSS")
+  = feed_tag(:atom, url(:posts, :index, :format => :atom), :title => "ATOM")
 
 #posts= partial 'posts/post', :collection => @posts
 ```
@@ -671,12 +720,13 @@ Next, let us add the templates for atom using [builder](https://github.com/jimwe
 
 ```ruby
 # app/views/posts/index.atom.builder
+
 xml.instruct!
 xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
   xml.title   "Padrino Sample Blog"
   xml.link    "rel" => "self", "href" => url_for(:posts, :index)
   xml.id      url_for(:posts, :index)
-  xml.updated @posts.first.updated_at.strftime "%Y-%m-%dT%H:%M:%SZ" if @posts.any?
+  xml.updated @posts.first.created_at.strftime "%Y-%m-%dT%H:%M:%SZ" if @posts.any?
   xml.author  { xml.name "Padrino Team" }
 
   @posts.each do |post|
@@ -684,9 +734,8 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
       xml.title   post.title
       xml.link    "rel" => "alternate", "href" => url_for(:posts, :show, :id => post)
       xml.id      url_for(:posts, :show, :id => post)
-      xml.updated post.updated_at.strftime "%Y-%m-%dT%H:%M:%SZ"
-      xml.author  { xml.name post.account.email }
-      xml.summary post.body
+      xml.updated post.created_at.strftime "%Y-%m-%dT%H:%M:%SZ"
+      xml.author  {}
     end
   end
 end
@@ -696,6 +745,7 @@ and also the template for rss using builder:
 
 ```ruby
 # app/views/posts/index.rss.builder
+
 xml.instruct!
 xml.rss "version" => "2.0", "xmlns:dc" => "http://dublincore.org/documents/dc-xml-guidelines/" do
   xml.channel do
@@ -707,8 +757,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://dublincore.org/documents/dc-xm
       xml.item do
         xml.title post.title
         xml.description post.body
-        xml.pubDate post.created_at.to_s(:rfc822)
-        xml.link url_for(:posts, :show, :id => post)
+        xml.pubDate post.created_at
+        xml.link url_for(:posts, :show, :id => post.id)
       end
     end
   end
@@ -717,228 +767,5 @@ end
 
 Please note, that you have to add `builder` in your `Gemfile` and run `bundle`.
 Let's check out our changes. View the available feeds at
-<http://localhost:3000/posts> . You now have rss and atom feeds available for
-your blog!
-
---------------------------------------------------------------------------------
-
-## Deploying our Application
-
-Finally, our basic blog has been built and we should deploy our application so
-the world can check it out! The easiest way to do this quickly and for free is
-to use a service such as Heroku. Let's deploy our application to Heroku right
-now.
-
-The best way to get started using Heroku is by following the
-[Heroku Quickstart Guide](https://devcenter.heroku.com/start "Heroku Quickstart
-guide"). As explained in the guide, be sure to have Git installed and
-[setup a Heroku account](https://signup.heroku.com/dc "setup a Heroku account") as
-well as
-[install the Heroku command-line tool](https://devcenter.heroku.com/articles/heroku-command
-"install the Heroku command-line tool") before continuing this tutorial.
-
-Now, to deploy to Heroku, the application needs to be set up as a Git
-repository:
-
-```shell
-$ cd sample-blog-updated
-$ git init
-$ git add .
-$ git commit -m "initial commit for app"
-```
-
-This initializes the Git repository, adds all the contents and commit them to
-the repo.
-
-Currently Padrino defaults to **SQLite** but Heroku only supports
-**PostgreSQL**, so we'll need to add `pg` as a dependency for production as well add `sqlite3`
-for development.
-
-```ruby
-# Gemfile
-# ...
-group :development do
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
-end
-```
-
-Now you can run the following on your local machine to avoid the installation of
-the `pg` gem:
-
-```shell
-$ bundle --without production
-```
-
-and then commit these changes to your git repository:
-
-```shell
-$ git add --all
-$ git commit -m "added pg dependency"
-```
-
-Next, the application must be set up on Heroku.
-
-```shell
-$ heroku login
-  Enter your Heroku credentials.
-  Email: <your-email>
-  Password (typing will be hidden):
-  Logged in as <your-email>
-$ heroku create
-  Creating app... done, stack is cedar-14
-  https://calm-tor-92217.herokuapp.com/ | https://git.heroku.com/calm-tor-92217.git
-$ git push heroku master
-```
-
-That's it, your app is now running on Heroku! To see if we have a database addon connected
-to out heroku app, run `heroku addons`:
-
-```sh
-$ heroku addons
-  Add-on                                       Plan       Price
-  ───────────────────────────────────────────  ─────────  ─────
-  heroku-postgresql (postgresql-shaped-79758)  hobby-dev  free
-   └─ as DATABASE
-
-  The table above shows add-ons and the attachments to the current app (calm-tor-92217) or other apps.
-```
-
-and configure the `config/database.rb` for production:
-
-```ruby
-# config/database.rb
-postgres = URI.parse(ENV['DATABASE_URL'] || '')
-
-ActiveRecord::Base.configurations[:production] = {
-  :adapter  => 'postgresql',
-  :encoding => 'utf8',
-  :username => postgres.user,
-  :password => postgres.password,
-  :host     => postgres.host,
-  :database => postgres.path[1..-1],
-  :port     => 5432
-}
-```
-
-To understand where the `postgres` variable get's it's information we can check
-the credentials with `heroku config`:
-
-```sh
-$ heroku config
-=== calm-tor-92217 Config Vars
-DATABASE_URL:               postgres://qsqrhctujjyioy:_lurVOusyuRrOa5TxJPPsOnld0@ec2-107-22-248-166.compute-1.amazonaws.com:5432/dfl2jbqk0hhvj9
-LANG:                       en_US.UTF-8
-RACK_ENV:                   production
-```
-
-And we can use these in our `config/database.rb`:
-
-```ruby
-ActiveRecord::Base.configurations[:production] = {
-  :adapter  => 'postgresql',
-  :encoding => 'utf8',
-  :username => 'qsqrhctujjyioy',
-  :password => '_lurVOusyuRrOa5TxJPPsOnld0',
-  :host     => 'ec2-107-22-248-166.compute-1.amazonaws.com',
-  :database => 'dfl2jbqk0hhvj9',
-  :port     => 5432
-}
-```
-
-Run `heroku open` to open your site in your default web browser.
-
-Finally we need to tweak our `seed.rb`:
-
-```ruby
-# db/seeds.rb
-email     = "info@padrinorb.com"
-password  = "admin"
-
-shell.say ""
-
-account = Account.create(:email => email,
-                         :name => "Foo",
-                         :surname => "Bar",
-                         :password => password,
-                         :password_confirmation => password,
-                         :role => "admin")
-
-if account.valid?
-  shell.say "================================================================="
-  shell.say "Account has been successfully created, now you can login with:"
-  shell.say "================================================================="
-  shell.say "   email: #{email}"
-  shell.say "   password: #{password}"
-  shell.say "================================================================="
-else
-  shell.say "Sorry but some thing went worng!"
-  shell.say ""
-  account.errors.full_messages.each { |m| shell.say "   - #{m}" }
-end
-
-shell.say ""
-```
-
-Feel free to change the seed values above.
-
-Now run the following in the console:
-
-```shell
-$ git add .
-$ git commit -m "Added Postgres support"
-$ git push heroku master
-```
-
-Now run our `migrations/seeds`:
-
-
-```shell
-$ heroku run rake ar:migrate
-$ heroku run rake seed
-```
-
-You'll see something like:
-
-```shell
-$ heroku run rake ar:migrate
-Running rake ar:migrate on calm-tor-92217.... up, run.7316
-== 1 CreateAccounts: migrating ================================================
--- create_table(:accounts)
-   -> 0.0162s
-== 1 CreateAccounts: migrated (0.0164s) =======================================
-
-== 2 CreatePosts: migrating ===================================================
--- create_table(:posts)
-   -> 0.0078s
-== 2 CreatePosts: migrated (0.0080s) ==========================================
-
-== 3 AddAccountToPost: migrating ==============================================
--- change_table(:posts)
-   -> 0.0048s
-== 3 AddAccountToPost: migrated (0.0254s) =====================================
-
-$ heroku run rake seed
-Running rake seed on calm-tor-92217.... up, run.9169
-
-=================================================================
-Account has been successfully created, now you can login with:
-=================================================================
-   email: info@padrinorb.com
-   password: *****
-=================================================================
-```
-
-Now let's open our newly deployed app:
-
-```shell
-$ heroku open
-```
-
-and surf. You can see [posts](https://calm-tor-92217.herokuapp.com/posts "posts") and the
-[admin screen](https://calm-tor-92217.herokuapp.com/admin/sessions/new "admin screen").
-
-Enjoy!
+<http://localhost:3000/posts.atom> or <http://localhost:3000/posts.rss>.
+You now have rss and atom feeds available for your blog!
