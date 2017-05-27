@@ -113,8 +113,7 @@ $ cd blog
 $ bundle
 ```
 
-Padrino ships with a beautiful Admin interface, highly inspired by the
-[web-app-theme](http://github.com/pilu/web-app-theme "web-app-theme").
+Padrino ships with a beautiful Admin interface.
 
 Remember that Padrino has been principally structured and designed for mounting
 multiple applications at the same time. Under this perspective, our **admin**
