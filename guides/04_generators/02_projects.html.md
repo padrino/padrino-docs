@@ -68,14 +68,15 @@ them would also be appreciated).
 
 The project generator has several available configuration options:
 
-Options | Default | Aliases | Description
-------- | ------- | ------- | ------------------------------------------------
-bundle  | false   | -b      | execute bundler dependencies installation
-root    | .       | -r      | the root destination path for the project
-dev     | false   | none    | use edge version from local git checkout
-app     | nil     | -n      | specify app name different from the project name
-tiny    | false   | -i      | generate tiny project skeleton
-adapter | sqlite  | -a      | specify orm db adapter (mysql, sqlite, postgres)
+Options |            Default | Aliases | Description
+------------------ | ------- | ------- | ------------------------------------------------
+bundle             | false   | -b      | execute bundler dependencies installation
+root               | .       | -r      | the root destination path for the project
+dev                | false   | none    | use edge version from local git checkout
+app                | nil     | -n      | specify app name different from the project name
+tiny               | false   | -i      | generate tiny project skeleton
+adapter            | sqlite  | -a      | specify orm db adapter (mysql, sqlite, postgres)
+--migration_format | number  |         | format for migrations (number, timestamp)
 
 The available components and their default options are listed below:
 
