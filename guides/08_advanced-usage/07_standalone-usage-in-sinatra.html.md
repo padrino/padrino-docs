@@ -135,7 +135,7 @@ template engine detection, among other more advanced features.
 ```ruby
 # app.rb
 require 'sinatra/base'
-require 'padrino-core/application/rendering'
+require 'padrino-helpers'
 
 class Application < Sinatra::Base
   register Padrino::Rendering
