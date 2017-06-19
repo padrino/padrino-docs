@@ -1,13 +1,11 @@
 ---
-date: 2011-05-10
-author: DAddYE
-email: d.dagostino@lipsiasoft.com
-categories: ruby faqs
-tags: padrino ruby sinatra omniauth
+chapter: Advanced Usage
 title: Padrino and OmniAuth Overview
 ---
 
-In this post, we will show you how to mix our [Access Control](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/access_control.rb) described [here](/guides/features/padrino-admin/) with the beautiful [omniauth](https://github.com/intridea/omniauth) rack middleware.
+# Padrino and OmniAuth Overview
+
+This article will show you how to mix our [Access Control](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/access_control.rb) described [here](/guides/features/padrino-admin/) with the beautiful [omniauth](https://github.com/intridea/omniauth) rack middleware.
 
 The Padrino admin authentication and access control system provides a simple foundation from which you can create your authentication system. Combined with [omniauth](https://github.com/intridea/omniauth) you can then easily leverage the system to allow authentication through a variety of methods. Read below for more details on how to integrate them.
 
@@ -175,6 +173,4 @@ Now you can login here <http://localhost:3000>
 Follow your login process and then if needed <http://localhost:3000/destroy>
 
 That is all you need to setup a barebones authentication system in Padrino. This post has gotten you started with a working “Account” and role based authentication solution with integrated omniauth support. From here, obviously there are a number of other features you might want to add on top to flesh out, and that is left for another post or as an exercise to the reader.
-
-If you are interested in more Padrino information, check out [why you should use](http://www.padrinorb.com/pages/why) our framework and our [Blog Tutorial](http://www.padrinorb.com/guides/blog-tutorial) along with our other [Padrino Guides](http://www.padrinorb.com/guides).
 
