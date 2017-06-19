@@ -7,7 +7,7 @@ tags: padrino ruby sinatra omniauth
 title: Padrino and OmniAuth Overview
 ---
 
-In this post, we will show you how to mix our [Access Control](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/access_control.rb) described [here](/guides/padrino-admin#admin-authentication) with the beautiful [omniauth](https://github.com/intridea/omniauth) rack middleware.
+In this post, we will show you how to mix our [Access Control](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/access_control.rb) described [here](/guides/features/padrino-admin/) with the beautiful [omniauth](https://github.com/intridea/omniauth) rack middleware.
 
 The Padrino admin authentication and access control system provides a simple foundation from which you can create your authentication system. Combined with [omniauth](https://github.com/intridea/omniauth) you can then easily leverage the system to allow authentication through a variety of methods. Read below for more details on how to integrate them.
 
@@ -40,6 +40,13 @@ Now we need to add a model called `Account` to act as our persistence model:
 Now we need to create and migrate our database:
 
     $ padrino rake ar:create ar:migrate
+
+   NOTE: If your migration fails with something like this 
+   
+   `Directly inheriting from ActiveRecord::Migration is not supported. Please specify the Rails release the migration was written ...` 
+   
+   then you need to update the `db/migrate/001_create_account.rb` with 
+   `class CreateAccounts < ActiveRecord::Migration[4.2]`
 
 Open your favorite editor and browse and edit `Gemfile` and add `omniauth` gem and the providers for twitter and facebook.
 We also add the `haml` gem as it's not included by default in the "tiny" padrino template:
@@ -103,7 +110,7 @@ To obtain a consumer\_key and consumer\_secret for Twitter, you need to:
 Next, we can integrate our authentication system within in `app/app.rb`:
 
     # app/app.rb
-    # at the top before the class definition
+    # at the top after the enable :sessions
     register Padrino::Admin::AccessControl
 
     set :login_page, "/" # determines the url login occurs
@@ -155,8 +162,8 @@ We invoked a method `Account.create_with_omniauth` above, so edit `app/models/ac
       create! do |account|
         account.provider = auth["provider"]
         account.uid      = auth["uid"]
-        account.email    = auth["name"]
-        account.email    = auth["user_info"]["email"] if auth["user_info"] # we get this only from FB
+        account.name    = auth["info"]["name"] if auth["info"]
+        account.email    = auth["info"]["email"] if auth["info"] # we get this only from FB
         account.role     = "users"
       end
     end
