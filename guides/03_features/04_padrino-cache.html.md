@@ -265,6 +265,10 @@ Another use of cache_key is when you’d like to include query string parameters
 as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 
+    cache_key { request.path_info + (params[:page].present? ? "?page=#{params[:page]}" : '') }
+
+If you're using `ActiveSupport`, you can make this a bit more robust:
+
     cache_key { request.path_info + '?' + params.slice('page').to_param }
 
 ## Caching Store
