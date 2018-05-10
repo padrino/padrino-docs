@@ -57,25 +57,25 @@ A simple template (plugin) file might look like this:
 
 ```ruby
 # my_template.rb
-project :test => :shoulda, :orm => :activerecord
-generate :model, "post title:string body:text"
-generate :controller, "posts get:index get:new post:new"
-generate :migration, "AddEmailToUser email:string"
+
+project :test => :rspec, :orm => :activerecord
+generate 'model', 'account username:string password:string'
+generate 'model', 'post title:string body:text'
+generate 'controller', 'posts get:index get:new post:new'
+generate 'controller', 'users get:index'
+generate 'migration', 'AddEmailToAccount email:string'
 require_dependencies 'nokogiri'
 
 git :init
 git :add, "."
-git :commit, "initial commit"
+git :commit, "-m 'initial commit'"
 
-inject_into_file "app/models/post.rb","#Hello", :after => "end\n"
-rake "ar:create ar:migrate"
-initializer :test, "# Example"
+inject_into_file 'app/models/post.rb','#Hello', :after => "end\n"
+rake 'ar:create ar:migrate'
+initializer :test, '# Example'
 
-app :testapp do
-  generate :controller, "users get:index"
-end
-git :add, "."
-git :commit, "second commit"
+git :add, '.'
+git :commit, "- m 'second commit'"
 ```
 
 Keep in mind that the template file is pure Ruby and has full access to
