@@ -14,7 +14,6 @@ explained and links will be provided to further information on different
 relevant topics.
 
 --------------------------------------------------------------------------------
-<!--
 ## Screencast
 
 There is also a screencast available for this tutorial. You can check it out by:
@@ -24,8 +23,6 @@ There is also a screencast available for this tutorial. You can check it out by:
 
 Please note that the screencast was written for Padrino 0.12.2, so some things
 mentioned there may not be valid.
-
--->
 
 --------------------------------------------------------------------------------
 
