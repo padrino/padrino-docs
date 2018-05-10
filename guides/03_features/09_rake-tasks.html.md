@@ -10,8 +10,7 @@ generated project folder structure; in fact it's not strictly needed to build a
 new one because we can already use padrino rake:
 
 ```shell
-$ padrino rake
-# or for a list of tasks
+# for a list of tasks
 $ padrino rake -T
 ```
 
