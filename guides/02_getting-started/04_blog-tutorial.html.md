@@ -59,18 +59,19 @@ To learn more about our template generator, be sure to check out the
 
 ## Installation
 
-In order to develop a Padrino application, we must have a few things installed.
-First, we must obviously have [ruby](http://www.ruby-lang.org/en/ "ruby") and
+In order to develop a Padrino application, we have to do a few things.
+First, we must obviously have [ruby](http://www.ruby-lang.org/en/ "ruby") (at least version 2.2.2 or laster) and
 [rubygems](https://rubygems.org/ "rubygems") installed. Next, we must install
 the padrino framework gems:
+
 
 ```shell
 $ gem install padrino
 ```
 
+
 For more details on installation, check out the
-[installation guide](/guides/getting-started/installation "installation guide"). Once this has
-been finished, all necessary dependencies should be ready and we can begin
+[installation guide](/guides/getting-started/installation "installation guide"). Now we can begin
 developing our sample blog.
 
 --------------------------------------------------------------------------------
