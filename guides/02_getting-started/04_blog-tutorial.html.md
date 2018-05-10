@@ -31,7 +31,7 @@ mentioned there may not be valid.
 To skip this tutorial or immediately see the complete blog tutorial project, you
 can checkout the
 [blog tutorial repository](https://github.com/padrino/blog-tutorial "blog tutorial
-repository") using Git:
+repository") using git:
 
 
 ```shell
@@ -90,9 +90,11 @@ For this sample application, we will use the ActiveRecord ORM, the Slim
 templating language, the RSpec testing framework and the jQuery JavaScript
 library. With that in mind, let us generate our new project:
 
+
 ```shell
 $ padrino g project blog-tutorial -t rspec -e haml -c scss -s jquery -d sequel -b
 ```
+
 
 This command will generate our basic Padrino project and the print out a nice
 report of the files generated. The output of this generation command can be
@@ -100,18 +102,19 @@ viewed in [this gist](https://gist.github.com/wikimatze/0f8b63d28bccac84014f8a59
 generation") file. Notice the `-b` flag in the previous command which automatically instructs bundler
 to install all dependencies. All we need to do now is `cd` into our brand new application.
 
+
 ```shell
 $ cd blog-tutorial
 ```
+
 
 Now, the terminal should be inside the root of our newly generated application
 with all necessary gem dependencies installed. Let us take a closer look at the
 particularly important generated files before we continue on with development.
 
-- `Gemfile` – Be sure to include any necessary gem dependencies for your app in
-  this file!
-- `app/app.rb` – This is the primary configuration file for your core
-  application.
+
+- `Gemfile` – Includes any necessary gem dependencies for your app.
+- `app/app.rb` – The primary configuration file for your app.
 - `config/apps.rb` – This defines which applications are mounted in your
   project.
 - `config/database.rb` – This defines the connection details for your chosen
@@ -134,8 +137,11 @@ The following important directories are also generated:
 For now, the defaults for the database connection settings (`config/database.rb`) are
 OK for this tutorial.
 
-This environment can be configured in config/apps.rb as:
-```
+
+This environment can be configured in `config/apps.rb` as:
+
+
+```ruby
 Padrino.configure_apps do
   if RACK_ENV == 'production'
     disable :reload
@@ -146,8 +152,12 @@ Padrino.configure_apps do
   end
 end
 ```
-or can be configured in app/app.rb as
-```
+
+
+or can be configured in `app/app.rb` as
+
+
+```ruby
 if Padrino.env == :production
   # do production
 else
@@ -155,9 +165,11 @@ else
 end
 ```
 
+
 Let us also setup a few simple routes in our application to demonstrate the
 Padrino routing system. Let's go into the `app/app.rb` file and enter the
 following routes:
+
 
 ```ruby
 # app/app.rb
@@ -169,7 +181,7 @@ module BlogTutorial
 
     enable :sessions
 
-    # Add these routes below to the app file...
+    # Here are the defined routes
     get "/" do
       'Hello World!'
     end
@@ -180,6 +192,7 @@ module BlogTutorial
   end
 end
 ```
+
 
 Note that the first route here sets up a simple string to be returned at the
 root URL of the application. The second route defines a one-line `about` page
@@ -197,15 +210,18 @@ Next, this is a good time to setup the Padrino admin panel which allows us to
 easily view, search and modify data for a project. Let's go back to the console
 and enter:
 
+
 ```shell
 $ padrino g admin
 ```
+
 
 This will create the admin sub-application within your project and mount it
 within the `config/apps.rb` file. The output of this command can be viewed in
 [this gist](https://gist.github.com/wikimatze/2a325cb7d019371a5403d7420cdf2458 "gist for admin generation output") file.
 
 Now, you should follow the instructions of the output:
+
 
 ```sh
   1) Run 'bundle'
@@ -214,6 +230,7 @@ Now, you should follow the instructions of the output:
   4) Run 'bundle exec rake db:seed'
   5) Visit the admin panel in the browser at '/admin'
 ```
+
 
 During this process, you will be prompted to enter an email and password to use
 for the admin dashboard. Be sure to remember this for use later in development.
@@ -236,12 +253,14 @@ $ padrino s
 
 You should see no errors, and the terminal should output:
 
+
 ```shell
-=> Padrino/0.14.1.1 has taken the stage development at http://127.0.0.1:3000
-[2017-05-20 09:40:49] INFO  WEBrick 1.3.1
-[2017-05-20 09:40:49] INFO  ruby 2.4.1 (2017-03-22) [i686-linux]
-[2017-05-20 09:40:49] INFO  WEBrick::HTTPServer#start: pid=26641 port=3000
+=> Padrino/0.14.3 has taken the stage development at http://127.0.0.1:3000
+[2018-05-10 08:01:56] INFO  WEBrick 1.3.1
+[2018-05-10 08:01:56] INFO  ruby 2.4.2 (2017-09-14) [i686-linux]
+[2018-05-10 08:01:56] INFO  WEBrick::HTTPServer#start: pid=3489 port=3000
 ```
+
 
 To read more about available terminal commands, checkout the
 [Development and Terminal Commands](/guides/features/development-commands "Development
@@ -271,11 +290,12 @@ Now that the application is ready and the layouts have been defined, let's
 implement the functionality to view our blog posts and even add the ability to
 create new posts!
 
-Let's start off by generating the model into our app directory. As of version
-**0.13.1**, the models will default to generating at the top level 'models'
+Let's start off by generating the model into our app directory. The models will be generated at the top level
+`models`
 directory in a project. If you want to place your models to another location, you can append
 the `-a` option to the command - this is handy if you would like to have models which
 should be coped only to sub-apps.
+
 
 ```shell
 $ padrino g model post title:string body:text created_at:datetime
@@ -286,27 +306,31 @@ $ padrino g model post title:string body:text created_at:datetime
       create  db/migrate/002_create_posts.rb
 ```
 
+
 Go ahead and migrate the database now.
+
 
 ```shell
 $ padrino rake sq:migrate
 => Executing Rake sq:migrate ...
-   INFO -  (0.000159s) PRAGMA foreign_keys = 1
-   INFO -  (0.000021s) PRAGMA case_sensitive_like = 1
-   INFO -  (0.000080s) SELECT sqlite_version()
-   INFO -  (0.000037s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
-   INFO -  (0.000077s) SELECT * FROM `schema_info` LIMIT 1
-   INFO -  (0.000061s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
-   INFO -  (0.000058s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
-   INFO -  (0.000063s) SELECT `version` FROM `schema_info` LIMIT 1
+   INFO -  (0.000163s) PRAGMA foreign_keys = 1
+   INFO -  (0.000022s) PRAGMA case_sensitive_like = 1
+   INFO -  (0.000107s) SELECT sqlite_version()
+   INFO -  (0.000061s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+   INFO -  (0.000103s) SELECT * FROM `schema_info` LIMIT 1
+   INFO -  (0.000068s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+   INFO -  (0.000062s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+   INFO -  (0.000070s) SELECT `version` FROM `schema_info` LIMIT 1
    INFO -  Begin applying migration version 2, direction: up
-   INFO -  (0.014988s) CREATE TABLE `posts` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `title` varchar(255), `body` Text, `created_at` date)
-   INFO -  (0.017424s) UPDATE `schema_info` SET `version` = 2
-   INFO -  Finished applying migration version 2, direction: up, took 0.028866 seconds
+   INFO -  (0.011094s) CREATE TABLE `posts` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `title` varchar(255), `body` Text, `created_at` timestamp)
+   INFO -  (0.014224s) UPDATE `schema_info` SET `version` = 2
+   INFO -  Finished applying migration version 2, direction: up, took 0.025778 seconds
 <= sq:migrate:up executed
 ```
 
+
 Next, let's create the controller to allow the basic viewing functionality.
+
 
 ```shell
 $ padrino g controller posts get:index get:show
@@ -319,8 +343,10 @@ $ padrino g controller posts get:index get:show
       create  spec/app/helpers/posts_helper_spec.rb
 ```
 
+
 We'll want to attached some of the standard routes (`:index` and `:show`) to the
 controller.
+
 
 ```ruby
 # app/controllers/posts.rb
@@ -337,6 +363,7 @@ BlogTutorial::App.controllers :posts do
 end
 ```
 
+
 This controller is defining routes that can be accessed via our application. The
 "http method" `get` starts off the declaration followed by a symbol representing
 the "action". Inside a block we store an instance variable fetching the
@@ -345,6 +372,7 @@ those coming from Rails or Sinatra.
 
 Next, we'll want to create the views for the two controller actions we defined:
 `index` and `show`.
+
 
 ```haml
 -# app/views/posts/index.haml
@@ -368,8 +396,10 @@ Next, we'll want to create the views for the two controller actions we defined:
 %p= link_to 'View all posts', url_for(:posts, :index)
 ```
 
+
 Padrino Admin makes it easy to create, edit and delete records automatically. To
 manage posts using Padrino Admin, run this command.
+
 
 ```shell
 $ padrino g admin_page post
@@ -381,16 +411,16 @@ $ padrino g admin_page post
       insert  admin/app.rb
 ```
 
+
 Let's make sure the server is running (`padrino s`) and give this admin
 interface a try.
 
 Visit <http://localhost:3000/admin> and login using the credentials you had
 setup during the seed.
 
-There should now be two tabs, one for Posts and the other, Accounts. Click on
-Posts.
+There should now be two tabs, one for **Posts** and one for **Accounts**.
 
-Padrino Admin allows you to easily create new records by clicking "New". It has
+Now click on 'Posts'. Padrino Admin allows you to easily create new records by clicking "New". It has
 a form all ready complete with the fields you had generated prior in the
 creation of the Post model.
 
@@ -403,6 +433,7 @@ in the "index" action!
 
 You can see all the routes that we now have defined using the `padrino rake
 routes` command:
+
 
 ```shell
 $ padrino rake routes
@@ -435,6 +466,7 @@ Application: BlogTutorial::App
     (:posts, :show)       GET    /posts/show/:id
 ```
 
+
 This can be helpful to understand the mapping between controllers and urls.
 
 --------------------------------------------------------------------------------
@@ -445,14 +477,17 @@ So far, a post does not have a user associated as the author. Suppose that now
 we want to let every post have an author. Let's revisit our post model. We'll
 start by adding a new migration to attach an Account to a Post.
 
+
 ```shell
 $ padrino g migration AddAccountToPost account_id:integer
        apply  orms/activerecord
       create  db/migrate/003_add_account_to_post.rb
 ```
 
+
 This creates a new migration with the desired field attaching the `account_id` to
 the post. Let's modify this migration to add the accounts FK to posts:
+
 
 ```ruby
 # db/migrate/003_add_account_to_post.rb
@@ -476,6 +511,7 @@ end
 Now, we'll return to the Post Model to setup the `account` association and add a
 few validations.
 
+
 ```ruby
 # models/post.rb
 
@@ -490,10 +526,13 @@ class Post < Sequel::Model
 end
 ```
 
+
 And add the association to the Account model:
 
 
 ```ruby
+# models/account.rb
+
 class Account < Sequel::Model
   one_to_many :posts
   ...
@@ -504,13 +543,16 @@ Now we are ready to run the migration: `$ padrino rake sq:migrate`
 
 Let's create another migration to assign the first user to all existing posts:
 
+
 ```shell
 $ padrino g migration MigrateExistingPostsToFirstAccount
        apply  orms/activerecord
       create  db/migrate/004_migrate_existing_posts_to_first_account.rb
 ```
 
+
 And change the content of the migration:
+
 
 ```ruby
 # db/migrate/004_migrate_existing_posts_to_first_account.rb
@@ -529,9 +571,8 @@ Sequel.migration do
 end
 ```
 
-And run the migrations again: `$ padrino rake sq:migrate`
 
-Our database now has the appropriate associations and validations.
+And run the migrations again: `$ padrino rake sq:migrate`
 
 
 We'll need to go
@@ -603,6 +644,7 @@ layout should be used to create a consistent structure between each page of the
 application. To create a layout, simply add a file to the `app/views/layouts`
 directory:
 
+
 ```haml
 -# app/views/layouts/application.haml
 
@@ -614,43 +656,23 @@ directory:
     = stylesheet_link_tag 'normalize', 'application'
     = javascript_include_tag 'jquery', 'application'
     = yield_content :include
-    %body
-      #header
-        %h1 Sample Padrino Blog
-        %ul.menu
-        %li= link_to 'Blog', url_for(:posts, :index)
-        %li= link_to 'About', url_for(:about)
-      #container
-        #main= yield
-        #sidebar
-          = form_tag url_for(:posts, :index), :method => 'get'  do
-            Search for:
-            = text_field_tag 'query', :value => params[:query]
-            = submit_tag 'Search'
-          %p
-            Recent Posts
-          %ul.bulleted
-            %li Item 1 - Lorem ipsum dolorum itsum estem
-            %li Item 2 - Lorem ipsum dolorum itsum estem
-            %li Item 3 - Lorem ipsum dolorum itsum estem
-          %p
-            Categories
-            %ul.bulleted
-              %li
-                Item 1 - Lorem ipsum dolorum itsum estem
-              %li
-                Item 2 - Lorem ipsum dolorum itsum estem
-              %li
-                Item 3 - Lorem ipsum dolorum itsum estem
-            %p
-              Latest Comments
-              %ul.bulleted
-                %li Item 1 - Lorem ipsum dolorum itsum estem
-                %li Item 2 - Lorem ipsum dolorum itsum estem
-                %li Item 3 - Lorem ipsum dolorum itsum estem
-      #footer
-        Copyright (c) 2009-2017 Padrino
+  %body
+    #header
+      %h1 Sample Padrino Blog
+      %ul.menu
+      %li= link_to 'Blog', url_for(:posts, :index)
+      %li= link_to 'About', url_for(:about)
+    #container
+      #main= yield
+      #sidebar
+        %p
+          Space for content
+        %ul.bulleted
+          %li ...
+    #footer
+      Copyright (c) 2009-2018 Padrino
 ```
+
 
 This layout creates a basic structure for the blog and requires the necessary
 stylesheets and javascript files for controlling the behavior and presentation
