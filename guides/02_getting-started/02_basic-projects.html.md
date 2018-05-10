@@ -110,7 +110,7 @@ Install all project dependencies:
 
 ```shell
 $ cd blog
-$ bundle
+$ bundle # if you haven't that command, run 'gem install bundler'
 ```
 
 Padrino ships with a beautiful Admin interface.
