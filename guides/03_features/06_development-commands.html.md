@@ -74,7 +74,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.13.1'
+gem 'padrino', '0.14.3'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can
@@ -142,7 +142,7 @@ $ padrino stop
 $ padrino console
 
 # Run/List tasks
-$ padrino rake
+$ padrino rake -T
 
 # Run piece of code in the context of Padrino (with given environment)
 $ padrino runner 'puts Padrino.env' -e development
