@@ -132,10 +132,10 @@ The following important directories are also generated:
   in your project.
 - `public` – This is where images, style sheets and JavaScript files should be
   stored.
-- `spec` – This is where your model and controller tests should be stored.
+- `spec` – This is where your model and controller tests are stored.
 
 For now, the defaults for the database connection settings (`config/database.rb`) are
-OK for this tutorial.
+fine for this tutorial.
 
 
 This environment can be configured in `config/apps.rb` as:
@@ -279,8 +279,7 @@ detail later. To read more about the features of the admin panel, check out the
 Worth noting here is that Padrino has full support for code reloading in
 development mode. This means you can keep the Padrino server running and change
 your code source and when you refresh in the browser, the changes will be
-automatically displayed. You might want to open up a new terminal and `cd` to
-your directory and keep the server running.
+automatically displayed.
 
 --------------------------------------------------------------------------------
 
@@ -381,19 +380,35 @@ Next, we'll want to create the views for the two controller actions we defined:
 #posts= partial 'posts/post', :collection => @posts
 
 -# app/views/posts/_post.haml
-.post
-  .title= link_to post.title, url_for(:posts, :show, :id => post.id)
-  .date= time_ago_in_words(post.created_at || Time.now) + ' ago'
-  .body= simple_format(post.body)
+
+.column.is-7.is-offset-2
+  .card.article
+    .card-content
+      .media
+        .media-content.has-text-centered
+          %p.title.article-title
+            %h3.has-text-centered
+              = link_to post.title, url_for(:posts, :show, :id => post.id)
+          .has-addons
+            %span.tag.is-rounded= time_ago_in_words(post.created_at || Time.now) + ' ago'
+      .content.article-body
+        = simple_format(post.body)
+
 
 -# app/views/posts/show.haml
-- @title = @post.title
-#show
-  .post
-    .title= @post.title
-    .date= time_ago_in_words(@post.created_at || Time.now) + ' ago'
-    .body= simple_format(@post.body)
-%p= link_to 'View all posts', url_for(:posts, :index)
+
+%section.articles
+  .column.is-8.is-offset-2
+    .card.article
+      .card-content
+        .media
+          .media-content.has-text-centered
+            %h3.title.article-title= @post.title
+            .tags.has-addons.level-item
+              %span.tag.is-rounded= time_ago_in_words(@post.created_at || Time.now) + ' ago'
+        .content.article-body
+          = simple_format(@post.body)
+          %p= link_to 'View all posts', url_for(:posts, :index)
 ```
 
 
@@ -486,29 +501,10 @@ $ padrino g migration AddAccountToPost account_id:integer
 
 
 This creates a new migration with the desired field attaching the `account_id` to
-the post. Let's modify this migration to add the accounts FK to posts:
+the post.
 
 
-```ruby
-# db/migrate/003_add_account_to_post.rb
-
-Sequel.migration do
-  up do
-    alter_table :posts do
-      add_column :account_id, Integer
-    end
-  end
-
-  down do
-    alter_table :posts do
-      drop_column :account_id
-    end
-  end
-end
-```
-
-
-Now, we'll return to the Post Model to setup the `account` association and add a
+Now, we'll return to the post model to setup the `account` association and add a
 few validations.
 
 
@@ -602,23 +598,35 @@ author:
 
 ```haml
 -# app/views/posts/show.haml
-- @title = @post.title
-#show
-  .post
-    .title= @post.title
-    .date= time_ago_in_words(@post.created_at || Time.now) + ' ago'
-    .body= simple_format(@post.body)
-    .details
-      .author Posted by #{@post.account.email}
-%p= link_to 'View all posts', url_for(:posts, :index)
+%section.articles
+  .column.is-8.is-offset-2
+    .card.article
+      .card-content
+        .media
+          .media-content.has-text-centered
+            %h3.title.article-title= @post.title
+            .tags.has-addons.level-item
+              %span.tag.is-rounded.is-info= @post.account.email
+              %span.tag.is-rounded= time_ago_in_words(@post.created_at || Time.now) + ' ago'
+        .content.article-body
+          = simple_format(@post.body)
+          %p= link_to 'View all posts', url_for(:posts, :index)
+
 
 -# app/views/posts/_post.haml
-.post
-  .title= link_to post.title, url_for(:posts, :show, :id => post)
-  .date= time_ago_in_words(post.created_at || Time.now) + ' ago'
-  .body= simple_format(post.body)
-  .details
-    .author Posted by #{post.account.email}
+.column.is-7.is-offset-2
+  .card.article
+    .card-content
+      .media
+        .media-content.has-text-centered
+          %p.title.article-title
+            %h3.has-text-centered
+              = link_to post.title, url_for(:posts, :show, :id => post.id)
+          .has-addons
+            %span.tag.is-rounded.is-info= post.account.email
+            %span.tag.is-rounded= time_ago_in_words(post.created_at || Time.now) + ' ago'
+      .content.article-body
+        = simple_format(post.body)
 ```
 
 Now, lets add another user. Revisit <http://localhost:3000/admin> and click on
@@ -638,7 +646,10 @@ Now that the application has been properly configured and the server has been
 started, let's create a few basic styles and define a layout to prepare the
 application for continued development.
 
-First, let us create a layout for our application to use. A layout is a file
+We will take the [bulma css framework](https://bulma.io/ "bulma") for our application. Let's install the plugin with
+`padrino g plugin bulma`. You can find more plugins under https://github.com/padrino/padrino-recipes.
+
+Next, let us create a layout for our application to use. A layout is a file
 that acts as a container for the content templates yielded by each route. The
 layout should be used to create a consistent structure between each page of the
 application. To create a layout, simply add a file to the `app/views/layouts`
@@ -647,55 +658,107 @@ directory:
 
 ```haml
 -# app/views/layouts/application.haml
-
 !!! Strict
 %html
   %head
-    %title
-      = [@title, "Padrino Sample Blog"].compact.join(" | ")
-    = stylesheet_link_tag 'normalize', 'application'
+    %title= "Padrino Sample Blog"
+    = stylesheet_link_tag 'bulma', 'application'
     = javascript_include_tag 'jquery', 'application'
-    = yield_content :include
   %body
-    #header
-      %h1 Sample Padrino Blog
-      %ul.menu
-      %li= link_to 'Blog', url_for(:posts, :index)
-      %li= link_to 'About', url_for(:about)
-    #container
+    %nav.navbar
+      %div.container
+        .navbar-brand
+          %a.navbar-item{:href => "/"}
+            %img{:alt => "Logo of Padrino blog", :src => "http://padrinorb.com/images/logo-6475397a.svg"}/
+          %span.navbar-burger.burger{"data-target" => "navbarMenu"}
+            %span
+            %span
+            %span
+        #navbarMenu.navbar-menu
+          .navbar-end
+            = link_to 'Home', '/', {:class => 'navbar-item'}
+            = link_to 'Blog', url_for(:posts, :index), {:class => 'navbar-item'}
+            = link_to 'About us', url_for(:about), {:class => 'navbar-item'}
+    %section.hero.is-info.is-medium.is-bold
+      .hero-body
+        .container.has-text-centered
+          %h1.title
+            An example blog created with Padrino
+    %div.container
       #main= yield
-      #sidebar
-        %p
-          Space for content
-        %ul.bulleted
-          %li ...
-    #footer
-      Copyright (c) 2009-2018 Padrino
 ```
 
 
 This layout creates a basic structure for the blog and requires the necessary
 stylesheets and javascript files for controlling the behavior and presentation
-of our site. The layout also includes some dummy elements such as a fake search
-and stubs for list items left as an exercise for the reader.
+of our site.
 
-Next, we simply need to setup the style sheets. There are two we will use for
-this demo. The first is a generic [normalize CSS reset by Nicolas Gallagher](https://necolas.github.io/normalize.css/). The
-full reset style sheet can be found in the
-[sample blog repository](https://raw.githubusercontent.com/padrino/blog-tutorial/master/public/stylesheets/normalize.css
-"sample blog repository") and should be put into
-`public/stylesheets/normalize.css`.
+Next, we adjust some styling for our blog in the `/public/stylesheets/application.css`:
 
-The second style sheet is the application style sheet to give our blog a better
-look and feel. The
-full contents of the style sheet can be found in the
-[sample blog repository]( https://raw.githubusercontent.com/padrino/blog-tutorial/master/app/stylesheets/application.scss
-"sample blog repository") and should be put into
-`app/stylesheets/application.scss`.
 
-With the layout and these two stylesheets in place, the blog will now have a
+```css
+.hero-body {
+  background-image: url(https://farm3.staticflickr.com/2840/33942486610_e0c80a7999_o_d.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 700px;
+  background-color: black;
+}
+
+h1.title {
+  margin-top: 145px;
+}
+
+h3.has-text-centered {
+  color: #363636;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.125;
+  margin-bottom: 1.5rem;
+}
+
+.articles {
+  margin: 5rem 0;
+  margin-top: 5rem;
+  margin-top: -200px;
+}
+```
+
+And to have a proper mobile burger navigation we need JavaScript in `public/javascripts/application.js`:
+
+
+```js
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+});
+
+```
+
+
+The blog has now a
 much improved look and feel! See the new style by visiting
 <http://localhost:3000/posts>.
 
-If you want to setup a RSS feed for your page please follow [the instructions on our wiki](https://github.com/padrino/padrino-docs/wiki/Blog-Tutorial-generating-RSS-feed "the instructions on our wiki")
+If you want to setup a RSS feed for your page please follow [the instructions on our wiki](https://github.com/padrino/padrino-docs/wiki/Blog-Tutorial-generating-RSS-feed "the instructions on the wiki").
 
