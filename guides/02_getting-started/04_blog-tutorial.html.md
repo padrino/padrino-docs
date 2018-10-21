@@ -18,11 +18,10 @@ relevant topics.
 
 There is also a screencast available for this tutorial. You can check it out by:
 <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
-<iframe src="//player.vimeo.com/video/10522357" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/10522357">Blog Tutorial</a> from <a href="http://vimeo.com/user3479413">Padrino Framework</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe src="//player.vimeo.com/video/296146309" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/296146309">Blog Tutorial</a> from <a href="https://vimeo.com/padrinocasts">PadrinoCasts</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 </div>
 
-Please note that the screencast was written for Padrino 0.12.2, so some things
-mentioned there may not be valid.
+Please note that previous screencast, written for Padrino 0.12.2, is available under <http://vimeo.com/10522357>.
 
 --------------------------------------------------------------------------------
 
@@ -752,7 +751,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
 ```
 
 
