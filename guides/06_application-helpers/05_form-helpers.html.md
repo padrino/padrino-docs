@@ -27,6 +27,7 @@ building forms. A simple example of constructing a non-object form would be:
   = field_set_tag(:class => 'buttons') do
     = submit_tag "Remove"
 ```
+<br>
 
 ## List of Form Helpers
 

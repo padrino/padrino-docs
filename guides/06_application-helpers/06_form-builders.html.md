@@ -92,6 +92,8 @@ within `form_for` or `fields_for` are:
   - `f.submit "Update", :class => 'long'`
 - `image_submit(source, options={})`
   - `f.image_submit "submit.png", :class => 'long'`
+- `date_field(field, options = {})`
+  - `f.date_field :time_start, :class => 'input'`
 
 For a complete list checkout [the form helper docs](http://www.rubydoc.info/gems/padrino-helpers/Padrino/Helpers/FormHelpers "Form Helper Docs").
 
