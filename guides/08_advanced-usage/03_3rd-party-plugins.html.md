@@ -27,15 +27,15 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.13.1'
+gem 'padrino', '~> 0.16.0'
 
 # Or Padrino Edge
-# gem 'padrino', :github => 'padrino/padrino-framework'
+# gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.13.1'
-# end
+#   gem 'padrino-' + g, '~> 0.16.0'
+# ends
 
 gem 'sinatra-contrib'
 ```
@@ -54,7 +54,7 @@ module MyJsonApp
     enable :sessions
 
     get '/' do
-      hash = {foo: 'bar'}
+      hash = { foo: 'bar' }
       json hash
     end
   end

@@ -30,7 +30,7 @@ your needs, you can enable it very easily:
       register Padrino::Cache
       enable :caching
 
-      get '/foo', :cache => true do
+      get '/foo', cache: true do
         expires 30 # expire cached version at least every 30 seconds
         'Hello world'
       end
@@ -171,11 +171,11 @@ fragment to be cached. It can be used in within a route:
       enable :caching          # turns on caching
 
       controller '/tweets' do
-        get :feed, :map => '/:username' do
+        get :feed, map: '/:username' do
           username = params[:username]
 
-          @feed = cache( "feed_for_#{username}", :expires => 3 ) do
-            @tweets = Tweet.all( :username => username )
+          @feed = cache("feed_for_#{username}", expires: 3) do
+            @tweets = Tweet.all(username: username)
             render 'partials/feedcontent'
           end
 
@@ -200,11 +200,11 @@ key:
       enable :caching          # turns on caching
 
       controller :tweets do
-        get :feed, :map => '/:username' do
+        get :feed, map: '/:username' do
           username = params[:username]
 
-          @feed = cache( "feed_for_#{username}", :expires => 3 ) do
-            @tweets = Tweet.all( :username => username )
+          @feed = cache("feed_for_#{username}", expires: 3) do
+            @tweets = Tweet.all(username: username)
             render 'partials/feedcontent'
           end
 
@@ -212,11 +212,11 @@ key:
           render 'feeds/show'
         end
 
-        get :mobile_feed, :map => '/:username.iphone' do
+        get :mobile_feed, map: '/:username.iphone' do
           username = params[:username]
 
-          @feed = cache( "feed_for_#{username}", :expires => 3 ) do
-            @tweets = Tweet.all( :username => username )
+          @feed = cache("feed_for_#{username}", expires: 3) do
+            @tweets = Tweet.all(username: username)
             render 'partials/feedcontent'
           end
 
@@ -239,17 +239,17 @@ Finally, to DRY up things a bit, we might do:
       controller :tweets do
         # This works because all routes in this controller specify :username
         before do
-          @feed = cache( "feed_for_#{params[:username]}", :expires => 3 ) do
-            @tweets = Tweet.all( :username => params[:username] )
+          @feed = cache("feed_for_#{params[:username]}", expires: 3) do
+            @tweets = Tweet.all(username: params[:username])
             render 'partials/feedcontent'
           end
         end
 
-        get :feed, :map => '/:username' do
+        get :feed, map: '/:username' do
           render 'feeds/show'
         end
 
-        get :mobile_feed, :map => '/:username.iphone' do
+        get :mobile_feed, map: '/:username.iphone' do
           render 'feeds/show.iphone'
         end
       end
@@ -278,15 +278,15 @@ You can set a global caching option or a per app caching options.
 ### Global Caching Options
 
     Padrino.cache = Padrino::Cache.new(:LRUHash) # in-memory, the default choice
-    Padrino.cache = Padrino::Cache.new(:File, :dir => Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
+    Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
     Padrino.cache = Padrino::Cache.new(:Memcached) # Uses default server at localhost
-    Padrino.cache = Padrino::Cache.new(:Memcached, :server => '127.0.0.1:11211', :exception_retry_limit => 1)
-    Padrino.cache = Padrino::Cache.new(:Memcached, :backend => memcached_or_dalli_instance)
+    Padrino.cache = Padrino::Cache.new(:Memcached, server: '127.0.0.1:11211', exception_retry_limit: 1)
+    Padrino.cache = Padrino::Cache.new(:Memcached, backend: memcached_or_dalli_instance)
     Padrino.cache = Padrino::Cache.new(:Redis) # Uses default server at localhost
-    Padrino.cache = Padrino::Cache.new(:Redis, :host => '127.0.0.1', :port => 6379, :db => 0)
-    Padrino.cache = Padrino::Cache.new(:Redis, :backend => redis_instance)
+    Padrino.cache = Padrino::Cache.new(:Redis, host: '127.0.0.1', port: 6379, db: 0)
+    Padrino.cache = Padrino::Cache.new(:Redis, backend: redis_instance)
     Padrino.cache = Padrino::Cache.new(:Mongo) # Uses default server at localhost
-    Padrino.cache = Padrino::Cache.new(:Mongo, :backend => mongo_client_instance)
+    Padrino.cache = Padrino::Cache.new(:Mongo, backend: mongo_client_instance)
 
 You can manage your cache from anywhere in your app:
 
@@ -306,7 +306,7 @@ or use a more exotic backend.
     set :cache, Padrino::Cache.new(:LRUHash) # in-memory
     set :cache, Padrino::Cache.new(:Memcached)
     set :cache, Padrino::Cache.new(:Redis)
-    set :cache, Padrino::Cache.new(:File, :dir => Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
+    set :cache, Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
 
 You can manage your cache from anywhere in your app:
 
@@ -317,7 +317,7 @@ You can manage your cache from anywhere in your app:
 
 ## Expiring Cached Content
 
-In certain circumstances, cached content becomes stale. The  `expire` helper
+In certain circumstances, cached content becomes stale. The `expire` helper
 removes content associated with a key or keys, which your app is then free to
 re-generate.
 
@@ -336,19 +336,19 @@ user a favor and instantly re-render the feed.
       enable :caching         # turns on caching
       enable :session         # we'll use this to store last time visited
 
-      COMPANY_FOUNDING = Time.utc( 2010, "April" )
+      COMPANY_FOUNDING = Time.utc(2010, 'April')
 
       controller :tweets do
-        get :feed, :map => '/:username' do
+        get :feed, map: '/:username' do
           last_visit = session[:last_visit] || params[:since] || COMPANY_FOUNDING
 
           username = params[:username]
-          @tweets = Tweet.since( last_visit, :username => username ).limit( 100 )
+          @tweets = Tweet.since(last_visit, username: username).limit(100)
 
-          expire( "feed since #{last_visit}" ) if @tweets.any? { |t| t.deleted_since?( last_visit ) }
+          expire("feed since #{last_visit}") if @tweets.any? { |t| t.deleted_since?(last_visit) }
 
           session[:last_visit] = Time.now
-          @feed = cache( "feed since #{last_visit}", :expires => 60 ) do
+          @feed = cache("feed since #{last_visit}", expires: 60) do
             @tweets = @tweets.find_all { |t| !t.deleted? }
             render 'partials/feedcontent'
           end

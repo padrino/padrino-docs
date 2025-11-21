@@ -31,13 +31,13 @@ global, in Padrino you can run different filters for each controller:
 
 ```ruby
 Demo::App.controllers :posts do
-  before { @foo = "bar" }
-  get("/posts") { render :haml, "Has access to @foo variable" }
+  before { @foo = 'bar' }
+  get('/posts') { render :haml, 'Has access to @foo variable' }
 end
 
 Demo::App.controllers :accounts do
-  before { @bar = "foo" }
-  get("/accounts") { render :haml, "Has access to @bar variable" }
+  before { @bar = 'foo' }
+  get('/accounts') { render :haml, 'Has access to @bar variable' }
 end
 ```
 

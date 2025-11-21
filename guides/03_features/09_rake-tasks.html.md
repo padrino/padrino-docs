@@ -35,7 +35,7 @@ Like other frameworks we have an `:environment` task that loads our
 ```ruby
 # This is a custom task
 # task/version.rake
-task :version => :environment do
+task version: :environment do
   puts Padrino.version
 end
 ```
@@ -131,7 +131,7 @@ _Mongomapper_,and _Mongoid_ with some **bonuses**.
 rake ar:abort_if_pending_migrations    # Raises an error if there are pending migrations.
 rake ar:auto:upgrade                   # Uses schema.rb to auto-upgrade.
 rake ar:charset                        # Retrieves database charset.
-rake ar:collation                      # Retrieves databsae collation.
+rake ar:collation                      # Retrieves database collation.
 rake ar:create                         # Creates the database as defined in config/database.yml
 rake ar:create:all                     # Creates local databases as defined in config/database.yml
 rake ar:drop                           # Drops the database for the current Padrino.env
@@ -218,25 +218,25 @@ Like in Rails we can populate our db using `db/seeds.rb` here's an example (from
 our [padrino-admin](/guides/padrino-admin/ "padrino-admin)):
 
 ```ruby
-email     = shell.ask "Which email do you want use for loggin into admin?"
-password  = shell.ask "Tell me the password to use:"
+email     = shell.ask 'Which email do you want use for logging into admin?'
+password  = shell.ask 'Tell me the password to use:'
 
-shell.say ""
+shell.say ''
 
-account = Account.create(:email => email, :password => password,
-                         :password_confirmation => password, :role => "admin")
+account = Account.create(email: email, password: password,
+                         password_confirmation: password, role: 'admin')
 
 if account.valid?
-  shell.say "Perfect! Your account was created."
-  shell.say ""
-  shell.say "Now you can start your server with padrino start and then login into /admin with:"
+  shell.say 'Perfect! Your account was created.'
+  shell.say ''
+  shell.say 'Now you can start your server with padrino start and then login into /admin with:'
   shell.say "   email: #{email}"
   shell.say "   password: #{password}"
-  shell.say ""
+  shell.say ''
   shell.say "That's all!"
 else
-  shell.say "Sorry but some thing went worng!"
-  shell.say ""
+  shell.say 'Sorry but some thing went wrong!'
+  shell.say ''
   account.errors.full_messages.each { |m| shell.say "   - #{m}" }
 end
 ```

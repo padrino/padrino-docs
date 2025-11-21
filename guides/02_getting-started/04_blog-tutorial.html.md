@@ -18,7 +18,8 @@ relevant topics.
 
 There is also a screencast available for this tutorial. You can check it out by:
 <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
-<iframe src="//player.vimeo.com/video/296146309" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/296146309">Blog Tutorial</a> from <a href="https://vimeo.com/padrinocasts">PadrinoCasts</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/10522357?h=2baf45aa24" width="500" height="313" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/padrinocasts">PadrinoCasts</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 </div>
 
 Please note that previous screencast, written for Padrino 0.12.2, is available under <http://vimeo.com/10522357>.
@@ -185,7 +186,7 @@ module BlogTutorial
       'Hello World!'
     end
 
-    get :about, :map => '/about-us' do
+    get :about, map: '/about-us' do
       render :haml, '%p This is a sample blog created to demonstrate how Padrino works!'
     end
   end
@@ -254,10 +255,10 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.14.3 has taken the stage development at http://127.0.0.1:3000
-[2018-05-10 08:01:56] INFO  WEBrick 1.3.1
-[2018-05-10 08:01:56] INFO  ruby 2.4.2 (2017-09-14) [i686-linux]
-[2018-05-10 08:01:56] INFO  WEBrick::HTTPServer#start: pid=3489 port=3000
+=> Padrino/0.16.0 has taken the stage development at http://127.0.0.1:3000
+[2025-11-21 01:02:13] INFO  WEBrick 1.9.1
+[2025-11-21 01:02:13] INFO  ruby 3.4.6 (2025-09-16) [x86_64-linux]
+[2025-11-21 01:02:13] INFO  WEBrick::HTTPServer#start: pid=3489 port=3000
 ```
 
 
@@ -354,8 +355,8 @@ BlogTutorial::App.controllers :posts do
     render 'posts/index'
   end
 
-  get :show, :with => :id do
-    @post = Post[id: params[:id]]
+  get :show, with: :id do
+    @post = Post[params[:id]]
     render 'posts/show'
   end
 end
@@ -376,7 +377,7 @@ Next, we'll want to create the views for the two controller actions we defined:
 -# app/views/posts/index.haml
 - @title = "Welcome"
 
-#posts= partial 'posts/post', :collection => @posts
+#posts= partial 'posts/post', collection: @posts
 
 -# app/views/posts/_post.haml
 
@@ -387,7 +388,7 @@ Next, we'll want to create the views for the two controller actions we defined:
         .media-content.has-text-centered
           %p.title.article-title
             %h3.has-text-centered
-              = link_to post.title, url_for(:posts, :show, :id => post.id)
+              = link_to post.title, url_for(:posts, :show, id: post.id)
           .has-addons
             %span.tag.is-rounded= time_ago_in_words(post.created_at || Time.now) + ' ago'
       .content.article-body
@@ -514,6 +515,7 @@ class Post < Sequel::Model
   many_to_one :account
 
   plugin :validation_helpers
+
   def validate
     super
     validates_presence [:title, :body]
@@ -620,7 +622,7 @@ author:
         .media-content.has-text-centered
           %p.title.article-title
             %h3.has-text-centered
-              = link_to post.title, url_for(:posts, :show, :id => post.id)
+              = link_to post.title, url_for(:posts, :show, id: post.id)
           .has-addons
             %span.tag.is-rounded.is-info= post.account.email
             %span.tag.is-rounded= time_ago_in_words(post.created_at || Time.now) + ' ago'
@@ -660,24 +662,24 @@ directory:
 !!! Strict
 %html
   %head
-    %title= "Padrino Sample Blog"
+    %title= 'Padrino Sample Blog'
     = stylesheet_link_tag 'bulma', 'application'
     = javascript_include_tag 'jquery', 'application'
   %body
     %nav.navbar
       %div.container
         .navbar-brand
-          %a.navbar-item{:href => "/"}
-            %img{:alt => "Logo of Padrino blog", :src => "http://padrinorb.com/images/logo-6475397a.svg"}/
-          %span.navbar-burger.burger{"data-target" => "navbarMenu"}
+          %a.navbar-item{href: '/'}
+            %img{alt: 'Logo of Padrino blog', src: 'http://padrinorb.com/images/logo-6475397a.svg'}/
+          %span.navbar-burger.burger{'data-targe' => 'navbarMenu'}
             %span
             %span
             %span
         #navbarMenu.navbar-menu
           .navbar-end
-            = link_to 'Home', '/', {:class => 'navbar-item'}
-            = link_to 'Blog', url_for(:posts, :index), {:class => 'navbar-item'}
-            = link_to 'About us', url_for(:about), {:class => 'navbar-item'}
+            = link_to 'Home', '/', {class: 'navbar-item'}
+            = link_to 'Blog', url_for(:posts, :index), {class: 'navbar-item'}
+            = link_to 'About us', url_for(:about), {class: 'navbar-item'}
     %section.hero.is-info.is-medium.is-bold
       .hero-body
         .container.has-text-centered

@@ -20,9 +20,9 @@ javascript. An example of their uses would be on a simple view template:
 %body
   ...
   = flash_tag :notice
-  %p= link_to 'Blog', '/blog', :class => 'example'
-  %p Mail me at #{mail_to 'fake@faker.com', "Fake Email Link", :cc => "test@demo.com"}
-  %p= image_tag 'padrino.png', :width => '35', :class => 'logo'
+  %p= link_to 'Blog', '/blog', class: 'example'
+  %p Mail me at #{mail_to 'fake@faker.com', 'Fake Email Link', cc: "test@demo.com"}
+  %p= image_tag 'padrino.png', width: '35', class: 'logo'
 ```
 
 By default, all 'assets' including images, scripts, and stylesheets have a
@@ -32,23 +32,23 @@ application configuration within `app/app.rb`.
 
 ## List of Asset Helpers
 
-- `flash_tag(kind, options={})`
+- `flash_tag(kind, options = {})`
   - Creates a div to display the flash of given type if it exists
-  - `flash_tag(:notice, :class => 'flash', :id => 'flash-notice')`
+  - `flash_tag(:notice, class: 'flash', id: 'flash-notice')`
 - `link_to(*args, &block)`
   - Creates a link element with given name, url and options
-  - `link_to 'click me', '/dashboard', :class => 'linky'`
-  - `link_to 'click me', '/dashboard', :class => 'linky', :if => @foo.present?`
-  - `link_to 'click me', '/dashboard', :class => 'linky', :unless =>
+  - `link_to 'click me', '/dashboard', class: 'linky'`
+  - `link_to 'click me', '/dashboard', class: 'linky', if: @foo.present?`
+  - `link_to 'click me', '/dashboard', class: 'linky', unless:
     @foo.blank?`
-  - `link_to 'click me', '/dashboard', :class => 'linky', :unless => :current`
-  - `link_to('/dashboard', :class => 'blocky') { ...content... }`
-- `mail_to(email, caption=nil, mail_options={})`
+  - `link_to 'click me', '/dashboard', class: 'linky', unless: :current`
+  - `link_to('/dashboard', class: 'blocky') { ...content... }`
+- `mail_to(email, caption = nil, mail_options = {})`
   - Creates a mailto link tag to the specified email_address
-  - `mail_to "me@demo.com"`
-  - `mail_to "me@demo.com", "My Email", :subject => "Feedback", :cc =>
+  - `mail_to 'me@demo.com'`
+  - `mail_to 'me@demo.com', 'My Email', subject: 'Feedback', cc:
     'test@demo.com'`
-- `image_tag(url, options={})`
+- `image_tag(url, options = {})`
   - Creates an image element with given url and options
   - `image_tag('icons/avatar.png')`
 - `stylesheet_link_tag(*sources)`
@@ -57,9 +57,9 @@ application configuration within `app/app.rb`.
 - `javascript_include_tag(*sources)`
   - Returns an html script tag for each of the sources provided.
   - `javascript_include_tag 'application', 'special'`
-- `favicon_tag(source, options={})`
+- `favicon_tag(source, options = {})`
   - Returns a favicon tag for the header for the source specified.
-  - `favicon_tag 'images/favicon.ico', :type => 'image/ico'`
-- `feed_tag(mime,source, options={})`
+  - `favicon_tag 'images/favicon.ico', type: 'image/ico'`
+- `feed_tag(mime, source, options = {})`
   - Returns a feed tag for the mime and source specified
-  - `feed_tag :atom, url(:blog, :posts, :format => :atom), :title => "ATOM"`
+  - `feed_tag :atom, url(:blog, :posts, format: :atom), title: 'ATOM'`

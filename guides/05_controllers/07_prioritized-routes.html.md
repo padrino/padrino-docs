@@ -13,16 +13,15 @@ controllers, the first with a "catch-all" route:
 ```ruby
 # app/controllers/pages.rb
 Demo::App.controllers :pages do
-  get :show, :map => '/*page' do
-    "Catchall route"
+  get :show, map: '/*page' do
+    'Catchall route'
   end
 end
 
 # app/controllers/projects.rb
 Demo::App.controllers :projects do
-MyApp.controller :projects do
   get :index do
-    "Index"
+    'Index'
   end
 end
 ```
@@ -35,20 +34,20 @@ accessible. To solve this, you can do the following:
 # app/controllers/pages.rb
 Demo::App.controllers :pages do
   # NOTE that this route is now marked as low priority
-  get :show, :map => '/*page', :priority => :low do
-    "Catchall route"
+  get :show, map: '/*page', priority: :low do
+    'Catchall route'
   end
 end
 
 # app/controllers/projects.rb
 Demo::App.controllers :projects do
   get :index do
-    "Index"
+    'Index'
   end
 end
 ```
 
 When setting a routes priority to `:low`, this route is then recognized lower
 than all "high" and "normal" priority routes. You are encouraged in cases where
-there is ambiguity, to mark key routes as `:priority => :high` or catch-all
-routes as `:priority => :low` in order to guarantee expected behavior.
+there is ambiguity, to mark key routes as `priority: :high` or catch-all
+routes as `priority: :low` in order to guarantee expected behavior.

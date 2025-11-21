@@ -16,8 +16,8 @@ javascript adapter, you can utilize the baked in support with the `link_to` and
 To generate a 'remote' form in a view:
 
 ```haml
-= form_for :user, url(:create, :format => :js), :remote => true do |f|
-  .content=partial "/users/form"
+= form_for :user, url(:create, format: :js), remote: true do |f|
+  .content=partial '/users/form'
 ```
 
 which will generate the following unobtrusive markup:
@@ -33,7 +33,7 @@ which will generate the following unobtrusive markup:
 
 ```ruby
 # /app/controllers/users.rb
-post :create, :provides => :js do
+post :create, provides: :js do
   @user = User.new(params[:user])
   if @user.save
     "$('form.content').html('#{partial("/users/form")}');"
@@ -52,7 +52,7 @@ response as javascript.
 To generate a 'remote' link in a view:
 
 ```ruby
-link_to "add item", url(:items, :new, :format => :js), :remote => true
+link_to "add item", url(:items, :new, format: :js), remote: true
 ```
 
 which will generate the following unobtrusive markup:
@@ -69,7 +69,7 @@ url and then evaluates the response as javascript.
 To generate a 'confirmation' link in a view:
 
 ```ruby
-link_to "delete item", url(:items, :destroy, :format => :js), :confirm => "Are You Sure?"
+link_to "delete item", url(:items, :destroy, format: :js), confirm: 'Are You Sure?'
 ```
 
 which will generate the following unobtrusive markup:
@@ -86,7 +86,7 @@ confirming the action before invoking the link.
 To generate a 'method' link in a view:
 
 ```ruby
-link_to "logout", url(:session, :destroy, :format => :js), :method => :delete
+link_to "logout", url(:session, :destroy, format: :js), method: :delete
 ```
 
 which will generate the following unobtrusive markup:
@@ -100,7 +100,7 @@ http method specified rather than via the 'GET' method.
 
 ## Enabling UJS Adapter
 
-**Note**: In order for the unobstrusive javascript to work, you must be sure to
+**Note**: In order for the unobtrusive javascript to work, you must be sure to
 include the chosen javascript framework and ujs adapter in your views (or
 layout). For instance, if I selected jquery for my project:
 

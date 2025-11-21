@@ -26,7 +26,7 @@ method accessible within your app and any controller or views:
 ```ruby
 # controllers/example.rb
 SimpleApp.controllers do
-  get("/test") { logger.info "This is a test" }
+  get('/test') { logger.info 'This is a test' }
 end
 ```
 
@@ -74,7 +74,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.14.3'
+gem 'padrino', '0.16.0'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can

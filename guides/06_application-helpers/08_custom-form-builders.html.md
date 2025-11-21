@@ -25,7 +25,7 @@ end
 Once a custom builder is defined, any call to `form_for` can use the new builder:
 
 ```haml
-= form_for @user, '/register', :builder => 'MyCustomFormBuilder', :id => 'register' do |f|
+= form_for @user, '/register', builder: 'MyCustomFormBuilder', id: 'register' do |f|
   ...fields here...
 ```
 

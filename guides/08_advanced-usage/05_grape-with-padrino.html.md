@@ -45,7 +45,7 @@ end
 Go to file `config/apps.rb` and add to the end of it:
 
 ```ruby
-Padrino.mount('API', :app_file => Padrino.root('api/api.rb'), :app_class => 'Grappe::API').to('/master')
+Padrino.mount('API', app_file: Padrino.root('api/api.rb'), app_class: 'Grappe::API').to('/master')
 ```
 
 Now you can run `rackup` from your `gapp` folder and visit

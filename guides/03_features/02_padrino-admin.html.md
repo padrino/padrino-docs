@@ -87,11 +87,11 @@ class MyEcommerce < Padrino::Application
 
   enable :authentication
   enable :store_location
-  set    :login_page, "/login"
+  set    :login_page, '/login'
 
   access_control.roles_for :any do |role|
-    role.protect "/customer/orders"
-    role.protect "/cart/checkout"
+    role.protect '/customer/orders'
+    role.protect '/cart/checkout'
   end
 end
 ```
@@ -100,7 +100,7 @@ In the above example we protect paths starting with `/customer/orders`
 and `/cart/checkout`. The result will be that an unauthenticated user will
 not be able to access those actions, and they will be asked to authenticate;
 first by visiting our `:login_page` defined as `/login` and by providing their
-login credentials (default authentication behaviour will use email and password).
+login credentials (default authentication behavior will use email and password).
 
 When successfully logged in, they will be granted access to the two protected pages.
 
@@ -125,20 +125,20 @@ class Admin < Padrino::Application
 
   enable :authentication
   disable :store_location
-  set :login_page, "/admin/sessions/new"
+  set :login_page, '/admin/sessions/new'
 
   access_control.roles_for :any do |role|
-    role.protect "/"
-    role.allow "/sessions"
+    role.protect '/'
+    role.allow '/sessions'
   end
 
   access_control.roles_for :admin do |role|
-    role.project_module :settings, "/settings"
+    role.project_module :settings, '/settings'
   end
 
   access_control.roles_for :editor do |role|
-    role.project_module :posts, "/posts"
-    role.project_module :categories, "/categories"
+    role.project_module :posts, '/posts'
+    role.project_module :categories, '/categories'
   end
 end
 ```

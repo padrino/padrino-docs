@@ -77,7 +77,7 @@ de:
 in your view or controller or wherever you prefer add:
 
 ```ruby
-I18n.t("foo")
+I18n.t('foo')
 ```
 
 you will get:

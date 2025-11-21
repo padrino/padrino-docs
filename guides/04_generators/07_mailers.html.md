@@ -44,7 +44,7 @@ You can destroy mailer that you created via the destroy option and setting it to
 true. Default is false.
 
 ```shell
-$ padrino g mailer UserNotifer -d
+$ padrino g mailer UserNotifier -d
 ```
 
 This remove all created mailer files.
