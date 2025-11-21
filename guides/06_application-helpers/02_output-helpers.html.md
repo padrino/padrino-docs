@@ -55,7 +55,7 @@ constructing a simplified `form_tag` helper which accepts a block.
 
 ```ruby
 # form_tag '/register' do ... end
-def form_tag(url, options={}, &block)
+def form_tag(url, options = {}, &block)
   # ... truncated ...
   inner_form_html = capture_html(&block)
   concat_content '<form>' + inner_form_html + '</form>'
@@ -82,7 +82,7 @@ have been built to work for both haml and erb templates using the same syntax.
 - `capture_html(*args, &block)`
   - Captures the html from a block of template code for erb or haml
   - `capture_html(&block)` => "...html..."
-- `concat_content(text="")`
+- `concat_content(text = '')`
   - Outputs the given text to the templates buffer directly in erb or haml
   - `concat_content("This will be output to the template buffer in erb or
     haml")`

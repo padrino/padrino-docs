@@ -11,10 +11,10 @@ object-based forms using a simple, intuitive syntax.
 A `form_for` using these basic fields might look like:
 
 ```haml
-= form_for @user, '/register', :id => 'register' do |f|
+= form_for @user, '/register', id: 'register' do |f|
   = f.error_messages
   %p
-    = f.label :username, :caption => "Nickname"
+    = f.label :username, caption: "Nickname"
     = f.text_field :username
   %p
     = f.label :email
@@ -23,77 +23,77 @@ A `form_for` using these basic fields might look like:
     = f.label :password
     = f.password_field :password
   %p
-    = f.label :is_admin, :caption => "Admin User?"
+    = f.label :is_admin, caption: "Admin User?"
     = f.check_box :is_admin
   %p
-    = f.label :color, :caption => "Favorite Color?"
-    = f.select :color, :options => ['red', 'black']
+    = f.label :color, caption: "Favorite Color?"
+    = f.select :color, options: ['red', 'black']
   %p
     = fields_for @user.location do |location|
       = location.text_field :street
       = location.text_field :city
   %p
-    = f.submit "Create", :class => 'button'
+    = f.submit 'Create', class: 'button'
 ```
 
 ## Form Builder Helpers
 
-- `form_for(object, url, settings={}, &block)`
+- `form_for(object, url, settings = {}, &block)`
   - Constructs a form using given or default `form_builder`
   - Supports form methods 'put' and 'delete' through hidden field
   - Defaults to `StandardFormBuilder` but you can
   [easily create your own](/guides/application-helpers/custom-form-builders "Custom Form Builders")!
-  - `form_for(@user, '/register', :id => 'register') { |f| ...field-elements...  }`
-  - `form_for(:user, '/register', :id => 'register') { |f| ...field-elements...  }`
-- `fields_for(object, settings={}, &block)`
+  - `form_for(@user, '/register', id: 'register') { |f| ...field-elements...  }`
+  - `form_for(:user, '/register', id: 'register') { |f| ...field-elements...  }`
+- `fields_for(object, settings = {}, &block)`
   - Constructs fields for a given object for use in an existing form
   - Defaults to StandardFormBuilder but you can easily create your own!
   - `fields_for @user.assignment do |assignment| ... end`
-  - `fields_for :assignment do |assigment| ... end`
+  - `fields_for :assignment do |assignment| ... end`
 
 Some of the methods provided by `AbstractFormBuilder` that can be used
 within `form_for` or `fields_for` are:
 
-- `error_messages(options={})`
+- `error_messages(options = {})`
   - Displays list html for the errors on form object
   - `f.error_messages`
-- `label(field, options={})`
-  - `f.label :name, :class => 'long'`
-- `text_field(field, options={})`
-  - `f.text_field :username, :class => 'long'`
-- `check_box(field, options={})`
+- `label(field, options = {})`
+  - `f.label :name, class: 'long'`
+- `text_field(field, options = {})`
+  - `f.text_field :username, class: 'long'`
+- `check_box(field, options = {})`
   - Uses hidden field to provide a 'unchecked' value for field
-  - `f.check_box :remember_me, :uncheck_value => 'false'`
-- `radio_button(field, options={})`
-  - `f.radio_button :gender, :value => 'male'`
-- `hidden_field(field, options={})`
-  - `f.hidden_field :session_id, :class => 'hidden'`
-- `text_area(field, options={})`
-  - `f.text_area :summary, :class => 'long'`
-- `password_field(field, options={})`
-  - `f.password_field :secret, :class => 'long'`
-- `number_field(field, options={})`
-  - `f.number_field :age, :class => 'long'`
-- `telephone_field(field, options={})`
-  - `f.telephone_field :mobile, :class => 'long'`
-- `email_field(field, options={})`
-  - `f.email_field :email, :class => 'long'`
-- `search_field(field, options={})`
-  - `f.search_field :query, :class => 'long'`
-- `url_field(field, options={})`
-  - `f.url_field :image_source, :class => 'long'`
-- `file_field(field, options={})`
-  - `f.file_field :photo, :class => 'long'`
-- `select(field, options={})`
-  - `f.select(:state, :options => ['California', 'Texas', 'Wyoming'])`
-  - `f.select(:state, :collection => @states, :fields => [:name, :id])`
-  - `f.select(:state, :options => [...], :include_blank => true)`
-- `submit(caption, options={})`
-  - `f.submit "Update", :class => 'long'`
-- `image_submit(source, options={})`
-  - `f.image_submit "submit.png", :class => 'long'`
+  - `f.check_box :remember_me, uncheck_value: 'false'`
+- `radio_button(field, options = {})`
+  - `f.radio_button :gender, value: 'male'`
+- `hidden_field(field, options = {})`
+  - `f.hidden_field :session_id, class: 'hidden'`
+- `text_area(field, options = {})`
+  - `f.text_area :summary, class: 'long'`
+- `password_field(field, options = {})`
+  - `f.password_field :secret, class: 'long'`
+- `number_field(field, options = {})`
+  - `f.number_field :age, class: 'long'`
+- `telephone_field(field, options = {})`
+  - `f.telephone_field :mobile, class: 'long'`
+- `email_field(field, options = {})`
+  - `f.email_field :email, class: 'long'`
+- `search_field(field, options = {})`
+  - `f.search_field :query, class: 'long'`
+- `url_field(field, options = {})`
+  - `f.url_field :image_source, class: 'long'`
+- `file_field(field, options = {})`
+  - `f.file_field :photo, class: 'long'`
+- `select(field, options = {})`
+  - `f.select(:state, options: ['California', 'Texas', 'Wyoming'])`
+  - `f.select(:state, collection: @states, fields: [:name, :id])`
+  - `f.select(:state, options: [...], include_blank: true)`
+- `submit(caption, options = {})`
+  - `f.submit 'Update', class: 'long'`
+- `image_submit(source, options = {})`
+  - `f.image_submit 'submit.png', class: 'long'`
 - `date_field(field, options = {})`
-  - `f.date_field :time_start, :class => 'input'`
+  - `f.date_field :time_start, class: 'input'`
 
 For a complete list checkout [the form helper docs](http://www.rubydoc.info/gems/padrino-helpers/Padrino/Helpers/FormHelpers "Form Helper Docs").
 

@@ -105,16 +105,16 @@ Next, we can integrate our authentication system within in `app/app.rb`:
     # at the top after the enable :sessions
     register Padrino::Admin::AccessControl
 
-    set :login_page, "/" # determines the url login occurs
+    set :login_page, '/' # determines the url login occurs
 
     access_control.roles_for :any do |role|
-      role.protect "/profile"
-      role.protect "/admin" # here is a demo path
+      role.protect '/profile'
+      role.protect '/admin' # here is a demo path
     end
 
     # now we add a role for users
     access_control.roles_for :users do |role|
-      role.allow "/profile"
+      role.allow '/profile'
     end
 
 And add a couple useful routes, edit `app/controllers.rb` with:
@@ -140,11 +140,11 @@ And add a couple useful routes, edit `app/controllers.rb` with:
     end
 
     get :auth, :map => '/auth/:provider/callback' do
-      auth    = request.env["omniauth.auth"]
-      account = Account.find_by_provider_and_uid(auth["provider"], auth["uid"]) ||
+      auth    = request.env['omniauth.auth']
+      account = Account.find_by_provider_and_uid(auth['provider'], auth['uid']) ||
                 Account.create_with_omniauth(auth)
       set_current_account(account)
-      redirect "http://" + request.env["HTTP_HOST"] + url(:profile)
+      redirect "http://" + request.env['HTTP_HOST'] + url(:profile)
     end
 
 We invoked a method `Account.create_with_omniauth` above, so edit `app/models/account.rb` and add:
@@ -152,10 +152,10 @@ We invoked a method `Account.create_with_omniauth` above, so edit `app/models/ac
     # app/models/account.rb
     def self.create_with_omniauth(auth)
       create! do |account|
-        account.provider = auth["provider"]
-        account.uid      = auth["uid"]
-        account.name    = auth["info"]["name"] if auth["info"]
-        account.email    = auth["info"]["email"] if auth["info"] # we get this only from FB
+        account.provider = auth['provider']
+        account.uid      = auth['uid']
+        account.name    = auth['info']['name'] if auth['info']
+        account.email    = auth['info']['email'] if auth['info'] # we get this only from FB
         account.role     = "users"
       end
     end

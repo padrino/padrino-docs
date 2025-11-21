@@ -26,9 +26,9 @@ applications are mounted to which URI's. An `apps.rb` file has the following
 structure:
 
 ```ruby
-Padrino.mount("blog").to("/blog")
-Padrino.mount("website").to("/website")
-Padrino.mount("app").to("/")
+Padrino.mount('blog').to('/blog')
+Padrino.mount('website').to('/website')
+Padrino.mount('app').to('/')
 ```
 
 This would mount three applications onto the Padrino project, one served from
@@ -52,10 +52,10 @@ following in your `config/apps.rb` file:
 
 ```ruby
 # Adds support for matching an app to a host string or pattern
-Padrino.mount("Blog").to("/").host("blog.example.org")
-Padrino.mount("Admin").host("admin.example.org")
-Padrino.mount("WebSite").host(/.*\.?example.org/)
-Padrino.mount("Foo").to("/foo").host("bar.example.org")
+Padrino.mount('Blog').to('/').host('blog.example.org')
+Padrino.mount('Admin').host('admin.example.org')
+Padrino.mount('WebSite').host(/.*\.?example.org/)
+Padrino.mount('Foo').to('/foo').host('bar.example.org')
 ```
 
 This will configure each application to match to the given host pattern

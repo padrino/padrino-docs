@@ -5,7 +5,7 @@ title: Running Padrino on JRuby
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.10.5 is tested) on JRuby 1.7.27
+You can run Padrino (0.9.29 ... 0.16.0 is tested) on JRuby
 
 --------------------------------------------------------------------------------
 
@@ -15,10 +15,10 @@ You can easily install Padrino on jruby when you use
 [RVM](https://rvm.io/rvm/install "RVM"):
 
 ```shell
-$ rvm install jruby-1.7.27
-$ rvm use --create jruby-1.7.27@padrino
+$ rvm install jruby-latest
+$ rvm use --create jruby-latest@padrino
 $ gem install bundler
-$ gem install padrino -v=0.10.5
+$ gem install padrino -v=0.16.0
 ```
 
 Create Padrino project just as you do when using MRI or REE:
@@ -59,11 +59,11 @@ JrackTest::App.controllers :index do
     "Hello, JPadrino!"
   end
 
-  get :hello, :map => '/:id' do
+  get :hello, map: '/:id' do
     "Hello, #{params[:id]}!"
   end
 
-  get :show_path, :map => '/show-path/*urls' do
+  get :show_path, map: '/show-path/*urls' do
     "You accessed: #{params[:urls].inspect}"
   end
 end

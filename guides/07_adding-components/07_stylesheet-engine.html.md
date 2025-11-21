@@ -71,7 +71,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-stylesheet:: none  (default), less, compass, sass, scss
+stylesheet:: none (default), less, compass, sass, scss
 ```
 
 ## Contribute to Padrino

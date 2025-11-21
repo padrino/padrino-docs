@@ -26,7 +26,7 @@ Let's also add a test to ensure the new rendering component generates as expecte
 ```ruby
 # padrino-gen/test/test_project_generator.rb
 should "properly generate for haml" do
-  buffer = silence_logger {@project.start(['sample_project', '--root=/tmp', '--renderer=haml','--script=none'])}
+  buffer = silence_logger { @project.start(['sample_project', '--root=/tmp', '--renderer=haml','--script=none']) }
   assert_match /Applying.*?haml.*?renderer/, buffer
   assert_match_in_file(/gem 'haml'/, '/tmp/sample_project/Gemfile')
 end

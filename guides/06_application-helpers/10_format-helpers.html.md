@@ -28,9 +28,9 @@ as `simple_format`, `pluralize`, `word_wrap`, and `truncate`.
 ```ruby
 simple_format("hello\nworld") # => "<p>hello<br/>world</p>"
 pluralize(2, 'person') => '2 people'
-word_wrap('Once upon a time', :line_width => 8) => "Once upon\na time"
-truncate("Once upon a time in a world far far away", :length => 8) => "Once upon..."
-truncate_words("Once upon a time in a world far far away", :length => 4) => "Once upon a time..."
+word_wrap('Once upon a time', line_width: 8) => "Once upon\na time"
+truncate("Once upon a time in a world far far away", length: 8) => "Once upon..."
+truncate_words("Once upon a time in a world far far away", length: 4) => "Once upon a time..."
 highlight('Lorem dolor sit', 'dolor') => "Lorem <strong class="highlight">dolor</strong> sit"
 ```
 
@@ -46,16 +46,16 @@ These helpers can be invoked from any route or view within your application.
   - `pluralize(2, 'person')` => '2 people'
 - `word_wrap(text, *args)`
   - Wraps the text into lines no longer than line_width width.
-  - `word_wrap('Once upon a time', :line_width => 8)` => "Once upon\na time"
+  - `word_wrap('Once upon a time', line_width: 8)` => "Once upon\na time"
 - `truncate(text, *args)`
   - Truncates a given text after a given `:length` if text is longer than `:length`
     (defaults to 30).
-  - `truncate("Once upon a time in a world far far away", :length => 8)` =>
+  - `truncate("Once upon a time in a world far far away", length: 8)` =>
     "Once upon..."
 - `truncate_words(text, *args)`
   - Truncates a given text after a given :length of total words (defaults to
     30).
-  - `truncate_words("Once upon a time in a world far far away", :length => 4)
+  - `truncate_words("Once upon a time in a world far far away", length: 4)
     => "Once upon a time..."`
 - `highlight(text, words, *args)`
   - Highlights one or more words everywhere in text by inserting it into a
@@ -78,4 +78,4 @@ These helpers can be invoked from any route or view within your application.
 - `js_escape_html(html_content)`
   - Escapes html to allow passing information to javascript. Used for passing
     data inside an ajax .js.erb template.
-  - `js_escape_html("<h1>Hey</h1>")`
+  - `js_escape_html('<h1>Hey</h1>')`

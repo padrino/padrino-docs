@@ -23,7 +23,7 @@ to install edge into system gems from repository.
 
 ```ruby
 # Edit Gemfile
-gem 'padrino', :git => "git://github.com/padrino/padrino-framework.git"
+gem 'padrino', github: 'padrino/padrino-framework'
 ```
 
 and from console:
@@ -69,7 +69,7 @@ Next, we should mark the version as dev(elopment) to get a fresh set of gems:
 ```ruby
 # /tmp/padrino-framework/padrino-core/lib/padrino-core/version.rb
 module Padrino
-  VERSION = '0.13.1.beta1' unless defined?(Padrino::VERSION) # Change to bump version
+  VERSION = '0.16.0' unless defined?(Padrino::VERSION) # Change to bump version
   #...
 end
 ```
@@ -78,12 +78,12 @@ Finally, run the `fresh` rake command to install the latest version:
 
 ```shell
 padrino-framework$ rake fresh
-  ~/.rvm/rubies/ruby-2.2.1/bin/ruby -S rake install
-  padrino-support 0.13.1 built to pkg/padrino-support-0.13.1.gem.
-  padrino-support (0.13.1) installed.
-  ~/.rvm/rubies/ruby-2.2.1/bin/ruby -S rake install
-  padrino-core 0.13.1 built to pkg/padrino-core-0.13.1.gem.
-  padrino-core (0.13.1) installed.
+  ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
+  padrino-support 0.16.0 built to pkg/padrino-support-0.16.0.gem.
+  padrino-support (0.16.0) installed.
+  ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
+  padrino-core 0.16.0 built to pkg/padrino-core-0.16.0.gem.
+  padrino-core (0.16.0) installed.
   ...
 ```
 
@@ -93,7 +93,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', '0.13.1.beta1'
+gem 'padrino', '~> 0.16.0'
 ```
 
 or you can generate a new project easily and you can use padrino commands
@@ -138,7 +138,7 @@ This will append the following lines to your test-app/Gemfile:
 ```ruby
 # Vendored Padrino
 %w(core gen helpers mailer admin).each do |gem|
-  gem 'padrino-' + gem, :path => "/src/padrino-framework/padrino-" + gem
+  gem 'padrino-' + gem, path: '/src/padrino-framework/padrino-' + gem
 end
 ```
 

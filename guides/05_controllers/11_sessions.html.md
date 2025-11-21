@@ -14,7 +14,7 @@ session hash per user session:
 enable :sessions
 
 get '/' do
-  "value = " << session[:value].inspect
+  "value = #{session[:value].inspect}"
 end
 
 get '/:value' do
@@ -29,10 +29,10 @@ for instance). You can use any Rack session middleware: in order to do so, do
 as you would any other middleware:
 
 ```ruby
-use Rack::Session::Pool, :expire_after => 2592000
+use Rack::Session::Pool, expire_after: 2592000
 
 get '/' do
-  "value = " << session[:value].inspect
+  "value = #{session[:value].inspect}"
 end
 
 get '/:value' do
@@ -53,12 +53,12 @@ If you want to configure it further, you may also store a hash with options in
 the `sessions` setting:
 
 ```ruby
-set :sessions, :domain => 'foo.com'
+set :sessions, domain: 'foo.com'
 ```
 
 To share your session across other apps on subdomains of foo.com, prefix the
 domain with a `.` like this instead:
 
 ```ruby
-set :sessions, :domain => '.foo.com'
+set :sessions, domain: '.foo.com'
 ```

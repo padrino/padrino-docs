@@ -26,7 +26,7 @@ def setup_mock
       inject_into_file 'spec/spec_helper.rb', "  conf.mock_with :mocha\n", :after => "RSpec.configure do |conf|\n"
     else
       inject_into_file 'test/test_config.rb', "require 'mocha/api'\n", :after => "require File.expand_path(File.dirname(__FILE__) + \"/../config/boot\")\n"
-      insert_mocking_include "Mocha::API"
+      insert_mocking_include 'Mocha::API'
   end
 end
 ```
@@ -40,7 +40,7 @@ in
 ```ruby
 # padrino-gen/test/test_project_generator.rb
 it 'should properly generate for mocha and rspec' do
-  out, err = capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}",'--test=rspec', '--mock=mocha', '--script=none') }
+  out, err = capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--test=rspec', '--mock=mocha', '--script=none') }
   assert_match(/applying.*?mocha.*?mock/, out)
   assert_match_in_file(/gem 'mocha'/, "#{@apptmp}/sample_project/Gemfile")
   assert_match_in_file(/conf.mock_with :mocha/m, "#{@apptmp}/sample_project/spec/spec_helper.rb")

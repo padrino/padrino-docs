@@ -35,15 +35,15 @@ in Sinatra, this becomes tiresome:
 
 ```ruby
 haml :"the/path/to/file"
-erb "/path/to/file".to_sym
+erb '/path/to/file'.to_sym
 ```
 
 Finally, we have the all-important partials support for rendering mini-templates
 onto a page:
 
 ```ruby
-partial 'photo/item', :object => @photo, :locals => { :foo => 'bar' }
-partial 'photo/item', :collection => @photos
+partial 'photo/item', object: @photo, locals: { foo: 'bar' }
+partial 'photo/item', collection: @photos
 ```
 
 ## List of Render Helpers
@@ -51,8 +51,8 @@ partial 'photo/item', :collection => @photos
 - `render(engine, data, options, locals)`
   - Renders the specified template with the given options
   - `render 'user/new'`
-  - `render :erb, 'users/new', :layout => false`
+  - `render :erb, 'users/new', layout: false`
 - `partial(template, *args)`
   - Renders the html related to the partial template for object or collection
-  - `partial 'photo/item', :object => @photo, :locals => { :foo => 'bar' }`
-  - `partial 'photo/item', :collection => @photos`
+  - `partial 'photo/item', object: @photo, locals: { foo: 'bar' }`
+  - `partial 'photo/item', collection: @photos`

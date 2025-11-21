@@ -25,7 +25,7 @@ Padrino also automatically considers your current locale and/or content_type.
 
 ```ruby
 Demo::App.controllers :admin do
-  get :show, :with => :id, :provides => [:html, :js] do
+  get :show, with: :id, provides: [:html, :js] do
     render "admin/show"
   end
 end

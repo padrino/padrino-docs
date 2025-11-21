@@ -33,6 +33,7 @@ And then add the synchrony library to your Padrino application:
 ```ruby
 # app/app.rb
 require 'sinatra/synchrony'
+
 class DemoApp < Padrino::Application
   register Sinatra::Synchrony
 end
@@ -48,9 +49,9 @@ Added to Gemfile:
 
 ```ruby
 # Gemfile
-gem "rest-client"
-gem "sinatra-synchrony"
-gem "faraday"
+gem 'rest-client'
+gem 'sinatra-synchrony'
+gem 'faraday'
 ```
 
 And the benchmark app:
@@ -60,9 +61,12 @@ And the benchmark app:
 require 'sinatra/synchrony'
 require 'rest-client'
 require 'faraday'
+
 Faraday.default_adapter = :em_synchrony
+
 class DemoApp < Padrino::Application
   register Sinatra::Synchrony
+
   get '/' do
     Faraday.get 'http://google.com'
   end

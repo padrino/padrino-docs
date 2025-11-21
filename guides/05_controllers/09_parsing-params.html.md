@@ -15,8 +15,8 @@ comes in handy since it will do just that. In `app/app.rb` or in `config.ru`
 just add:
 
 ```ruby
-use Rack::Parser, :content_types => {
-  'application/json'  => Proc.new { |body| ::MultiJson.decode body }
+use Rack::Parser, content_types: {
+  'application/json' => lambda { |body| ::MultiJson.decode body }
 }
 ```
 

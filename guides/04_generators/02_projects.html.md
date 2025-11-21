@@ -8,7 +8,7 @@ title: Projects
 The usage for the project generator is quite simple:
 
 ```shell
-$ padrino g project <app_name> </path/to/create/app> --<component-name> <value>
+$ padrino g project <app_name> --root </path/to/create/app> --<component-name> <value>
 ```
 
 The simplest possible command to generate a base application would be:
@@ -82,6 +82,7 @@ The available components and their default options are listed below:
 
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
+server     | webrick | -s      | thin, puma, spider-gazelle, mongrel, trinidad, webrick
 orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, extcore, dojo

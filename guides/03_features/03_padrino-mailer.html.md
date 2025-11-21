@@ -25,13 +25,13 @@ For example, to use SMTP, add the following declaration to your application:
 
 ```ruby
 # app/app.rb
-set :delivery_method, :smtp => {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :user_name            => '<username>@gmail.com',
-  :password             => '<password>',
-  :authentication       => :plain,
-  :enable_starttls_auto => true
+set :delivery_method, smtp: {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  user_name:            '<username>@gmail.com',
+  password:             '<password>',
+  authentication:       :plain,
+  enable_starttls_auto: true
 }
 ```
 
@@ -65,10 +65,11 @@ Delivering an email within your controller is simple:
 ```ruby
 # app/controllers/session.rb
 post :create do
-  email(:from => "tony@reyes.com",
-    :to => "john@smith.com",
-    :subject => "Welcome!",
-    :body=>"Body"
+  email(
+    from: 'tony@reyes.com',
+    to: 'john@smith.com',
+    subject: 'Welcome!',
+    body: 'Body'
   )
 end
 ```
@@ -81,9 +82,9 @@ the body and specify a delivery method:
 # app/controllers/session.rb
 post :create do
   email do
-    from "tony@reyes.com"
-    to "john@smith.com"
-    subject "Welcome!"
+    from 'tony@reyes.com'
+    to 'john@smith.com'
+    subject 'Welcome!'
     body render('email/registered')
     via :sendmail
   end
@@ -110,7 +111,7 @@ MyAppName.mailer :sample do
     locals :name => name, :email => email
     render 'sample/registration_email'
     content_type :html # optional, defaults to :plain
-    via :sendmail, :location => "/usr/bin/sendmail"  # optional, to smtp if defined otherwise sendmail
+    via :sendmail, location: "/usr/bin/sendmail"  # optional, to smtp if defined otherwise sendmail
   end
 end
 ```
@@ -145,7 +146,7 @@ Once the mailer has been defined and the template written, the email route can
 be invoked by the `deliver` method:
 
 ```ruby
-deliver(:sample, :registration_email, "Bob", "bob@bobby.com")
+deliver(:sample, :registration_email, 'Bob', 'bob@bobby.com')
 ```
 
 And that will then deliver the email according the configured options.
@@ -200,8 +201,8 @@ mailer :sample do
     from 'admin@site.com'
     # ...
     body "Here are your files!"
-    add_file :filename => 'somefile.png', :content => File.read('/somefile.png')
-    add_file '/full/path/to/someotherfile.png'
+    add_file :filename => 'somefile.png', content: File.read('/somefile.png')
+    add_file '/full/path/to/some-other-file.png'
   end
 end
 ```
@@ -219,16 +220,16 @@ To define mailer defaults for a message, we can do so app-wide or within a
 ```ruby
 # app/app.rb
 # Application-wide mailer defaults
-set :mailer_defaults, :from => 'admin@padrinorb.com'
+set :mailer_defaults, from: 'admin@padrinorb.com'
 
 # app/mailers/sample_mailer.rb
 MyAppName.mailers :sample do
-  defaults :content_type => 'html'
+  defaults content_type: 'html'
   email :registration do |name, age|
     # Uses default 'content_type' and 'from' values but can also overwrite them
     to      'user@domain.com'
     subject 'Welcome to the site!'
-    locals  :name => name
+    locals  name: name
     render  'sample/registration'
   end
 end
@@ -248,7 +249,7 @@ To render a short body inline:
 mailer :sample do
   email :short_email do |name, user|
     # ...
-    body "This is a short body defined right in the mailer itself"
+    body 'This is a short body defined right in the mailer itself'
   end
 end
 ```

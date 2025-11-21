@@ -15,12 +15,12 @@ folder and create a file as such:
 # app/controllers/main.rb or controllers.rb
 
 SimpleApp.controller do
-  get "/test" do
-    "Text to return"
+  get '/test' do
+    'Text to return'
   end
 
-  get "/sample" do
-    "Sample Route"
+  get '/sample' do
+    'Sample Route'
   end
 end
 ```

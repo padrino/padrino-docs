@@ -16,7 +16,7 @@ First, let's add Datamapper to the project generator's available components in
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/project.rb
-component_option :orm, "database engine", :choices => [:activerecord, :datamapper]
+component_option :orm, "database engine", choices: [:activerecord, :datamapper]
 ```
 
 Here, we needed to append `:datamapper` as an option for the `:orm`
@@ -33,7 +33,7 @@ tasks for the generator in
 # creating the models folder for the application
 def setup_orm
   require_dependencies 'data_objects', 'do_sqlite3', 'datamapper'
-  create_file("config/database.rb", DM)
+  create_file('config/database.rb', DM)
   empty_directory('app/models')
 end
 
@@ -77,12 +77,12 @@ that should be available in
 if defined?(DataMapper)
   namespace :dm do
     namespace :migrate do
-      task :load => :environment do
+      task load: :environment do
         # ...truncated...
       end
 
-      desc "Migrate up using migrations"
-      task :up, :version, :needs => :load do |t, args|
+      desc 'Migrate up using migrations'
+      task :up, :version, needs: :load do |t, args|
         # ...truncated...
       end
     end
@@ -155,7 +155,7 @@ module Padrino
       class Orm
         attr_reader :klass_name, :klass, :name_plural, :name_singular, :orm
 
-        def initialize(name, orm, columns=nil, column_fields=nil)
+        def initialize(name, orm, columns = nil, column_fields = nil)
           # ...truncated...
         end
 
@@ -174,7 +174,7 @@ module Padrino
         end
 
         # Defines access for querying records for a model.
-        def find(params=nil)
+        def find(params = nil)
           case orm
             when :activerecord then "#{klass_name}.find(#{params})"
             when :datamapper   then "#{klass_name}.get(#{params})"
@@ -183,7 +183,7 @@ module Padrino
         end
 
         # Defines how to build a new record for a model.
-        def build(params=nil)
+        def build(params = nil)
           if params
             "#{klass_name}.new(#{params})"
           else
@@ -197,7 +197,7 @@ module Padrino
         end
 
         # Defines how to update attributes of a record for a model.
-        def update_attributes(params=nil)
+        def update_attributes(params = nil)
           case orm
             when :activerecord then "#{name_singular}.update_attributes(#{params})"
             when :datamapper then "#{name_singular}.update(#{params})"
@@ -243,7 +243,7 @@ class Account
   # This method is for authentication purpose
   #
   def self.authenticate(email, password)
-    account = first(:conditions => { :email => email }) if email.present?
+    account = first(conditions: { email: email }) if email.present?
     account && account.password_clean == password ? account : nil
   end
 

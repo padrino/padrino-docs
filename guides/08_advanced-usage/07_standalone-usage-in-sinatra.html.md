@@ -68,7 +68,7 @@ class Application < Sinatra::Base
       subject 'Happy Birthday!'
       to      'john@fake.com'
       from    'noreply@birthday.com'
-      locals  :name => name, :age => age
+      locals  name: name, age: age
       render  'sample/birthday'
     end
   end
@@ -105,24 +105,24 @@ require 'padrino-core/application/routing'
 class MyApp < Sinatra::Application
   register Padrino::Routing
 
-  get :foo, :map => "/" do
-    "This is foo mapped as index"
+  get :foo, map: '/' do
+    'This is foo mapped as index'
   end
 
-  get :bar, :provides => [:js, :html] do
+  get :bar, provides: [:js, :html] do
     case content_type
-      when :js   then "Bar for js"
-      when :html then "Bar for html"
-      else "You can never see this"
+      when :js   then 'Bar for js'
+      when :html then 'Bar for html'
+      else 'You can never see this'
     end
   end
 
-  get :custom, :map => '/custom-route', :with => :id do
+  get :custom, map: '/custom-route', with: :id do
     "This is a custom route with #{params[:id]} as params[:id]"
   end
 end # MyApp
 
-MyApp.run!(:port => 3000)
+MyApp.run!(port: 3000)
 ```
 
 --------------------------------------------------------------------------------
@@ -140,7 +140,7 @@ require 'padrino-helpers'
 class Application < Sinatra::Base
   register Padrino::Rendering
 
-  get('/')  { render 'example/demo' } # Auto-renders 'views/example/demo.haml'
+  get('/') { render 'example/demo' } # Auto-renders 'views/example/demo.haml'
   get('/demo') { render :haml, 'example/demo' } # Renders 'views/example/demo.haml'
 end
 ```

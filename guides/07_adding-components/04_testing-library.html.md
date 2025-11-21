@@ -23,7 +23,7 @@ RACK_ENV = 'test' unless defined?(RACK_ENV)
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 Dir[File.expand_path(File.dirname(__FILE__) + "/../app/helpers/**/*.rb")].each(&method(:require))
 
-require "test/unit"
+require 'test/unit'
 
 class Test::Unit::TestCase
   include Rack::Test::Methods
@@ -61,10 +61,10 @@ task 'test' => test_tasks.map { |f| "test:\#{f}" }
 TEST
 
 def setup_test
-  require_dependencies 'rack-test', :require => 'rack/test', :group => 'test'
-  require_dependencies 'shoulda', :group => 'test'
+  require_dependencies 'rack-test', require: 'rack/test', group: 'test'
+  require_dependencies 'shoulda', group: 'test'
   insert_test_suite_setup SHOULDA_SETUP
-  create_file destination_root("test/test.rake"), SHOULDA_RAKE
+  create_file destination_root('test/test.rake'), SHOULDA_RAKE
 end
 
 
