@@ -1,0 +1,25 @@
+# Padrino Framework
+
+> Padrino is a Ruby web framework built on Sinatra. It provides routing, helpers, mailers, caching, admin interface, and generators while staying lightweight and modular.
+
+## Documentation
+
+- [Getting Started](https://padrinorb.com/guides/getting-started/overview): Installation, first project, blog tutorial
+- [Controllers & Routing](https://padrinorb.com/guides/controllers/overview): Named routes, params, filters, conditions
+- [Application Helpers](https://padrinorb.com/guides/application-helpers/overview): Form helpers, tag helpers, asset helpers, rendering
+- [Generators](https://padrinorb.com/guides/generators/overview): Project, app, controller, model, mailer generators
+- [Features](https://padrinorb.com/guides/features/overview): Admin, mailer, cache, mounting apps, i18n
+- [Adding Components](https://padrinorb.com/guides/adding-components/overview): ORMs, template engines, test frameworks, CSS
+- [Advanced Usage](https://padrinorb.com/guides/advanced-usage/overview): Standalone usage, deployment, Passenger, OmniAuth
+
+## Quick Reference
+
+- Version: 0.16.1
+- Ruby: >= 2.7.8
+- Built on: Sinatra 4, Rack 3
+- Source: https://github.com/padrino/padrino-framework
+- API Docs: https://www.rubydoc.info/github/padrino/padrino-framework
+
+## Optional: Full docs
+
+For complete documentation in a single file, see [llms-full.txt](https://padrinorb.com/llms-full.txt).

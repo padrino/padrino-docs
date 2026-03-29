@@ -5,6 +5,12 @@ title: Asyncronous Concurrency
 
 # Asynchronous Concurrency
 
+> **⚠ Outdated Guide:** The libraries recommended below (Goliath, sinatra-synchrony)
+> are abandoned and incompatible with modern Padrino (Sinatra 4 / Rack 3). For
+> concurrent request handling, use [Puma](https://puma.io/) (the recommended
+> default server) or [Falcon](https://github.com/socketry/falcon) instead.
+> This guide is preserved for historical reference only.
+
 Lately, the Ruby community has become fascinated by asynchronous and concurrent
 web servers, the newest of which is called
 [Goliath](http://www.igvita.com/2011/03/08/goliath-non-blocking-ruby-19-web-server
@@ -40,8 +46,8 @@ end
 ```
 
 And that is really all you need for the basics. Also, you may want to take a
-look at [Rubinius](http://rubini.us "Rubinius") or [JRuby](http://jruby.org
-"JRuby") ruby runtimes.
+look at [JRuby](http://jruby.org "JRuby") as an alternative ruby runtime.
+(Note: Rubinius is no longer maintained.)
 
 ## Benchmarks
 

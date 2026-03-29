@@ -82,7 +82,7 @@ The available components and their default options are listed below:
 
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
-server     | webrick | -s      | thin, puma, spider-gazelle, mongrel, trinidad, webrick
+server     | webrick | -s      | thin, **puma** (recommended), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
 orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, extcore, dojo
