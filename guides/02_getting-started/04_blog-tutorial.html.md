@@ -60,7 +60,7 @@ To learn more about our template generator, be sure to check out the
 ## Installation
 
 In order to develop a Padrino application, we have to do a few things.
-First, we must obviously have [ruby](http://www.ruby-lang.org/en/ "ruby") (at least version 2.2.2 or laster) and
+First, we must obviously have [ruby](http://www.ruby-lang.org/en/ "ruby") (at least version 2.7.8 or later) and
 [rubygems](https://rubygems.org/ "rubygems") installed. Next, we must install
 the padrino framework gems:
 
@@ -86,7 +86,7 @@ of different template, testing, JavaScript and database components. You can
 learn more by reading the [generators guide](/guides/generators/overview "generators
 guide").
 
-For this sample application, we will use the ActiveRecord ORM, the Slim
+For this sample application, we will use the Sequel ORM, the Haml
 templating language, the RSpec testing framework and the jQuery JavaScript
 library. With that in mind, let us generate our new project:
 
@@ -255,7 +255,7 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.16.0 has taken the stage development at http://127.0.0.1:3000
+=> Padrino/0.16.1 has taken the stage development at http://127.0.0.1:3000
 [2025-11-21 01:02:13] INFO  WEBrick 1.9.1
 [2025-11-21 01:02:13] INFO  ruby 3.4.6 (2025-09-16) [x86_64-linux]
 [2025-11-21 01:02:13] INFO  WEBrick::HTTPServer#start: pid=3489 port=3000
