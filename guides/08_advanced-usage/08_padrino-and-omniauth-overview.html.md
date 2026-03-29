@@ -20,18 +20,24 @@ Before we begin, it is important to note that our integrated authentication base
 
 So, let’s start by creating a project using activerecord:
 
-    $ padrino g project foo --orm activerecord --tiny
-    $ cd foo
-    $ bundle install
+```shell
+$ padrino g project foo --orm activerecord --tiny
+$ cd foo
+$ bundle install
+```
 
 Now we need to add a model called `Account` to act as our persistence model:
 
-    $ padrino g model Account name:string email:string role:string uid:string provider:string
+```shell
+$ padrino g model Account name:string email:string role:string uid:string provider:string
+```
 
 
 Now we need to create and migrate our database:
 
-    $ padrino rake ar:create ar:migrate
+```shell
+$ padrino rake ar:create ar:migrate
+```
 
    NOTE: If your migration fails with something like this
 
@@ -43,15 +49,19 @@ Now we need to create and migrate our database:
 Open your favorite editor and browse and edit `Gemfile` and add `omniauth` gem and the providers for twitter and facebook.
 We also add the `haml` gem as it's not included by default in the "tiny" padrino template:
 
-    # Gemfile
-    gem 'omniauth'
-    gem 'omniauth-twitter'
-    gem 'omniauth-facebook'
-    gem 'haml'
+```ruby
+# Gemfile
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'haml'
+```
 
 Now, run bundle install to install dependencies:
 
-    $ bundle install
+```shell
+$ bundle install
+```
 
 Now we need to add the `omniauth middleware`. Here you can choose two ways:
 
@@ -60,22 +70,26 @@ Now we need to add the `omniauth middleware`. Here you can choose two ways:
 
 In our example, we need to edit simply `app/app.rb` and add:
 
-    # app/app.rb
-    use OmniAuth::Builder do
-      provider :twitter,  'consumer_key', 'consumer_secret'
-      provider :facebook, 'app_id', 'app_secret'
-    end
+```ruby
+# app/app.rb
+use OmniAuth::Builder do
+  provider :twitter,  'consumer_key', 'consumer_secret'
+  provider :facebook, 'app_id', 'app_secret'
+end
+```
 
 If you are in a multiapp scenario you need to edit `config/boot.rb`:
 
-    # config/boot.rb
-    Padrino.use OmniAuth::Builder do
-      provider :twitter,  'consumer_key', 'consumer_secret'
-      provider :facebook, 'app_id', 'app_secret'
-    end
+```ruby
+# config/boot.rb
+Padrino.use OmniAuth::Builder do
+  provider :twitter,  'consumer_key', 'consumer_secret'
+  provider :facebook, 'app_id', 'app_secret'
+end
 
-    # before the line
-    Padrino.load!
+# before the line
+Padrino.load!
+```
 
 To obtain an app\_id and secret for Facebook, you need to:
 
@@ -101,68 +115,76 @@ To obtain a consumer\_key and consumer\_secret for Twitter, you need to:
 
 Next, we can integrate our authentication system within in `app/app.rb`:
 
-    # app/app.rb
-    # at the top after the enable :sessions
-    register Padrino::Admin::AccessControl
+```ruby
+# app/app.rb
+# at the top after the enable :sessions
+register Padrino::Admin::AccessControl
 
-    set :login_page, '/' # determines the url login occurs
+set :login_page, '/' # determines the url login occurs
 
-    access_control.roles_for :any do |role|
-      role.protect '/profile'
-      role.protect '/admin' # here is a demo path
-    end
+access_control.roles_for :any do |role|
+  role.protect '/profile'
+  role.protect '/admin' # here is a demo path
+end
 
-    # now we add a role for users
-    access_control.roles_for :users do |role|
-      role.allow '/profile'
-    end
+# now we add a role for users
+access_control.roles_for :users do |role|
+  role.allow '/profile'
+end
+```
 
 And add a couple useful routes, edit `app/controllers.rb` with:
 
-    # app/controllers.rb
-    get :index do
-      haml <<-HAML.gsub(/^ {6}/, '')
-        Login with
-        =link_to('Facebook', '/auth/facebook')
-        or
-        =link_to('Twitter',  '/auth/twitter')
-      HAML
-    end
+```ruby
+# app/controllers.rb
+get :index do
+  haml <<-HAML.gsub(/^ {6}/, '')
+    Login with
+    =link_to('Facebook', '/auth/facebook')
+    or
+    =link_to('Twitter',  '/auth/twitter')
+  HAML
+end
 
-    get :profile do
-      content_type :text
-      current_account.to_yaml
-    end
+get :profile do
+  content_type :text
+  current_account.to_yaml
+end
 
-    get :destroy do
-      set_current_account(nil)
-      redirect url(:index)
-    end
+get :destroy do
+  set_current_account(nil)
+  redirect url(:index)
+end
 
-    get :auth, :map => '/auth/:provider/callback' do
-      auth    = request.env['omniauth.auth']
-      account = Account.find_by_provider_and_uid(auth['provider'], auth['uid']) ||
-                Account.create_with_omniauth(auth)
-      set_current_account(account)
-      redirect "http://" + request.env['HTTP_HOST'] + url(:profile)
-    end
+get :auth, :map => '/auth/:provider/callback' do
+  auth    = request.env['omniauth.auth']
+  account = Account.find_by_provider_and_uid(auth['provider'], auth['uid']) ||
+            Account.create_with_omniauth(auth)
+  set_current_account(account)
+  redirect "http://" + request.env['HTTP_HOST'] + url(:profile)
+end
+```
 
 We invoked a method `Account.create_with_omniauth` above, so edit `app/models/account.rb` and add:
 
-    # app/models/account.rb
-    def self.create_with_omniauth(auth)
-      create! do |account|
-        account.provider = auth['provider']
-        account.uid      = auth['uid']
-        account.name    = auth['info']['name'] if auth['info']
-        account.email    = auth['info']['email'] if auth['info'] # we get this only from FB
-        account.role     = "users"
-      end
-    end
+```ruby
+# app/models/account.rb
+def self.create_with_omniauth(auth)
+  create! do |account|
+    account.provider = auth['provider']
+    account.uid      = auth['uid']
+    account.name    = auth['info']['name'] if auth['info']
+    account.email    = auth['info']['email'] if auth['info'] # we get this only from FB
+    account.role     = "users"
+  end
+end
+```
 
 That should just about do it! Let’s start the server:
 
-    $ padrino start
+```shell
+$ padrino start
+```
 
 Browse <http://localhost:3000/profile>
 

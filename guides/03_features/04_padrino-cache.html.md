@@ -25,57 +25,63 @@ URL, with one cache entry per URL.
 This behavior is referred to as "page-level caching." If this strategy meets
 your needs, you can enable it very easily:
 
-    # Page-level caching
-    class SimpleApp < Padrino::Application
-      register Padrino::Cache
-      enable :caching
+```ruby
+# Page-level caching
+class SimpleApp < Padrino::Application
+  register Padrino::Cache
+  enable :caching
 
-      get '/foo', cache: true do
-        expires 30 # expire cached version at least every 30 seconds
-        'Hello world'
-      end
-    end
+  get '/foo', cache: true do
+    expires 30 # expire cached version at least every 30 seconds
+    'Hello world'
+  end
+end
+```
 
 You can also cache on a controller-wide basis:
 
-    # Controller-wide caching example
-    class SimpleApp < Padrino::Application
-      register Padrino::Cache
-      enable :caching
+```ruby
+# Controller-wide caching example
+class SimpleApp < Padrino::Application
+  register Padrino::Cache
+  enable :caching
 
-      get '/' do
-        'Hello world'
-      end
+  get '/' do
+    'Hello world'
+  end
 
-      # Requests to routes within '/admin'
-      controller '/admin', :cache => true do
-        expires 60
+  # Requests to routes within '/admin'
+  controller '/admin', :cache => true do
+    expires 60
 
-        get '/foo' do
-          'Url is /admin/foo'
-        end
-
-        get '/bar' do
-          'Url is /admin/bar'
-        end
-
-        post '/baz' do # We cache only GET and HEAD request
-          'This will not be cached'
-        end
-      end
+    get '/foo' do
+      'Url is /admin/foo'
     end
+
+    get '/bar' do
+      'Url is /admin/bar'
+    end
+
+    post '/baz' do # We cache only GET and HEAD request
+      'This will not be cached'
+    end
+  end
+end
+```
 
 You can also provide a custom `cache_key` in any route:
 
-    class SimpleApp < Padrino::Application
-      register Padrino::Cache
-      enable :caching
+```ruby
+class SimpleApp < Padrino::Application
+  register Padrino::Cache
+  enable :caching
 
-      get '/post/:id', :cache => true do
-        @post = Post.find(params[:id])
-        cache_key :my_name
-      end
-    end
+  get '/post/:id', :cache => true do
+    @post = Post.find(params[:id])
+    cache_key :my_name
+  end
+end
+```
 
 In this way you can manually expire cache with
 CachedApp.cache.delete(:my_name) for example from the Post model after an
@@ -100,13 +106,15 @@ until you need it. Start at the page level and see if it works for you.
 
 The padrino-cache helpers are made available to your application thusly:
 
-    # Enable caching
-    class CachedApp < Padrino::Application
-      register Padrino::Cache  # includes helpers
-      enable :caching          # turns on caching
+```ruby
+# Enable caching
+class CachedApp < Padrino::Application
+  register Padrino::Cache  # includes helpers
+  enable :caching          # turns on caching
 
-      # ... controllers/routes ...
-    end
+  # ... controllers/routes ...
+end
+```
 
 ### Page Caching
 
@@ -126,19 +134,21 @@ discarded and re-rendered. Code associated with that route will *not* be
 executed; rather, its previous output will be sent to the client with a 200 OK
 status code.
 
-    # Setting content expiry time
-    class CachedApp < Padrino::Application
-      register Padrino::Cache  # includes helpers
-      enable :caching          # turns on caching
+```ruby
+# Setting content expiry time
+class CachedApp < Padrino::Application
+  register Padrino::Cache  # includes helpers
+  enable :caching          # turns on caching
 
-      controller '/blog', :cache => true do
-        expires 15
+  controller '/blog', :cache => true do
+    expires 15
 
-        get '/entries' do
-          'just broke up eating twinkies lol'
-        end
-      end
+    get '/entries' do
+      'just broke up eating twinkies lol'
     end
+  end
+end
+```
 
 Note that the "latest" method call to `expires` determines its value: if
 called within a route, as opposed to a controller definition, the route's
@@ -165,25 +175,27 @@ Possible uses for fragment caching might include:
 This helper is used anywhere in your application you would like to associate a
 fragment to be cached. It can be used in within a route:
 
-    # Caching a fragment
-    class MyTweets < Padrino::Application
-      register Padrino::Cache  # includes helpers
-      enable :caching          # turns on caching
+```ruby
+# Caching a fragment
+class MyTweets < Padrino::Application
+  register Padrino::Cache  # includes helpers
+  enable :caching          # turns on caching
 
-      controller '/tweets' do
-        get :feed, map: '/:username' do
-          username = params[:username]
+  controller '/tweets' do
+    get :feed, map: '/:username' do
+      username = params[:username]
 
-          @feed = cache("feed_for_#{username}", expires: 3) do
-            @tweets = Tweet.all(username: username)
-            render 'partials/feedcontent'
-          end
-
-          # Below outputs @feed somewhere in its markup
-          render 'feeds/show'
-        end
+      @feed = cache("feed_for_#{username}", expires: 3) do
+        @tweets = Tweet.all(username: username)
+        render 'partials/feedcontent'
       end
+
+      # Below outputs @feed somewhere in its markup
+      render 'feeds/show'
     end
+  end
+end
+```
 
 This example adds a key to the cache of format `feed_for_#{username}` which
 contains the contents of that user's feed. Any subsequent action within the
@@ -194,36 +206,38 @@ however, be re-executed.
 Note that any other action will reference the same content if it uses the same
 key:
 
-    # Multiple routes sharing the same cached fragment
-    class MyTweets < Padrino::Application
-      register Padrino::Cache  # includes helpers
-      enable :caching          # turns on caching
+```ruby
+# Multiple routes sharing the same cached fragment
+class MyTweets < Padrino::Application
+  register Padrino::Cache  # includes helpers
+  enable :caching          # turns on caching
 
-      controller :tweets do
-        get :feed, map: '/:username' do
-          username = params[:username]
+  controller :tweets do
+    get :feed, map: '/:username' do
+      username = params[:username]
 
-          @feed = cache("feed_for_#{username}", expires: 3) do
-            @tweets = Tweet.all(username: username)
-            render 'partials/feedcontent'
-          end
-
-          # Below outputs @feed somewhere in its markup
-          render 'feeds/show'
-        end
-
-        get :mobile_feed, map: '/:username.iphone' do
-          username = params[:username]
-
-          @feed = cache("feed_for_#{username}", expires: 3) do
-            @tweets = Tweet.all(username: username)
-            render 'partials/feedcontent'
-          end
-
-          render 'feeds/show.iphone'
-        end
+      @feed = cache("feed_for_#{username}", expires: 3) do
+        @tweets = Tweet.all(username: username)
+        render 'partials/feedcontent'
       end
+
+      # Below outputs @feed somewhere in its markup
+      render 'feeds/show'
     end
+
+    get :mobile_feed, map: '/:username.iphone' do
+      username = params[:username]
+
+      @feed = cache("feed_for_#{username}", expires: 3) do
+        @tweets = Tweet.all(username: username)
+        render 'partials/feedcontent'
+      end
+
+      render 'feeds/show.iphone'
+    end
+  end
+end
+```
 
 The `opts` argument is actually passed to the underlying store. The stores
 support the `:expires` option out of the box or are enhanced by Moneta to
@@ -231,29 +245,31 @@ support it.
 
 Finally, to DRY up things a bit, we might do:
 
-    # Multiple routes sharing the same cached fragment
-    class MyTweets < Padrino::Application
-      register Padrino::Cache  # includes helpers
-      enable :caching          # turns on caching
+```ruby
+# Multiple routes sharing the same cached fragment
+class MyTweets < Padrino::Application
+  register Padrino::Cache  # includes helpers
+  enable :caching          # turns on caching
 
-      controller :tweets do
-        # This works because all routes in this controller specify :username
-        before do
-          @feed = cache("feed_for_#{params[:username]}", expires: 3) do
-            @tweets = Tweet.all(username: params[:username])
-            render 'partials/feedcontent'
-          end
-        end
-
-        get :feed, map: '/:username' do
-          render 'feeds/show'
-        end
-
-        get :mobile_feed, map: '/:username.iphone' do
-          render 'feeds/show.iphone'
-        end
+  controller :tweets do
+    # This works because all routes in this controller specify :username
+    before do
+      @feed = cache("feed_for_#{params[:username]}", expires: 3) do
+        @tweets = Tweet.all(username: params[:username])
+        render 'partials/feedcontent'
       end
     end
+
+    get :feed, map: '/:username' do
+      render 'feeds/show'
+    end
+
+    get :mobile_feed, map: '/:username.iphone' do
+      render 'feeds/show.iphone'
+    end
+  end
+end
+```
 
 Of course, this example assumes the markup generated by rendering
 `partials/feedcontent` would be suitable for both feed formats. This may or
@@ -265,11 +281,15 @@ Another use of cache_key is when you’d like to include query string parameters
 as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 
-    cache_key { request.path_info + (params[:page].present? ? "?page=#{params[:page]}" : '') }
+```ruby
+cache_key { request.path_info + (params[:page].present? ? "?page=#{params[:page]}" : '') }
+```
 
 If you're using `ActiveSupport`, you can make this a bit more robust:
 
-    cache_key { request.path_info + '?' + params.slice('page').to_param }
+```ruby
+cache_key { request.path_info + '?' + params.slice('page').to_param }
+```
 
 ## Caching Store
 
@@ -277,23 +297,27 @@ You can set a global caching option or a per app caching options.
 
 ### Global Caching Options
 
-    Padrino.cache = Padrino::Cache.new(:LRUHash) # in-memory, the default choice
-    Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
-    Padrino.cache = Padrino::Cache.new(:Memcached) # Uses default server at localhost
-    Padrino.cache = Padrino::Cache.new(:Memcached, server: '127.0.0.1:11211', exception_retry_limit: 1)
-    Padrino.cache = Padrino::Cache.new(:Memcached, backend: memcached_or_dalli_instance)
-    Padrino.cache = Padrino::Cache.new(:Redis) # Uses default server at localhost
-    Padrino.cache = Padrino::Cache.new(:Redis, host: '127.0.0.1', port: 6379, db: 0)
-    Padrino.cache = Padrino::Cache.new(:Redis, backend: redis_instance)
-    Padrino.cache = Padrino::Cache.new(:Mongo) # Uses default server at localhost
-    Padrino.cache = Padrino::Cache.new(:Mongo, backend: mongo_client_instance)
+```ruby
+Padrino.cache = Padrino::Cache.new(:LRUHash) # in-memory, the default choice
+Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
+Padrino.cache = Padrino::Cache.new(:Memcached) # Uses default server at localhost
+Padrino.cache = Padrino::Cache.new(:Memcached, server: '127.0.0.1:11211', exception_retry_limit: 1)
+Padrino.cache = Padrino::Cache.new(:Memcached, backend: memcached_or_dalli_instance)
+Padrino.cache = Padrino::Cache.new(:Redis) # Uses default server at localhost
+Padrino.cache = Padrino::Cache.new(:Redis, host: '127.0.0.1', port: 6379, db: 0)
+Padrino.cache = Padrino::Cache.new(:Redis, backend: redis_instance)
+Padrino.cache = Padrino::Cache.new(:Mongo) # Uses default server at localhost
+Padrino.cache = Padrino::Cache.new(:Mongo, backend: mongo_client_instance)
+```
 
 You can manage your cache from anywhere in your app:
 
-    Padrino.cache['val'] = 'test'
-    Padrino.cache['val'] # => 'test'
-    Padrino.cache.delete('val')
-    Padrino.cache.clear
+```ruby
+Padrino.cache['val'] = 'test'
+Padrino.cache['val'] # => 'test'
+Padrino.cache.delete('val')
+Padrino.cache.clear
+```
 
 The Padrino cache constructor `Padrino::Cache.new` calls `Moneta.new` to
 create a cache instance. Please refer to the [Moneta
@@ -303,17 +327,21 @@ or use a more exotic backend.
 
 ### Application Caching Options
 
-    set :cache, Padrino::Cache.new(:LRUHash) # in-memory
-    set :cache, Padrino::Cache.new(:Memcached)
-    set :cache, Padrino::Cache.new(:Redis)
-    set :cache, Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
+```ruby
+set :cache, Padrino::Cache.new(:LRUHash) # in-memory
+set :cache, Padrino::Cache.new(:Memcached)
+set :cache, Padrino::Cache.new(:Redis)
+set :cache, Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
+```
 
 You can manage your cache from anywhere in your app:
 
-    MyApp.cache['val'] = 'test'
-    MyApp.cache['val'] # => 'test'
-    MyApp.cache.delete('val')
-    MyApp.cache.clear
+```ruby
+MyApp.cache['val'] = 'test'
+MyApp.cache['val'] # => 'test'
+MyApp.cache.delete('val')
+MyApp.cache.clear
+```
 
 ## Expiring Cached Content
 
@@ -330,33 +358,35 @@ tendency to post things they quickly regret. When we query our database for
 new tweets, let's check to see if any have been deleted. If so, we'll do our
 user a favor and instantly re-render the feed.
 
-    # Expiring fragment-level cached content
-    class MyTweets < Padrino::Application
-      register Padrino::Cache # includes helpers
-      enable :caching         # turns on caching
-      enable :session         # we'll use this to store last time visited
+```ruby
+# Expiring fragment-level cached content
+class MyTweets < Padrino::Application
+  register Padrino::Cache # includes helpers
+  enable :caching         # turns on caching
+  enable :session         # we'll use this to store last time visited
 
-      COMPANY_FOUNDING = Time.utc(2010, 'April')
+  COMPANY_FOUNDING = Time.utc(2010, 'April')
 
-      controller :tweets do
-        get :feed, map: '/:username' do
-          last_visit = session[:last_visit] || params[:since] || COMPANY_FOUNDING
+  controller :tweets do
+    get :feed, map: '/:username' do
+      last_visit = session[:last_visit] || params[:since] || COMPANY_FOUNDING
 
-          username = params[:username]
-          @tweets = Tweet.since(last_visit, username: username).limit(100)
+      username = params[:username]
+      @tweets = Tweet.since(last_visit, username: username).limit(100)
 
-          expire("feed since #{last_visit}") if @tweets.any? { |t| t.deleted_since?(last_visit) }
+      expire("feed since #{last_visit}") if @tweets.any? { |t| t.deleted_since?(last_visit) }
 
-          session[:last_visit] = Time.now
-          @feed = cache("feed since #{last_visit}", expires: 60) do
-            @tweets = @tweets.find_all { |t| !t.deleted? }
-            render 'partials/feedcontent'
-          end
-
-          render 'feeds/show'
-        end
+      session[:last_visit] = Time.now
+      @feed = cache("feed since #{last_visit}", expires: 60) do
+        @tweets = @tweets.find_all { |t| !t.deleted? }
+        render 'partials/feedcontent'
       end
+
+      render 'feeds/show'
     end
+  end
+end
+```
 
 Normally, this example will only re-cache feed content every 60 seconds, but
 it will do so immediately if any tweets have been deleted.
