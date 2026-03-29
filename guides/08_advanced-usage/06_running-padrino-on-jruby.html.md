@@ -5,7 +5,7 @@ title: Running Padrino on JRuby
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.16.0 is tested) on JRuby
+You can run Padrino (0.9.29 ... 0.16.1 is tested) on JRuby
 
 --------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ You can easily install Padrino on jruby when you use
 $ rvm install jruby-latest
 $ rvm use --create jruby-latest@padrino
 $ gem install bundler
-$ gem install padrino -v=0.16.0
+$ gem install padrino -v=0.16.1
 ```
 
 Create Padrino project just as you do when using MRI or REE:
@@ -77,6 +77,10 @@ $ padrino s
 
 To run JRuby on 1.9 compat mode:
 
+> **Note:** Modern JRuby (9.x+) defaults to Ruby 2.6+ compatibility and no
+> longer requires the `--1.9` flag. The example below applies only to legacy
+> JRuby 1.7.x.
+
 ```shell
 alias padrino='jruby --1.9 -S padrino'
 padrino start
@@ -105,7 +109,8 @@ For example, if you want to deploy the app to server root directory, just add to
 config.jar_name = "jrack-test"
 ```
 
-Deploying with JRuby on 1.9 compat mode:
+Deploying with JRuby on 1.9 compat mode (obsolete for modern JRuby 9.x+,
+which defaults to Ruby 2.6+ compatibility):
 
 ```ruby
 config.webxml.jruby.compat.version = "1.9"
