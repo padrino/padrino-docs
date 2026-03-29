@@ -149,8 +149,8 @@ end
 
 ## Padrino Cache
 
-**Note that the padrino-cache** gem does not currently do anything! This is a
-  placeholder for when this gem has been implemented.
+Padrino-cache provides page and fragment caching via
+[Moneta](http://rubydoc.info/gems/moneta) backends.
 
 ```ruby
 # app.rb
