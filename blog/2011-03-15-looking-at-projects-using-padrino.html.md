@@ -28,9 +28,9 @@ Right now, the easiest way to use fikus is to simply [fork the project](https://
 
 ### Piccioto
 
-[Piccioto](https://github.com/apeacox/picciotto) is a “minimalistic website framework based on Padrino” created by [Andrea Pavoni](https://github.com/apeacox) of digitalbricks in Italy. This simple website framework allows you to create simple hybrid web sites containing static and dynamic components. This framework is composed of many tools which can be used for easy web development and features Html5 Boilerplates, Haml Templates, Sass stylesheets, Rspec testing and semi-static page support.
+[Piccioto](https://github.com/andreapavoni/picciotto) is a “minimalistic website framework based on Padrino” created by [Andrea Pavoni](https://github.com/andreapavoni) of digitalbricks in Italy. This simple website framework allows you to create simple hybrid web sites containing static and dynamic components. This framework is composed of many tools which can be used for easy web development and features Html5 Boilerplates, Haml Templates, Sass stylesheets, Rspec testing and semi-static page support.
 
-Right now, the easiest way to use Piccioto is to simply [fork the project](https://github.com/apeacox/picciotto) and begin making your own changes. All you need to do is clone the project locally and then use bundler to install dependencies. Next you can put static pages in `app/views/main/static` and add other routes as necessary to your application.
+Right now, the easiest way to use Piccioto is to simply [fork the project](https://github.com/andreapavoni/picciotto) and begin making your own changes. All you need to do is clone the project locally and then use bundler to install dependencies. Next you can put static pages in `app/views/main/static` and add other routes as necessary to your application.
 
 
 ### Presto
@@ -82,7 +82,7 @@ This will generate a form with labels for username and password – supplying th
 
 ### simple-navigation
 
-[simple-navigation](https://github.com/andi/sinatra-simple-navigation) by [Andi Schacke](https://github.com/andi) is a module that makes creating simple navigations with multiple levels easy in Rails, Sinatra or Padrino applications. You can render your navigation as an html list, link list or with breadcrumbs.
+[simple-navigation](https://github.com/codeplant/sinatra-simple-navigation) by [Andi Schacke](https://github.com/andi) is a module that makes creating simple navigations with multiple levels easy in Rails, Sinatra or Padrino applications. You can render your navigation as an html list, link list or with breadcrumbs.
 
 Simply install the application with:
 
@@ -91,12 +91,12 @@ Simply install the application with:
     # app.rb
     register Sinatra::SimpleNavigation
 
-and then run bundle install and begin defining your navigation structure. For examples, check out the [simple nav demos](http://github.com/andi/simple-navigation-demo).
+and then run bundle install and begin defining your navigation structure. For examples, check out the [simple nav demos](https://github.com/codeplant/simple-navigation-demo).
 
 
 ### padrino-warden
 
-[padrino-warden](https://github.com/jondot/padrino-warden) by [Dotan J. Nahum](https://github.com/jondot) is a module that provides authentication for your Padrino application through [Warden](https://github.com/hassox/warden).
+[padrino-warden](https://github.com/jondot/padrino-warden) by [Dotan J. Nahum](https://github.com/jondot) is a module that provides authentication for your Padrino application through [Warden](https://github.com/wardencommunity/warden).
 
 
 ### Notable Mentions

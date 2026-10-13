@@ -39,7 +39,7 @@ There are a few helper changes to be aware of:
 
 ## New Routing System
 
-Subtle differences likely exist between the old [http_router](https://github.com/joshbuddy/http_router) and the new [mustermann](https://github.com/rkh/mustermann) powered system. These differences include:
+Subtle differences likely exist between the old [http_router](https://github.com/joshbuddy/http_router) and the new [mustermann](https://github.com/sinatra/mustermann) powered system. These differences include:
 
 - Splat arguments in URL are now a string rather than an array
   - `get :show, :map => "/show/*name"` used to return `params[:name]` as an array. Now this is a string.

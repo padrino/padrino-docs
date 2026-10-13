@@ -15,7 +15,7 @@ In short: You are safe, unless you explicitely activated some form of parameter 
 
 Currently, some security issues plagued the Rails community. The most dangerous is [CVE-156](https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion) , which is present in almost all Rails installations. Default Sinatra and Padrino are unaffected, see [this discussion](https://groups.google.com/forum/#!msg/sinatrarb/nUzRwTzkycU/ILoXoHxwn-0J) on the Sinatra mailing list for details. All hints given there are true for Padrino users as well.
 
-If you are using any of the Rails components in question either directly or through dependencies, you should upgrade them. The most important components in question are YAML (both Psych and Syck) or XmlMini. Popular projects using them are [Rack::Parser](https://github.com/achiu/rack-parser) (fixed) and [Rack::PostBodyToParams](https://github.com/niko/rack-post-body-to-params). If you use the first: run `bundle upgrade` and make sure you get version `0.2.0` and higher! Update: The same goes for rack-post-body-params (see the comments).
+If you are using any of the Rails components in question either directly or through dependencies, you should upgrade them. The most important components in question are YAML (both Psych and Syck) or XmlMini. Popular projects using them are [Rack::Parser](https://github.com/achiurizo/rack-parser) (fixed) and [Rack::PostBodyToParams](https://github.com/niko/rack-post-body-to-params). If you use the first: run `bundle upgrade` and make sure you get version `0.2.0` and higher! Update: The same goes for rack-post-body-params (see the comments).
 
 
 ## What are those attacks about and how can I validate my stack?

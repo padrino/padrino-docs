@@ -15,11 +15,11 @@ Below is the current list of known open-source Padrino applications.
 
 Name                                           | Description         | In Production | Author
 ---------------------------------------------- | ------------------- | ------------- | ------------
-[padrino-web](https://github.com/padrino/padrino-web) | Open-sourced padrinorb.com source code. | Yes | [Padrino Team](https://github.com/orgs/padrino/teams/collaborators)
+[padrino-web](https://github.com/padrino/padrino-web) | Open-sourced padrinorb.com source code. | Yes | [Padrino Team](https://github.com/orgs/padrino/people)
 [middleman](http://middlemanapp.com) | A Static Frontend Development Framework (use Padrino for their template helpers). | Yes | [middleman](https://github.com/middleman/middleman)
 [hasbeen.in](https://github.com/findoutwho/hasbeen.in) | Your geek-friendly travel site. | Yes | [findoutwho](https://github.com/findoutwho)
 [getVolunteers](https://github.com/RmMsr/getVolunteers) | Embed an image anywhere to let people know if your event needs more help. | Yes | [RmMsr](https://github.com/RmMsr) |
-[lumen](https://github.com/wordsandwriting/lumen) | Open-source group discussion platform. | Yes | [wordsandwriting](https://github.com/wordsandwriting)
+[lumen](https://github.com/stephenreid321/lumen) | Open-source group discussion platform. | Yes | [stephenreid321](https://github.com/stephenreid321)
 [iTunes Store Transporter: GUI](http://transportergui.com) | GUI for the iTunes Store’s Transporter (iTMSTransporter). | Yes | [sshaw](https://github.com/sshaw)
 [HOF Studios Website](http://www.hofstudios.com/) | HOF Studios specializes in game development for PC and mobile platforms. | Yes | [HOF Studios](https://github.com/hofstudios)
 [sochi2014 api](http://olympics.clearlytech.com/api-doc.html) | Unofficial olympics for sochi2014. | Yes, but API is no longer active | [clearytech](https://github.com/clearlytech)
@@ -27,10 +27,10 @@ Name                                           | Description         | In Produc
 [manicminer-front](https://github.com/jorgefuertes/manicminer-front) | Manicminer Multicoin Mining Pool - Front App (inactive since 2014). | No  [jorgefuertes](https://github.com/jorgefuertes)
 [fumblr](https://github.com/pengwynn/fumblr) | Stop fumbling with your Tumblr theme development (inactive since 2013). | No | [pengwynn](https://github.com/pengwynn)
 [machete](https://github.com/gtgames/machete) | Simple mongomapper+padrino driven web site engine (inactive since 2012). | No | [gtgames](https://github.com/gtgames)
-[shortener-demo]( https://github.com/padrino/shortener-demo) | Example Padrino url shortener app (inactive since 2011). | No | [achiu](https://github.com/achiu)
+[shortener-demo]( https://github.com/padrino/shortener-demo) | Example Padrino url shortener app (inactive since 2011). | No | [achiurizo](https://github.com/achiurizo)
 [haircut](https://github.com/udzura/haircut) | The URL shortener with Padrino and MongoId (inactive since 2011). | No | [udzura](https://github.com/udzura)
 [moolah](https://github.com/mcmire/moolah) | A tiny money management app (inactive since 2011). | No | [mcmire](https://github.com/mcmire)
-[picciotto](https://github.com/apeacox/picciotto) | Minimalistic website framework (inactive since 2011). | No | [apeacox](https://github.com/apeacox)
+[picciotto](https://github.com/andreapavoni/picciotto) | Minimalistic website framework (inactive since 2011). | No | [andreapavoni](https://github.com/andreapavoni)
 [fikas](https://github.com/bratta/fikus) | The Simple Ruby CMS (inactive since 2010). | No | [bratta](https://github.com/bratta)
 [pergola](https://github.com/ryanfitz/pergola) | Web frontend to mongoDB (inactive since 2011). | No | [ryanfitz](https://github.com/ryanfitz)
 [presto](https://github.com/pengwynn/presto) | Padrino + NestaCMS (inactive since 2010). | No | [pengwynn](http://wynnnetherland.com/)
@@ -52,11 +52,11 @@ Name                                    | Description             | Author
 [sinatra-simple-navigation](https://github.com/codeplant/sinatra-simple-navigation) | Creates a simple way to do navigation for Padrino and Sinatra. | [codeplant](https://github.com/codeplant)
 [Sinatra Wild Extensions](http://www.sinatrarb.com/extensions-wild.html) | Bunch of Sinatra which can be used alongside with Padrino. | -
 [padrino-pagination](https://github.com/sumskyi/padrino-pagination) | Pagination for Padrino (inactive since 2014). | [sumskyi](https://github.com/sumskyi)
-[rack-recaptcha](https://github.com/achiu/rack-recaptcha) | Rack Middleware for CAPTCHA verification via Recaptcha API | [achiu](https://github.com/achiu)
+[rack-recaptcha](https://github.com/achiurizo/rack-recaptcha) | Rack Middleware for CAPTCHA verification via Recaptcha API | [achiurizo](https://github.com/achiurizo)
 [padrino-fields](https://github.com/activestylus/padrino-fields) |  Simple, flexible form helpers for the Padrino Framework (inactive since 2013). | [activestylus](https://github.com/activestylus)
 [padrino-completion](https://github.com/bolshakov/padrino-completion) | Bash completion for Padrino (inactive since 2012). | [bolshakov](https://github.com/bolshakov)
 [vim-padrino](https://github.com/spllr/vim-padrino) | Vim support for Padrino (inactive since 2012). | [spllr](https://github.com/spllr)
-[ripl-padrino](https://github.com/achiu/ripl-padrino) | ripl console for Padrino applications (inactive since 2011). | [achiu](https://github.com/achiu)
+[ripl-padrino](https://github.com/achiurizo/ripl-padrino) | ripl console for Padrino applications (inactive since 2011). | [achiurizo](https://github.com/achiurizo)
 [padrino-responders](https://github.com/nu7hatch/padrino-responders) | Awesome way to remove redundancy in your Padrino controllers (inactive since 2011). | [nu7hatch](https://github.com/nu7hatch)
 [view\_models](https://github.com/floere/view_models) | A view model/representer solution for Padrino and Rails (inactive since 2012). | [floere](https://github.com/floere)
 [declarative\_authorization\_padrino](https://github.com/dariocravero/declarative_authorization_padrino) | Declarative Authorization for Padrino (inactive since 2011). | [dariocravero](https://github.com/dariocravero)

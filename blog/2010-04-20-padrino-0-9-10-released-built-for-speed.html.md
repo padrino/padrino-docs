@@ -196,7 +196,7 @@ Padrino 0.9.10 also features support for a host of minor improvements:
 - Fixes an issue with generator not casing controller / model names
 - Fixed `padrino g` and `padrino gen` aliases
 - Fixes issue with mounter and locating the app file
-- Removed VERSION files. This prevent problems described here: http://github.com/nex3/haml/issues/issue/24
+- Removed VERSION files. This prevent problems described here: https://github.com/haml/haml/issues/24
 - Fixed a bug with layouts that prevent double rendering
 - ActiveSupport 3.0 Compatibility fixes
 

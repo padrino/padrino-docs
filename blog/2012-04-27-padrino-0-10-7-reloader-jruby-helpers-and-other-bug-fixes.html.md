@@ -18,7 +18,7 @@ Several months ago, Padrino 0.10.6 was released which included HTML5 support, im
 - Remove redundant tlsmail dependency: [commit](https://github.com/padrino/padrino-framework/commit/165743e7a11fc7f889759c0b128f3020ce1fcece), Thanks [trevor](https://github.com/trevor)
 - Adds an options attribute to ProjectModule: [commit](https://github.com/padrino/padrino-framework/commit/35844fc3aa3a64050c3eadddda6b4f54aee0aa3c), Thanks [simonc](https://github.com/simonc)
 - Respect configured model name in admin generator: [commit](https://github.com/padrino/padrino-framework/commit/3f7081db8573b472c41fca831241f78fae97ad37), Thanks [joelcuevas](https://github.com/joelcuevas)
-- Patched to fix rake use in padrino templates, Thanks [jasonm23](https://github.com/jasonm23)
+- Patched to fix rake use in padrino templates, Thanks [jasonm23](https://github.com/ocodo)
 - Fix error\_message\_on for empty array, Thanks [sshaw](https://github.com/sshaw)
 - Adds Swedish localization support, Thanks [Lejdborg](https://github.com/Lejdborg)
 - Adds Romanian localization support, Thanks [relu](https://github.com/relu)

@@ -15,7 +15,7 @@ You can visit the [Padrino episode](http://thechangelog.com/post/708173099/episo
 We would also like to reiterate a few resources here which are particularly valuable for Padrino developers:
 
 - [Rack Website](http://rack.rubyforge.org) – If you are using Padrino (built on Rack), you should eventually become familiar with the underlying “Rack” architecture. It is easy to understand and really helps give you a better picture of what is involved with a web application behind the scenes.
-- [CodeRack](http://coderack.org) – Rack middleware is an excellent way to add functionality to your project without having to do any implementation work in your application. There is rack middleware to do everything from [displaying a captcha](http://github.com/achiu/rack-recaptcha) to [authenticating users](http://github.com/intridea/omniauth) and even [bundling your assets](http://github.com/juliocesar/rack-bundle)
+- [CodeRack](http://coderack.org) – Rack middleware is an excellent way to add functionality to your project without having to do any implementation work in your application. There is rack middleware to do everything from [displaying a captcha](https://github.com/achiurizo/rack-recaptcha) to [authenticating users](https://github.com/omniauth/omniauth) and even [bundling your assets](http://github.com/juliocesar/rack-bundle)
 - [Presto](http://github.com/pengwynn/presto) – Wynn’s shameless port of Nesta CMS to Padrino powering his own site
 - [Padrino Extensions](http://wiki.github.com/padrino/padrino-framework/extensions) – A starting set of Padrino extensions and recommended libraries for various common requirements
 

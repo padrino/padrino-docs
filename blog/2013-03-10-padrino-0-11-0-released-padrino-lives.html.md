@@ -41,7 +41,7 @@ See more images in the [Padrino Admin Album](http://imgur.com/a/gimrX)! Note tha
 There were also several additional fixes for admin listed below:
 
 - Get the first key passed to expire helper. [commit](https://github.com/padrino/padrino-framework/commit/04d26c4a696e9eb50e247e308fad1d62d7ba7198) (Thanks [@gugat](https://github.com/gugat))
-- Fixes model output in erb templates. [commit](https://github.com/padrino/padrino-framework/commit/53358f588ed49d8838dc0082e30b2dcca36310ba) (Thanks [@sleepingstu](https://github.com/sleepingstu))
+- Fixes model output in erb templates. [commit](https://github.com/padrino/padrino-framework/commit/53358f588ed49d8838dc0082e30b2dcca36310ba) (Thanks [@sleepingstu](https://github.com/schinery))
 - Halting page with 404 if record is not found [commit](https://github.com/padrino/padrino-framework/commit/a7b6b69ce9f309e3e8616b3ad2c8f561590f5170) (Thanks [@kot-begemot](https://github.com/kot-begemot))
 - Cleanups to admin documentation. [commit](https://github.com/padrino/padrino-framework/commit/21146f6ffbedcce89b4ae23c48bba7c1bf8edc42) (Thanks [@danieltahara](https://github.com/danieltahara))
 - Fixes CSS Errors on admin pages. [commit](https://github.com/padrino/padrino-framework/commit/f5301722562972fd939dd2689549cbbd59c49a20) (Thanks [@dariocravero](https://github.com/dariocravero))
@@ -160,7 +160,7 @@ The primary app file will still be located in “app/app.rb” but the class wil
 
 One caveat is that to avoid any issues with various ORMs, models are **not generated** within the app namespace. Models will be continued to be generated outside of any namespace for simplicity.
 
-Thanks to [@achiu](https://github.com/achiu) and Thanks to [@skade](https://github.com/skade) for working together to finalize this and make this compatible with the new app gem support introduced as well.
+Thanks to [@achiu](https://github.com/achiurizo) and Thanks to [@skade](https://github.com/skade) for working together to finalize this and make this compatible with the new app gem support introduced as well.
 
 
 ## Project Modules

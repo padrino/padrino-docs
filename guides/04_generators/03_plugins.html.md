@@ -79,5 +79,5 @@ git :commit, "- m 'second commit'"
 ```
 
 Keep in mind that the template file is pure Ruby and has full access to
-[all available thor actions](https://github.com/erikhuda/thor/blob/master/lib/thor/actions.rb
+[all available thor actions](https://github.com/rails/thor/blob/main/lib/thor/actions.rb
 "thor actions").

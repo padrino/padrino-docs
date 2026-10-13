@@ -17,7 +17,7 @@ Thankfully, because Padrino is just Sinatra at its core, our framework and our u
 
 [Sinatra 1.3](https://github.com/sinatra/sinatra/tree/v1.3.0) has been [released](http://www.sinatrarb.com/2011/09/30/sinatra-1.3.0) with a lot of exciting changes. Be sure to checkout the changes in 1.3.0 in the [Sinatra Changelog](https://github.com/sinatra/sinatra/blob/v1.3.0/CHANGES).
 
-In this release, we have happily upgraded our core to Sinatra 1.3.0. Don't worry as there weren't any breaking changes and upgrading your Padrino projects should be painless. Now all of Padrino is Sinatra 1.3 compatible and taking advantage of the updates including the default enabled [rack-protection](https://github.com/rkh/rack-protection).
+In this release, we have happily upgraded our core to Sinatra 1.3.0. Don't worry as there weren't any breaking changes and upgrading your Padrino projects should be painless. Now all of Padrino is Sinatra 1.3 compatible and taking advantage of the updates including the default enabled [rack-protection](https://github.com/sinatra/rack-protection).
 
 One interesting feature of Sinatra 1.3 to note is the new streaming API:
 
@@ -66,7 +66,7 @@ For more information about the switch be sure to read the [Github Issue](https:/
 We have been using test-unit and [shoulda](https://github.com/thoughtbot/shoulda) in Padrino as long as the framework has been around. I am a personal fan of test-unit + shoulda and have been using the combination successfully in many projects. However, times change and the fact that Ruby 1.9 seems to recommend [minitest](http://www.rubyinside.com/a-minitestspec-tutorial-elegant-spec-style-testing-that-comes-with-ruby-5354.html) over test-unit encouraged us to take a look at the pain of upgrading.
 
 
-We wanted a faster test suite and less external dependencies. So we decided to bite the bullet and convert our entire test suite over to the `minitest` test library. Built into 1.9 but available as a gem for 1.8.X, this library is quite stable and fast. The best part is that it has a lot of the great parts of shoulda built in. Thanks to the magic of a few [strategic aliases](https://github.com/padrino/padrino-framework/blob/master/padrino-core/test/mini_shoulda.rb), we can even keep the same shoulda syntax we know and love. Thanks to [Ken Collins](http://metaskills.net/2011/03/26/using-minitest-spec-with-rails) for making our path from Test::Unit to MiniTest a painless one. We are excited to have a leaner, faster test suite going forward.
+We wanted a faster test suite and less external dependencies. So we decided to bite the bullet and convert our entire test suite over to the `minitest` test library. Built into 1.9 but available as a gem for 1.8.X, this library is quite stable and fast. The best part is that it has a lot of the great parts of shoulda built in. Thanks to the magic of a few [strategic aliases](https://github.com/padrino/padrino-framework/blob/9e57c80c6616e898109069d30d931acc9de0a233/padrino-core/test/mini_shoulda.rb), we can even keep the same shoulda syntax we know and love. Thanks to [Ken Collins](http://metaskills.net/2011/03/26/using-minitest-spec-with-rails) for making our path from Test::Unit to MiniTest a painless one. We are excited to have a leaner, faster test suite going forward.
 
 
 Commits are [here](https://github.com/padrino/padrino-framework/commit/f2a88af060f49ac6c8145cc4b2be93fbb6944e08), [here](https://github.com/padrino/padrino-framework/commit/cf1496e30521f08a276e4e9e4b917e28437fdb66), [here](https://github.com/padrino/padrino-framework/commit/406d08355319a464c205ae76fcd38587f54ff80d), and [here](https://github.com/padrino/padrino-framework/commit/08c18df8aafac3d8ee817fad90e31a5b9d1a7a8e).
@@ -111,11 +111,11 @@ We have also made a few improvements and updates to our components:
 
 One final bonus feature to this post is a quick discussion about asset compression / pipelines. Since the release of that feature as a default in Rails 3.1, we have been fielding a lot of questions regarding an equivalent module for Sinatra and Padrino. In the spirit of addressing these concerns, a few early options for Sinatra:
 
-- [Jammit Sinatra](https://github.com/railsjedi/jammit-sinatra) – Excellent sinatra wrapper for Jammit
+- [Jammit Sinatra](https://github.com/jacquescrocker/jammit-sinatra) – Excellent sinatra wrapper for Jammit
 - [padrino-sprockets](https://github.com/nightsailer/padrino-sprockets) – Still a young project but looks promising.
 - [assets\_compressor](https://github.com/padrino/padrino-contrib/blob/master/lib/padrino-contrib/helpers/assets_compressor.rb) – Padrino-contrib recipe for simple compression of assets.
 - [Sinatra AssetPack](https://github.com/rstacruz/sinatra-assetpack) – Great asset compilation for Sinatra
-- [Middleman](https://github.com/tdreyno/middleman) – Interesting Padrino-powered alternative for asset handling
+- [Middleman](https://github.com/middleman/middleman) – Interesting Padrino-powered alternative for asset handling
 
 These options should get you started if you are interested in bringing asset pipelining to your Sinatra applications. None of these quite match the comprehensive Rails solution just yet but well on their way.
 

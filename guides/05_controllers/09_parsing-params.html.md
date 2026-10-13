@@ -10,7 +10,7 @@ applications have is to parse incoming messages, typically JSON or XML. This
 data will come as part of the request's body instead of the typical form data
 approach, i.e. url parameters or multipart form data.
 
-Here's when [Rack::Parser](https://github.com/achiu/rack-parser "Rack::Parser")
+Here's when [Rack::Parser](https://github.com/achiurizo/rack-parser "Rack::Parser")
 comes in handy since it will do just that. In `app/app.rb` or in `config.ru`
 just add:
 

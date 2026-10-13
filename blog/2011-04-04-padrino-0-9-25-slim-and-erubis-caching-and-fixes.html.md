@@ -135,7 +135,7 @@ Our new router is still under continued development but should not cause any bre
 
 ## Erubis and Slim Helper Support
 
-In the past few versions, we have had partial [Slim](https://github.com/stonean/slim) and [Erubis](https://github.com/kwatch/erubis) support but not full compatibility with our various helpers.
+In the past few versions, we have had partial [Slim](https://github.com/slim-template/slim) and [Erubis](https://github.com/kwatch/erubis) support but not full compatibility with our various helpers.
 
 This was because of broken implementations of capture and concat for those template engines ([described here](https://gist.github.com/829030)).
 

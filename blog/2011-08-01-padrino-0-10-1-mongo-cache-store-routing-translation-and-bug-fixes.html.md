@@ -29,11 +29,11 @@ Be sure to [raise an issue](https://github.com/padrino/padrino-framework/issues)
 
 ## Translation Fixes
 
-We have made an effort to improve the reliability and completeness of our translations in this release largely thanks to [TweeKane](https://github.com/TweeKane) who brought these issues to our attention. We have corrected the known issues with the translations and also added locale tests to prevent these problems in the future.
+We have made an effort to improve the reliability and completeness of our translations in this release largely thanks to [TweeKane](https://github.com/bolshakov) who brought these issues to our attention. We have corrected the known issues with the translations and also added locale tests to prevent these problems in the future.
 
 - Added Missing IT translations: [commit](https://github.com/padrino/padrino-framework/commit/b3edab9b62c8a7fee248184c26757d5380a1e39e)
 - Adds missing CS, DE, NL locales: commits [here](https://github.com/padrino/padrino-framework/commit/db78dc2ae482ebd7217568afcef3e8a48506607b) and [here](https://github.com/padrino/padrino-framework/commit/a71bff4ef5b346b62bc6d5c259c3fcef46f08a61)
-- Fixes to FR, CN, RU locales (Thanks [TweeKane](https://github.com/TweeKane)): commits [here](https://github.com/padrino/padrino-framework/commit/38a2d1b5a7ae8d33f7b51d79a406e8708e547a65), [here](https://github.com/padrino/padrino-framework/commit/7dd6dfde011515f0824d206983bcb78865644ab4), and [here](https://github.com/padrino/padrino-framework/commit/0da9c06ecd9b5679c585376177acb4931cbc8c38)
+- Fixes to FR, CN, RU locales (Thanks [TweeKane](https://github.com/bolshakov)): commits [here](https://github.com/padrino/padrino-framework/commit/38a2d1b5a7ae8d33f7b51d79a406e8708e547a65), [here](https://github.com/padrino/padrino-framework/commit/7dd6dfde011515f0824d206983bcb78865644ab4), and [here](https://github.com/padrino/padrino-framework/commit/0da9c06ecd9b5679c585376177acb4931cbc8c38)
 - Adds unit tests for locales: commits [here](https://github.com/padrino/padrino-framework/commit/17873849d0a70f4087155b035ece523df10131be), and [here](https://github.com/padrino/padrino-framework/commit/2fd84e43933163f282ecedbfd76a1bc6c1677628)
 
 
