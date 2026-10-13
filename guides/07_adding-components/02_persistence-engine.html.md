@@ -7,7 +7,7 @@ title: Persistence Engine
 
 Contributing an object persistence library is probably the most involved
 component to integrate with Padrino. For this guide, let us pretend that we
-would like to integrate [Datamapper](http://datamapper.org) into Padrino.
+would like to integrate [Datamapper](https://web.archive.org/web/20200113190336/http://datamapper.org/) into Padrino.
 
 ## Generators
 

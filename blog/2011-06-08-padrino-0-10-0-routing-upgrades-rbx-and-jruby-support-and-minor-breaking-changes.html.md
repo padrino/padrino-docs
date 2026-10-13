@@ -67,7 +67,7 @@ Commits [here](https://github.com/padrino/padrino-framework/commit/459c57e16ff8a
 
 ## Route Filters
 
-An oft-requested feature is for [enhanced route filters](https://github.com/padrino/padrino-framework/issues/443). While Sinatra does have [basic support](http://sinatra-book.gittr.com/#filters) for filters, a heavy user will often find that it leaves things to be desired. Namely when dealing with namespaces and routes. Whereas before, a filter looks like this:
+An oft-requested feature is for [enhanced route filters](https://github.com/padrino/padrino-framework/issues/443). While Sinatra does have [basic support](https://web.archive.org/web/20130622062116/http://sinatra-book.gittr.com/#filters) for filters, a heavy user will often find that it leaves things to be desired. Namely when dealing with namespaces and routes. Whereas before, a filter looks like this:
 
     # app/controllers/example_controller.rb
     DemoApp.controller :example do

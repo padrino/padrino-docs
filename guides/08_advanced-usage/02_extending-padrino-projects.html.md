@@ -39,7 +39,7 @@ $ bundle
 ```
 
 This will resolve and install all the required libraries. Check out the
-[Bundler documentation](http://bundler.io/v1.11/man/bundle.1.html "Bundler
+[Bundler documentation](https://web.archive.org/web/20220126132952/https://bundler.io/v1.11/man/bundle.1.html "Bundler
 documentation") for more details about how this works.
 
 ## Padrino Recipes

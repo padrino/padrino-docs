@@ -9,7 +9,7 @@ title: Padrino 0.10.6 - ActiveSupport 3.2, MiniRecord, HTML5 Helpers and bug fix
 
 For the last few months, our team has been quite busy so there has been less activity then usual on the Padrino codebase. The other reason for this is that as we have continued to stabilize the scope and the core code, there has been less need for urgent changes. Our core team uses Padrino for most of our projects and Padrino continues to serve as a stable foundation for our applications.
 
-Still, with the [official release of ActiveSupport 3.2](http://weblog.rubyonrails.org/2012/1/20/rails-3-2-0-faster-dev-mode-routing-explain-queries-tagged-logger-store), several contributions to our codebase and some useful bug fixes, we figured the time had come for a new release. Today, we are announcing the release of Padrino 0.10.6 with ActiveSupport 3.2 compatibility, MiniRecord generator support, HTML5 Helpers, along with many compatibility upgrades and bug fixes. Full details for this release are below.
+Still, with the [official release of ActiveSupport 3.2](https://rubyonrails.org/2012/1/20/rails-3-2-0-faster-dev-mode-routing-explain-queries-tagged-logger-store), several contributions to our codebase and some useful bug fixes, we figured the time had come for a new release. Today, we are announcing the release of Padrino 0.10.6 with ActiveSupport 3.2 compatibility, MiniRecord generator support, HTML5 Helpers, along with many compatibility upgrades and bug fixes. Full details for this release are below.
 
 
 ## ActiveRecord and ActiveSupport 3.2 Upgrade

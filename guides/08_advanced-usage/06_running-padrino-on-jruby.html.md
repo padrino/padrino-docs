@@ -100,7 +100,7 @@ $ warble config
 
 Edit `config/warble.rb` if you want to apply some customizations. You can access
 [JRuby-Rack official README](https://github.com/jruby/jruby-rack) and
-[Warbler rdoc](http://www.rubydoc.info/github/jruby/warbler).
+[Warbler rdoc](https://github.com/jruby/warbler).
 
 For example, if you want to deploy the app to server root directory, just add to
 `config/warble.rb`:

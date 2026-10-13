@@ -86,7 +86,7 @@ you will get:
 => "Bar"
 ```
 
-For more ways to configure the locale see [Sinatra's I18n recipe](http://recipes.sinatrarb.com/p/development/i18n).
+For more ways to configure the locale see [Sinatra's I18n recipe](https://web.archive.org/web/20190910114832/http://recipes.sinatrarb.com/p/development/i18n).
 
 --------------------------------------------------------------------------------
 

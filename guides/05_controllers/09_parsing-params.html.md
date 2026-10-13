@@ -31,6 +31,6 @@ end
 ```
 
 Have a look at
-[this great Sinatra recipe](http://recipes.sinatrarb.com/p/middleware/rack_parser?#article
+[this great Sinatra recipe](https://web.archive.org/web/20200205135606/http://recipes.sinatrarb.com/p/middleware/rack_parser#article
 "this great Sinatra recipe") for a more detailed guide of how this middleware
 works.

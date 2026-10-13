@@ -14,7 +14,7 @@ Still, one aspect we haven’t talked about too much on our blog yet is the comm
 
 ## Padrino Applications
 
-There have been a great deal of Sinatra + Padrino applications released into the wild over the last 2 years. Many of these have actually been [Lipsiasoft](http://www.lipsiasoft.com/portfolio) websites built in Padrino by Davide, one of our core team members. Padrino originally started in part because of Davide’s interest in using Sinatra at his own Italy-based consulting company.
+There have been a great deal of Sinatra + Padrino applications released into the wild over the last 2 years. Many of these have actually been [Lipsiasoft](https://web.archive.org/web/20101220041831/http://www.lipsiasoft.com/portfolio) websites built in Padrino by Davide, one of our core team members. Padrino originally started in part because of Davide’s interest in using Sinatra at his own Italy-based consulting company.
 
 In addition to the applications released and deployed by the core team, there have also been a number of interesting applications built by others in the community. A few are highlighted below.
 
@@ -35,7 +35,7 @@ Right now, the easiest way to use Piccioto is to simply [fork the project](https
 
 ### Presto
 
-[Presto](https://github.com/pengwynn/presto) is an effort to combine Padrino with [Nesta](http://github.com/gma/nesta) to build a simple Sinatra-based CMS that can be mounted into a larger application. This project was created by [Wynn Netherland](https://github.com/pengwynn) who works a popular podcast about open-source called [TheChangeLog](http://thechangelog.com/). Padrino was actually featured on the program about 9 months ago where they [interviewed us](http://thechangelog.com/post/708173099/episode-0-2-7-padrino-ruby-web-framework) about Padrino.
+[Presto](https://github.com/pengwynn/presto) is an effort to combine Padrino with [Nesta](http://github.com/gma/nesta) to build a simple Sinatra-based CMS that can be mounted into a larger application. This project was created by [Wynn Netherland](https://github.com/pengwynn) who works a popular podcast about open-source called [TheChangeLog](https://web.archive.org/web/20190113050005/http://thechangelog.com/). Padrino was actually featured on the program about 9 months ago where they [interviewed us](https://web.archive.org/web/20130117174424/http://thechangelog.com/post/708173099/episode-0-2-7-padrino-ruby-web-framework) about Padrino.
 
 The easiest way to use this project is to simply [clone the repository](https://github.com/pengwynn/presto) and mount it as a sub-application in your Padrino project.
 
@@ -106,7 +106,7 @@ There are other libraries definately worth checking out listed below:
 - [padrino-responders](https://github.com/nu7hatch/padrino-responders)
 - [padrino-form-errors](https://github.com/nu7hatch/padrino-form-errors)
 - [padrino-contrib](https://github.com/padrino/padrino-contrib)
-- [padrino-haml-pagination](https://github.com/sumskyi/padrino-haml-pagination)
+- [padrino-haml-pagination](https://github.com/sumskyi/padrino-pagination)
 
 If you have a library built on Padrino that is not mentioned here, please let us know about it!
 
@@ -116,9 +116,9 @@ If you have a library built on Padrino that is not mentioned here, please let us
 There are also a number of developers and consulting companies that have been using Padrino for various projects. A few of them we know of are listed below:
 
 - [Dynosoft](http://www.dynosoft.com)
-- [BakedWeb](http://bakedweb.net/portfolio/web-development)
-- [Fred Wu](http://fredwu.me/post/759061247/wuit-com-now-runs-on-padrino)
-- [Professional Dilettante](http://professionaldilettante.com/padrino/2010.06.20)
+- [BakedWeb](https://web.archive.org/web/20140603002100/http://bakedweb.net/portfolio/web-development)
+- [Fred Wu](https://web.archive.org/web/20160801205408/http://fredwu.me/post/759061247/wuitcom-now-runs-on-padrino)
+- [Professional Dilettante](https://web.archive.org/web/20111027234631/http://professionaldilettante.com/padrino/2010.06.20)
 - [BroadMac](http://broadmac.net/)
 
 This is only a very small list of the people using Padrino. Since we never made much of an effort to compile this information before, we would love to know if you are using Padrino or picking modules into your Sinatra applications. We want to post more regularly on the community around Padrino in the future. You can let us know by sending us a message on Github (nesquena, achiu, daddye) or on our [google groups](http://groups.google.com/group/padrino) or through email to nesquena(AT)gmail(DOT)com. Look forward to hearing from you.

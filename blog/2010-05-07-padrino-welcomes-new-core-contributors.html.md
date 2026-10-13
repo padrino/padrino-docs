@@ -18,7 +18,7 @@ Read the full post to learn more about our new members and how they plan to help
 
 #### Florian Gilcher ([skade](http://github.com/skade))
 
-is a great Sinatra coder that helps make Padrino work best in standalone/sinatra scenarios. He is a long term Ruby programmer and runs the largest german ([Ruby community/board](http://ruby-portal.de)).
+is a great Sinatra coder that helps make Padrino work best in standalone/sinatra scenarios. He is a long term Ruby programmer and runs the largest german ([Ruby community/board](https://web.archive.org/web/20211017120457/http://ruby-portal.de/)).
 
 
 #### Joshua Hull ([joshbuddy](http://github.com/joshbuddy))
