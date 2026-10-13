@@ -23,7 +23,7 @@ Since our 0.10.7 release, development on Padrino has been moving forward very ac
 10) Project Modules
 11) Optimized Reloader
 
-and a lot more changes! In the full post below, we will take you through a tour of the biggest changes in this release (for a more compact view, see our [changelog](http://www.padrinorb.com/changes)).
+and a lot more changes! In the full post below, we will take you through a tour of the biggest changes in this release (for a more compact view, see our [changelog](https://github.com/padrino/padrino-framework/blob/master/CHANGES.rdoc)).
 
 
 ## Redesigned Admin
@@ -267,7 +267,7 @@ Thanks to [@DAddYE](https://github.com/DAddYE) for putting the parsing strategy 
 
 ## Bug Fixes
 
-Lots of bug fixes and other changes in this release, see our [changelog](http://www.padrinorb.com/changes) for a full rundown.
+Lots of bug fixes and other changes in this release, see our [changelog](https://github.com/padrino/padrino-framework/blob/master/CHANGES.rdoc) for a full rundown.
 
 
 ## Explicit by default

@@ -36,7 +36,7 @@ For instance if you have a user and he has an address which is stored in a separ
           = address_form.label '_destroy', :caption => 'Remove'
         = submit_tag "Save"
 
-For the details be sure to checkout the [Application Helper Guide](http://www.padrinorb.com/guides/application-helpers) to learn more.
+For the details be sure to checkout the [Application Helper Guide](https://padrinorb.com/guides/application-helpers/overview/) to learn more.
 
 
 ## Routing Fixes

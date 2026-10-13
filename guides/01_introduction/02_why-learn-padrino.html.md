@@ -185,7 +185,7 @@ new project much easier. The best way to become familiar with Padrino is to firs
 check out the [Blog Tutorial](/guides/getting-started/blog-tutorial "Blog Tutorial") which takes
 you step by step through creating a blog in Padrino with an accompanying
 screencast. You may also want to checkout the
-[Why Padrino (broken)](http://www.padrinorb.com/pages/why "Why Padrino") guide
+[Why Padrino (broken)](https://padrinorb.com/guides/introduction/why-learn-padrino/ "Why Padrino") guide
 to understand the benefits of using Padrino.
 
 You should also take time to familiarize yourself with the various "components"

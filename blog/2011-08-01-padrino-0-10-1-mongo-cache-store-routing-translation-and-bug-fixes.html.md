@@ -14,7 +14,7 @@ Today, we are releasing 0.10.1 which is mostly a cleanup and bug fix release. Or
 
 ## Mongo Cache Store
 
-[aliem](https://github.com/aliem) sent us a pull request for a Mongo-based cache store that plugs into our existing [padrino-cache](http://www.padrinorb.com/guides/padrino-cache) system. Thanks to his work, all the caching goodness can now be stored with Mongo. If you see a missing adapter to our caching solution, please consider sending us a pull request. Commits [here](https://github.com/padrino/padrino-framework/commit/2d69af735367879bcd65b85c994c235d1d68e244), [here](https://github.com/padrino/padrino-framework/commit/a6da03ca2e1311dd7a8b8f1175be39009b0ecccb), and [here](https://github.com/padrino/padrino-framework/commit/80a74af0231496904d09ab715d81105f158c738f).
+[aliem](https://github.com/aliem) sent us a pull request for a Mongo-based cache store that plugs into our existing [padrino-cache](https://padrinorb.com/guides/features/padrino-cache/) system. Thanks to his work, all the caching goodness can now be stored with Mongo. If you see a missing adapter to our caching solution, please consider sending us a pull request. Commits [here](https://github.com/padrino/padrino-framework/commit/2d69af735367879bcd65b85c994c235d1d68e244), [here](https://github.com/padrino/padrino-framework/commit/a6da03ca2e1311dd7a8b8f1175be39009b0ecccb), and [here](https://github.com/padrino/padrino-framework/commit/80a74af0231496904d09ab715d81105f158c738f).
 
 
 ## Routing Fixes

@@ -30,7 +30,7 @@ In this release, we have added generators for the excellent [MiniRecord](https:/
 - Support HTML5 based tags for helpers: [commit](https://github.com/padrino/padrino-framework/commit/0327c97162eadf43809ad57b9eccd9949efd4b94)
 - Added support for a few of the new HTML 5 form inputs: [commit](https://github.com/padrino/padrino-framework/commit/31c95d95daa46b1530680b5ceb2d0a52d9423606)
 
-Thanks to [Cirex](https://github.com/Cirex) for putting these together! Check out the [Application Helpers](http://www.padrinorb.com/guides/application-helpers) guide for details about these HTML5 inputs.
+Thanks to [Cirex](https://github.com/Cirex) for putting these together! Check out the [Application Helpers](https://padrinorb.com/guides/application-helpers/overview/) guide for details about these HTML5 inputs.
 
 In addition [fnordfish](https://github.com/fnordfish) added support for hash options for tags. For instance:
 

@@ -92,7 +92,7 @@ You can checkout the newly generated YARD docs for Padrino at our [API Docs](htt
 - Fix typos and inaccuracies related to \`time\_ago\_in\_words\` helpers: [commit](https://github.com/padrino/padrino-framework/commit/3984c59aea91ad10705ddc51b21b19901990a7d0)
 
 
-Also, be sure to check out our entirely new [Getting Started](http://www.padrinorb.com/guides/getting-started) guide geared towards newcomers to the Sinatra / Padrino community. The guide is intended to provide you the necessary basics and resources to become familiar with the Ruby, Rinatra and Padrino ecosystem.
+Also, be sure to check out our entirely new [Getting Started](https://padrinorb.com/guides/getting-started/overview/) guide geared towards newcomers to the Sinatra / Padrino community. The guide is intended to provide you the necessary basics and resources to become familiar with the Ruby, Rinatra and Padrino ecosystem.
 
 
 ## Components

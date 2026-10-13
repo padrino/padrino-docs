@@ -176,5 +176,5 @@ Follow your login process and then if needed <http://localhost:3000/destroy>
 
 That is all you need to setup a barebones authentication system in Padrino. This post has gotten you started with a working “Account” and role based authentication solution with integrated omniauth support. From here, obviously there are a number of other features you might want to add on top to flesh out, and that is left for another post or as an exercise to the reader.
 
-If you are interested in more Padrino information, check out [why you should use](http://www.padrinorb.com/pages/why) our framework and our [Blog Tutorial](http://www.padrinorb.com/guides/blog-tutorial) along with our other [Padrino Guides](http://www.padrinorb.com/guides).
+If you are interested in more Padrino information, check out [why you should use](https://padrinorb.com/guides/introduction/why-learn-padrino/) our framework and our [Blog Tutorial](https://padrinorb.com/guides/getting-started/blog-tutorial/) along with our other [Padrino Guides](http://www.padrinorb.com/guides).
 

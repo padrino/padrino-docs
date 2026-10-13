@@ -56,5 +56,5 @@ There were also a lot of other bugfixes in this release as we try to become more
 
 We are already working towards a 0.9.21 release and will likely include more bugfixes, more components, etc. If you run into a problem please do let us know on [Github Issues](https://github.com/padrino/padrino-framework/issues) or better yet with a [Pull Request](https://github.com/padrino/padrino-framework/pulls) .
 
-You can also check out the [full changelog](http://www.padrinorb.com/changes) as well.
+You can also check out the [full changelog](https://github.com/padrino/padrino-framework/blob/master/CHANGES.rdoc) as well.
 
