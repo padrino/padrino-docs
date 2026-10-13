@@ -10,7 +10,7 @@ following features:
 
 Feature               | Description
 --------------------- | ------------------------------------------------------------------------------
-**Orm Agnostic**      | Adapters for datamapper, sequel, activerecord, mongomapper, mongoid, couchrest
+**Orm Agnostic**      | Adapters for activerecord, minirecord, sequel, mongoid, ohm, dynamoid
 **Authentication**    | User Authentication Support, User Authorization Management
 **Template Agnostic** | Erb and Haml Rendering Support
 **Scaffold**          | You can create a new "admin interface" by providing a single Model
@@ -23,7 +23,7 @@ Feature               | Description
 Create a new project:
 
 ```shell
-$ padrino g project admin-test-sample -d datamapper
+$ padrino g project admin-test-sample -d activerecord
 $ cd admin-test-sample && bundle
 ```
 

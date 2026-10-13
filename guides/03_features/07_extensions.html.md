@@ -10,7 +10,7 @@ See [the Sinatra extensions page](http://www.sinatrarb.com/extensions-wild.html)
 for more information about this topic.
 
 We also have some 3rd party extensions (ex: for
-ActiveRecord/MongoMapper/DataMapper, etc ...) that are useful for web developers.
+ActiveRecord/Sequel/Mongoid, etc ...) that are useful for web developers.
 
 --------------------------------------------------------------------------------
 
