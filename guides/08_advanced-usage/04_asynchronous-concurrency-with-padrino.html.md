@@ -8,7 +8,8 @@ title: Asyncronous Concurrency
 > **⚠ Outdated Guide:** The libraries recommended below (Goliath, sinatra-synchrony)
 > are abandoned and incompatible with modern Padrino (Sinatra 4 / Rack 3). For
 > concurrent request handling, use [Puma](https://puma.io/) (the recommended
-> default server) or [Falcon](https://github.com/socketry/falcon) instead.
+> default server) or [Falcon](https://github.com/socketry/falcon) instead
+> (`padrino g project my_app --server=falcon`).
 > This guide is preserved for historical reference only.
 
 Lately, the Ruby community has become fascinated by asynchronous and concurrent
