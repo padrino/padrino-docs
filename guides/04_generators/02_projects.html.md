@@ -83,11 +83,11 @@ The available components and their default options are listed below:
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
 server     | webrick | -s      | thin, **puma** (recommended), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
-orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
+orm        | none    | -d      | mongoid, activerecord, minirecord, ohm, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
-script     | none    | -s      | prototype, jquery, mootools, extcore, dojo
+script     | none    | -s      | prototype, jquery, mootools, dojo
 renderer   | none    | -e      | erb, haml, slim, liquid
-stylesheet | none    | -c      | sass, less, scss, compass
+stylesheet | none    | -c      | sass, less, scss
 mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your
