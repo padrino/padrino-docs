@@ -23,7 +23,7 @@ Here, we needed to append `:datamapper` as an option for the `:orm`
 `component_option` in the project generator. Once we have defined Datamapper as
 an option for the ORM component, let's actually define the specific integration
 tasks for the generator in
-[padrino-gen/generators/components/orms/datamapper.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb):
+[padrino-gen/generators/components/orms/datamapper.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb
@@ -69,7 +69,7 @@ Next, if the persistence engine needs to include useful rake tasks (to migrate
 or modify the database for instance), you can add these to the `padrino-tasks`
 folder in the `padrino-gen` gem. For Datamapper, there are a number of tasks
 that should be available in
-[padrino-tasks/datamapper.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/padrino-tasks/datamapper.rb):
+[padrino-tasks/datamapper.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/padrino-tasks/datamapper.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/padrino-tasks/datamapper.rb
@@ -217,7 +217,7 @@ end # Padrino
 
 Next, we need to describe how the `Account` model should be defined for our
 persistence engine within
-[padrino-admin/generators/templates/account/datamapper.rb.tt](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/generators/templates/account/datamapper.rb.tt):
+[padrino-admin/generators/templates/account/datamapper.rb.tt](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-admin/lib/padrino-admin/generators/templates/account/datamapper.rb.tt):
 
 ```ruby
 # padrino-admin/lib/padrino-admin/generators/templates/account/datamapper.rb.tt

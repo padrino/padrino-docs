@@ -52,13 +52,13 @@ For the SQL-based persistence engines, you can even specify the RDBMS adapter to
 use with the `-a` option followed by the name of the adapter:
 
 ```shell
-$ padrino g project your_project -d datamapper   -a mysql    # Uses Datamapper and MySQL
+$ padrino g project your_project -d activerecord -a mysql    # Uses ActiveRecord and MySQL
 $ padrino g project your_project -d activerecord -a postgres # Uses ActiveRecord and Postgres
 $ padrino g project your_project -d sequel       -a sqlite   # Uses Sequel and Sqlite3
 ```
 
 The adapters currently supported are `sqlite`, `mysql`, and `postgres` for use
-with `datamapper`, `activerecord`, or `sequel`.
+with `activerecord`, `minirecord`, or `sequel`.
 
 --------------------------------------------------------------------------------
 

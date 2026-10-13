@@ -25,7 +25,7 @@ default components.
 You can also define specific components to be used:
 
 ```shell
-$ padrino g project demo_project -t rspec -e haml -m rr -s jquery -d datamapper -c sass
+$ padrino g project demo_project -t rspec -e haml -m rr -s jquery -d sequel -c sass
 ```
 
 You can also instruct the generator to skip a certain component to avoid using

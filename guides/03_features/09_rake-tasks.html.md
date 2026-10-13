@@ -113,14 +113,14 @@ See [Localization](/guides/features/localization "Localization") for detailed in
 
 ## ORM
 
-Padrino has rake tasks for _DataMapper_ , _ActiveRecord_, _Sequel_,
-_Mongomapper_,and _Mongoid_ with some **bonuses**.
+Padrino has rake tasks for _ActiveRecord_, _Sequel_, and _Mongoid_ with some
+**bonuses**.
 
 **NOTE**: we have a **namespace** for each orm, because of this, Padrino can
   mount several applications and each of them can use different orms without
   conflict, so that you can have multiple applications living together and one
-  of them can use DataMapper, while another
-  `ActiveRecord/MongoMapper/Couch/Sequel` instead. In this way we prevent
+  of them can use ActiveRecord, while another uses Sequel or Mongoid
+  instead. In this way we prevent
   collisions.
 
 --------------------------------------------------------------------------------
@@ -165,22 +165,6 @@ ar:auto:upgrade`.
 
 --------------------------------------------------------------------------------
 
-## DataMapper Tasks
-
-```shell
-rake dm:auto:migrate          # Performs an automigration (resets your db data)
-rake dm:auto:upgrade          # Performs a non destructive automigration
-rake dm:create                # Creates the database
-rake dm:drop                  # Drops the database (postgres and mysql only)
-rake dm:migrate               # Migrates the database to the latest version
-rake dm:migrate:down[version] # Migrates down using migrations
-rake dm:migrate:up[version]   # Migrates up using migrations
-rake dm:reset                 # Drops the database, and migrates from scratch
-rake dm:setup                 # Create the database migrate and initialize with the seed data
-```
-
---------------------------------------------------------------------------------
-
 ## Sequel Tasks
 
 ```shell
@@ -189,14 +173,6 @@ rake sq:migrate:to[version] # Perform migration up/down to VERSION
 rake sq:migrate:up          # Perform migration up to latest migration available
 rake sq:migrate:down        # Perform migration down (erase all data)
 rake sq:reset               # Drops the database, and migrates from scratch
-```
-
---------------------------------------------------------------------------------
-
-## Mongomapper Tasks
-
-```shell
-rake mm:translate              # Generates .yml files for I18n translations
 ```
 
 --------------------------------------------------------------------------------

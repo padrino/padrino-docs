@@ -232,13 +232,13 @@ are new to the Ruby community and want to create a Padrino application with a
 good default set of components, generate your project with this command:
 
 ```shell
-$ padrino g project my_project -d datamapper -t shoulda -s jquery -e haml -m mocha
+$ padrino g project my_project -d sequel -t shoulda -s jquery -e haml -m mocha
 ```
 
 And then read up on these components:
 
-- [DataMapper](http://datamapper.org/docs/ "DataMapper") – Great Object
-  Relational Mapper for interacting with data
+- [Sequel](https://sequel.jeremyevans.net/ "Sequel") – Flexible database toolkit
+  for interacting with data
 - [Haml](http://haml.info/ "Haml") – Solid templating choice for views
 - [jQuery](http://jquery.com/ "jQuery") – Excellent javascript framework for
   frontend development
@@ -620,13 +620,13 @@ For the SQL-based persistence engines, you can even specify the RDBMS adapter to
 use with the `-a` option followed by the name of the adapter:
 
 ```shell
-$ padrino g project your_project -d datamapper   -a mysql    # Uses Datamapper and MySQL
+$ padrino g project your_project -d activerecord -a mysql    # Uses ActiveRecord and MySQL
 $ padrino g project your_project -d activerecord -a postgres # Uses ActiveRecord and Postgres
 $ padrino g project your_project -d sequel       -a sqlite   # Uses Sequel and Sqlite3
 ```
 
 The adapters currently supported are `sqlite`, `mysql`, and `postgres` for use
-with `datamapper`, `activerecord`, or `sequel`.
+with `activerecord`, `minirecord`, or `sequel`.
 
 --------------------------------------------------------------------------------
 
@@ -1595,7 +1595,7 @@ following features:
 
 Feature               | Description
 --------------------- | ------------------------------------------------------------------------------
-**Orm Agnostic**      | Adapters for datamapper, sequel, activerecord, mongomapper, mongoid, couchrest
+**Orm Agnostic**      | Adapters for activerecord, minirecord, sequel, mongoid, ohm, dynamoid
 **Authentication**    | User Authentication Support, User Authorization Management
 **Template Agnostic** | Erb and Haml Rendering Support
 **Scaffold**          | You can create a new "admin interface" by providing a single Model
@@ -1608,7 +1608,7 @@ Feature               | Description
 Create a new project:
 
 ```shell
-$ padrino g project admin-test-sample -d datamapper
+$ padrino g project admin-test-sample -d activerecord
 $ cd admin-test-sample && bundle
 ```
 
@@ -2681,7 +2681,7 @@ See [the Sinatra extensions page](http://www.sinatrarb.com/extensions-wild.html)
 for more information about this topic.
 
 We also have some 3rd party extensions (ex: for
-ActiveRecord/MongoMapper/DataMapper, etc ...) that are useful for web developers.
+ActiveRecord/Sequel/Mongoid, etc ...) that are useful for web developers.
 
 --------------------------------------------------------------------------------
 
@@ -3002,14 +3002,14 @@ See [Localization](/guides/features/localization "Localization") for detailed in
 
 ## ORM
 
-Padrino has rake tasks for _DataMapper_ , _ActiveRecord_, _Sequel_,
-_Mongomapper_,and _Mongoid_ with some **bonuses**.
+Padrino has rake tasks for _ActiveRecord_, _Sequel_, and _Mongoid_ with some
+**bonuses**.
 
 **NOTE**: we have a **namespace** for each orm, because of this, Padrino can
   mount several applications and each of them can use different orms without
   conflict, so that you can have multiple applications living together and one
-  of them can use DataMapper, while another
-  `ActiveRecord/MongoMapper/Couch/Sequel` instead. In this way we prevent
+  of them can use ActiveRecord, while another uses Sequel or Mongoid
+  instead. In this way we prevent
   collisions.
 
 --------------------------------------------------------------------------------
@@ -3054,22 +3054,6 @@ ar:auto:upgrade`.
 
 --------------------------------------------------------------------------------
 
-## DataMapper Tasks
-
-```shell
-rake dm:auto:migrate          # Performs an automigration (resets your db data)
-rake dm:auto:upgrade          # Performs a non destructive automigration
-rake dm:create                # Creates the database
-rake dm:drop                  # Drops the database (postgres and mysql only)
-rake dm:migrate               # Migrates the database to the latest version
-rake dm:migrate:down[version] # Migrates down using migrations
-rake dm:migrate:up[version]   # Migrates up using migrations
-rake dm:reset                 # Drops the database, and migrates from scratch
-rake dm:setup                 # Create the database migrate and initialize with the seed data
-```
-
---------------------------------------------------------------------------------
-
 ## Sequel Tasks
 
 ```shell
@@ -3078,14 +3062,6 @@ rake sq:migrate:to[version] # Perform migration up/down to VERSION
 rake sq:migrate:up          # Perform migration up to latest migration available
 rake sq:migrate:down        # Perform migration down (erase all data)
 rake sq:reset               # Drops the database, and migrates from scratch
-```
-
---------------------------------------------------------------------------------
-
-## Mongomapper Tasks
-
-```shell
-rake mm:translate              # Generates .yml files for I18n translations
 ```
 
 --------------------------------------------------------------------------------
@@ -3189,7 +3165,7 @@ default components.
 You can also define specific components to be used:
 
 ```shell
-$ padrino g project demo_project -t rspec -e haml -m rr -s jquery -d datamapper -c sass
+$ padrino g project demo_project -t rspec -e haml -m rr -s jquery -d sequel -c sass
 ```
 
 You can also instruct the generator to skip a certain component to avoid using
@@ -5334,7 +5310,7 @@ Here, we needed to append `:datamapper` as an option for the `:orm`
 `component_option` in the project generator. Once we have defined Datamapper as
 an option for the ORM component, let's actually define the specific integration
 tasks for the generator in
-[padrino-gen/generators/components/orms/datamapper.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb):
+[padrino-gen/generators/components/orms/datamapper.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/orms/datamapper.rb
@@ -5380,7 +5356,7 @@ Next, if the persistence engine needs to include useful rake tasks (to migrate
 or modify the database for instance), you can add these to the `padrino-tasks`
 folder in the `padrino-gen` gem. For Datamapper, there are a number of tasks
 that should be available in
-[padrino-tasks/datamapper.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/padrino-tasks/datamapper.rb):
+[padrino-tasks/datamapper.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/padrino-tasks/datamapper.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/padrino-tasks/datamapper.rb
@@ -5528,7 +5504,7 @@ end # Padrino
 
 Next, we need to describe how the `Account` model should be defined for our
 persistence engine within
-[padrino-admin/generators/templates/account/datamapper.rb.tt](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/generators/templates/account/datamapper.rb.tt):
+[padrino-admin/generators/templates/account/datamapper.rb.tt](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-admin/lib/padrino-admin/generators/templates/account/datamapper.rb.tt):
 
 ```ruby
 # padrino-admin/lib/padrino-admin/generators/templates/account/datamapper.rb.tt

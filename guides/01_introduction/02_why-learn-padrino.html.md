@@ -194,13 +194,13 @@ are new to the Ruby community and want to create a Padrino application with a
 good default set of components, generate your project with this command:
 
 ```shell
-$ padrino g project my_project -d datamapper -t shoulda -s jquery -e haml -m mocha
+$ padrino g project my_project -d sequel -t shoulda -s jquery -e haml -m mocha
 ```
 
 And then read up on these components:
 
-- [DataMapper](http://datamapper.org/docs/ "DataMapper") – Great Object
-  Relational Mapper for interacting with data
+- [Sequel](https://sequel.jeremyevans.net/ "Sequel") – Flexible database toolkit
+  for interacting with data
 - [Haml](http://haml.info/ "Haml") – Solid templating choice for views
 - [jQuery](http://jquery.com/ "jQuery") – Excellent javascript framework for
   frontend development
