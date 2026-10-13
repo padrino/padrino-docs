@@ -611,11 +611,7 @@ name of your ORM:
 ```shell
 $ padrino g project your_project -d mongoid
 $ padrino g project your_project -d activerecord
-$ padrino g project your_project -d datamapper
-$ padrino g project your_project -d couchrest
-$ padrino g project your_project -d mongomatic
 $ padrino g project your_project -d ohm
-$ padrino g project your_project -d ripple
 $ padrino g project your_project -d sequel
 $ padrino g project your_project -d dynamoid
 ```
@@ -3251,11 +3247,11 @@ The available components and their default options are listed below:
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
 server     | webrick | -s      | thin, **puma** (recommended), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
-orm        | none    | -d      | mongoid, activerecord, datamapper, couchrest, mongomatic, ohm, ripple, sequel, dynamoid
+orm        | none    | -d      | mongoid, activerecord, minirecord, ohm, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
-script     | none    | -s      | prototype, jquery, mootools, extcore, dojo
+script     | none    | -s      | prototype, jquery, mootools, dojo
 renderer   | none    | -e      | erb, haml, slim, liquid
-stylesheet | none    | -c      | sass, less, scss, compass
+stylesheet | none    | -c      | sass, less, scss
 mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your
@@ -5621,7 +5617,7 @@ JavaScript component integrated into Padrino.
 
 First, let's define the actual integration of the javascript into the generator
 in
-[padrino-gen/generators/components/scripts/extcore.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb):
+[padrino-gen/generators/components/scripts/extcore.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb
@@ -6090,7 +6086,7 @@ in
 
 ```ruby
 # padrino-gen/README.rdoc
-stylesheet:: none (default), less, compass, sass, scss
+stylesheet:: none (default), less, sass, scss
 ```
 
 ## Contribute to Padrino

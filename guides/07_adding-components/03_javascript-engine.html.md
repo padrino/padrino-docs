@@ -13,7 +13,7 @@ JavaScript component integrated into Padrino.
 
 First, let's define the actual integration of the javascript into the generator
 in
-[padrino-gen/generators/components/scripts/extcore.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb):
+[padrino-gen/generators/components/scripts/extcore.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/scripts/extcore.rb

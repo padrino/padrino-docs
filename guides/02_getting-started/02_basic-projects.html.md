@@ -43,11 +43,7 @@ name of your ORM:
 ```shell
 $ padrino g project your_project -d mongoid
 $ padrino g project your_project -d activerecord
-$ padrino g project your_project -d datamapper
-$ padrino g project your_project -d couchrest
-$ padrino g project your_project -d mongomatic
 $ padrino g project your_project -d ohm
-$ padrino g project your_project -d ripple
 $ padrino g project your_project -d sequel
 $ padrino g project your_project -d dynamoid
 ```
