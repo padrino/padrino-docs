@@ -45,7 +45,7 @@ To use another session store, pass it to the `sessions` setting so that Padrino
 adds it before the CSRF check:
 
 ```ruby
-set :sessions, use: Rack::Session::Pool, config: { expire_after: 2592000 }
+set :sessions, use: Rack::Session::Pool, config: { same_site: :lax, expire_after: 2592000 }
 ```
 
 Middleware added with `use` inside the app runs after the CSRF check, so every
@@ -141,6 +141,14 @@ Set these before your routes are defined, for example in `app/app.rb` or
 `config/apps.rb`. Routes defined before `allow_disabled_csrf` is enabled are
 not checked at all.
 
+A hash value for `protect_from_csrf` turns protection on in every environment,
+replacing the generated `Padrino.env != :test`. To keep tests free of tokens,
+choose the value by environment:
+
+```ruby
+set :protect_from_csrf, Padrino.env == :test ? false : { except: %r{\A/webhooks/} }
+```
+
 ## Testing
 
 The generated `config/apps.rb` turns protection off in the test environment, so
@@ -152,5 +160,11 @@ request, so turning it on inside one test does nothing if an earlier test has
 already made a request. To test the protection itself, turn it on before the
 app is loaded and run those tests in their own process. For example, use
 `set :protect_from_csrf, Padrino.env != :test || ENV['CSRF'] == '1'` in
-`config/apps.rb` and run the CSRF tests with `CSRF=1`. Get the form, then post
+`config/apps.rb`, and run the CSRF tests with `CSRF=1`. Get the form, then post
 the `authenticity_token` back with the session cookie.
+
+`rake test` loads every test file, so skip the CSRF tests when `CSRF` isn't set:
+
+```ruby
+before { skip 'run with CSRF=1' unless ENV['CSRF'] == '1' }
+```

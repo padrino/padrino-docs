@@ -4354,7 +4354,7 @@ for instance). You can use any Rack session middleware by passing it to the
 `sessions` setting:
 
 ```ruby
-set :sessions, use: Rack::Session::Pool, config: { expire_after: 2592000 }
+set :sessions, use: Rack::Session::Pool, config: { same_site: :lax, expire_after: 2592000 }
 
 get '/' do
   "value = #{session[:value].inspect}"
@@ -4364,6 +4364,10 @@ get '/:value' do
   session[:value] = params[:value]
 end
 ```
+
+With `use:`, cookie options such as `same_site` and `secure` go in `config:`.
+`Rack::Session::Pool` keeps sessions in the memory of one process, so with Puma
+workers or several servers, use a store they share.
 
 To improve security, the session data in the cookie is signed with a session
 secret. A random secret is generated for you by Sinatra. However, since this
@@ -4475,7 +4479,7 @@ To use another session store, pass it to the `sessions` setting so that Padrino
 adds it before the CSRF check:
 
 ```ruby
-set :sessions, use: Rack::Session::Pool, config: { expire_after: 2592000 }
+set :sessions, use: Rack::Session::Pool, config: { same_site: :lax, expire_after: 2592000 }
 ```
 
 Middleware added with `use` inside the app runs after the CSRF check, so every
@@ -4571,6 +4575,14 @@ Set these before your routes are defined, for example in `app/app.rb` or
 `config/apps.rb`. Routes defined before `allow_disabled_csrf` is enabled are
 not checked at all.
 
+A hash value for `protect_from_csrf` turns protection on in every environment,
+replacing the generated `Padrino.env != :test`. To keep tests free of tokens,
+choose the value by environment:
+
+```ruby
+set :protect_from_csrf, Padrino.env == :test ? false : { except: %r{\A/webhooks/} }
+```
+
 ## Testing
 
 The generated `config/apps.rb` turns protection off in the test environment, so
@@ -4582,8 +4594,14 @@ request, so turning it on inside one test does nothing if an earlier test has
 already made a request. To test the protection itself, turn it on before the
 app is loaded and run those tests in their own process. For example, use
 `set :protect_from_csrf, Padrino.env != :test || ENV['CSRF'] == '1'` in
-`config/apps.rb` and run the CSRF tests with `CSRF=1`. Get the form, then post
+`config/apps.rb`, and run the CSRF tests with `CSRF=1`. Get the form, then post
 the `authenticity_token` back with the session cookie.
+
+`rake test` loads every test file, so skip the CSRF tests when `CSRF` isn't set:
+
+```ruby
+before { skip 'run with CSRF=1' unless ENV['CSRF'] == '1' }
+```
 
 ---
 
@@ -6506,10 +6524,10 @@ Threads in one process take turns running Ruby code, but they overlap while a
 request waits on the database or another service. Workers are separate
 processes, so they can use more than one CPU core.
 
-With `workers`, Puma loads the app once and then forks the workers, so they
-inherit any database connection opened while loading. Sequel connects when
-`config/database.rb` runs, so close those connections before forking, or the
-workers share one socket:
+With two or more `workers`, Puma loads the app once and then forks the
+workers, so they inherit any database connection opened while loading. Sequel
+connects when `config/database.rb` runs, so close those connections before
+forking, or the workers share one socket:
 
 ```ruby
 # config/puma.rb
@@ -7249,12 +7267,14 @@ browsers cache them, set a `Cache-Control` header:
 set :static_cache_control, [:public, max_age: 31536000]
 ```
 
-`stylesheet_link_tag` and `javascript_include_tag` add the file's modification
-time to the URL, and Vite puts a content hash in its file names, so browsers
-fetch the new files after a deploy. Other files keep the cached copy until
-`max_age` runs out: images referenced from CSS, `favicon.ico`, and links you
-write by hand. Use a shorter `max_age` if those change often. If a web server such as nginx sits in front
-of the app, you can let it serve `public/` directly instead.
+Padrino's asset helpers (`stylesheet_link_tag`, `javascript_include_tag`,
+`image_tag`, `favicon_tag` and `asset_path`) add the file's modification time to
+the URL, and Vite puts a content hash in its file names, so browsers fetch the
+new files after a deploy. Other files keep the cached copy until `max_age` runs
+out: images referenced from CSS, the `/favicon.ico` browsers request on their
+own, and links you write by hand. Use a shorter `max_age` if those change
+often. If a web server such as nginx sits in front of the app, you can let it
+serve `public/` directly instead.
 
 ---
 
