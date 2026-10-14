@@ -13,4 +13,5 @@ Sometimes plain Padrino is not enough. Learn how to extend Padrino, doing things
 - [Standalone Usage in Sinatra](/guides/advanced-usage/standalone-usage-in-sinatra "Standalone Usage in Sinatra")
 - [3rd Party Plugins](/guides/advanced-usage/3rd-party-plugins "3rd Party Plugins")
 - [Running Padrino on JRuby](/guides/advanced-usage/running-padrino-on-jruby "Running Padrino on JRuby")
+- [Deployment](/guides/advanced-usage/deployment "Deployment")
 
