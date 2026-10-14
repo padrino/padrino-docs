@@ -14,7 +14,7 @@ Still, with the [official release of ActiveSupport 3.2](https://rubyonrails.org/
 
 ## ActiveRecord and ActiveSupport 3.2 Upgrade
 
-We have upgraded Padrino to use [ActiveSupport 3.2](:http://weblog.rubyonrails.org/2012/1/20/rails-3-2-0-faster-dev-mode-routing-explain-queries-tagged-logger-store) and to enable support for ActiveRecord 3.2. We believe that Padrino should support the latest version of these components as they become officially available. There shouldn't be any breaking changes between ActiveRecord 3.1 and the new version release.
+We have upgraded Padrino to use [ActiveSupport 3.2](https://rubyonrails.org/2012/1/20/rails-3-2-0-faster-dev-mode-routing-explain-queries-tagged-logger-store) and to enable support for ActiveRecord 3.2. We believe that Padrino should support the latest version of these components as they become officially available. There shouldn't be any breaking changes between ActiveRecord 3.1 and the new version release.
 
 
 ## MiniRecord Generators
