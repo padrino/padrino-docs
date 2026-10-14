@@ -44,7 +44,7 @@ application configuration within `app/app.rb`.
   - `link_to 'click me', '/dashboard', class: 'linky', unless: :current`
   - `link_to('/dashboard', class: 'blocky') { ...content... }`
 - `mail_to(email, caption = nil, mail_options = {})`
-  - Creates a mailto link tag to the specified email_address
+  - Creates a mailto link tag to the given email address
   - `mail_to 'me@demo.com'`
   - `mail_to 'me@demo.com', 'My Email', subject: 'Feedback', cc:
     'test@demo.com'`

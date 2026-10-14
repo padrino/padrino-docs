@@ -51,6 +51,19 @@ A `form_for` using these basic fields might look like:
   - `fields_for @user.assignment do |assignment| ... end`
   - `fields_for :assignment do |assignment| ... end`
 
+When `form_for` or `fields_for` is given a symbol such as `:user`, it uses the
+`@user` instance variable if it is set, and `User.new` otherwise.
+
+Field names come from the object's class: a `User` gives `user[name]` and an
+`Admin::Account` gives `admin_account[name]`. Use the `as:` option to choose
+another name:
+
+```ruby
+form_for @user, '/register', as: :customer do |f|
+  f.text_field :name # => <input name="customer[name]" id="customer_name" ... />
+end
+```
+
 Some of the methods provided by `AbstractFormBuilder` that can be used
 within `form_for` or `fields_for` are:
 

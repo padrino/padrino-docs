@@ -23,14 +23,6 @@ generate a project based on a remote url such as a
 $ padrino g project my_project --template https://gist.github.com/356156
 ```
 
-You can also execute template files directly from
-[the official templates repo](http://github.com/padrino/padrino-recipes/tree/master/templates
-"the official templates repo"):
-
-```shell
-$ padrino g project my_project --template sampleblog
-```
-
 You can also apply templates as plugins to existing Padrino applications:
 
 ```shell
@@ -70,12 +62,12 @@ git :init
 git :add, "."
 git :commit, "-m 'initial commit'"
 
-inject_into_file 'app/models/post.rb','#Hello', :after => "end\n"
+inject_into_file 'models/post.rb','#Hello', :after => "end\n"
 rake 'ar:create ar:migrate'
 initializer :test, '# Example'
 
 git :add, '.'
-git :commit, "- m 'second commit'"
+git :commit, "-m 'second commit'"
 ```
 
 Keep in mind that the template file is pure Ruby and has full access to

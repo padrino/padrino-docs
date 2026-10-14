@@ -49,7 +49,7 @@ The best extensions to look for are those that have already been included as
 "padrino-recipes") repository. Any recipe included there represents a single
 command installation of the specified functionality. For instance, suppose you
 want to setup pagination in your application for a resource. Installing the
-[will_paginate](https://github.com/mislav/will_paginate "will paginate") gem is
+[`will_paginate`](https://github.com/mislav/will_paginate "will paginate") gem is
 as simple as applying the recipe:
 
 ```shell

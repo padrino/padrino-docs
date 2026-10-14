@@ -84,7 +84,7 @@ end
 ```
 
 In this way you can manually expire cache with
-CachedApp.cache.delete(:my_name) for example from the Post model after an
+`CachedApp.cache.delete(:my_name)` for example from the Post model after an
 update.
 
 If you specify `:cache => true` but do not invoke `expires`, the response will
@@ -277,7 +277,7 @@ may not be the case in your application, but the principle applies: fragments
 are shared between all code which accesses the cache using the same key.
 
 ### Caching URLs with query strings
-Another use of cache_key is when you’d like to include query string parameters
+Another use of `cache_key` is when you’d like to include query string parameters
 as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 

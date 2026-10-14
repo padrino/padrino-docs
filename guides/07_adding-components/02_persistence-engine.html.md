@@ -94,7 +94,7 @@ end
 
 Next, let's add the appropriate unit tests to ensure our new component works as
 intended in
-[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L359):
+[`padrino-gen/test/test_project_generator.rb`](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L359):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb

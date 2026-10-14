@@ -157,7 +157,7 @@ rake ar:version                        # Retrieves the current schema version nu
 
 This is some sort of super cool and useful task for people like me who don't
 love migrations (especially for small apps). It's a forked version of
-[auto_migrations](http://github.com/pjhyett/auto_migrations).
+[`auto_migrations`](http://github.com/pjhyett/auto_migrations).
 
 Basically, instead of writing migrations you can directly edit your
 **schema.rb** and perform _a non destructive_ migration with `padrino rake

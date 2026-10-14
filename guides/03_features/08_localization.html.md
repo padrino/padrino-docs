@@ -159,7 +159,7 @@ it:
 ```
 
 padrino-admin will now use your newly created yml file for translating the
-column names of grids, forms, error_messages etc ...
+column names of grids, forms, `error_messages` etc ...
 
 --------------------------------------------------------------------------------
 
