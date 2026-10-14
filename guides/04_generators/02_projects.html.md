@@ -89,9 +89,9 @@ Component  | Default | Aliases | Options
 server     | webrick | -s      | thin, **puma** (recommended), falcon (fiber-based, Ruby 3.0+), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
 orm        | none    | -d      | mongoid, activerecord, minirecord, ohm, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
-script     | none    | -s      | prototype, jquery, mootools, dojo
+script     | none    | -s      | prototype, jquery, mootools, dojo, vite
 renderer   | none    | -e      | erb, haml, slim, liquid
-stylesheet | none    | -c      | sass, less, scss
+stylesheet | none    | -c      | sass, less, scss, tailwind
 mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your
@@ -127,6 +127,16 @@ $ padrino g project your_project -t shoulda -m rr
 $ padrino g project your_project -d sequel -a mysql
 ```
 
+**Generate a project with Vite and Tailwind CSS**
+
+```shell
+$ padrino g project your_project -s vite -c tailwind -e haml
+```
+
+Both components also work on an existing project, e.g.
+`padrino g component -s vite` or `padrino g component -c tailwind`. See
+[Vite](#vite) and [Tailwind CSS](#tailwind-css) below for what they set up.
+
 **Generate a tiny project skeleton**
 
 ```shell
@@ -149,3 +159,66 @@ padrino g project your_project [--dev] # Use padrino from a git checkout
 
 Visit [The Bleeding Edge](/guides/introduction/the-bleeding-edge "The Bleeding Edge") for
 more info how to setup a **dev** environment.
+
+## Vite
+
+`-s vite` sets up [Vite](https://vite.dev) through
+[vite_padrino](https://github.com/ElMassimo/vite_ruby/tree/main/vite_padrino). It adds the
+`vite_padrino` gem and `register VitePadrino`, `config/vite.json`,
+`vite.config.ts`, a `package.json` and an entrypoint at
+`app/frontend/entrypoints/application.js`. It also adds the Vite rake tasks
+and a `vite: bundle exec vite dev` process in `Procfile.dev`.
+
+It doesn't run npm. Run `npm install` (if the project already had a
+`package.json`, which is left as is, run the `npm install -D ...` command the
+generator prints instead), then add the tags to the `<head>` of your layout:
+
+```haml
+= vite_client_tag
+= vite_javascript_tag 'application'
+```
+
+In development, `autoBuild` builds the assets on demand, or run
+`bundle exec vite dev` (or `Procfile.dev`) for hot reloading. `rake assets:precompile`
+builds them for production.
+
+vite_padrino 3.0.0 needs ActiveSupport's `Object#try`, so the generator also
+adds `activesupport` and requires `active_support/core_ext/object/try` in
+`config/boot.rb`. Both can go once
+[vite_ruby#635](https://github.com/ElMassimo/vite_ruby/pull/635) is released.
+
+## Tailwind CSS
+
+`-c tailwind` sets up [Tailwind CSS](https://tailwindcss.com) v4 with the
+[tailwindcss-ruby](https://github.com/flavorjones/tailwindcss-ruby) gem, which
+ships the standalone Tailwind binary, so Node isn't needed. It needs Ruby 3.0
+or later.
+
+The source is `app/stylesheets/application.css`, which starts with
+`@import "tailwindcss";`. It builds to `public/stylesheets/application.css`,
+which is gitignored. Link it in your layout:
+
+```haml
+= stylesheet_link_tag 'application'
+```
+
+- `rake tailwind:build` builds the stylesheet once, minified.
+- `rake tailwind:watch` rebuilds it on every change. `Procfile.dev` gets a
+  `css: bundle exec rake tailwind:watch` process for it.
+- `rake assets:precompile` runs `tailwind:build`, so deploys that precompile
+  assets build the CSS too.
+
+When you add Tailwind to an existing project, a hand-written
+`public/stylesheets/application.css` is moved into the new source, with its
+`@charset` and `@import` lines kept at the top. If you switch from sass, scss
+or less, remove that engine's gems and initializer.
+
+The binary comes in platform-specific gems. If you develop on macOS and deploy
+to Linux, add the platform to your lockfile:
+
+```shell
+$ bundle lock --add-platform x86_64-linux
+```
+
+On platforms without a prebuilt binary, such as JRuby, download the Tailwind
+executable and point `TAILWINDCSS_INSTALL_DIR` at its directory.
