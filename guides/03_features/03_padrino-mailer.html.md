@@ -123,7 +123,7 @@ in the terminal:
 $ padrino g mailer Sample registration_email
 ```
 
-This mailer defines a mail route called `registration_mail` within the `sample`
+This mailer defines a mail route called `registration_email` within the `sample`
 mailer. The `registration_email` route accepts the name and email arguments.
 Arguments are passed to the email body template via the `locals` method. The
 render command renders the email body template with the local variables, which
@@ -141,6 +141,12 @@ Note that the mailer has full support for content type resolution and the email
 could also be in the path `./views/mailers/sample/registration_email.html.erb`
 or `./views/mailers/sample/registration_email.plain.erb` specifying the mime
 type in the file name as well.
+
+Inside a message, `render` looks for templates in the mailer's own folder. With
+no argument it renders the template named after the message, so a plain
+`render` in the example above is the same as `render 'sample/registration_email'`.
+A name without a slash, such as `render 'congrats'`, renders
+`[views_path]/mailers/sample/congrats.erb`.
 
 Once the mailer has been defined and the template written, the email route can
 be invoked by the `deliver` method:

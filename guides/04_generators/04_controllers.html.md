@@ -20,9 +20,10 @@ parent    |         | -p      | specify the parent
 provides  |         | -f      | specify the formats for this controller
 destroy   | false   | -d      | removes all generated files
 
-Very important to note that controller generators are intended primarily to work
-within applications created through the Padrino application generator and that
-follow Padrino conventions.
+Run controller generators from the root of a Padrino project, the folder that
+contains `config/boot.rb`. They read project settings, such as the project
+namespace and test framework, from the `.components` file that the project
+generator creates, so they will not work in a project without it.
 
 Using the controller generator is as simple as:
 

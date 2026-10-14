@@ -15,9 +15,9 @@ root      | .       | -r      | specify the root destination path
 namespace |         | -n      | specify the name space of your padrino project
 destroy   | false   | -d      | removes all generated files
 
-Very important to note that mailer generators are intended primarily to work
-within applications created through the Padrino application generator and that
-follow Padrino conventions.
+Run mailer generators from the root of a Padrino project, the folder that
+contains `config/boot.rb`. Unless you pass `-n`, they read the project namespace
+from the `.components` file that the project generator creates.
 
 Using the mailer generator is as simple as:
 

@@ -66,11 +66,12 @@ relatively unique to Sinatra and Padrino in the Ruby web world.
 ### Fast
 
 Sinatra and Padrino are **very fast** relative to other full stack frameworks.
-The Padrino stack is lightweight and slim which can be demonstrated in our
-[performance benchmarks](https://github.com/DAddYE/web-frameworks-benchmark/wiki
-"performance benchmarks"). While all benchmarks should be taken with a grain of
-salt, over the course of developing hundreds of applications, we have found that
-the memory usage, stability and requests per second speak for themselves.
+The Padrino stack is lightweight and slim, as a
+[2011 benchmark](https://github.com/DAddYE/web-frameworks-benchmark/wiki
+"2011 benchmark") (Ruby 1.8.7, Padrino 0.10.2) showed. While all benchmarks
+should be taken with a grain of salt, over the course of developing hundreds of
+applications, we have found that the memory usage, stability and requests per
+second speak for themselves.
 
 ### Extensible
 
@@ -1382,7 +1383,7 @@ inside the generated Padrino Admin and make some changes to include the account
 with the post.
 
 Head on over to `admin/controllers/posts.rb`. We're going to include the
-[current_account](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/helpers/authentication_helpers.rb#L18 "current_account")
+[`current_account`](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/helpers/authentication_helpers.rb#L18 "current_account")
 to the creation of a new Post.
 
 ```ruby
@@ -1882,7 +1883,7 @@ in the terminal:
 $ padrino g mailer Sample registration_email
 ```
 
-This mailer defines a mail route called `registration_mail` within the `sample`
+This mailer defines a mail route called `registration_email` within the `sample`
 mailer. The `registration_email` route accepts the name and email arguments.
 Arguments are passed to the email body template via the `locals` method. The
 render command renders the email body template with the local variables, which
@@ -1900,6 +1901,12 @@ Note that the mailer has full support for content type resolution and the email
 could also be in the path `./views/mailers/sample/registration_email.html.erb`
 or `./views/mailers/sample/registration_email.plain.erb` specifying the mime
 type in the file name as well.
+
+Inside a message, `render` looks for templates in the mailer's own folder. With
+no argument it renders the template named after the message, so a plain
+`render` in the example above is the same as `render 'sample/registration_email'`.
+A name without a slash, such as `render 'congrats'`, renders
+`[views_path]/mailers/sample/congrats.erb`.
 
 Once the mailer has been defined and the template written, the email route can
 be invoked by the `deliver` method:
@@ -2110,7 +2117,7 @@ end
 ```
 
 In this way you can manually expire cache with
-CachedApp.cache.delete(:my_name) for example from the Post model after an
+`CachedApp.cache.delete(:my_name)` for example from the Post model after an
 update.
 
 If you specify `:cache => true` but do not invoke `expires`, the response will
@@ -2303,7 +2310,7 @@ may not be the case in your application, but the principle applies: fragments
 are shared between all code which accesses the cache using the same key.
 
 ### Caching URLs with query strings
-Another use of cache_key is when you’d like to include query string parameters
+Another use of `cache_key` is when you’d like to include query string parameters
 as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 
@@ -2745,7 +2752,8 @@ Download and translate these files:
 - [padrino-admin-orm.yml](http://raw.github.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/orm/en.yml)
 - [padrino-helper.yml](http://raw.github.com/padrino/padrino-framework/master/padrino-helpers/lib/padrino-helpers/locale/en.yml)
 
-zip your files and send it to [padrinorb@gmail.com](mailto:padrinorb@gmail.org)
+Then add each translated file next to the original, in the same `locale` folder of
+[padrino-framework](https://github.com/padrino/padrino-framework), and open a pull request.
 
 --------------------------------------------------------------------------------
 
@@ -2862,7 +2870,7 @@ it:
 ```
 
 padrino-admin will now use your newly created yml file for translating the
-column names of grids, forms, error_messages etc ...
+column names of grids, forms, `error_messages` etc ...
 
 --------------------------------------------------------------------------------
 
@@ -3046,7 +3054,7 @@ rake ar:version                        # Retrieves the current schema version nu
 
 This is some sort of super cool and useful task for people like me who don't
 love migrations (especially for small apps). It's a forked version of
-[auto_migrations](http://github.com/pjhyett/auto_migrations).
+[`auto_migrations`](http://github.com/pjhyett/auto_migrations).
 
 Basically, instead of writing migrations you can directly edit your
 **schema.rb** and perform _a non destructive_ migration with `padrino rake
@@ -3220,7 +3228,7 @@ api              | false   | none    | generate a minimal project for APIs
 template         | nil     | -p      | generate the project from a template
 gem              | false   | -g      | generate the project as a gem
 adapter          | sqlite  | -a      | specify orm db adapter (sqlite, mysql, mysql2, mysql-gem, postgres)
-migration_format | number  | none    | format for migrations (number, timestamp)
+migration\_format | number  | none    | format for migrations (number, timestamp)
 
 The available components and their default options are listed below:
 
@@ -3314,14 +3322,6 @@ generate a project based on a remote url such as a
 $ padrino g project my_project --template https://gist.github.com/356156
 ```
 
-You can also execute template files directly from
-[the official templates repo](http://github.com/padrino/padrino-recipes/tree/master/templates
-"the official templates repo"):
-
-```shell
-$ padrino g project my_project --template sampleblog
-```
-
 You can also apply templates as plugins to existing Padrino applications:
 
 ```shell
@@ -3361,12 +3361,12 @@ git :init
 git :add, "."
 git :commit, "-m 'initial commit'"
 
-inject_into_file 'app/models/post.rb','#Hello', :after => "end\n"
+inject_into_file 'models/post.rb','#Hello', :after => "end\n"
 rake 'ar:create ar:migrate'
 initializer :test, '# Example'
 
 git :add, '.'
-git :commit, "- m 'second commit'"
+git :commit, "-m 'second commit'"
 ```
 
 Keep in mind that the template file is pure Ruby and has full access to
@@ -3394,9 +3394,10 @@ parent    |         | -p      | specify the parent
 provides  |         | -f      | specify the formats for this controller
 destroy   | false   | -d      | removes all generated files
 
-Very important to note that controller generators are intended primarily to work
-within applications created through the Padrino application generator and that
-follow Padrino conventions.
+Run controller generators from the root of a Padrino project, the folder that
+contains `config/boot.rb`. They read project settings, such as the project
+namespace and test framework, from the `.components` file that the project
+generator creates, so they will not work in a project without it.
 
 Using the controller generator is as simple as:
 
@@ -3463,10 +3464,10 @@ app             | .       | -a      | specify the application destination path
 skip\_migration | false   | -s      | skip migration generation
 destroy         | false   | -d      | removes all generated files
 
-Very important to note that model generators are intended primarily to work
-within applications created through the Padrino application generator and that
-follow Padrino conventions. Using model generators within an existing
-application not generated by Padrino will likely not work as expected.
+Run model generators from the root of a Padrino project, the folder that
+contains `config/boot.rb`. They read project settings, such as the ORM and test
+framework, from the `.components` file that the project generator creates, so
+they will not work in a project without it.
 
 Using the model generator is as simple as:
 
@@ -3515,10 +3516,10 @@ Options | Default | Aliases | Description
 root    | .       | -r      | specify the root destination path
 destroy | false   | -d      | removes all generated files
 
-Very important to note that migration generators are intended primarily to work
-within applications created through the Padrino application generator and that
-follow Padrino conventions. Using migration generators within an existing
-application not generated by Padrino will likely not work as expected.
+Run migration generators from the root of a Padrino project, the folder that
+contains `config/boot.rb`. They read project settings, such as the ORM, from the
+`.components` file that the project generator creates, so they will not work in
+a project without it.
 
 Using the migration generator is as simple as:
 
@@ -3561,9 +3562,9 @@ root      | .       | -r      | specify the root destination path
 namespace |         | -n      | specify the name space of your padrino project
 destroy   | false   | -d      | removes all generated files
 
-Very important to note that mailer generators are intended primarily to work
-within applications created through the Padrino application generator and that
-follow Padrino conventions.
+Run mailer generators from the root of a Padrino project, the folder that
+contains `config/boot.rb`. Unless you pass `-n`, they read the project namespace
+from the `.components` file that the project generator creates.
 
 Using the mailer generator is as simple as:
 
@@ -3681,8 +3682,8 @@ application in your project:
 
 Options         | Default   | Aliases | Description
 --------------- | --------- | ------- | ----------------------------------------------------
-admin_name      | admin     | -a      | allows you to specify the admin app’s name
-admin_model     | "Account" | -m      | specify the name of model for access controlling
+admin\_name     | admin     | -a      | allows you to specify the admin app’s name
+admin\_model    | "Account" | -m      | specify the name of model for access controlling
 root            | .         | -r      | specify the root destination path
 skip\_migration | false     | -s      | skip migration generation
 renderer        |           | -e      | the default value is a renderer used in the main app
@@ -4308,7 +4309,7 @@ rendering of your choice (erb, haml, slim).
 render :haml, 'account/index'
 ```
 
-Padrino also automatically considers your current locale and/or content_type.
+Padrino also automatically considers your current locale and/or `content_type`.
 
 ```ruby
 Demo::App.controllers :admin do
@@ -4592,7 +4593,7 @@ application configuration within `app/app.rb`.
   - `link_to 'click me', '/dashboard', class: 'linky', unless: :current`
   - `link_to('/dashboard', class: 'blocky') { ...content... }`
 - `mail_to(email, caption = nil, mail_options = {})`
-  - Creates a mailto link tag to the specified email_address
+  - Creates a mailto link tag to the given email address
   - `mail_to 'me@demo.com'`
   - `mail_to 'me@demo.com', 'My Email', subject: 'Feedback', cc:
     'test@demo.com'`
@@ -4649,7 +4650,7 @@ building forms. A simple example of constructing a non-object form would be:
   - Supports form methods 'put' and 'delete' through hidden field
   - `form_tag('/register', class: 'example') { ... }`
 - `field_set_tag(*args, &block)`
-  - Constructs a field_set to group fields with given options
+  - Constructs a `fieldset` to group fields with given options
   - `field_set_tag(class: 'office-set') { }`
   - `field_set_tag('Office', class: 'office-set') { }`
 - `error_messages_for(:record, options = {})`
@@ -4762,6 +4763,19 @@ A `form_for` using these basic fields might look like:
   - Defaults to StandardFormBuilder but you can easily create your own!
   - `fields_for @user.assignment do |assignment| ... end`
   - `fields_for :assignment do |assignment| ... end`
+
+When `form_for` or `fields_for` is given a symbol such as `:user`, it uses the
+`@user` instance variable if it is set, and `User.new` otherwise.
+
+Field names come from the object's class: a `User` gives `user[name]` and an
+`Admin::Account` gives `admin_account[name]`. Use the `as:` option to choose
+another name:
+
+```ruby
+form_for @user, '/register', as: :customer do |f|
+  f.text_field :name # => <input name="customer[name]" id="customer_name" ... />
+end
+```
 
 Some of the methods provided by `AbstractFormBuilder` that can be used
 within `form_for` or `fields_for` are:
@@ -5001,7 +5015,7 @@ These helpers can be invoked from any route or view within your application.
   - Attempts to pluralize the singular word unless count is 1.
   - `pluralize(2, 'person')` => '2 people'
 - `word_wrap(text, *args)`
-  - Wraps the text into lines no longer than line_width width.
+  - Wraps the text into lines no longer than `line_width` characters.
   - `word_wrap('Once upon a time', line_width: 8)` => "Once upon\na time"
 - `truncate(text, *args)`
   - Truncates a given text after a given `:length` if text is longer than `:length`
@@ -5385,7 +5399,7 @@ end
 
 Next, let's add the appropriate unit tests to ensure our new component works as
 intended in
-[padrino-gen/test/test_project_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L359):
+[`padrino-gen/test/test_project_generator.rb`](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L359):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -6172,7 +6186,7 @@ The best extensions to look for are those that have already been included as
 "padrino-recipes") repository. Any recipe included there represents a single
 command installation of the specified functionality. For instance, suppose you
 want to setup pagination in your application for a resource. Installing the
-[will_paginate](https://github.com/mislav/will_paginate "will paginate") gem is
+[`will_paginate`](https://github.com/mislav/will_paginate "will paginate") gem is
 as simple as applying the recipe:
 
 ```shell

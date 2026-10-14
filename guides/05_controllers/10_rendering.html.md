@@ -21,7 +21,7 @@ rendering of your choice (erb, haml, slim).
 render :haml, 'account/index'
 ```
 
-Padrino also automatically considers your current locale and/or content_type.
+Padrino also automatically considers your current locale and/or `content_type`.
 
 ```ruby
 Demo::App.controllers :admin do

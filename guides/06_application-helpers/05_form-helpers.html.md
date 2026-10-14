@@ -36,7 +36,7 @@ building forms. A simple example of constructing a non-object form would be:
   - Supports form methods 'put' and 'delete' through hidden field
   - `form_tag('/register', class: 'example') { ... }`
 - `field_set_tag(*args, &block)`
-  - Constructs a field_set to group fields with given options
+  - Constructs a `fieldset` to group fields with given options
   - `field_set_tag(class: 'office-set') { }`
   - `field_set_tag('Office', class: 'office-set') { }`
 - `error_messages_for(:record, options = {})`

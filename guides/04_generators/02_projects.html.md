@@ -80,7 +80,7 @@ api              | false   | none    | generate a minimal project for APIs
 template         | nil     | -p      | generate the project from a template
 gem              | false   | -g      | generate the project as a gem
 adapter          | sqlite  | -a      | specify orm db adapter (sqlite, mysql, mysql2, mysql-gem, postgres)
-migration_format | number  | none    | format for migrations (number, timestamp)
+migration\_format | number  | none    | format for migrations (number, timestamp)
 
 The available components and their default options are listed below:
 
