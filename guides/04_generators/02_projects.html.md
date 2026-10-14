@@ -47,7 +47,7 @@ when the application is newly created. The necessary bundler command can be
 executed automatically through the generator with:
 
 ```shell
-$ padrino g project demo_project --run_bundler # alias -b
+$ padrino g project demo_project --bundle # alias -b
 ```
 
 This can also be done manually by executing the command `bundle install` in the
@@ -58,9 +58,9 @@ For more examples of using the project generator in common cases, check out the
 
 The generator framework within Padrino is extensible and additional components
 and tools can be added easily. This would be achieved through forking our
-project and reading through the code in `lib/generators/project.rb` and the
+project and reading through the code in `padrino-gen/lib/padrino-gen/generators/project.rb` and the
 setup instructions inside the relevant files within
-`lib/generators/components/`. We are happy to accept pull requests for
+`padrino-gen/lib/padrino-gen/generators/components/`. We are happy to accept pull requests for
 additional component types not originally included (although helping us maintain
 them would also be appreciated).
 
@@ -68,15 +68,19 @@ them would also be appreciated).
 
 The project generator has several available configuration options:
 
-Options |            Default | Aliases | Description
------------------- | ------- | ------- | ------------------------------------------------
-bundle             | false   | -b      | execute bundler dependencies installation
-root               | .       | -r      | the root destination path for the project
-dev                | false   | none    | use edge version from local git checkout
-app                | nil     | -n      | specify app name different from the project name
-tiny               | false   | -i      | generate tiny project skeleton
-adapter            | sqlite  | -a      | specify orm db adapter (mysql, sqlite, postgres)
---migration_format | number  |         | format for migrations (number, timestamp)
+Option           | Default | Aliases | Description
+---------------- | ------- | ------- | ------------------------------------------------
+bundle           | false   | -b      | execute bundler dependencies installation
+root             | .       | -r      | the root destination path for the project
+dev              | false   | none    | use edge version from local git checkout
+app              | nil     | -n      | specify app name different from the project name
+tiny             | false   | -i      | generate tiny project skeleton
+lean             | false   | -l      | generate a lean project without apps
+api              | false   | none    | generate a minimal project for APIs
+template         | nil     | -p      | generate the project from a template
+gem              | false   | -g      | generate the project as a gem
+adapter          | sqlite  | -a      | specify orm db adapter (sqlite, mysql, mysql2, mysql-gem, postgres)
+migration_format | number  | none    | format for migrations (number, timestamp)
 
 The available components and their default options are listed below:
 
@@ -99,7 +103,7 @@ project name, or any models or controllers overlap. Avoid naming your app
 **Generate a project with a different application name from the project path**
 
 ```shell
-$ padrino g my_project -n blog
+$ padrino g project my_project -n blog
 ```
 
 This will generate the project at path `my_project/` but the applications name
