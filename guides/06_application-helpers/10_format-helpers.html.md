@@ -45,7 +45,7 @@ These helpers can be invoked from any route or view within your application.
   - Attempts to pluralize the singular word unless count is 1.
   - `pluralize(2, 'person')` => '2 people'
 - `word_wrap(text, *args)`
-  - Wraps the text into lines no longer than line_width width.
+  - Wraps the text into lines no longer than `line_width` characters.
   - `word_wrap('Once upon a time', line_width: 8)` => "Once upon\na time"
 - `truncate(text, *args)`
   - Truncates a given text after a given `:length` if text is longer than `:length`

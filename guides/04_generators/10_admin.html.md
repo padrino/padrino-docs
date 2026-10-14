@@ -10,8 +10,8 @@ application in your project:
 
 Options         | Default   | Aliases | Description
 --------------- | --------- | ------- | ----------------------------------------------------
-admin_name      | admin     | -a      | allows you to specify the admin app’s name
-admin_model     | "Account" | -m      | specify the name of model for access controlling
+admin\_name     | admin     | -a      | allows you to specify the admin app’s name
+admin\_model    | "Account" | -m      | specify the name of model for access controlling
 root            | .         | -r      | specify the root destination path
 skip\_migration | false     | -s      | skip migration generation
 renderer        |           | -e      | the default value is a renderer used in the main app

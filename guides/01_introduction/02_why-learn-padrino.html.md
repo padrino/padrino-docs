@@ -28,11 +28,12 @@ relatively unique to Sinatra and Padrino in the Ruby web world.
 ### Fast
 
 Sinatra and Padrino are **very fast** relative to other full stack frameworks.
-The Padrino stack is lightweight and slim which can be demonstrated in our
-[performance benchmarks](https://github.com/DAddYE/web-frameworks-benchmark/wiki
-"performance benchmarks"). While all benchmarks should be taken with a grain of
-salt, over the course of developing hundreds of applications, we have found that
-the memory usage, stability and requests per second speak for themselves.
+The Padrino stack is lightweight and slim, as a
+[2011 benchmark](https://github.com/DAddYE/web-frameworks-benchmark/wiki
+"2011 benchmark") (Ruby 1.8.7, Padrino 0.10.2) showed. While all benchmarks
+should be taken with a grain of salt, over the course of developing hundreds of
+applications, we have found that the memory usage, stability and requests per
+second speak for themselves.
 
 ### Extensible
 
