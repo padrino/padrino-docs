@@ -19,7 +19,7 @@ ActiveSupport 3.1 has been officially released and we have upgraded Padrino acco
 
 ## TravisCI
 
-This release marks the beginning of our use of [Travis CI for Padrino](http://travis-ci.org/#!/padrino/padrino-framework). TravisCI is a great tool for the open source community and improves our continuous integration testing for all versions of Ruby. [commit](https://github.com/padrino/padrino-framework/commit/5e7f244de66bf412e5183b50827019d894eb6e4d)
+This release marks the beginning of our use of [Travis CI for Padrino](https://web.archive.org/web/20110930054902/http://travis-ci.org/#!/padrino/padrino-framework). TravisCI is a great tool for the open source community and improves our continuous integration testing for all versions of Ruby. [commit](https://github.com/padrino/padrino-framework/commit/5e7f244de66bf412e5183b50827019d894eb6e4d)
 
 
 ## Routing

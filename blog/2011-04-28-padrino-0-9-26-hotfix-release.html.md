@@ -22,7 +22,7 @@ There were a [couple](https://github.com/padrino/padrino-framework/issues/496) [
 
 **Mongoid Rake Tasks**
 
-We had accidentally forked the mongoid rake tasks that come as part of Padrino, with a ‘gsub gone wrong’. bernerdschaefer:“https://github.com/bernerdschaefer” quickly identified and corrected the issue [here](https://github.com/padrino/padrino-framework/commit/8978c8c75ed84d2799dfe60805eda4ab1fa56df4). Thanks!
+We had accidentally forked the mongoid rake tasks that come as part of Padrino, with a ‘gsub gone wrong’. [bernerdschaefer](https://github.com/bernerdschaefer) quickly identified and corrected the issue [here](https://github.com/padrino/padrino-framework/commit/8978c8c75ed84d2799dfe60805eda4ab1fa56df4). Thanks!
 
 **Shared Sessions**
 

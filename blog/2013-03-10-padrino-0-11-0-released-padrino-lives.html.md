@@ -23,7 +23,7 @@ Since our 0.10.7 release, development on Padrino has been moving forward very ac
 10) Project Modules
 11) Optimized Reloader
 
-and a lot more changes! In the full post below, we will take you through a tour of the biggest changes in this release (for a more compact view, see our [changelog](http://www.padrinorb.com/changes)).
+and a lot more changes! In the full post below, we will take you through a tour of the biggest changes in this release (for a more compact view, see our [changelog](https://github.com/padrino/padrino-framework/blob/master/CHANGES.rdoc)).
 
 
 ## Redesigned Admin
@@ -41,7 +41,7 @@ See more images in the [Padrino Admin Album](http://imgur.com/a/gimrX)! Note tha
 There were also several additional fixes for admin listed below:
 
 - Get the first key passed to expire helper. [commit](https://github.com/padrino/padrino-framework/commit/04d26c4a696e9eb50e247e308fad1d62d7ba7198) (Thanks [@gugat](https://github.com/gugat))
-- Fixes model output in erb templates. [commit](https://github.com/padrino/padrino-framework/commit/53358f588ed49d8838dc0082e30b2dcca36310ba) (Thanks [@sleepingstu](https://github.com/sleepingstu))
+- Fixes model output in erb templates. [commit](https://github.com/padrino/padrino-framework/commit/53358f588ed49d8838dc0082e30b2dcca36310ba) (Thanks [@sleepingstu](https://github.com/schinery))
 - Halting page with 404 if record is not found [commit](https://github.com/padrino/padrino-framework/commit/a7b6b69ce9f309e3e8616b3ad2c8f561590f5170) (Thanks [@kot-begemot](https://github.com/kot-begemot))
 - Cleanups to admin documentation. [commit](https://github.com/padrino/padrino-framework/commit/21146f6ffbedcce89b4ae23c48bba7c1bf8edc42) (Thanks [@danieltahara](https://github.com/danieltahara))
 - Fixes CSS Errors on admin pages. [commit](https://github.com/padrino/padrino-framework/commit/f5301722562972fd939dd2689549cbbd59c49a20) (Thanks [@dariocravero](https://github.com/dariocravero))
@@ -59,7 +59,7 @@ The new web experience is just around the corner too, so keep your eyes and ears
 
 ## Upgraded Sinatra and http\_router
 
-[Sinatra 1.4](http://rkh.im/sinatra-1.4) was just released recently, and we have full support for Sinatra 1.4.X in this release. Commits: [1](https://github.com/padrino/padrino-framework/commit/68e58b4609ec528fc0ea9f8f95ace36dec9b2920), [2](https://github.com/padrino/padrino-framework/commit/ba2cfcdeb1c4428cc19013d09ba05f1383455360), [3](https://github.com/padrino/padrino-framework/commit/15927ecb172f99fca56d243d331729b9194daa91), [4](https://github.com/padrino/padrino-framework/commit/181b844ab93914c88bfd908a5eefe8b67d2aaeef), [5](https://github.com/padrino/padrino-framework/commit/777ee25223a1998f616d648a932d85f94cf199dc)
+[Sinatra 1.4](https://web.archive.org/web/20160201010918/http://blog.rkh.im/sinatra-1.4) was just released recently, and we have full support for Sinatra 1.4.X in this release. Commits: [1](https://github.com/padrino/padrino-framework/commit/68e58b4609ec528fc0ea9f8f95ace36dec9b2920), [2](https://github.com/padrino/padrino-framework/commit/ba2cfcdeb1c4428cc19013d09ba05f1383455360), [3](https://github.com/padrino/padrino-framework/commit/15927ecb172f99fca56d243d331729b9194daa91), [4](https://github.com/padrino/padrino-framework/commit/181b844ab93914c88bfd908a5eefe8b67d2aaeef), [5](https://github.com/padrino/padrino-framework/commit/777ee25223a1998f616d648a932d85f94cf199dc)
 
 We have also upgraded to the latest [http\_router 0.11](https://github.com/joshbuddy/http_router) to address many thread-safety issues and overall performance improvements.
 
@@ -160,7 +160,7 @@ The primary app file will still be located in “app/app.rb” but the class wil
 
 One caveat is that to avoid any issues with various ORMs, models are **not generated** within the app namespace. Models will be continued to be generated outside of any namespace for simplicity.
 
-Thanks to [@achiu](https://github.com/achiu) and Thanks to [@skade](https://github.com/skade) for working together to finalize this and make this compatible with the new app gem support introduced as well.
+Thanks to [@achiu](https://github.com/achiurizo) and Thanks to [@skade](https://github.com/skade) for working together to finalize this and make this compatible with the new app gem support introduced as well.
 
 
 ## Project Modules
@@ -267,7 +267,7 @@ Thanks to [@DAddYE](https://github.com/DAddYE) for putting the parsing strategy 
 
 ## Bug Fixes
 
-Lots of bug fixes and other changes in this release, see our [changelog](http://www.padrinorb.com/changes) for a full rundown.
+Lots of bug fixes and other changes in this release, see our [changelog](https://github.com/padrino/padrino-framework/blob/master/CHANGES.rdoc) for a full rundown.
 
 
 ## Explicit by default
@@ -281,7 +281,7 @@ As we mentioned, this is probably one of the bigger releases we have had in a lo
 
 There are a lot of people that have made this release happen. Thanks to [@skade](https://github.com/skade), [@dariocravero](https://github.com/dariocravero), and [@ujifgc](https://github.com/ujifgc) from our core team for doing a lot of the contributions towards 0.11.0.
 
-Special thanks to [@wikimatze](https://github.com/wikimatze) for cleaning up our docs and comments all over our framework and for putting together an [awesome Padrino book](https://github.com/wikimatze/padrino-book) that helps people learn how to use Padrino. Also special thanks to [@postmodern](https://github.com/postmodern) for helping us out recently especially when it comes to security, [@WaYdotNET](https://github.com/WaYdotNET) for being a long time contributor plus helping redesign admin and [@Ortuna](https://github.com/Ortuna) for helping us to refactor and clean up our codebase. As always, Padrino 0.11.0 would not be possible without the support of [Konstantin Haase](https://github.com/rkh) and everyone else involved in [Sinatra](https://sinatrarb.com). Thanks to all of our contributors.
+Special thanks to [@wikimatze](https://github.com/wikimatze) for cleaning up our docs and comments all over our framework and for putting together an [awesome Padrino book](https://github.com/padrinobook/padrinobook) that helps people learn how to use Padrino. Also special thanks to [@postmodern](https://github.com/postmodern) for helping us out recently especially when it comes to security, [@WaYdotNET](https://github.com/WaYdotNET) for being a long time contributor plus helping redesign admin and [@Ortuna](https://github.com/Ortuna) for helping us to refactor and clean up our codebase. As always, Padrino 0.11.0 would not be possible without the support of [Konstantin Haase](https://github.com/rkh) and everyone else involved in [Sinatra](https://sinatrarb.com). Thanks to all of our contributors.
 
 That concludes the changelog for this release. As always if you want to keep up with Padrino updates, be sure to follow us on twitter: [@padrinorb](http://twitter.com/#!/padrinorb), join us on IRC at “\#padrino” on freenode or [open an issue](https://github.com/padrino/padrino-framework/issues) on GitHub.
 

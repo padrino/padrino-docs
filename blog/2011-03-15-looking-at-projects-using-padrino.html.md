@@ -14,7 +14,7 @@ Still, one aspect we haven’t talked about too much on our blog yet is the comm
 
 ## Padrino Applications
 
-There have been a great deal of Sinatra + Padrino applications released into the wild over the last 2 years. Many of these have actually been [Lipsiasoft](http://www.lipsiasoft.com/portfolio) websites built in Padrino by Davide, one of our core team members. Padrino originally started in part because of Davide’s interest in using Sinatra at his own Italy-based consulting company.
+There have been a great deal of Sinatra + Padrino applications released into the wild over the last 2 years. Many of these have actually been [Lipsiasoft](https://web.archive.org/web/20101220041831/http://www.lipsiasoft.com/portfolio) websites built in Padrino by Davide, one of our core team members. Padrino originally started in part because of Davide’s interest in using Sinatra at his own Italy-based consulting company.
 
 In addition to the applications released and deployed by the core team, there have also been a number of interesting applications built by others in the community. A few are highlighted below.
 
@@ -28,14 +28,14 @@ Right now, the easiest way to use fikus is to simply [fork the project](https://
 
 ### Piccioto
 
-[Piccioto](https://github.com/apeacox/picciotto) is a “minimalistic website framework based on Padrino” created by [Andrea Pavoni](https://github.com/apeacox) of digitalbricks in Italy. This simple website framework allows you to create simple hybrid web sites containing static and dynamic components. This framework is composed of many tools which can be used for easy web development and features Html5 Boilerplates, Haml Templates, Sass stylesheets, Rspec testing and semi-static page support.
+[Piccioto](https://github.com/andreapavoni/picciotto) is a “minimalistic website framework based on Padrino” created by [Andrea Pavoni](https://github.com/andreapavoni) of digitalbricks in Italy. This simple website framework allows you to create simple hybrid web sites containing static and dynamic components. This framework is composed of many tools which can be used for easy web development and features Html5 Boilerplates, Haml Templates, Sass stylesheets, Rspec testing and semi-static page support.
 
-Right now, the easiest way to use Piccioto is to simply [fork the project](https://github.com/apeacox/picciotto) and begin making your own changes. All you need to do is clone the project locally and then use bundler to install dependencies. Next you can put static pages in `app/views/main/static` and add other routes as necessary to your application.
+Right now, the easiest way to use Piccioto is to simply [fork the project](https://github.com/andreapavoni/picciotto) and begin making your own changes. All you need to do is clone the project locally and then use bundler to install dependencies. Next you can put static pages in `app/views/main/static` and add other routes as necessary to your application.
 
 
 ### Presto
 
-[Presto](https://github.com/pengwynn/presto) is an effort to combine Padrino with [Nesta](http://github.com/gma/nesta) to build a simple Sinatra-based CMS that can be mounted into a larger application. This project was created by [Wynn Netherland](https://github.com/pengwynn) who works a popular podcast about open-source called [TheChangeLog](http://thechangelog.com/). Padrino was actually featured on the program about 9 months ago where they [interviewed us](http://thechangelog.com/post/708173099/episode-0-2-7-padrino-ruby-web-framework) about Padrino.
+[Presto](https://github.com/pengwynn/presto) is an effort to combine Padrino with [Nesta](http://github.com/gma/nesta) to build a simple Sinatra-based CMS that can be mounted into a larger application. This project was created by [Wynn Netherland](https://github.com/pengwynn) who works a popular podcast about open-source called [TheChangeLog](https://web.archive.org/web/20190113050005/http://thechangelog.com/). Padrino was actually featured on the program about 9 months ago where they [interviewed us](https://web.archive.org/web/20130117174424/http://thechangelog.com/post/708173099/episode-0-2-7-padrino-ruby-web-framework) about Padrino.
 
 The easiest way to use this project is to simply [clone the repository](https://github.com/pengwynn/presto) and mount it as a sub-application in your Padrino project.
 
@@ -82,7 +82,7 @@ This will generate a form with labels for username and password – supplying th
 
 ### simple-navigation
 
-[simple-navigation](https://github.com/andi/sinatra-simple-navigation) by [Andi Schacke](https://github.com/andi) is a module that makes creating simple navigations with multiple levels easy in Rails, Sinatra or Padrino applications. You can render your navigation as an html list, link list or with breadcrumbs.
+[simple-navigation](https://github.com/codeplant/sinatra-simple-navigation) by [Andi Schacke](https://github.com/andi) is a module that makes creating simple navigations with multiple levels easy in Rails, Sinatra or Padrino applications. You can render your navigation as an html list, link list or with breadcrumbs.
 
 Simply install the application with:
 
@@ -91,12 +91,12 @@ Simply install the application with:
     # app.rb
     register Sinatra::SimpleNavigation
 
-and then run bundle install and begin defining your navigation structure. For examples, check out the [simple nav demos](http://github.com/andi/simple-navigation-demo).
+and then run bundle install and begin defining your navigation structure. For examples, check out the [simple nav demos](https://github.com/codeplant/simple-navigation-demo).
 
 
 ### padrino-warden
 
-[padrino-warden](https://github.com/jondot/padrino-warden) by [Dotan J. Nahum](https://github.com/jondot) is a module that provides authentication for your Padrino application through [Warden](https://github.com/hassox/warden).
+[padrino-warden](https://github.com/jondot/padrino-warden) by [Dotan J. Nahum](https://github.com/jondot) is a module that provides authentication for your Padrino application through [Warden](https://github.com/wardencommunity/warden).
 
 
 ### Notable Mentions
@@ -106,7 +106,7 @@ There are other libraries definately worth checking out listed below:
 - [padrino-responders](https://github.com/nu7hatch/padrino-responders)
 - [padrino-form-errors](https://github.com/nu7hatch/padrino-form-errors)
 - [padrino-contrib](https://github.com/padrino/padrino-contrib)
-- [padrino-haml-pagination](https://github.com/sumskyi/padrino-haml-pagination)
+- [padrino-haml-pagination](https://github.com/sumskyi/padrino-pagination)
 
 If you have a library built on Padrino that is not mentioned here, please let us know about it!
 
@@ -116,9 +116,9 @@ If you have a library built on Padrino that is not mentioned here, please let us
 There are also a number of developers and consulting companies that have been using Padrino for various projects. A few of them we know of are listed below:
 
 - [Dynosoft](http://www.dynosoft.com)
-- [BakedWeb](http://bakedweb.net/portfolio/web-development)
-- [Fred Wu](http://fredwu.me/post/759061247/wuit-com-now-runs-on-padrino)
-- [Professional Dilettante](http://professionaldilettante.com/padrino/2010.06.20)
+- [BakedWeb](https://web.archive.org/web/20140603002100/http://bakedweb.net/portfolio/web-development)
+- [Fred Wu](https://web.archive.org/web/20160801205408/http://fredwu.me/post/759061247/wuitcom-now-runs-on-padrino)
+- [Professional Dilettante](https://web.archive.org/web/20111027234631/http://professionaldilettante.com/padrino/2010.06.20)
 - [BroadMac](http://broadmac.net/)
 
 This is only a very small list of the people using Padrino. Since we never made much of an effort to compile this information before, we would love to know if you are using Padrino or picking modules into your Sinatra applications. We want to post more regularly on the community around Padrino in the future. You can let us know by sending us a message on Github (nesquena, achiu, daddye) or on our [google groups](http://groups.google.com/group/padrino) or through email to nesquena(AT)gmail(DOT)com. Look forward to hearing from you.

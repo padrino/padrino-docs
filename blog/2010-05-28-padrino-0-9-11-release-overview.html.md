@@ -41,7 +41,7 @@ In addition, the mailer now has support for ‘quick’ email delivery within a 
       email(:to => "john@smith.com", :subject => "Successfully Registered!", :body => "Test Body")
     end
 
-To check out more information, be sure to read the [mailer](http://www.padrinorb.com/guides/padrino-mailer) guide.
+To check out more information, be sure to read the [mailer](https://padrinorb.com/guides/features/padrino-mailer/) guide.
 
 
 ### Upgraded Core Router
@@ -173,7 +173,7 @@ and change them to use the updated syntax:
       end
     end
 
-Once you have switched both the smtp configuration and the mailer definitions, your old app should work properly in 0.9.11. For more information on the updated mailer, be sure to check the [mailer](http://www.padrinorb.com/guides/padrino-mailer) guide.
+Once you have switched both the smtp configuration and the mailer definitions, your old app should work properly in 0.9.11. For more information on the updated mailer, be sure to check the [mailer](https://padrinorb.com/guides/features/padrino-mailer/) guide.
 
 If you are using Datamapper 1.0, and you generated your application in 0.9.10, be sure to update the Gemfile accordingly:
 

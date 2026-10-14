@@ -55,10 +55,10 @@ Here are some impressions of the page:
 <img src="https://farm2.staticflickr.com/1567/24342622836_9eb4191ac7_o_d.png">
 
 
-The page is still reachable under <http://padrinorb.wikimatze.de/>.
+The page is still reachable under <https://web.archive.org/web/20190716230452/http://padrinorb.wikimatze.de/>.
 
 All credits for the new logo goes to [Daniel Polo](https://www.linkedin.com/in/danielpolofunes) from
-<http://proudsugar.com>:
+<https://web.archive.org/web/20250119131648/http://www.proudsugar.com/>:
 
 <img src="https://farm2.staticflickr.com/1661/24073250940_70864c4ae3_o_d.png">
 

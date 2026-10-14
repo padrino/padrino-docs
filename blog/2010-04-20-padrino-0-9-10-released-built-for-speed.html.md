@@ -15,7 +15,7 @@ We have been working hard on Padrino since our first ‘public’ announcement a
 2) Added Features
 3) Bug Fixes
 
-In the full post below, we will take you through a detailed tour of the biggest changes in this release (for a more compact view, see our [changelog](http://www.padrinorb.com/changes)). Also, the full post contains benchmarks comparing Padrino to other popular ruby frameworks!
+In the full post below, we will take you through a detailed tour of the biggest changes in this release (for a more compact view, see our [changelog](https://github.com/padrino/padrino-framework/blob/master/CHANGES.rdoc)). Also, the full post contains benchmarks comparing Padrino to other popular ruby frameworks!
 
 
 ## Performance Optimizations
@@ -77,7 +77,7 @@ This means **Padrino** now fully supports the following persistence engines: Mon
 
 In the future, we are also planning to integrate: [OHM](http://github.com/soveran/ohm) (for redis) and [Friendly](http://github.com/jamesgolick/friendly) as well among others.
 
-If you want to contribute a component, be sure to checkout the [guide for adding components](http://www.padrinorb.com/guides/adding-new-components) which explains how to add a component to the generator and admin.
+If you want to contribute a component, be sure to checkout the [guide for adding components](https://padrinorb.com/guides/adding-components/overview/) which explains how to add a component to the generator and admin.
 
 
 ## Enhanced Router Capabilities
@@ -196,7 +196,7 @@ Padrino 0.9.10 also features support for a host of minor improvements:
 - Fixes an issue with generator not casing controller / model names
 - Fixed `padrino g` and `padrino gen` aliases
 - Fixes issue with mounter and locating the app file
-- Removed VERSION files. This prevent problems described here: http://github.com/nex3/haml/issues/issue/24
+- Removed VERSION files. This prevent problems described here: https://github.com/haml/haml/issues/24
 - Fixed a bug with layouts that prevent double rendering
 - ActiveSupport 3.0 Compatibility fixes
 

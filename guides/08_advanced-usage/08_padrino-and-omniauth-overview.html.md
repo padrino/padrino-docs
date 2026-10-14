@@ -5,9 +5,9 @@ title: Padrino and OmniAuth Overview
 
 # Padrino and OmniAuth Overview
 
-This article will show you how to mix our [Access Control](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/access_control.rb) described [here](/guides/features/padrino-admin/) with the beautiful [omniauth](https://github.com/intridea/omniauth) rack middleware.
+This article will show you how to mix our [Access Control](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/access_control.rb) described [here](/guides/features/padrino-admin/) with the beautiful [omniauth](https://github.com/omniauth/omniauth) rack middleware.
 
-The Padrino admin authentication and access control system provides a simple foundation from which you can create your authentication system. Combined with [omniauth](https://github.com/intridea/omniauth) you can then easily leverage the system to allow authentication through a variety of methods. Read below for more details on how to integrate them.
+The Padrino admin authentication and access control system provides a simple foundation from which you can create your authentication system. Combined with [omniauth](https://github.com/omniauth/omniauth) you can then easily leverage the system to allow authentication through a variety of methods. Read below for more details on how to integrate them.
 
 <break>
 

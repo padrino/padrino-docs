@@ -45,7 +45,7 @@ Being a web server, Padrino desires to fully respect the standard behaviors spec
 
 ## Japanese Translations
 
-[udzura](https://github.com/udzura) recently sent us Japanese translations to Padrino. We have really gotten quite a lot of internationalization support for admin and every new language is great to be able to include. Are we missing a localization for your language? Be sure to let us know or [submit a patch](http://www.padrinorb.com/pages/contribute) to help us include that.
+[udzura](https://github.com/udzura) recently sent us Japanese translations to Padrino. We have really gotten quite a lot of internationalization support for admin and every new language is great to be able to include. Are we missing a localization for your language? Be sure to let us know or [submit a patch](https://padrinorb.com/contribute/) to help us include that.
 
 ## Compatibility fixes
 

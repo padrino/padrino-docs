@@ -20,7 +20,7 @@ We need to finish only three things:
 
 If you want to contribute, focus on this three points.
 
-Also, there is a poll on [PeepCode](http://suggestions.peepcode.com/forums/15-general/suggestions/1064769-padrino) so please [VOTE](http://suggestions.peepcode.com/forums/15-general/suggestions/1064769-padrino) for our [Screencast](http://suggestions.peepcode.com/forums/15-general/suggestions/1064769-padrino) !
+Also, there is a poll on [PeepCode](https://web.archive.org/web/20110115073109/http://suggestions.peepcode.com/forums/15-general/suggestions/1064769-padrino) so please [VOTE](https://web.archive.org/web/20110115073109/http://suggestions.peepcode.com/forums/15-general/suggestions/1064769-padrino) for our [Screencast](https://web.archive.org/web/20110115073109/http://suggestions.peepcode.com/forums/15-general/suggestions/1064769-padrino) !
 
 Now, see the changelog of 0.9.19:
 

@@ -22,7 +22,7 @@ This is no longer the case with this release. The padrino-cache gem has now been
 
 The functionality includes a variety of caching types and stores including **memcached** and **redis** support. Adding new adapters in the future will be very easy as the gem was designed for extensibility in mind. This is the caching solution you always hoped to have when using Sinatra.
 
-For more information, check out the [README](https://github.com/padrino/padrino-framework/blob/master/padrino-cache/README.rdoc) as well as the [Padrino Cache Guide](http://www.padrinorb.com/guides/padrino-cache) for a solid overview of this new addition to our framework.
+For more information, check out the [README](https://github.com/padrino/padrino-framework/blob/master/padrino-cache/README.rdoc) as well as the [Padrino Cache Guide](https://padrinorb.com/guides/features/padrino-cache/) for a solid overview of this new addition to our framework.
 
 Thanks to core member Joshua Hull for the majority of the caching implementation and Joshua Morris (Onethirtyfive), Arthur Chiu, and DAddYE for the Caching documentation.
 
@@ -67,13 +67,13 @@ You can start using this now in your Padrino and Sinatra applications. Let us kn
 
 Padrino has been waiting on unobtrusive javascript handling for a while now as well. This enables support for ‘remote’ links and forms as well as setting link ‘methods’ and having the unobtrusive javascript adapters make that ‘just work’.
 
-For more information on these unobtrusive javascript handlers, check out the [Helpers Guide](http://www.padrinorb.com/guides/application-helpers#unobtrusive-javascript-helpers) which will give you a good overview of what's now available once the UJS adapter is included in your project.
+For more information on these unobtrusive javascript handlers, check out the [Helpers Guide](https://padrinorb.com/guides/application-helpers/ujs-helpers/) which will give you a good overview of what's now available once the UJS adapter is included in your project.
 
 Not all of the adapters are finished for each javascript framework yet, but we intend on getting them integrated soon. Of course, we could always **use your help!** jquery and prototype UJS adapters are complete but the others are only in partial states of completion.
 
 Check out the [padrino-static](https://github.com/padrino/padrino-static) project to see all of the files associated with this effort. Please fork and help us improve this adapters.
 
-You can read about how to add a new javascript component or add UJS support in the [Adding Components](http://www.padrinorb.com/guides/adding-new-components#javascript-library) guide.
+You can read about how to add a new javascript component or add UJS support in the [Adding Components](https://padrinorb.com/guides/adding-components/javascript-engine/) guide.
 
 An example code:
 
@@ -135,7 +135,7 @@ Our new router is still under continued development but should not cause any bre
 
 ## Erubis and Slim Helper Support
 
-In the past few versions, we have had partial [Slim](https://github.com/stonean/slim) and [Erubis](https://github.com/kwatch/erubis) support but not full compatibility with our various helpers.
+In the past few versions, we have had partial [Slim](https://github.com/slim-template/slim) and [Erubis](https://github.com/kwatch/erubis) support but not full compatibility with our various helpers.
 
 This was because of broken implementations of capture and concat for those template engines ([described here](https://gist.github.com/829030)).
 

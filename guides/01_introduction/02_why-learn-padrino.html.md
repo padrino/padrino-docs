@@ -76,7 +76,7 @@ installed correctly. Once you have Ruby and RubyGems installed locally, you
 should become familiar with the Ruby syntax. We recommend a few resources below
 to get yourself familiar with Ruby:
 
-- [TryRuby](http://tryruby.org/levels/1/challenges/0 "TryRuby") – This is an
+- [TryRuby](https://web.archive.org/web/20180106175501/http://tryruby.org/levels/1/challenges/0 "TryRuby") – This is an
   interactive tutorial that takes you step by step through learning Ruby. This
   is highly recommended. Visit the site and type "help" to get started.
 - [Learn to Program](https://pine.fm/LearnToProgram "Learn to Program") by Chris
@@ -184,8 +184,8 @@ from scratch, we recommend using the full Padrino stack which makes starting a
 new project much easier. The best way to become familiar with Padrino is to first
 check out the [Blog Tutorial](/guides/getting-started/blog-tutorial "Blog Tutorial") which takes
 you step by step through creating a blog in Padrino with an accompanying
-screencast. You may also want to checkout the
-[Why Padrino (broken)](http://www.padrinorb.com/pages/why "Why Padrino") guide
+screencast. You may also want to review the
+[Advantages](#advantages "Advantages") section above
 to understand the benefits of using Padrino.
 
 You should also take time to familiarize yourself with the various "components"
@@ -204,7 +204,7 @@ And then read up on these components:
 - [Haml](http://haml.info/ "Haml") – Solid templating choice for views
 - [jQuery](http://jquery.com/ "jQuery") – Excellent javascript framework for
   frontend development
-- [Mocha](http://www.rubydoc.info/github/floehopper/mocha/Mocha/Mock "Mocha") –
+- [Mocha](https://mocha.jamesmead.org/Mocha/Mock.html "Mocha") –
   Popular mocking and stubbing for tests
 
 There are also a few important guides that cover the vast majority of Padrino's functionality. These are definitely recommended reading:

@@ -28,7 +28,7 @@ Additional work has been put in to reach 100% documentation coverage for all the
 
 [1](https://github.com/padrino/padrino-framework/commit/c629aac866e489442ad5b13728eac7ff6b056daa), [2](https://github.com/padrino/padrino-framework/commit/980f527095efb8cc4a4926a391328f9870b9b675), [3](https://github.com/padrino/padrino-framework/commit/615608965d4045d1745a736ac3a37abc0c7462c7), [4](https://github.com/padrino/padrino-framework/commit/a1f68550bd2eb4154b919086aa8fcf6901c98996), [5](https://github.com/padrino/padrino-framework/commit/cf866abc015762f9fd311330346e4904f1ede8ef), [6](https://github.com/padrino/padrino-framework/commit/eb797b188dfb40edfe73304716ae5b92864f98b3), [7](https://github.com/padrino/padrino-framework/commit/10ff22f1990b3e31e4229546a406a61b970b6a1f), [8](https://github.com/padrino/padrino-framework/commit/746de950c4326771d3a7fe99f0e53b9f3200ae90)
 
-There is still a lot of documentation work to be done both for the code and for our guides. We would very much appreciate any [help with docs](http://www.padrinorb.com/pages/contribute#want-to-help-with-documentation).
+There is still a lot of documentation work to be done both for the code and for our guides. We would very much appreciate any [help with docs](https://padrinorb.com/contribute/#want-to-help-with-documentation).
 
 
 ## Miscellaneous
