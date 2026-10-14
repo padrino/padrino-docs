@@ -42,6 +42,19 @@ Threads in one process take turns running Ruby code, but they overlap while a
 request waits on the database or another service. Workers are separate
 processes, so they can use more than one CPU core.
 
+With `workers`, Puma loads the app once and then forks the workers, so they
+inherit any database connection opened while loading. Sequel connects when
+`config/database.rb` runs, so close those connections before forking, or the
+workers share one socket:
+
+```ruby
+# config/puma.rb
+before_fork { Sequel::DATABASES.each(&:disconnect) }
+```
+
+Active Record reconnects in forked processes by itself. For Mongoid, follow its
+documentation on forking servers.
+
 ## Falcon: fibers
 
 [Falcon](https://github.com/socketry/falcon) runs each request in its own fiber

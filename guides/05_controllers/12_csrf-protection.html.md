@@ -37,9 +37,20 @@ end
 ```
 
 The token lives in the session, so CSRF protection needs sessions. Generated
-apps call `enable :sessions`. If sessions are off, Padrino prints a warning and
-every protected request fails. If you use your own session middleware, silence
-the warning in `config/boot.rb`:
+apps turn them on with `set :sessions, same_site: :lax`. If sessions are off,
+Padrino prints a warning and every request, GETs included, is rejected with
+`403 Forbidden`.
+
+To use another session store, pass it to the `sessions` setting so that Padrino
+adds it before the CSRF check:
+
+```ruby
+set :sessions, use: Rack::Session::Pool, config: { expire_after: 2592000 }
+```
+
+Middleware added with `use` inside the app runs after the CSRF check, so every
+request is rejected. If you add the session middleware outside Padrino, in
+`config.ru`, silence the warning in `config/boot.rb`:
 
 ```ruby
 Padrino::IGNORE_CSRF_SETUP_WARNING = true
@@ -127,11 +138,19 @@ enable :allow_disabled_csrf
 ```
 
 Set these before your routes are defined, for example in `app/app.rb` or
-`config/apps.rb`.
+`config/apps.rb`. Routes defined before `allow_disabled_csrf` is enabled are
+not checked at all.
 
 ## Testing
 
 The generated `config/apps.rb` turns protection off in the test environment, so
 test requests don't need a token and forms are rendered without the hidden
-field. To test the protection itself, `enable :protect_from_csrf` in the app,
-get the form, and post the `authenticity_token` back with the session cookie.
+field.
+
+The app reads `protect_from_csrf` when it builds its middleware, on its first
+request, so turning it on inside one test does nothing if an earlier test has
+already made a request. To test the protection itself, turn it on before the
+app is loaded and run those tests in their own process. For example, use
+`set :protect_from_csrf, Padrino.env != :test || ENV['CSRF'] == '1'` in
+`config/apps.rb` and run the CSRF tests with `CSRF=1`. Get the form, then post
+the `authenticity_token` back with the session cookie.

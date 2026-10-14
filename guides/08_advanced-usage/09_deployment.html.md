@@ -101,6 +101,9 @@ $ RACK_ENV=production bundle exec rake sq:migrate   # Sequel
 $ RACK_ENV=production bundle exec rake ar:migrate   # Active Record
 ```
 
+The rake tasks load the app, so they need the same environment variables as the
+server, such as `SESSION_SECRET` and `DATABASE_URL`.
+
 ## Assets
 
 If the project uses the Vite script component or the Tailwind stylesheet
@@ -129,5 +132,7 @@ set :static_cache_control, [:public, max_age: 31536000]
 
 `stylesheet_link_tag` and `javascript_include_tag` add the file's modification
 time to the URL, and Vite puts a content hash in its file names, so browsers
-fetch the new files after a deploy. If a web server such as nginx sits in front
+fetch the new files after a deploy. Other files keep the cached copy until
+`max_age` runs out: images referenced from CSS, `favicon.ico`, and links you
+write by hand. Use a shorter `max_age` if those change often. If a web server such as nginx sits in front
 of the app, you can let it serve `public/` directly instead.
