@@ -132,9 +132,11 @@ set :static_cache_control, [:public, max_age: 31536000]
 
 Padrino's asset helpers (`stylesheet_link_tag`, `javascript_include_tag`,
 `image_tag`, `favicon_tag` and `asset_path`) add the file's modification time to
-the URL, and Vite puts a content hash in its file names, so browsers fetch the
-new files after a deploy. Other files keep the cached copy until `max_age` runs
-out: images referenced from CSS, the `/favicon.ico` browsers request on their
-own, and links you write by hand. Use a shorter `max_age` if those change
+the URL when you give them a name relative to their folder
+(`image_tag 'logo.png'`, not `'/images/logo.png'`), and Vite puts a content hash
+in its file names, so browsers fetch the new files after a deploy. Other files keep the
+cached copy until `max_age` runs out: helper calls given a path starting with `/`
+or a full URL, images referenced from CSS, the `/favicon.ico` browsers request on
+their own, and links you write by hand. Use a shorter `max_age` if those change
 often. If a web server such as nginx sits in front of the app, you can let it
 serve `public/` directly instead.

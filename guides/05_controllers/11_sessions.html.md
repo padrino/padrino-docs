@@ -41,7 +41,7 @@ end
 
 With `use:`, cookie options such as `same_site` and `secure` go in `config:`.
 `Rack::Session::Pool` keeps sessions in the memory of one process, so with Puma
-workers or several servers, use a store they share.
+workers, several Falcon processes or several servers, use a store they share.
 
 To improve security, the session data in the cookie is signed with a session
 secret. A random secret is generated for you by Sinatra. However, since this

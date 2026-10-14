@@ -4367,7 +4367,7 @@ end
 
 With `use:`, cookie options such as `same_site` and `secure` go in `config:`.
 `Rack::Session::Pool` keeps sessions in the memory of one process, so with Puma
-workers or several servers, use a store they share.
+workers, several Falcon processes or several servers, use a store they share.
 
 To improve security, the session data in the cookie is signed with a session
 secret. A random secret is generated for you by Sinatra. However, since this
@@ -4601,6 +4601,13 @@ the `authenticity_token` back with the session cookie.
 
 ```ruby
 before { skip 'run with CSRF=1' unless ENV['CSRF'] == '1' }
+```
+
+Run them on their own, since `CSRF=1` turns protection on for every test in the
+process:
+
+```bash
+$ CSRF=1 bundle exec ruby -Itest test/app/csrf_test.rb
 ```
 
 ---
@@ -7269,10 +7276,12 @@ set :static_cache_control, [:public, max_age: 31536000]
 
 Padrino's asset helpers (`stylesheet_link_tag`, `javascript_include_tag`,
 `image_tag`, `favicon_tag` and `asset_path`) add the file's modification time to
-the URL, and Vite puts a content hash in its file names, so browsers fetch the
-new files after a deploy. Other files keep the cached copy until `max_age` runs
-out: images referenced from CSS, the `/favicon.ico` browsers request on their
-own, and links you write by hand. Use a shorter `max_age` if those change
+the URL when you give them a name relative to their folder
+(`image_tag 'logo.png'`, not `'/images/logo.png'`), and Vite puts a content hash
+in its file names, so browsers fetch the new files after a deploy. Other files keep the
+cached copy until `max_age` runs out: helper calls given a path starting with `/`
+or a full URL, images referenced from CSS, the `/favicon.ico` browsers request on
+their own, and links you write by hand. Use a shorter `max_age` if those change
 often. If a web server such as nginx sits in front of the app, you can let it
 serve `public/` directly instead.
 

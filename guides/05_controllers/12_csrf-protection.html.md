@@ -168,3 +168,10 @@ the `authenticity_token` back with the session cookie.
 ```ruby
 before { skip 'run with CSRF=1' unless ENV['CSRF'] == '1' }
 ```
+
+Run them on their own, since `CSRF=1` turns protection on for every test in the
+process:
+
+```bash
+$ CSRF=1 bundle exec ruby -Itest test/app/csrf_test.rb
+```
