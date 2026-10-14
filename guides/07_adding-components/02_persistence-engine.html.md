@@ -75,7 +75,7 @@ SEQUEL = <<~SEQUEL unless defined?(SEQUEL)
 SEQUEL
 
 def setup_orm
-  sequel = SEQUEL
+  sequel = SEQUEL.dup # a copy: frozen-string-literal mode rejects gsub! on the constant
   db = @project_name.underscore
   require_dependencies 'sequel'
 
