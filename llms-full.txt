@@ -2752,7 +2752,8 @@ Download and translate these files:
 - [padrino-admin-orm.yml](http://raw.github.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/orm/en.yml)
 - [padrino-helper.yml](http://raw.github.com/padrino/padrino-framework/master/padrino-helpers/lib/padrino-helpers/locale/en.yml)
 
-zip your files and send it to [padrinorb@gmail.com](mailto:padrinorb@gmail.org)
+Then add each translated file next to the original, in the same `locale` folder of
+[padrino-framework](https://github.com/padrino/padrino-framework), and open a pull request.
 
 --------------------------------------------------------------------------------
 
