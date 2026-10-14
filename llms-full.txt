@@ -3325,7 +3325,7 @@ In development, `autoBuild` builds the assets on demand, or run
 foreman) for hot reloading. `rake assets:precompile` builds them for
 production; it runs `npm ci` first, so commit your `package-lock.json`.
 
-vite_padrino 3.0.0 needs ActiveSupport's `Object#try`, so the generator
+`vite_padrino` 3.0.0 needs ActiveSupport's `Object#try`, so the generator
 requires `active_support/core_ext/object/try` in `config/boot.rb` and adds
 `activesupport` to the Gemfile if it isn't there yet. Once
 [vite_ruby#635](https://github.com/ElMassimo/vite_ruby/pull/635) is released
