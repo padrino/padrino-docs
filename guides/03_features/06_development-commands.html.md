@@ -132,7 +132,7 @@ your application into separate files. Padrino automatically requires
 any files within the `lib` folder will be required automatically by Padrino.
 
 This is powered by the fact that Padrino will automatically load (and reload)
-any directory patterns within the 'prerequisite paths'. Additional directory
+any directory patterns within the dependency paths. Additional directory
 patterns can be added by appending to `Padrino.dependency_paths` before
 `Padrino.load!`:
 
@@ -143,7 +143,9 @@ Padrino.load!
 ```
 
 This will instruct Padrino to load these files in every environment (and reload
-them in development when changes are detected). By default, the load path
+them in development when changes are detected). They load after
+`config/apps.rb`, so code your app classes use while loading (`helpers`,
+`register`) belongs in `lib/` instead. By default, the load path
 contains certain paths known to contain important files such as controllers,
 mailers, models, urls, and helpers.
 
