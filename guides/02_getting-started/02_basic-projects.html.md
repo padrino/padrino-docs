@@ -75,6 +75,7 @@ You can then add, if needed, sub-applications to your existing Padrino
 
 ```shell
 $ cd my_project
+$ bundle install && bundle binstubs --all
 $ padrino g app gallery
 ```
 
