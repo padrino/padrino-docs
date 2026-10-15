@@ -50,3 +50,7 @@ your Sinatra projects") or to create new Padrino applications. If you are new to
 Ruby or Sinatra, be sure to check out the
 [Why Learn Padrino?](/guides/introduction/why-learn-padrino "Why Learn Padrino?") guide for more
 information.
+
+Inside a generated project, install its gems and its binstubs with
+`bundle install && bundle binstubs --all` (or run each command with `bundle exec`), so that
+`padrino` commands use the project's bundle.

@@ -35,7 +35,7 @@ application. Once the dependencies have been declared, simply run Bundler's
 install command:
 
 ```shell
-$ bundle
+$ bundle install
 ```
 
 This will resolve and install all the required libraries. Check out the

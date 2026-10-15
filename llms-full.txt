@@ -408,7 +408,8 @@ call directly:
 $ padrino g admin
 ```
 
-you will use system wide gems. So for do that remember to run commands with
+it stops and asks you to generate the project's binstubs, because it won't use the
+system-wide gems. Run `bundle binstubs --all` once, or run commands with
 `bundle exec` as a prefix like:
 
 ```shell
@@ -589,8 +590,8 @@ understanding of Sinatra and Padrino if you are new to the stack.
 
 ## Generating a Project
 
-To generate a new Padrino project using its defaults (RSpec for testing and Haml
-for rendering) and no database adapter, simply invoke the following command:
+To generate a new Padrino project using its defaults (no testing framework, no
+template engine and no database adapter), simply invoke the following command:
 
 ```shell
 $ padrino g project my_project
@@ -650,6 +651,7 @@ You can then add, if needed, sub-applications to your existing Padrino
 
 ```shell
 $ cd my_project
+$ bundle install && bundle binstubs --all
 $ padrino g app gallery
 ```
 
@@ -681,7 +683,7 @@ Install all project dependencies:
 
 ```shell
 $ cd blog
-$ bundle # if you haven't that command, run 'gem install bundler'
+$ bundle install && bundle binstubs --all
 ```
 
 Padrino ships with a beautiful Admin interface.
@@ -811,6 +813,10 @@ Ruby or Sinatra, be sure to check out the
 [Why Learn Padrino?](/guides/introduction/why-learn-padrino "Why Learn Padrino?") guide for more
 information.
 
+Inside a generated project, install its gems and its binstubs with
+`bundle install && bundle binstubs --all` (or run each command with `bundle exec`), so that
+`padrino` commands use the project's bundle.
+
 ---
 
 # Getting Started: Blog Tutorial
@@ -847,7 +853,7 @@ repository") using git:
 
 
 ```shell
-$ git clone git@github.com:padrino/blog-tutorial.git
+$ git clone https://github.com/padrino/blog-tutorial.git
 ```
 
 
@@ -991,7 +997,7 @@ module BlogTutorial
     register Padrino::Mailer
     register Padrino::Helpers
 
-    enable :sessions
+    set :sessions, same_site: :lax
 
     # Here are the defined routes
     get "/" do
@@ -1067,10 +1073,10 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.16.1 has taken the stage development at http://127.0.0.1:3000
-[2025-11-21 01:02:13] INFO  WEBrick 1.9.1
-[2025-11-21 01:02:13] INFO  ruby 3.4.6 (2025-09-16) [x86_64-linux]
-[2025-11-21 01:02:13] INFO  WEBrick::HTTPServer#start: pid=3489 port=3000
+=> Padrino/0.17.0 has taken the stage development at http://127.0.0.1:3000
+[2026-10-15 06:27:18] INFO  WEBrick 1.9.2
+[2026-10-15 06:27:18] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
+[2026-10-15 06:27:18] INFO  Rackup::Handler::WEBrick::Server#start: pid=15883 port=3000
 ```
 
 
@@ -1137,6 +1143,19 @@ $ padrino rake sq:migrate
    INFO -  (0.014224s) UPDATE `schema_info` SET `version` = 2
    INFO -  Finished applying migration version 2, direction: up, took 0.025778 seconds
 <= sq:migrate:up executed
+```
+
+
+Sequel fills in `created_at` only with its `timestamps` plugin, so turn it on in the
+post model now:
+
+
+```ruby
+# models/post.rb
+
+class Post < Sequel::Model
+  plugin :timestamps
+end
 ```
 
 
@@ -1307,7 +1326,7 @@ start by adding a new migration to attach an Account to a Post.
 
 ```shell
 $ padrino g migration AddAccountToPost account_id:integer
-       apply  orms/activerecord
+       apply  orms/sequel
       create  db/migrate/003_add_account_to_post.rb
 ```
 
@@ -1316,8 +1335,8 @@ This creates a new migration with the desired field attaching the `account_id` t
 the post.
 
 
-Now, we'll return to the post model to setup the `account` association and add a
-few validations.
+Now, we'll return to the post model to setup the `account` association, add a
+few validations, keeping the `timestamps` plugin.
 
 
 ```ruby
@@ -1327,6 +1346,7 @@ class Post < Sequel::Model
   many_to_one :account
 
   plugin :validation_helpers
+  plugin :timestamps
 
   def validate
     super
@@ -1355,7 +1375,7 @@ Let's create another migration to assign the first user to all existing posts:
 
 ```shell
 $ padrino g migration MigrateExistingPostsToFirstAccount
-       apply  orms/activerecord
+       apply  orms/sequel
       create  db/migrate/004_migrate_existing_posts_to_first_account.rb
 ```
 
@@ -1394,7 +1414,7 @@ to the creation of a new Post.
 
 ```ruby
 # admin/controllers/posts.rb
-Admin.controllers :posts do
+BlogTutorial::Admin.controllers :posts do
   ...
 
   post :create do
@@ -1471,19 +1491,19 @@ directory:
 
 ```haml
 -# app/views/layouts/application.haml
-!!! Strict
+!!! 5
 %html
   %head
     %title= 'Padrino Sample Blog'
-    = stylesheet_link_tag 'bulma', 'application'
+    = stylesheet_link_tag 'bulma.min', 'application'
     = javascript_include_tag 'jquery', 'application'
   %body
     %nav.navbar
       %div.container
         .navbar-brand
           %a.navbar-item{href: '/'}
-            %img{alt: 'Logo of Padrino blog', src: 'http://padrinorb.com/images/logo-6475397a.svg'}/
-          %span.navbar-burger.burger{'data-targe' => 'navbarMenu'}
+            %img{alt: 'Logo of Padrino blog', src: 'https://padrinorb.com/images/logo-6475397a.svg'}/
+          %span.navbar-burger.burger{'data-target' => 'navbarMenu'}
             %span
             %span
             %span
@@ -1605,9 +1625,9 @@ Feature               | Description
 --------------------- | ------------------------------------------------------------------------------
 **Orm Agnostic**      | Adapters for activerecord, minirecord, sequel, mongoid, ohm, dynamoid
 **Authentication**    | User Authentication Support, User Authorization Management
-**Template Agnostic** | Erb and Haml Rendering Support
+**Template Agnostic** | ERB, Haml and Slim Rendering Support
 **Scaffold**          | You can create a new "admin interface" by providing a single Model
-**MultiLanguage**     | English, German, Russian, Danish, French, Brazilian and Italian localizations
+**MultiLanguage**     | 21 localizations: Brazilian Portuguese, Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, French, German, Hungarian, Italian, Japanese, Latvian, Norwegian, Polish, Romanian, Russian, Spanish, Swedish, Turkish and Ukrainian
 
 --------------------------------------------------------------------------------
 
@@ -1617,7 +1637,7 @@ Create a new project:
 
 ```shell
 $ padrino g project admin-test-sample -d activerecord
-$ cd admin-test-sample && bundle
+$ cd admin-test-sample && bundle install && bundle binstubs --all
 ```
 
 Create the admin application:
@@ -1639,7 +1659,7 @@ point your web browser to <http://localhost:3000/admin> and log in with your
 admin account credentials.
 
 
-<img src="https://farm2.staticflickr.com/1720/26277208545_496eb24ac8_z_d.jpg">
+<img src="https://farm2.staticflickr.com/1720/26277208545_496eb24ac8_z_d.jpg" alt="Screenshot of the Padrino Admin interface">
 
 
 If you need to create a "scaffold", (basic CRUD actions) create a
@@ -1697,7 +1717,7 @@ login credentials (default authentication behavior will use email and password).
 
 When successfully logged in, they will be granted access to the two protected pages.
 
-<img src="https://farm2.staticflickr.com/1714/25674474983_26e311f126_z_d.jpg">
+<img src="https://farm2.staticflickr.com/1714/25674474983_26e311f126_z_d.jpg" alt="Screenshot for the e-commerce authentication example">
 
 --------------------------------------------------------------------------------
 
@@ -3382,8 +3402,8 @@ executed automatically through the generator with:
 $ padrino g project demo_project --bundle # alias -b
 ```
 
-This can also be done manually by executing the command `bundle install` in the
-terminal at the root of the generated application.
+This can also be done manually by running `bundle install && bundle binstubs --all`
+in the terminal at the root of the generated application.
 
 For more examples of using the project generator in common cases, check out the
 [Basic Projects](/guides/getting-started/basic-projects "Basic Projects") guide.
@@ -3885,6 +3905,7 @@ First you need to create a project:
 ```shell
 $ padrino g project demo_project
 $ cd demo_project
+$ bundle install && bundle binstubs --all
 ```
 
 Now you are in `demo_project` and you can create your apps:
@@ -6737,7 +6758,7 @@ application. Once the dependencies have been declared, simply run Bundler's
 install command:
 
 ```shell
-$ bundle
+$ bundle install
 ```
 
 This will resolve and install all the required libraries. Check out the
@@ -6959,10 +6980,10 @@ $ padrino g project grappe --lean
 ```
 
 Go to the new `grappe` folder and add `gem 'grape'` to `Gemfile`. Then install the
-required gems:
+required gems and the project's binstubs:
 
 ```shell
-$ bundle
+$ bundle install && bundle binstubs --all
 ```
 
 Create file `api/api.rb` and put your Grape code there:
@@ -7047,7 +7068,7 @@ gem 'warbler'
 Now you can go:
 
 ```shell
-$ bundle
+$ bundle install && bundle binstubs --all
 ```
 
 Then, create the test controller:
@@ -7322,7 +7343,7 @@ So, let’s start by creating a project using activerecord:
 ```shell
 $ padrino g project foo --orm activerecord --tiny
 $ cd foo
-$ bundle install
+$ bundle install && bundle binstubs --all
 ```
 
 Now we need to add a model called `Account` to act as our persistence model:

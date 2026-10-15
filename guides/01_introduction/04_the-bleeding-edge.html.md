@@ -39,7 +39,8 @@ call directly:
 $ padrino g admin
 ```
 
-you will use system wide gems. So for do that remember to run commands with
+it stops and asks you to generate the project's binstubs, because it won't use the
+system-wide gems. Run `bundle binstubs --all` once, or run commands with
 `bundle exec` as a prefix like:
 
 ```shell

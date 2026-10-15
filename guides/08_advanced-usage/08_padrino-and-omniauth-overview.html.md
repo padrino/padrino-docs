@@ -23,7 +23,7 @@ So, let’s start by creating a project using activerecord:
 ```shell
 $ padrino g project foo --orm activerecord --tiny
 $ cd foo
-$ bundle install
+$ bundle install && bundle binstubs --all
 ```
 
 Now we need to add a model called `Account` to act as our persistence model:
