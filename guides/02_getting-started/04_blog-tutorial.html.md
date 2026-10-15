@@ -47,7 +47,7 @@ using our excellent template runner. You can do this simply by invoking:
 
 
 ```shell
-$ padrino g project blog-tutorial --template blogtutorial
+$ padrino g project blog-tutorial --template sampleblog
 ```
 
 

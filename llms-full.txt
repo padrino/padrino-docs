@@ -853,7 +853,7 @@ using our excellent template runner. You can do this simply by invoking:
 
 
 ```shell
-$ padrino g project blog-tutorial --template blogtutorial
+$ padrino g project blog-tutorial --template sampleblog
 ```
 
 
@@ -3335,7 +3335,7 @@ You can also execute plugin files directly from
 
 ```shell
 $ cd path/to/existing/padrino/app
-$ padrino g plugin hoptoad
+$ padrino g plugin bulma
 ```
 
 You can even get a list of available plugins with the following command:

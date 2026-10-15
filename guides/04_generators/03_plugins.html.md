@@ -36,7 +36,7 @@ You can also execute plugin files directly from
 
 ```shell
 $ cd path/to/existing/padrino/app
-$ padrino g plugin hoptoad
+$ padrino g plugin bulma
 ```
 
 You can even get a list of available plugins with the following command:
