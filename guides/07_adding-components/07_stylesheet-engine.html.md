@@ -14,7 +14,7 @@ Padrino.
 
 First, let's define the actual integration of the stylesheet engine into the
 generator in
-[padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
+[padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb

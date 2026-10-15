@@ -145,7 +145,7 @@ or profile the memory for your application:
 
 This represents the first step for our built-in memory and performance profiler within Padrino. This will get more love as we approach and move into our 1.0 release. We take performance and memory usage very seriously and are always striving to keep Padrino as lightweight as possible in line with our fast Sinatra foundations.
 
-Thanks to [@skade](https://github.com/skade) and [@dariocravero](https://github.com/dariocravero) for working together to get this to a solid place. You can find more details about this on the [README](https://github.com/padrino/padrino-framework/tree/master/padrino-performance) and [PR](ttps://github.com/padrino/padrino-framework/pull/1027)
+Thanks to [@skade](https://github.com/skade) and [@dariocravero](https://github.com/dariocravero) for working together to get this to a solid place. You can find more details about this on the [README](https://github.com/padrino/padrino-framework/tree/master/padrino-performance) and [PR](https://github.com/padrino/padrino-framework/pull/1027)
 
 
 ## App Namespacing

@@ -6433,7 +6433,7 @@ Padrino.
 
 First, let's define the actual integration of the stylesheet engine into the
 generator in
-[padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
+[padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb
@@ -6574,7 +6574,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '~> 0.17.0'
+gem 'padrino', '0.17.0'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -6652,14 +6652,14 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '~> 0.17.0'
+gem 'padrino', '0.17.0'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '~> 0.17.0'
+#   gem 'padrino-' + g, '0.17.0'
 # end
 
 gem 'sinatra-contrib'
