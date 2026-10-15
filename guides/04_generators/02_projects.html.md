@@ -50,8 +50,8 @@ executed automatically through the generator with:
 $ padrino g project demo_project --bundle # alias -b
 ```
 
-This can also be done manually by executing the command `bundle install` in the
-terminal at the root of the generated application.
+This can also be done manually by running `bundle install && bundle binstubs --all`
+in the terminal at the root of the generated application.
 
 For more examples of using the project generator in common cases, check out the
 [Basic Projects](/guides/getting-started/basic-projects "Basic Projects") guide.

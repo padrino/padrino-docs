@@ -19,6 +19,7 @@ First you need to create a project:
 ```shell
 $ padrino g project demo_project
 $ cd demo_project
+$ bundle install && bundle binstubs --all
 ```
 
 Now you are in `demo_project` and you can create your apps:

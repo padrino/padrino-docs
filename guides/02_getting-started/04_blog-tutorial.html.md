@@ -328,6 +328,19 @@ $ padrino rake sq:migrate
 ```
 
 
+Sequel fills in `created_at` only with its `timestamps` plugin, so turn it on in the
+post model now:
+
+
+```ruby
+# models/post.rb
+
+class Post < Sequel::Model
+  plugin :timestamps
+end
+```
+
+
 Next, let's create the controller to allow the basic viewing functionality.
 
 
@@ -505,8 +518,7 @@ the post.
 
 
 Now, we'll return to the post model to setup the `account` association, add a
-few validations, and turn on Sequel's `timestamps` plugin so that `created_at` is
-filled in when a post is saved.
+few validations, keeping the `timestamps` plugin.
 
 
 ```ruby

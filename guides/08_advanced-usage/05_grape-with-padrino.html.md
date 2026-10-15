@@ -18,10 +18,10 @@ $ padrino g project grappe --lean
 ```
 
 Go to the new `grappe` folder and add `gem 'grape'` to `Gemfile`. Then install the
-required gems:
+required gems and the project's binstubs:
 
 ```shell
-$ bundle
+$ bundle install && bundle binstubs --all
 ```
 
 Create file `api/api.rb` and put your Grape code there:

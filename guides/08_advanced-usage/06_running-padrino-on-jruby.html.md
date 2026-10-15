@@ -40,7 +40,7 @@ gem 'warbler'
 Now you can go:
 
 ```shell
-$ bundle
+$ bundle install && bundle binstubs --all
 ```
 
 Then, create the test controller:
