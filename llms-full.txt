@@ -3429,7 +3429,7 @@ generate a project based on a remote url such as a
 [gist](https://gist.github.com/ "gist") for an additional level of convenience:
 
 ```shell
-$ padrino g project my_project --template https://gist.github.com/356156
+$ padrino g project my_project --template https://gist.github.com/<user>/<gist-id>
 ```
 
 You can also apply templates as plugins to existing Padrino applications:
