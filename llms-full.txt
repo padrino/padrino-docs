@@ -3162,8 +3162,9 @@ $ padrino g project demo -t minitest -m mocha
 ```
 
 The [project generator](/guides/generators/projects/) lists every test and mock
-component. The generated project has a test helper (`spec/spec_helper.rb` for
-RSpec, `test/test_config.rb` for the others) and a rake task. The controller,
+component. The generated project has a test helper and a rake task: RSpec uses
+`spec/spec_helper.rb`; minitest, test-unit, shoulda and bacon use
+`test/test_config.rb`; cucumber uses `features/support/env.rb`. The controller,
 model and helper generators add a test file for what they create.
 
 Run the suite, or a single file:
@@ -3216,8 +3217,8 @@ end
 Requests go to the `app` method defined in the test helper. By default it
 returns `Padrino.application`, which serves every mounted app at its mount
 point, so a request to an app mounted at `/blog` starts with `/blog`. To test
-one app on its own, return that app class instead. Its paths then don't include
-the mount point:
+one app on its own, return that app class instead (shown here with minitest).
+Request paths then don't include the mount point:
 
 ```ruby
 describe 'the blog' do
@@ -3232,9 +3233,12 @@ describe 'the blog' do
 end
 ```
 
+URLs the app generates (`url`, `redirect`, form actions) still include the mount
+point, so a test that follows a redirect needs `Padrino.application`.
+
 ## The test environment
 
-The test helper sets `RACK_ENV` to `test` before it loads `config/boot.rb`. The
+The test helper defines `RACK_ENV = 'test'` before it loads `config/boot.rb`. The
 generated `config/apps.rb` turns CSRF protection off in that environment:
 
 ```ruby
@@ -3272,7 +3276,7 @@ instance of the app class. To stub a helper such as `current_user` in a
 controller test, stub it on any instance of the app class that handles the
 request.
 
-With RSpec:
+With RSpec's own mocks (a project generated without `-m`):
 
 ```ruby
 it 'shows the posts of the current user' do
@@ -3282,7 +3286,7 @@ it 'shows the posts of the current user' do
 end
 ```
 
-With mocha (`-m mocha`):
+With mocha (`-m mocha`, with any test framework, including RSpec):
 
 ```ruby
 it 'shows the posts of the current user' do
@@ -3292,7 +3296,9 @@ it 'shows the posts of the current user' do
 end
 ```
 
-Both remove the stub when the test ends.
+Both remove the stub when the test ends. The generator sets mocha up for RSpec,
+minitest, test-unit and shoulda; with bacon it only adds the gem and prints how
+to set it up.
 
 ---
 
