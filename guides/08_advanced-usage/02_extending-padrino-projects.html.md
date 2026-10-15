@@ -26,7 +26,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '~> 0.16.1'
+gem 'padrino', '0.17.0'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -69,10 +69,6 @@ libraries to use in your app.
   Middlewares")
 - [Sinatra Extensions](http://www.sinatrarb.com/extensions-wild.html "Sinatra
   Extensions")
-- [Padrino Extensions](https://github.com/padrino/padrino-framework/wiki/Extensions
-  "Padrino Extensions")
-- [Padrino Integrations](https://github.com/padrino/padrino-framework/wiki/Integrations
-  "Padrino Integrations")
 
 And, of course, never underestimate searching [GitHub](https://github.com
 "GitHub") to find Rack or Sinatra compatible repositories. Any

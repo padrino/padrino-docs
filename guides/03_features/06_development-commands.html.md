@@ -105,7 +105,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.16.1'
+gem 'padrino', '0.17.0'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can

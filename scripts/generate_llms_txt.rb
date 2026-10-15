@@ -16,7 +16,7 @@ File.open(OUTPUT_FILE, 'w') do |out|
   out.puts "# Padrino Framework - Complete Documentation"
   out.puts
   out.puts "Generated from https://github.com/padrino/padrino-docs"
-  out.puts "Version: 0.16.1"
+  out.puts "Version: 0.17.0"
   out.puts
   out.puts "---"
   out.puts

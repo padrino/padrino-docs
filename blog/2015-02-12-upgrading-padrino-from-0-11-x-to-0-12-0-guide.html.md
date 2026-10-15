@@ -75,7 +75,7 @@ Padrino.cache = Padrino::Cache.new(:File, :dir => Padrino.root(tmp, app_name.to_
 ```
 
 
-You can see full details about the new caching system by checking out the [padrino-cache readme](guides/features/padrino-cache/ "padrino-cache readme")!
+You can see full details about the new caching system by checking out the [padrino-cache readme](/guides/features/padrino-cache "padrino-cache readme")!
 
 
 ## Rack::Protection and CSRF

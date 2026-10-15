@@ -61,7 +61,7 @@ follow the following steps. First, clone the padrino repository:
 
 ```shell
 $ cd /tmp
-$ git clone git://github.com/padrino/padrino-framework.git
+$ git clone https://github.com/padrino/padrino-framework.git
 ```
 
 Next, we should mark the version as dev(elopment) to get a fresh set of gems:
@@ -69,7 +69,7 @@ Next, we should mark the version as dev(elopment) to get a fresh set of gems:
 ```ruby
 # /tmp/padrino-framework/padrino-core/lib/padrino-core/version.rb
 module Padrino
-  VERSION = '0.16.1' unless defined?(Padrino::VERSION) # Change to bump version
+  VERSION = '0.17.0' unless defined?(Padrino::VERSION) # Change to bump version
   #...
 end
 ```
@@ -79,11 +79,11 @@ Finally, run the `fresh` rake command to install the latest version:
 ```shell
 padrino-framework$ rake fresh
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-support 0.16.1 built to pkg/padrino-support-0.16.1.gem.
-  padrino-support (0.16.1) installed.
+  padrino-support 0.17.0 built to pkg/padrino-support-0.17.0.gem.
+  padrino-support (0.17.0) installed.
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-core 0.16.1 built to pkg/padrino-core-0.16.1.gem.
-  padrino-core (0.16.1) installed.
+  padrino-core 0.17.0 built to pkg/padrino-core-0.17.0.gem.
+  padrino-core (0.17.0) installed.
   ...
 ```
 
@@ -93,7 +93,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', '~> 0.16.1'
+gem 'padrino', '~> 0.17.0'
 ```
 
 or you can generate a new project easily and you can use padrino commands
@@ -112,7 +112,7 @@ This should allow you to use the latest padrino code from your system.
 ```shell
 $ mkdir /src
 # Remember to use your fork
-$ git clone git://github.com/padrino/padrino-framework.git
+$ git clone https://github.com/padrino/padrino-framework.git
 # Edit your ~/.profile or ~/.bash_profile or some and add
 alias padrino-dev="/src/padrino-framework/padrino-core/bin/padrino"
 alias padrino-dev-gen="/src/padrino-framework/padrino-gen/bin/padrino-gen" # you can omit this
@@ -133,12 +133,18 @@ or if you don't have `padrino-dev-gen`
 padrino-dev g project test-project --dev
 ```
 
-This will append the following lines to your test-app/Gemfile:
+This will point the Padrino gems in your test-project/Gemfile at your checkout:
 
 ```ruby
-# Vendored Padrino
-%w(core gen helpers mailer admin).each do |gem|
-  gem 'padrino-' + gem, path: '/src/padrino-framework/padrino-' + gem
+# Padrino Stable Gem
+# gem 'padrino', '0.17.0'
+
+# Or Padrino Edge
+# gem 'padrino', github: 'padrino/padrino-framework'
+
+# Or Individual Gems
+%w(core support gen helpers cache mailer admin).each do |g|
+  gem 'padrino-' + g, path: '/src/padrino-framework/padrino-' + g
 end
 ```
 

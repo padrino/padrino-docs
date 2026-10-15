@@ -577,7 +577,7 @@ inside the generated Padrino Admin and make some changes to include the account
 with the post.
 
 Head on over to `admin/controllers/posts.rb`. We're going to include the
-[`current_account`](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/helpers/authentication_helpers.rb#L18 "current_account")
+[`current_account`](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/helpers/authentication_helpers.rb#L18-L20 "current_account")
 to the creation of a new Post.
 
 ```ruby
