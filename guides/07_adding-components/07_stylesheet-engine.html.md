@@ -47,11 +47,11 @@ writes `config/initializers/sass.rb` with a `SassInitializer` module whose
 `registered` hook runs the code in `SASS_INIT`, and adds
 `register SassInitializer` to `app/app.rb`. Sass compiles the files in
 `app/stylesheets` to `public/stylesheets` as requests come in, so the last line
-creates that folder.
+creates `app/stylesheets` for the source files.
 
 ## Tests
 
-Let's also add a test to ensure the new stylesheet engine component generates as
+Let's also add a test to ensure the stylesheet engine component generates as
 expected in
 [padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L739-L746):
 
@@ -71,7 +71,7 @@ end
 
 ## README
 
-Finally, let's update the README for `padrino-gen` to reflect the new component
+Finally, let's update the README for `padrino-gen` to list the component
 in
 [padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 

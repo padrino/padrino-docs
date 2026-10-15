@@ -248,7 +248,7 @@ also work with Padrino Admin, so that `padrino g admin` and
 ## Padrino Admin Support
 
 First, add `:myorm` to the list returned by `supported_orm` in
-[padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/actions.rb#L29-L31).
+[padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/f64b4c3ffc1e1e2febbb66007ac3016cc617530b/padrino-admin/lib/padrino-admin/generators/actions.rb#L29-L31).
 `padrino g admin` refuses to run for an ORM that isn't in this list.
 
 Next, teach the `Orm` class in
