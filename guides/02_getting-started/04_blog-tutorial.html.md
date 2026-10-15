@@ -35,7 +35,7 @@ repository") using git:
 
 
 ```shell
-$ git clone git@github.com:padrino/blog-tutorial.git
+$ git clone https://github.com/padrino/blog-tutorial.git
 ```
 
 
@@ -179,7 +179,7 @@ module BlogTutorial
     register Padrino::Mailer
     register Padrino::Helpers
 
-    enable :sessions
+    set :sessions, same_site: :lax
 
     # Here are the defined routes
     get "/" do
@@ -255,10 +255,10 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.16.1 has taken the stage development at http://127.0.0.1:3000
-[2025-11-21 01:02:13] INFO  WEBrick 1.9.1
-[2025-11-21 01:02:13] INFO  ruby 3.4.6 (2025-09-16) [x86_64-linux]
-[2025-11-21 01:02:13] INFO  WEBrick::HTTPServer#start: pid=3489 port=3000
+=> Padrino/0.17.0 has taken the stage development at http://127.0.0.1:3000
+[2026-10-15 06:27:18] INFO  WEBrick 1.9.2
+[2026-10-15 06:27:18] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
+[2026-10-15 06:27:18] INFO  Rackup::Handler::WEBrick::Server#start: pid=15883 port=3000
 ```
 
 
@@ -495,7 +495,7 @@ start by adding a new migration to attach an Account to a Post.
 
 ```shell
 $ padrino g migration AddAccountToPost account_id:integer
-       apply  orms/activerecord
+       apply  orms/sequel
       create  db/migrate/003_add_account_to_post.rb
 ```
 
@@ -504,8 +504,9 @@ This creates a new migration with the desired field attaching the `account_id` t
 the post.
 
 
-Now, we'll return to the post model to setup the `account` association and add a
-few validations.
+Now, we'll return to the post model to setup the `account` association, add a
+few validations, and turn on Sequel's `timestamps` plugin so that `created_at` is
+filled in when a post is saved.
 
 
 ```ruby
@@ -515,6 +516,7 @@ class Post < Sequel::Model
   many_to_one :account
 
   plugin :validation_helpers
+  plugin :timestamps
 
   def validate
     super
@@ -543,7 +545,7 @@ Let's create another migration to assign the first user to all existing posts:
 
 ```shell
 $ padrino g migration MigrateExistingPostsToFirstAccount
-       apply  orms/activerecord
+       apply  orms/sequel
       create  db/migrate/004_migrate_existing_posts_to_first_account.rb
 ```
 
@@ -582,7 +584,7 @@ to the creation of a new Post.
 
 ```ruby
 # admin/controllers/posts.rb
-Admin.controllers :posts do
+BlogTutorial::Admin.controllers :posts do
   ...
 
   post :create do
@@ -659,19 +661,19 @@ directory:
 
 ```haml
 -# app/views/layouts/application.haml
-!!! Strict
+!!! 5
 %html
   %head
     %title= 'Padrino Sample Blog'
-    = stylesheet_link_tag 'bulma', 'application'
+    = stylesheet_link_tag 'bulma.min', 'application'
     = javascript_include_tag 'jquery', 'application'
   %body
     %nav.navbar
       %div.container
         .navbar-brand
           %a.navbar-item{href: '/'}
-            %img{alt: 'Logo of Padrino blog', src: 'http://padrinorb.com/images/logo-6475397a.svg'}/
-          %span.navbar-burger.burger{'data-targe' => 'navbarMenu'}
+            %img{alt: 'Logo of Padrino blog', src: 'https://padrinorb.com/images/logo-6475397a.svg'}/
+          %span.navbar-burger.burger{'data-target' => 'navbarMenu'}
             %span
             %span
             %span

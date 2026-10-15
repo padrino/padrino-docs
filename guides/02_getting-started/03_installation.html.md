@@ -43,6 +43,10 @@ Padrino framework with the `padrino` gem:
 $ gem install padrino
 ```
 
+Inside a generated project, install its gems and its binstubs with
+`bundle install && bundle binstubs --all` (or run each command with `bundle exec`), so that
+`padrino` commands use the project's bundle.
+
 This will install all the necessary padrino dependencies to get you started
 creating applications. Now you are ready to use this gem to
 [enhance your Sinatra projects](/guides/advanced-usage/standalone-usage-in-sinatra "enhance

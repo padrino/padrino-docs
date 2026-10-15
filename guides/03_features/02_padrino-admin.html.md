@@ -12,9 +12,9 @@ Feature               | Description
 --------------------- | ------------------------------------------------------------------------------
 **Orm Agnostic**      | Adapters for activerecord, minirecord, sequel, mongoid, ohm, dynamoid
 **Authentication**    | User Authentication Support, User Authorization Management
-**Template Agnostic** | Erb and Haml Rendering Support
+**Template Agnostic** | ERB, Haml and Slim Rendering Support
 **Scaffold**          | You can create a new "admin interface" by providing a single Model
-**MultiLanguage**     | English, German, Russian, Danish, French, Brazilian and Italian localizations
+**MultiLanguage**     | 21 localizations: Brazilian Portuguese, Chinese (Simplified and Traditional), Czech, Danish, Dutch, English, French, German, Hungarian, Italian, Japanese, Latvian, Norwegian, Polish, Romanian, Russian, Spanish, Swedish, Turkish and Ukrainian
 
 --------------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ Create a new project:
 
 ```shell
 $ padrino g project admin-test-sample -d activerecord
-$ cd admin-test-sample && bundle
+$ cd admin-test-sample && bundle install && bundle binstubs --all
 ```
 
 Create the admin application:
@@ -46,7 +46,7 @@ point your web browser to <http://localhost:3000/admin> and log in with your
 admin account credentials.
 
 
-<img src="https://farm2.staticflickr.com/1720/26277208545_496eb24ac8_z_d.jpg">
+<img src="https://farm2.staticflickr.com/1720/26277208545_496eb24ac8_z_d.jpg" alt="Screenshot of the Padrino Admin interface">
 
 
 If you need to create a "scaffold", (basic CRUD actions) create a
@@ -104,7 +104,7 @@ login credentials (default authentication behavior will use email and password).
 
 When successfully logged in, they will be granted access to the two protected pages.
 
-<img src="https://farm2.staticflickr.com/1714/25674474983_26e311f126_z_d.jpg">
+<img src="https://farm2.staticflickr.com/1714/25674474983_26e311f126_z_d.jpg" alt="Screenshot for the e-commerce authentication example">
 
 --------------------------------------------------------------------------------
 

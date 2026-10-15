@@ -14,8 +14,8 @@ understanding of Sinatra and Padrino if you are new to the stack.
 
 ## Generating a Project
 
-To generate a new Padrino project using its defaults (RSpec for testing and Haml
-for rendering) and no database adapter, simply invoke the following command:
+To generate a new Padrino project using its defaults (no testing framework, no
+template engine and no database adapter), simply invoke the following command:
 
 ```shell
 $ padrino g project my_project
@@ -106,7 +106,7 @@ Install all project dependencies:
 
 ```shell
 $ cd blog
-$ bundle # if you haven't that command, run 'gem install bundler'
+$ bundle install && bundle binstubs --all
 ```
 
 Padrino ships with a beautiful Admin interface.
