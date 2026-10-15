@@ -63,7 +63,7 @@ We added four new languages to the admin, helpers and error message translations
 - Russian [Thanks to [Imm](http://github.com/imm)]
 - Brazilian [Thanks to [Deminew](http://github.com/deminew)]
 
-If you want to contribute a translation for another language, please follow the [translation guide](/guides/localization) and fork/send us your translations.
+If you want to contribute a translation for another language, please follow the [translation guide](/guides/features/localization) and fork/send us your translations.
 
 
 ## New Persistence Adapters
@@ -90,7 +90,7 @@ This class is an extended version of [Rack::URLMap](http://github.com/rack/rack/
 - Ignoring server names (this solve several issues with virtual hosts and domain aliases)
 - Using hosts instead of server name for match mappings (this help us with our vhost and domain aliases)
 
-Padrino is principally designed to support [mountable applications](/pages/why#mountable-applications) and now with `Padrino#router` things are much simpler because you can match for a host pattern:
+Padrino is principally designed to support [mountable applications](/guides/features/mounting-applications) and now with `Padrino#router` things are much simpler because you can match for a host pattern:
 
     Padrino.mount_core("Blog").host("blog.example.org")
     Padrino.mount("Admin").host("admin.example.org")

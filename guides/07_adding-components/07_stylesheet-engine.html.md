@@ -50,7 +50,7 @@ end
 
 Let's also add a test to ensure the new stylesheet engine component generates as
 expected in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L656):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L748-L754):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb

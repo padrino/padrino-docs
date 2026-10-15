@@ -20,7 +20,7 @@ in `config/database.rb`, like any other gem.
 
 The available ORM choices are not listed anywhere by hand. Padrino builds them
 from the files in `padrino-gen/lib/padrino-gen/generators/components/orms/`, in
-[padrino-gen/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/actions.rb#L573-L585):
+[padrino-gen/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/actions.rb#L650-L662):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/actions.rb
@@ -60,7 +60,7 @@ ORM without migrations leaves the last two empty, as the Mongoid and Ohm
 components do.
 
 Here is the Sequel component,
-[padrino-gen/generators/components/orms/sequel.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/components/orms/sequel.rb):
+[padrino-gen/generators/components/orms/sequel.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/orms/sequel.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/orms/sequel.rb
@@ -88,13 +88,15 @@ def setup_orm
       sequel.gsub!(/!DB_TEST!/,       "\"sqlite://db/#{db}_test.db\"")
       require_dependencies 'sqlite3'
     else
-      say "Failed to generate `config/database.rb` for ORM adapter `#{options[:adapter]}`", :red
+      say "Failed to generate `config/database.rb` for ORM adapter `#{adapter}`", :red
       raise ArgumentError
     end
   rescue ArgumentError
-    adapter = ask('Please, choose a proper adapter:', limited_to: %w[mysql mysql2 mysql-gem postgres sqlite])
+    adapter = ask_valid_option(:adapter, %w[mysql mysql2 mysql-gem postgres sqlite], 'Please, choose a proper adapter:')
     retry
   end
+
+  # ...truncated: the Falcon fiber setting...
 
   create_file('config/database.rb', sequel)
   empty_directory('db/migrate')
@@ -147,7 +149,7 @@ A few things to note:
   'models', ...)` so that `padrino g model` with `-a` puts it in the right app.
 - The `SQ_*` constants are text templates with `!PLACEHOLDER!` markers. The shared
   helpers `output_model_migration` and `output_migration_file`, in
-  [padrino-gen/generators/components/actions.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/generators/components/actions.rb#L24-L86),
+  [padrino-gen/generators/components/actions.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/actions.rb#L24-L86),
   fill in `!UP!`, `!DOWN!`, `!TABLE!`, `!FIELDS!` and `!COLUMNS!`, number the
   file and write it to `db/migrate`. If `myorm` has migrations, reuse these
   helpers rather than writing your own.
@@ -157,7 +159,7 @@ A few things to note:
 If the ORM needs rake tasks (to create or migrate the database, for instance),
 add them in `padrino-gen/lib/padrino-gen/padrino-tasks/myorm.rb`. Every file in
 that folder is registered automatically. For Sequel, see
-[padrino-tasks/sequel.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/lib/padrino-gen/padrino-tasks/sequel.rb):
+[padrino-tasks/sequel.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/padrino-tasks/sequel.rb):
 
 ```ruby
 # padrino-gen/lib/padrino-gen/padrino-tasks/sequel.rb
@@ -196,7 +198,7 @@ provided by `padrino-tasks/database.rb`.
 Next, add tests for the new component in `padrino-gen/test`, next to the
 existing Sequel ones. The project generator tests check the `Gemfile` and
 `config/database.rb`, in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/test/test_project_generator.rb#L285-L331):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L403-L449):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -210,7 +212,7 @@ end
 ```
 
 The model generator tests generate a project and then a model inside it, in
-[padrino-gen/test/test\_model\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/test/test_model_generator.rb#L268-L295):
+[padrino-gen/test/test\_model\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_model_generator.rb#L210-L237):
 
 ```ruby
 # padrino-gen/test/test_model_generator.rb
@@ -232,7 +234,7 @@ end
 
 If `myorm` has migrations, also cover `padrino g migration` the same way, like
 the `the migration generator for sequel` block in
-[padrino-gen/test/test\_migration\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-gen/test/test_migration_generator.rb#L173-L207).
+[padrino-gen/test/test\_migration\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_migration_generator.rb#L160-L194).
 
 ## README
 
@@ -246,11 +248,11 @@ also work with Padrino Admin, so that `padrino g admin` and
 ## Padrino Admin Support
 
 First, add `:myorm` to the list returned by `supported_orm` in
-[padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-admin/lib/padrino-admin/generators/actions.rb#L29-L31).
+[padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/actions.rb#L29-L31).
 `padrino g admin` refuses to run for an ORM that isn't in this list.
 
 Next, teach the `Orm` class in
-[padrino-admin/generators/orm.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-admin/lib/padrino-admin/generators/orm.rb)
+[padrino-admin/generators/orm.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/orm.rb)
 how to talk to your models. The admin controller and view templates call its
 methods to get the Ruby code they write out. Most of them branch on the ORM
 name. These are the Sequel branches:
@@ -305,7 +307,7 @@ Next, add the `Account` model template that `padrino g admin` writes to
 `models/account.rb`:
 `padrino-admin/lib/padrino-admin/generators/templates/account/myorm.rb.tt`.
 Use
-[account/sequel.rb.tt](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-admin/lib/padrino-admin/generators/templates/account/sequel.rb.tt)
+[account/sequel.rb.tt](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/templates/account/sequel.rb.tt)
 as the model to follow. The rest of the admin expects the template to provide:
 
 - the `name`, `surname`, `email`, `crypted_password` and `role` fields (the
@@ -326,7 +328,7 @@ optional per-ORM touches: extra middleware (ActiveRecord adds
 `rake db:create` and `rake db:migrate` for the SQL ORMs it lists.
 
 Add a test to
-[padrino-admin/test/generators/test\_account\_model\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.16.1/padrino-admin/test/generators/test_account_model_generator.rb#L85-L95):
+[padrino-admin/test/generators/test\_account\_model\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/test/generators/test_account_model_generator.rb#L61-L71):
 
 ```ruby
 # padrino-admin/test/generators/test_account_model_generator.rb

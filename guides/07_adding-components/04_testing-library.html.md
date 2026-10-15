@@ -82,7 +82,7 @@ end
 
 Let's also add a test to ensure the new testing component generates as expected
 in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb#L580):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L683-L696):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
