@@ -58,7 +58,7 @@ doesn't, so a re-run asks whether to overwrite `application.js`.
 
 Let's also add a test to ensure the new JavaScript component generates as
 expected in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L586-L592):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L585-L592):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
@@ -76,7 +76,13 @@ end
 
 [padrino-gen/test/test\_component\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_component_generator.rb#L308-L317)
 has tests for `padrino g component`, for example for running it again on a
-project that already uses jquery. Run the tests with:
+project that already uses jquery.
+
+The tests don't download anything: `stub_static_files` in
+[padrino-gen/test/helper.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/helper.rb#L23)
+answers the padrino-static URLs from a list of files, and any other request
+fails the test. Add `js/mylib.js` and `ujs/mylib.js` to that list. Run the
+tests with:
 
 ```shell
 $ cd padrino-gen
@@ -195,7 +201,9 @@ and check for the adapter in the test, as the jquery test does with
 This completes the full integration of a JavaScript library into Padrino. Once
 all of this has been finished in your GitHub forks, send us pull requests (one
 to padrino-static for the library and adapter, one to padrino-framework for
-the component, its tests, the README and a line in `CHANGES.rdoc`) and,
+the component, its tests, the README, a line in `CHANGES.rdoc` and a bump of the
+`templates/static` submodule to the padrino-static commit that adds the library)
+and,
 assuming you followed these instructions properly and the library actually
 works when generated, we will include the component into the next Padrino
 version crediting you for the contribution!
