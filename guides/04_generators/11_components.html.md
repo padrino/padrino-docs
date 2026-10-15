@@ -9,9 +9,10 @@ The available components and their default options are same as the Project
 Generator.
 
 Options | Default | Aliases | Description
-------- | ------- | ------- | ------------------------------------------------
+------- | ------- | ------- | ------------------------------------------------------------------
+app     |         | -n      | the application name
 root    | .       | -r      | the root destination path for the project
-adapter | sqlite  | -a      | specify orm db adapter (mysql, sqlite, postgres)
+adapter | sqlite  | -a      | specify orm db adapter (sqlite, mysql, mysql2, mysql-gem, postgres)
 
 ## Examples
 

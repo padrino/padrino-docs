@@ -18,6 +18,7 @@ namespace |         | -n      | specify the name space of your padrino project
 layout    |         | -l      | specify the layout
 parent    |         | -p      | specify the parent
 provides  |         | -f      | specify the formats for this controller
+no-helper | false   |         | don't generate a helper
 destroy   | false   | -d      | removes all generated files
 
 Run controller generators from the root of a Padrino project, the folder that
@@ -44,8 +45,9 @@ $ padrino g controller Admin get:index get:new post:create
 ```
 
 The controller generator will then construct the controller file within
-`app/controllers/admin.rb` and also a controller test file at
-`test/controllers/admin_controller_test.rb` according to the test framework
+`app/controllers/admin.rb`, a helper at `app/helpers/admin_helper.rb` (skip it
+with `--no-helper`) and also a controller test file at
+`test/app/controllers/admin_controller_test.rb` according to the test framework
 chosen during app generation. A default route will also be generated mapping to
 name of the controller and the route name. For example:
 

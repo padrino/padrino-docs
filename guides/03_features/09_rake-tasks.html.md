@@ -5,9 +5,8 @@ title: Rake Tasks
 
 # Rake Tasks
 
-After generating a new padrino project, you will not find any Rakefile in your
-generated project folder structure; in fact it's not strictly needed to build a
-new one because we can already use padrino rake:
+A generated Padrino project has a `Rakefile` that loads Padrino's tasks, so you
+can run them with `padrino rake` or `bundle exec rake`:
 
 ```shell
 # for a list of tasks
@@ -21,7 +20,8 @@ If you need custom tasks you can add those to:
 - `your_project_/**test**`
 - `your_project_/**spec**`
 
-Padrino will look recursively for any `*.rake` file in any of these directories.
+Padrino loads every `*.rake` file in `lib/tasks` and `tasks` (including their
+subdirectories) and in `test` and `spec`.
 
 Padrino by default has some useful tasks.
 
@@ -34,7 +34,7 @@ Like other frameworks we have an `:environment` task that loads our
 
 ```ruby
 # This is a custom task
-# task/version.rake
+# tasks/version.rake
 task version: :environment do
   puts Padrino.version
 end
@@ -101,10 +101,10 @@ you can customize `test/test.rake` or `spec/spec.rake`
 ## I18n
 
 You can auto generate a _yml_ file for localizing your models using this
-command:
+command (`mi:translate` with Mongoid):
 
 ```shell
-$ padrino rake locale:models
+$ padrino rake ar:translate
 ```
 
 See [Localization](/guides/features/localization "Localization") for detailed instructions.
@@ -128,51 +128,42 @@ Padrino has rake tasks for _ActiveRecord_, _Sequel_, and _Mongoid_ with some
 ## ActiveRecord Tasks
 
 ```shell
-rake ar:abort_if_pending_migrations    # Raises an error if there are pending migrations.
-rake ar:auto:upgrade                   # Uses schema.rb to auto-upgrade.
-rake ar:charset                        # Retrieves database charset.
-rake ar:collation                      # Retrieves database collation.
-rake ar:create                         # Creates the database as defined in config/database.yml
-rake ar:create:all                     # Creates local databases as defined in config/database.yml
-rake ar:drop                           # Drops the database for the current Padrino.env
-rake ar:drop:all                       # Drops local databases defined in config/database.yml
-rake ar:forward                        # Pushes the schema to the next version.
-rake ar:migrate                        # Migrates the database through scripts in db/migrate.
-rake ar:migrate:down                   # Runs the "down" for a given migration VERSION.
-rake ar:migrate:redo                   # Rollbacks current migration and migrates up to version
-rake ar:migrate:reset                  # Resets your database using your migrations.
-rake ar:migrate:up                     # Runs the "up" for a given migration VERSION NUMBER
-rake ar:reset                          # Drops and recreates the database using db/schema.rb.
-rake ar:rollback                       # Rolls back the schema to previous schema version.
-rake ar:schema:dump                    # Creates a portable db/schema.rb file.
-rake ar:schema:load                    # Loads a schema.rb file into the database.
-rake ar:schema:to_migration            # Creates a migration from schema.rb
-rake ar:schema:to_migration_with_reset # Creates a migration and resets the migrations log.
-rake ar:setup                          # Creates the database, loads the schema, and seeds data.
-rake ar:structure:dump                 # Dumps the database structure to a SQL file.
-rake ar:version                        # Retrieves the current schema version number.
+rake ar:abort_if_pending_migrations # Raises an error if there are pending migrations
+rake ar:charset                     # Retrieves the charset for the current environment's database
+rake ar:collation                   # Retrieves the collation for the current environment's database
+rake ar:create                      # Creates the database defined in config/database.yml for the current Padrino.env
+rake ar:create:all                  # Create all the local databases defined in config/database.yml
+rake ar:drop                        # Drops the database for the current Padrino.env
+rake ar:drop:all                    # Drops all the local databases defined in config/database.yml
+rake ar:forward                     # Pushes the schema to the next version
+rake ar:migrate                     # Migrate the database through scripts in db/migrate and update db/schema.rb by invoking ar:schema:dump
+rake ar:migrate:down                # Runs the 'down' for a given MIGRATION_VERSION
+rake ar:migrate:redo                # Rollbacks the database one migration and re migrate up
+rake ar:migrate:reset               # Resets your database using your migrations for the current environment
+rake ar:migrate:up                  # Runs the 'up' for a given MIGRATION_VERSION
+rake ar:reset                       # Drops and recreates the database from db/schema.rb for the current environment and loads the seeds
+rake ar:rollback                    # Rolls the schema back to the previous version
+rake ar:schema:dump                 # Create a db/schema.rb file that can be portably used against any DB supported by AR
+rake ar:schema:load                 # Load a schema.rb file into the database
+rake ar:setup                       # Create the database, load the schema, and initialize with the seed data
+rake ar:structure:dump              # Dump the database structure to a SQL file
+rake ar:translate                   # Generates .yml files for I18n translations
+rake ar:version                     # Retrieves the current schema version number
 ```
-
-**rake ar:auto:upgrade**
-
-This is some sort of super cool and useful task for people like me who don't
-love migrations (especially for small apps). It's a forked version of
-[`auto_migrations`](http://github.com/pjhyett/auto_migrations).
-
-Basically, instead of writing migrations you can directly edit your
-**schema.rb** and perform _a non destructive_ migration with `padrino rake
-ar:auto:upgrade`.
 
 --------------------------------------------------------------------------------
 
 ## Sequel Tasks
 
 ```shell
+rake sq:create              # Create the database
+rake sq:drop                # Drop the database (postgres and mysql only)
+rake sq:migrate             # Perform migration up to latest migration available
 rake sq:migrate:auto        # Perform automigration (reset your db data)
-rake sq:migrate:to[version] # Perform migration up/down to VERSION
-rake sq:migrate:up          # Perform migration up to latest migration available
 rake sq:migrate:down        # Perform migration down (erase all data)
-rake sq:reset               # Drops the database, and migrates from scratch
+rake sq:migrate:to[version] # Perform migration up/down to MIGRATION_VERSION
+rake sq:migrate:up          # Perform migration up to latest migration available
+rake sq:reset               # Drop the database, migrate from scratch and initialize with the seed data
 ```
 
 --------------------------------------------------------------------------------
@@ -180,10 +171,11 @@ rake sq:reset               # Drops the database, and migrates from scratch
 ## Mongoid Tasks
 
 ```shell
-rake mi:drop                    # Drops all the collections for the database for the current environment
-rake mi:create_indexes          # Create the indexes defined on your mongoid models
-rake mi:objectid_convert        # Convert string objectids in mongo database to ObjectID type
 rake mi:cleanup_old_collections # Clean up old collections backed up by objectid_convert
+rake mi:create_indexes          # Create the indexes defined on your mongoid models
+rake mi:drop                    # Drops all the collections for the database for the current Padrino.env
+rake mi:objectid_convert        # Convert string objectids in mongo database to ObjectID type
+rake mi:translate               # Generates .yml files for I18n translations
 ```
 
 --------------------------------------------------------------------------------
@@ -191,7 +183,7 @@ rake mi:cleanup_old_collections # Clean up old collections backed up by objectid
 ## Seed
 
 Like in Rails we can populate our db using `db/seeds.rb` here's an example (from
-our [padrino-admin](/guides/padrino-admin/ "padrino-admin)):
+our [padrino-admin](/guides/features/padrino-admin "Padrino Admin")):
 
 ```ruby
 email     = shell.ask 'Which email do you want use for logging into admin?'
