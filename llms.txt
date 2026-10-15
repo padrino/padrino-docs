@@ -8,7 +8,7 @@
 - [Controllers & Routing](https://padrinorb.com/guides/controllers/overview): Named routes, params, filters, conditions
 - [Application Helpers](https://padrinorb.com/guides/application-helpers/overview): Form helpers, tag helpers, asset helpers, rendering
 - [Generators](https://padrinorb.com/guides/generators/overview): Project, app, controller, model, mailer generators
-- [Features](https://padrinorb.com/guides/features/overview): Admin, mailer, cache, mounting apps, i18n
+- [Features](https://padrinorb.com/guides/features/overview): Admin, mailer, cache, mounting apps, i18n, testing
 - [Adding Components](https://padrinorb.com/guides/adding-components/overview): ORMs, template engines, test frameworks, CSS
 - [Advanced Usage](https://padrinorb.com/guides/advanced-usage/overview): Standalone usage, deployment, Passenger, OmniAuth
 
