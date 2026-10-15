@@ -5,20 +5,10 @@ title: Development Commands
 
 # Development Commands
 
-Padrino also supports robust logging capabilities. By default, logging
-information will go to the `STDOUT` in development (for use in a console) and in
-an environment-specific log file `log/development.log` in test and production
-environments.
+## Logging
 
-You can modify the logging behavior or disable logging altogether (more docs
-[here](http://www.rubydoc.info/github/padrino/padrino-framework/Padrino/Logger
-"logger")):
-
-```ruby
-# boot.rb
-Padrino::Logger::Config[:development][:stream] = :to_file
-Padrino.load!
-```
+Padrino comes with its own logger. By default it writes to `STDOUT` in
+development, to `log/production.log` in production, and nowhere in test.
 
 To use the logger within a Padrino application, simply refer to the `logger`
 method accessible within your app and any controller or views:
@@ -30,8 +20,45 @@ SimpleApp.controllers do
 end
 ```
 
-The logger automatically supports severity through the use of `logger.info`,
-`logger.warn`, `logger.error`, et al.
+The logger supports the levels `fatal`, `error`, `warn`, `info`, `debug` and
+`devel`, through `logger.info`, `logger.warn`, et al.
+
+Each environment has its own settings in `Padrino::Logger::Config`. Change them
+in `config/boot.rb` before `Padrino.load!`:
+
+```ruby
+# config/boot.rb
+Padrino::Logger::Config[:development][:stream] = :to_file
+Padrino::Logger::Config[:production][:log_level] = :info
+Padrino.load!
+```
+
+Option             | Default                                   | Description
+------------------ | ----------------------------------------- | -----------------------------------------------------------------
+`log_level`        | `:debug`, `:warn` in production           | lowest level written, from `:fatal` down to `:devel`
+`stream`           | `:stdout`, `:to_file` in production, `:null` in test | `:to_file`, `:stdout`, `:stderr`, `:null` (discard) or any IO object
+`log_path`         | `log/<environment>.log`                   | file or folder for `:to_file`, relative to the project root; a folder gets `<environment>.log`
+`format_datetime`  | `'%d/%b/%Y %H:%M:%S'`, none in development | `strftime` format of the timestamp
+`format_message`   | `'%s - %s %s'`                            | format of the level, timestamp and message
+`log_static`       | `false`                                   | also log requests for static files
+`colorize_logging` | `true`                                    | add ANSI colors; set it to `false` for plain log files
+`auto_flush`       | `true`                                    | write each message at once; when `false`, call `logger.flush`
+`source_location`  | `false`                                   | prefix each message with the file and line that logged it
+
+The `PADRINO_LOG_LEVEL` environment variable makes Padrino use the settings of
+another environment, for example `PADRINO_LOG_LEVEL=test` to silence the log.
+Despite its name, it takes an environment name, not a level; an unknown name
+falls back to the production settings.
+
+You can also replace the logger, for example with one from Ruby's standard
+library. The settings above then no longer apply:
+
+```ruby
+# config/boot.rb
+require 'logger'
+Padrino.logger = Logger.new($stdout)
+Padrino.load!
+```
 
 For more information about the logger, check out our
 [Logger RDoc](http://www.rubydoc.info/github/padrino/padrino-framework/Padrino/Logger
@@ -61,6 +88,10 @@ class SimpleApp < Padrino::Application
 end
 ```
 
+Files are only tracked for reloading in development. To reload in another
+environment, also set `Padrino::Reloader.enabled = true` in `config/boot.rb`
+before `Padrino.load!`.
+
 --------------------------------------------------------------------------------
 
 ## Gemfile Dependency Resolution
@@ -84,12 +115,11 @@ This gem allows us to place all our dependencies into a single file. Padrino
 will then automatically require all necessary files (if they exist on the
 system).
 
-If the dependencies are not on the system, you can automatically vendor all
-necessary gems using the `bundle install --path ./vendor` command within the
-application root or (only with bundler 1.0) run `bundle install` to install
-system wide. Note that this is all possible without any further effort than
-adding the Gemfile (or having this generated automatically with generators
-explained later).
+If the dependencies are not on the system, run `bundle install` within the
+application root. To keep the gems inside the project, run
+`bundle config set --local path vendor/bundle` first. Note that this is all
+possible without any further effort than adding the Gemfile (or having this
+generated automatically with generators explained later).
 
 --------------------------------------------------------------------------------
 
@@ -102,22 +132,22 @@ your application into separate files. Padrino automatically requires
 any files within the `lib` folder will be required automatically by Padrino.
 
 This is powered by the fact that Padrino will automatically load (and reload)
-any directory patterns within the 'prerequisite paths'. Additional directory
-patterns can be added to the set of reloaded files as needed by simply appending
-to the `prerequisites` within your application:
+any directory patterns within the dependency paths. Additional directory
+patterns can be added by appending to `Padrino.dependency_paths` before
+`Padrino.load!`:
 
 ```ruby
 # config/boot.rb
-Padrino.after_load do
-  SimpleApp.prerequisites << Padrino.root('my_app', 'custom_model.rb')
-  SimpleApp.prerequisites << Padrino.root('custom_folder/*.rb')
-end
+Padrino.dependency_paths << Padrino.root('custom_folder/*.rb')
 Padrino.load!
 ```
 
-This will instruct Padrino to autoload these files (and reload them when changes
-are detected). By default, the load path contains certain paths known to contain
-important files such as controllers, mailers, models, urls, and helpers.
+This will instruct Padrino to load these files in every environment (and reload
+them in development when changes are detected). They load after
+`config/apps.rb`, so code your app classes use while loading (`helpers`,
+`register`) belongs in `lib/` instead. By default, the load path
+contains certain paths known to contain important files such as controllers,
+mailers, models, urls, and helpers.
 
 --------------------------------------------------------------------------------
 
