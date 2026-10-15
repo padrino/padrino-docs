@@ -10,7 +10,7 @@ following features:
 
 Feature               | Description
 --------------------- | ------------------------------------------------------------------------------
-**Orm Agnostic**      | Adapters for activerecord, minirecord, sequel, mongoid, ohm, dynamoid
+**Orm Agnostic**      | Adapters for activerecord, sequel, mongoid
 **Authentication**    | User Authentication Support, User Authorization Management
 **Template Agnostic** | ERB, Haml and Slim Rendering Support
 **Scaffold**          | You can create a new "admin interface" by providing a single Model
@@ -214,10 +214,10 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 
 ## Contributing Persistence Adapters
 
-If you are planning to use padrino with other adapters rather than the currently
-supported ones, and you want to contribute to the project by extending its
-support with additional adapters like [ohm](https://github.com/soveran/ohm
-"ohm"), [ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver") and
-so on, be sure to check out the
-[adding components](/guides/adding-components/overview "adding components")
+If you are planning to use padrino with an adapter other than the currently
+supported ones (activerecord, sequel and mongoid), such as
+[ohm](https://github.com/soveran/ohm "ohm") or
+[ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver"), and you
+want to contribute to the project by adding support for it, be sure to check
+out the [adding components](/guides/adding-components/overview "adding components")
 guide.

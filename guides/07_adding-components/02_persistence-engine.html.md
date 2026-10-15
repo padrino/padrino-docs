@@ -56,8 +56,8 @@ An ORM component defines four methods:
   `padrino g migration`.
 
 The model and migration generators call all of these, so define each one. An
-ORM without migrations leaves the last two empty, as the Mongoid and Ohm
-components do.
+ORM without migrations leaves the last two empty, as the Mongoid component
+does.
 
 Here is the Sequel component,
 [padrino-gen/generators/components/orms/sequel.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/orms/sequel.rb):
@@ -252,7 +252,7 @@ First, add `:myorm` to the list returned by `supported_orm` in
 `padrino g admin` refuses to run for an ORM that isn't in this list.
 
 Next, teach the `Orm` class in
-[padrino-admin/generators/orm.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/orm.rb)
+[padrino-admin/generators/orm.rb](https://github.com/padrino/padrino-framework/blob/c65e307d48ce09b146e31df75f4d88510171717d/padrino-admin/lib/padrino-admin/generators/orm.rb)
 how to talk to your models. The admin controller and view templates call its
 methods to get the Ruby code they write out. Most of them branch on the ORM
 name. These are the Sequel branches:
@@ -273,7 +273,7 @@ end
 def find(params = nil)
   case orm
   # ...truncated...
-  when :sequel, :ohm then "#{klass_name}[#{params}]"
+  when :sequel then "#{klass_name}[#{params}]"
   else raise OrmError, "Adapter #{orm} is not yet supported!"
   end
 end

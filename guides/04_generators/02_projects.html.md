@@ -87,11 +87,11 @@ The available components and their default options are listed below:
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
 server     | webrick | none    | thin, **puma** (recommended), falcon (fiber-based, Ruby 3.0+), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
-orm        | none    | -d      | mongoid, activerecord, minirecord, ohm, sequel, dynamoid
+orm        | none    | -d      | mongoid, activerecord, sequel
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, dojo, vite
 renderer   | none    | -e      | erb, haml, slim, liquid
-stylesheet | none    | -c      | sass, less, scss, tailwind
+stylesheet | none    | -c      | sass, scss, tailwind
 mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your

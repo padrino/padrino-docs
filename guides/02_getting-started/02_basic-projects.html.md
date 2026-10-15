@@ -43,9 +43,7 @@ name of your ORM:
 ```shell
 $ padrino g project your_project -d mongoid
 $ padrino g project your_project -d activerecord
-$ padrino g project your_project -d ohm
 $ padrino g project your_project -d sequel
-$ padrino g project your_project -d dynamoid
 ```
 
 For the SQL-based persistence engines, you can even specify the RDBMS adapter to
@@ -58,7 +56,7 @@ $ padrino g project your_project -d sequel       -a sqlite   # Uses Sequel and S
 ```
 
 The adapters currently supported are `sqlite`, `mysql`, and `postgres` for use
-with `activerecord`, `minirecord`, or `sequel`.
+with `activerecord` or `sequel`.
 
 --------------------------------------------------------------------------------
 
