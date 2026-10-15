@@ -30,6 +30,13 @@ timestamp appended at the end to clear the stale cache for the item when
 modified. To disable this, simply put the setting `disable :asset_stamp` in your
 application configuration within `app/app.rb`.
 
+`link_to` writes `#` instead of a URL whose scheme isn't http, https, mailto,
+tel or ftp, so `javascript:`, `data:` and `vbscript:` links can't run script.
+This also applies to a URL given in the options hash (`href:`), and to other
+schemes such as `sms:`; write those links as plain `<a>` tags. Relative links
+are kept, even with a colon in them (`search?q=a:b`). `form_tag`, `form_for`
+and `button_to` do the same for the form's action.
+
 ## List of Asset Helpers
 
 - `flash_tag(kind, options = {})`

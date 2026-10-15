@@ -11,7 +11,7 @@ Padrino supports full localization in:
 - padrino-admin (admin language, orm fields, orm errors, etc ...)
 - padrino-helpers (currency, percentage, precision, duration etc ...)
 
-At the moment we support the following list of languages:
+Each of them ships translations for these 21 languages:
 
 - Czech
 - Danish
@@ -27,6 +27,10 @@ At the moment we support the following list of languages:
 - Brazilian Portuguese
 - Turkish
 - Ukrainian
+- Hungarian
+- Latvian
+- Romanian
+- Swedish
 - Traditional Chinese
 - Simplified Chinese
 - Japanese

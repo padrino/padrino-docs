@@ -18,8 +18,9 @@ $ padrino g project demo -t minitest -m mocha
 The [project generator](/guides/generators/projects/) lists every test and mock
 component. The generated project has a test helper and a rake task: RSpec uses
 `spec/spec_helper.rb`; minitest, test-unit, shoulda and bacon use
-`test/test_config.rb`; cucumber uses `features/support/env.rb`. The controller,
-model and helper generators add a test file for what they create.
+`test/test_config.rb`; cucumber uses `features/support/env.rb` plus RSpec's
+`spec/spec_helper.rb`. The controller, model and helper generators add a test
+file for what they create.
 
 Run the suite, or a single file:
 
@@ -87,8 +88,9 @@ describe 'the blog' do
 end
 ```
 
-URLs the app generates (`url`, `redirect`, form actions) still include the mount
-point, so a test that follows a redirect needs `Padrino.application`.
+URLs the app generates (`url`, `redirect url(...)`, form actions) still include
+the mount point, so a test that follows such a redirect needs
+`Padrino.application`.
 
 ## The test environment
 
@@ -140,7 +142,7 @@ it 'shows the posts of the current user' do
 end
 ```
 
-With mocha (`-m mocha`, with any test framework, including RSpec):
+With mocha (`-m mocha`, which also works with RSpec):
 
 ```ruby
 it 'shows the posts of the current user' do
@@ -151,5 +153,5 @@ end
 ```
 
 Both remove the stub when the test ends. The generator sets mocha up for RSpec,
-minitest, test-unit and shoulda; with bacon it only adds the gem and prints how
-to set it up.
+minitest, test-unit and shoulda; with bacon or cucumber it only adds the gem and
+prints how to set it up.

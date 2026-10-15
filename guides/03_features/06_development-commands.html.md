@@ -181,6 +181,15 @@ $ padrino runner 'puts Padrino.env' -e development
 $ padrino r script/my_script.rb
 ```
 
+Since Ruby 4.0, irb is a bundled gem, so `padrino console` can only load it
+when your Gemfile lists it. Without it, the console stops with a message saying
+so. Add it and run `bundle install`:
+
+```ruby
+# Gemfile
+gem 'irb'
+```
+
 The last command "padrino rake" look for rake files in:
 
 - `lib/tasks/**/*.rake`

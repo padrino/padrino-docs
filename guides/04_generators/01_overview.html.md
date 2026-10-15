@@ -20,6 +20,9 @@ database, ORM, testing framework, templating engine or JavaScript library. In
 fact, when generating an application you can actually tell Padrino which
 components you would like to use!
 
+When a generator fails, for example on an unknown component or when it is run
+outside a project, it exits with status 1, so scripts and CI can stop on it.
+
 - [Projects](/guides/generators/projects "Projects")
 - [Plugins](/guides/generators/plugins "Plugins")
 - [Controllers](/guides/generators/controllers "Controllers")
