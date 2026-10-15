@@ -86,7 +86,7 @@ The available components and their default options are listed below:
 
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
-server     | webrick | -s      | thin, **puma** (recommended), falcon (fiber-based, Ruby 3.0+), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
+server     | webrick | none    | thin, **puma** (recommended), falcon (fiber-based, Ruby 3.0+), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
 orm        | none    | -d      | mongoid, activerecord, minirecord, ohm, sequel, dynamoid
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, dojo
