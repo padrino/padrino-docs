@@ -157,13 +157,28 @@ rake ar:version                     # Retrieves the current schema version numbe
 
 ```shell
 rake sq:create              # Create the database
-rake sq:drop                # Drop the database (postgres and mysql only)
+rake sq:drop                # Drop the database
 rake sq:migrate             # Perform migration up to latest migration available
 rake sq:migrate:auto        # Perform automigration (reset your db data)
 rake sq:migrate:down        # Perform migration down (erase all data)
 rake sq:migrate:to[version] # Perform migration up/down to MIGRATION_VERSION
 rake sq:migrate:up          # Perform migration up to latest migration available
 rake sq:reset               # Drop the database, migrate from scratch and initialize with the seed data
+```
+
+`sq:create` and `sq:drop` work with Postgres, MySQL and SQLite. For Postgres and
+MySQL they connect to the database server with your app's connection settings
+and run `CREATE DATABASE` or `DROP DATABASE`, so they don't need `createdb`,
+`dropdb` or the `mysql` client installed, and they work when the server runs in
+a container. `sq:create` does nothing when the database already exists.
+
+To create a database that doesn't exist yet, your app must boot without
+connecting to it. Projects generated with `-d sequel` pass `test: false` to
+`Sequel.connect` in `config/database.rb` for this. In an older project, add it
+yourself:
+
+```ruby
+Sequel.connect('postgres://localhost/blog_development', loggers: [logger], test: false)
 ```
 
 --------------------------------------------------------------------------------
