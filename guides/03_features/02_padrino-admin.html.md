@@ -144,7 +144,7 @@ end
 ```
 
 In the above example, we _protect_ the entire admin section (all paths starting
-with "/") with the only exception for all those paths starting with `/sessions`
+with "/") with the only exception of `/sessions` and the paths under it,
 giving our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
@@ -171,8 +171,10 @@ inside the app, without its mount point (`/posts` for `/admin/posts`):
   `/posts_admin`. In another role's block, `protect` refuses the path to
   accounts of the other roles, not to visitors or to that role.
 - A logged-in account is refused the paths given to other roles, by the same
-  plain prefix, unless a `roles_for :any` rule allows them: in the example
-  above, an admin can't open `/posts_admin` either.
+  plain prefix, unless a `roles_for :any` rule or the account's own role
+  allows them: in the example above, an admin can't open `/posts_admin`
+  either. To give admins `/posts_admin`, allow it in `roles_for :admin`; an
+  allow in `roles_for :any` would also open it to visitors.
 - Strings are literal paths. To match a pattern, pass a Regexp; it matches
   from the start of the path, so end it with `\z` to match the whole path:
 
