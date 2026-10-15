@@ -7,7 +7,7 @@ title: Localization
 
 Padrino supports full localization in:
 
-- padrino-core (date formats, time formats etc ...)
+- padrino-support (date formats, time formats etc ...)
 - padrino-admin (admin language, orm fields, orm errors, etc ...)
 - padrino-helpers (currency, percentage, precision, duration etc ...)
 

@@ -165,12 +165,14 @@ inside the app, without its mount point (`/posts` for `/admin/posts`):
 - A String given to `allow` (or `project_module`) matches on a path boundary:
   `role.allow '/posts'` covers `/posts`, `/posts/1` and `/posts.json`, but
   not `/posts_admin`. Allow such paths with their own rule.
-- `protect` applies to visitors who aren't logged in. A String given to it
-  covers every path that starts with it, so `role.protect '/posts'` also
-  protects `/posts_admin`.
+- `protect` in a `roles_for :any` block applies to visitors who aren't
+  logged in; logged-in accounts skip it. A String given to it covers every
+  path that starts with it, so `role.protect '/posts'` also protects
+  `/posts_admin`. In another role's block, `protect` refuses the path to
+  accounts of the other roles, not to visitors or to that role.
 - A logged-in account is refused the paths given to other roles, by the same
-  plain prefix: if the admin role has `project_module :posts, '/posts'`, an
-  editor can't open `/posts_admin` either.
+  plain prefix, unless a `roles_for :any` rule allows them: in the example
+  above, an admin can't open `/posts_admin` either.
 - Strings are literal paths. To match a pattern, pass a Regexp; it matches
   from the start of the path, so end it with `\z` to match the whole path:
 
