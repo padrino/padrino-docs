@@ -10,10 +10,10 @@ Padrino application.
 
 Options   | Default | Aliases | Description
 --------- | ------- | ------- | ----------------------------------------------
-app       | nil     | -n      | specify the application
 root      | .       | -r      | specify the root destination path
-namespace |         | -n      | specify the name space of your padrino project
+app       | /app    | -a      | specify the application destination path
 destroy   | false   | -d      | removes all generated files
+namespace |         | -n      | specify the name space of your padrino project
 
 Run mailer generators from the root of a Padrino project, the folder that
 contains `config/boot.rb`. Unless you pass `-n`, they read the project namespace

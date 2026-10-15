@@ -16,6 +16,7 @@ root            | .       | -r      | specify the root destination path
 app             | .       | -a      | specify the application destination path
 skip\_migration | false   | -s      | skip migration generation
 destroy         | false   | -d      | removes all generated files
+force           | false   | -f      | generate the model even if a model with that name already exists
 
 Run model generators from the root of a Padrino project, the folder that
 contains `config/boot.rb`. They read project settings, such as the ORM and test
