@@ -88,9 +88,11 @@ describe 'the blog' do
 end
 ```
 
-URLs the app generates (`url`, `redirect url(...)`, form actions) still include
-the mount point, so a test that follows such a redirect needs
-`Padrino.application`.
+URLs the app generates (`url`, `redirect url(...)`, form actions) include the
+mount point only once `Padrino.application` has been built in the test process,
+since that is what gives each app its mount point. When you test an app on its
+own, call `Padrino.application` once in the test helper so the URLs are the same
+whichever tests run first.
 
 ## The test environment
 
@@ -142,7 +144,8 @@ it 'shows the posts of the current user' do
 end
 ```
 
-With mocha (`-m mocha`, which also works with RSpec):
+With mocha (`-m mocha`), shown here with minitest. In an RSpec project, write the
+check as `expect(last_response.body).to eq 'posts of alice'`:
 
 ```ruby
 it 'shows the posts of the current user' do

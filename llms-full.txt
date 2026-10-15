@@ -1761,11 +1761,13 @@ with "/") with the only exception for all those paths starting with `/sessions`
 giving our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
-If we are logged in as an **admin** (`account.role == 'admin'`) we will **only**
-have access to the `/settings` path.
+If we are logged in as an **admin** (`account.role == 'admin'`) we can open
+`/settings`, but not `/posts` or `/categories`, which belong to the editor role.
 
-If we are logged in as an **editor** (`account.role == 'editor'`) we will **only**
-have access to the `/posts` and `/categories` paths.
+If we are logged in as an **editor** (`account.role == 'editor'`) we can open
+`/posts` and `/categories`, but not `/settings`. Paths that no role lists, such
+as a custom page you haven't added to a module, are open to every logged-in
+account.
 
 ### How paths are matched
 
@@ -1776,16 +1778,20 @@ inside the app, without its mount point (`/posts` for `/admin/posts`):
 - A String given to `allow` (or `project_module`) matches on a path boundary:
   `role.allow '/posts'` covers `/posts`, `/posts/1` and `/posts.json`, but
   not `/posts_admin`. Allow such paths with their own rule.
-- A String given to `protect` covers every path that starts with it, so
-  `role.protect '/posts'` also protects `/posts_admin`.
+- `protect` applies to visitors who aren't logged in. A String given to it
+  covers every path that starts with it, so `role.protect '/posts'` also
+  protects `/posts_admin`.
+- A logged-in account is refused the paths given to other roles, by the same
+  plain prefix: if the admin role has `project_module :posts, '/posts'`, an
+  editor can't open `/posts_admin` either.
 - Strings are literal paths. To match a pattern, pass a Regexp; it matches
-  from the start of the path:
+  from the start of the path, so end it with `\z` to match the whole path:
 
 ```ruby
 access_control.roles_for :any do |role|
   role.protect '/'
   role.allow '/sessions'
-  role.allow %r{\A/posts/\d+}
+  role.allow %r{\A/posts/\d+\z}
 end
 ```
 
@@ -3304,9 +3310,11 @@ describe 'the blog' do
 end
 ```
 
-URLs the app generates (`url`, `redirect url(...)`, form actions) still include
-the mount point, so a test that follows such a redirect needs
-`Padrino.application`.
+URLs the app generates (`url`, `redirect url(...)`, form actions) include the
+mount point only once `Padrino.application` has been built in the test process,
+since that is what gives each app its mount point. When you test an app on its
+own, call `Padrino.application` once in the test helper so the URLs are the same
+whichever tests run first.
 
 ## The test environment
 
@@ -3358,7 +3366,8 @@ it 'shows the posts of the current user' do
 end
 ```
 
-With mocha (`-m mocha`, which also works with RSpec):
+With mocha (`-m mocha`), shown here with minitest. In an RSpec project, write the
+check as `expect(last_response.body).to eq 'posts of alice'`:
 
 ```ruby
 it 'shows the posts of the current user' do
