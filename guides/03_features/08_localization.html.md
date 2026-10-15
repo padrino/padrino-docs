@@ -170,7 +170,7 @@ column names of grids, forms, `error_messages` etc ...
 automatically translated:
 
 ```haml
--form_for :account, url(:accounts_create, :format => :js), :remote => true do |f|
+= form_for :account, url(:accounts_create, :format => :js), :remote => true do |f|
   %table
     %tr
       %td=f.label :name
