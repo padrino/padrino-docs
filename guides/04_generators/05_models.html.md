@@ -35,6 +35,16 @@ You can also specify desired fields to be contained within your `User` model:
 $ padrino g model User name:string age:integer email:string
 ```
 
+With ActiveRecord, a field can take a third segment: `index` adds an index on
+the column and `uniq` adds a unique index. A `references` (or `belongs_to`)
+field adds a `<name>_id` column, and takes the same segment:
+
+```shell
+$ padrino g model Post title:string slug:string:uniq user:references:index
+```
+
+The other ORMs ignore the third segment.
+
 The model generator will create multiple files within your application and based
 on your ORM component. Usually the model file will generate files similar to the
 following:

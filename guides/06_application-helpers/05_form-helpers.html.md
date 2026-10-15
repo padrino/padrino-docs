@@ -34,6 +34,8 @@ building forms. A simple example of constructing a non-object form would be:
 - `form_tag(url, options = {}, &block)`
   - Constructs a form without object based on options
   - Supports form methods 'put' and 'delete' through hidden field
+  - Writes `#` as the action for a URL whose scheme isn't http, https, mailto,
+    tel or ftp (such as `javascript:`), like `link_to`
   - `form_tag('/register', class: 'example') { ... }`
 - `field_set_tag(*args, &block)`
   - Constructs a `fieldset` to group fields with given options

@@ -144,15 +144,64 @@ end
 ```
 
 In the above example, we _protect_ the entire admin section (all paths starting
-with "/") with the only exception for all those paths starting with `/sessions`
+with "/") with the only exception of `/sessions` and the paths under it,
 giving our `unauthenticated` users the possibility to log in by redirecting them
 to our login page and asking them to provide their email and password.
 
-If we are logged in as an **admin** (`account.role == 'admin'`) we will **only**
-have access to the `/settings` path.
+If we are logged in as an **admin** (`account.role == 'admin'`) we can open
+`/settings`, but not `/posts` or `/categories`, which belong to the editor role.
 
-If we are logged in as an **editor** (`account.role == 'editor'`) we will **only**
-have access to the `/posts` and `/categories` paths.
+If we are logged in as an **editor** (`account.role == 'editor'`) we can open
+`/posts` and `/categories`, but not `/settings`. Paths that no role lists, such
+as a custom page you haven't added to a module, are open to every logged-in
+account.
+
+### How paths are matched
+
+`allow`, `protect` and `project_module` are checked against the request path
+inside the app, without its mount point (`/posts` for `/admin/posts`):
+
+- The path is percent-decoded first, so `/%70osts` is checked as `/posts`.
+- A String given to `allow` (or `project_module`) matches on a path boundary:
+  `role.allow '/posts'` covers `/posts`, `/posts/1` and `/posts.json`, but
+  not `/posts_admin`. Allow such paths with their own rule.
+- `protect` in a `roles_for :any` block applies to visitors who aren't
+  logged in; logged-in accounts skip it. A String given to it covers every
+  path that starts with it, so `role.protect '/posts'` also protects
+  `/posts_admin`. In another role's block, `protect` refuses the path to
+  accounts of the other roles, not to visitors or to that role.
+- A logged-in account is refused the paths given to other roles, by the same
+  plain prefix, unless a `roles_for :any` rule or the account's own role
+  allows them: in the example above, an admin can't open `/posts_admin`
+  either. To give admins `/posts_admin`, allow it in `roles_for :admin`; an
+  allow in `roles_for :any` would also open it to visitors.
+- Strings are literal paths. To match a pattern, pass a Regexp; it matches
+  from the start of the path, so end it with `\z` to match the whole path:
+
+```ruby
+access_control.roles_for :any do |role|
+  role.protect '/'
+  role.allow '/sessions'
+  role.allow %r{\A/posts/\d+\z}
+end
+```
+
+--------------------------------------------------------------------------------
+
+## Custom Admin Pages and Bootstrap
+
+Admins generated with `padrino g admin` use Bootstrap 3.1 with jQuery 3.7.1.
+With this jQuery, a Bootstrap collapse, tab, modal or alert link with a bare
+`href="#"` raises a JavaScript error and does nothing. Give it a `data-target`
+that names its element instead:
+
+```html
+<!-- doesn't work with jQuery 3 -->
+<a data-toggle="collapse" href="#">Filters</a>
+<!-- works -->
+<a data-toggle="collapse" href="#" data-target="#filters">Filters</a>
+<div id="filters" class="collapse">...</div>
+```
 
 --------------------------------------------------------------------------------
 

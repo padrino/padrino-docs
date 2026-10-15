@@ -7,11 +7,11 @@ title: Localization
 
 Padrino supports full localization in:
 
-- padrino-core (date formats, time formats etc ...)
+- padrino-support (date formats, time formats etc ...)
 - padrino-admin (admin language, orm fields, orm errors, etc ...)
 - padrino-helpers (currency, percentage, precision, duration etc ...)
 
-At the moment we support the following list of languages:
+Each of them ships translations for these 21 languages:
 
 - Czech
 - Danish
@@ -27,6 +27,10 @@ At the moment we support the following list of languages:
 - Brazilian Portuguese
 - Turkish
 - Ukrainian
+- Hungarian
+- Latvian
+- Romanian
+- Swedish
 - Traditional Chinese
 - Simplified Chinese
 - Japanese
@@ -37,10 +41,10 @@ At the moment we support the following list of languages:
 
 Download and translate these files:
 
-- [padrino-core.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-support/lib/padrino-support/locale/en.yml)
+- [padrino-support.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-support/lib/padrino-support/locale/en.yml)
 - [padrino-admin.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/admin/en.yml)
 - [padrino-admin-orm.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/orm/en.yml)
-- [padrino-helper.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-helpers/lib/padrino-helpers/locale/en.yml)
+- [padrino-helpers.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-helpers/lib/padrino-helpers/locale/en.yml)
 
 Then add each translated file next to the original, in the same `locale` folder of
 [padrino-framework](https://github.com/padrino/padrino-framework), and open a pull request.
