@@ -104,3 +104,6 @@ If a proxy or load balancer handles TLS and talks to the app over HTTP, it must
 send the `X-Forwarded-Proto: https` header so that Rack sees the request as
 HTTPS. A production app served over plain HTTP, such as `padrino s -e production`
 on your own machine, needs `secure: false`.
+
+The apps of a project share one session cookie, so give each of them the same
+`secure:` setting: an app without it rewrites the cookie without the flag.
