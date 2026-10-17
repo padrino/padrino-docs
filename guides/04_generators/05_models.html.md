@@ -45,7 +45,7 @@ A field can take modifiers after its type, in any order:
 
 ```shell
 $ padrino g model Post title:string slug:string:uniq user:references:index
-$ padrino g model Comment body:text commentable:references:polymorphic:uniq
+$ padrino g model Comment body:text commentable:references:polymorphic:index
 ```
 
 With ActiveRecord and Sequel the modifiers go in the migration. Sequel makes a

@@ -45,7 +45,7 @@ Rolling the migration back removes the columns and their indexes:
 
 ```shell
 $ padrino g migration AddFieldsToPosts slug:string:uniq author:references:index
-$ padrino g migration AddOwnerToComments owner:belongs_to:polymorphic:uniq
+$ padrino g migration AddOwnerToProfiles owner:belongs_to:polymorphic:uniq
 ```
 
 You can destroy migrations that you created via the destroy option and setting
