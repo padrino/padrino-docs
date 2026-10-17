@@ -35,15 +35,25 @@ You can also specify desired fields to be contained within your `User` model:
 $ padrino g model User name:string age:integer email:string
 ```
 
-With ActiveRecord, a field can take a third segment: `index` adds an index on
-the column and `uniq` adds a unique index. A `references` (or `belongs_to`)
-field adds a `<name>_id` column, and takes the same segment:
+A field can take modifiers after its type, in any order:
+
+- `index` adds an index on the column, and `uniq` adds a unique index. Given
+  both, the column gets one unique index.
+- A `references` (or `belongs_to`) field adds a `<name>_id` column. With
+  `polymorphic` it also adds a `<name>_type` column, so the field can point at
+  more than one model.
 
 ```shell
 $ padrino g model Post title:string slug:string:uniq user:references:index
+$ padrino g model Comment body:text commentable:references:polymorphic:uniq
 ```
 
-The other ORMs ignore the third segment.
+With ActiveRecord and Sequel the modifiers go in the migration. Sequel makes a
+`references` field a foreign key to the pluralized table, with an index; a
+polymorphic one gets an index on both columns and no foreign key. With Mongoid,
+which has no migrations, a `references` field becomes a `belongs_to`
+association in the model, and `index` and `uniq` are ignored. Other modifiers
+are ignored.
 
 The model generator will create multiple files within your application and based
 on your ORM component. Usually the model file will generate files similar to the
