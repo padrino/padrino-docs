@@ -22,8 +22,8 @@ Show help and selected components:
 $ padrino g component
 ```
 
-Add to `minirecord` with `mysql` and `rspec` in your project:
+Add to `activerecord` with `mysql` and `rspec` in your project:
 
 ```shell
-$ padrino g component -d minirecord -a mysql2 -t rspec
+$ padrino g component -d activerecord -a mysql2 -t rspec
 ```

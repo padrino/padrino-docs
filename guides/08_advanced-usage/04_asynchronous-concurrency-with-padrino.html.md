@@ -65,11 +65,11 @@ When the project uses Falcon, the ORM generators add a fiber setting to
 `config/database.rb`, both for `padrino g project --server=falcon` and when you
 add an ORM later with `padrino g component`:
 
-ORM                       | Setting
-------------------------- | -------------------------------------------------------------
-Sequel                    | `Sequel.extension :fiber_concurrency`
-Active Record, MiniRecord | `ActiveSupport::IsolatedExecutionState.isolation_level = :fiber`
-Mongoid                   | `Mongoid::Config.isolation_level = :fiber` (Mongoid 9.1+, Ruby 3.2+)
+ORM           | Setting
+------------- | -------------------------------------------------------------
+Sequel        | `Sequel.extension :fiber_concurrency`
+Active Record | `ActiveSupport::IsolatedExecutionState.isolation_level = :fiber`
+Mongoid       | `Mongoid::Config.isolation_level = :fiber` (Mongoid 9.1+, Ruby 3.2+)
 
 This keeps database connections and ORM state per request instead of per
 thread.
