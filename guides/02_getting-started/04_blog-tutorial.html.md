@@ -255,10 +255,10 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.17.0 has taken the stage development at http://127.0.0.1:3000
-[2026-10-15 06:27:18] INFO  WEBrick 1.9.2
-[2026-10-15 06:27:18] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
-[2026-10-15 06:27:18] INFO  Rackup::Handler::WEBrick::Server#start: pid=15883 port=3000
+=> Padrino/0.18.0 has taken the stage development at http://127.0.0.1:3000
+[2026-10-31 01:57:31] INFO  WEBrick 1.9.2
+[2026-10-31 01:57:31] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
+[2026-10-31 01:57:31] INFO  Rackup::Handler::WEBrick::Server#start: pid=862 port=3000
 ```
 
 
