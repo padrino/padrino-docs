@@ -619,9 +619,7 @@ name of your ORM:
 ```shell
 $ padrino g project your_project -d mongoid
 $ padrino g project your_project -d activerecord
-$ padrino g project your_project -d ohm
 $ padrino g project your_project -d sequel
-$ padrino g project your_project -d dynamoid
 ```
 
 For the SQL-based persistence engines, you can even specify the RDBMS adapter to
@@ -634,7 +632,7 @@ $ padrino g project your_project -d sequel       -a sqlite   # Uses Sequel and S
 ```
 
 The adapters currently supported are `sqlite`, `mysql`, and `postgres` for use
-with `activerecord`, `minirecord`, or `sequel`.
+with `activerecord` or `sequel`.
 
 --------------------------------------------------------------------------------
 
@@ -997,7 +995,7 @@ module BlogTutorial
     register Padrino::Mailer
     register Padrino::Helpers
 
-    set :sessions, same_site: :lax
+    set :sessions, same_site: :lax, secure: Padrino.env == :production
 
     # Here are the defined routes
     get "/" do
@@ -1623,7 +1621,7 @@ following features:
 
 Feature               | Description
 --------------------- | ------------------------------------------------------------------------------
-**Orm Agnostic**      | Adapters for activerecord, minirecord, sequel, mongoid, ohm, dynamoid
+**Orm Agnostic**      | Adapters for activerecord, sequel, mongoid
 **Authentication**    | User Authentication Support, User Authorization Management
 **Template Agnostic** | ERB, Haml and Slim Rendering Support
 **Scaffold**          | You can create a new "admin interface" by providing a single Model
@@ -1827,12 +1825,12 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 
 ## Contributing Persistence Adapters
 
-If you are planning to use padrino with other adapters rather than the currently
-supported ones, and you want to contribute to the project by extending its
-support with additional adapters like [ohm](https://github.com/soveran/ohm
-"ohm"), [ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver") and
-so on, be sure to check out the
-[adding components](/guides/adding-components/overview "adding components")
+If you are planning to use padrino with an adapter other than the currently
+supported ones (activerecord, sequel and mongoid), such as
+[ohm](https://github.com/soveran/ohm "ohm") or
+[ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver"), and you
+want to contribute to the project by adding support for it, be sure to check
+out the [adding components](/guides/adding-components/overview "adding components")
 guide.
 
 ---
@@ -3151,6 +3149,7 @@ rake ar:create                      # Creates the database defined in config/dat
 rake ar:create:all                  # Create all the local databases defined in config/database.yml
 rake ar:drop                        # Drops the database for the current Padrino.env
 rake ar:drop:all                    # Drops all the local databases defined in config/database.yml
+rake ar:dump                        # Dump the database data to a SQL file (FILE=path, default tmp/<env>_dump.sql)
 rake ar:forward                     # Pushes the schema to the next version
 rake ar:migrate                     # Migrate the database through scripts in db/migrate and update db/schema.rb by invoking ar:schema:dump
 rake ar:migrate:down                # Runs the 'down' for a given MIGRATION_VERSION
@@ -3173,13 +3172,29 @@ rake ar:version                     # Retrieves the current schema version numbe
 
 ```shell
 rake sq:create              # Create the database
-rake sq:drop                # Drop the database (postgres and mysql only)
+rake sq:drop                # Drop the database
+rake sq:dump                # Dump the database data to a SQL file (FILE=path, default tmp/<env>_dump.sql)
 rake sq:migrate             # Perform migration up to latest migration available
 rake sq:migrate:auto        # Perform automigration (reset your db data)
 rake sq:migrate:down        # Perform migration down (erase all data)
 rake sq:migrate:to[version] # Perform migration up/down to MIGRATION_VERSION
 rake sq:migrate:up          # Perform migration up to latest migration available
 rake sq:reset               # Drop the database, migrate from scratch and initialize with the seed data
+```
+
+`sq:create` and `sq:drop` work with Postgres, MySQL and SQLite. For Postgres and
+MySQL they connect to the database server with your app's connection settings
+and run `CREATE DATABASE` or `DROP DATABASE`, so they don't need `createdb`,
+`dropdb` or the `mysql` client installed, and they work when the server runs in
+a container. `sq:create` does nothing when the database already exists.
+
+To create a database that doesn't exist yet, your app must boot without
+connecting to it. Projects generated with `-d sequel` pass `test: false` to
+`Sequel.connect` in `config/database.rb` for this. In an older project, add it
+yourself:
+
+```ruby
+Sequel.connect('postgres://localhost/blog_development', loggers: [logger], test: false)
 ```
 
 --------------------------------------------------------------------------------
@@ -3193,6 +3208,29 @@ rake mi:drop                    # Drops all the collections for the database for
 rake mi:objectid_convert        # Convert string objectids in mongo database to ObjectID type
 rake mi:translate               # Generates .yml files for I18n translations
 ```
+
+--------------------------------------------------------------------------------
+
+## Dumping Data
+
+`db:dump` (`ar:dump` with ActiveRecord, `sq:dump` with Sequel) writes the schema
+and data of the current `Padrino.env` database to `tmp/<env>_dump.sql`, using the
+database's own tool: `pg_dump` for Postgres, `mysqldump` for MySQL and `sqlite3`
+for SQLite. That tool must be on your `PATH`. When the database server runs in a
+container, run the tool inside the container instead.
+
+```shell
+$ padrino rake db:dump                      # => tmp/development_dump.sql
+$ padrino rake db:dump -e production        # => tmp/production_dump.sql
+$ padrino rake db:dump FILE=backups/blog.sql
+```
+
+Generated projects ignore `tmp/` in `.gitignore`, so a dump is not committed by
+accident. The password reaches the tool through `PGPASSWORD` or `MYSQL_PWD`, not
+the command line. A dump that fails leaves no partial file and keeps an earlier
+dump at the same path. When an ActiveRecord environment has several databases,
+each one goes to `tmp/<env>_<name>_dump.sql`, and `FILE=` is refused. Mongoid
+projects have no dump task yet.
 
 --------------------------------------------------------------------------------
 
@@ -3509,11 +3547,11 @@ The available components and their default options are listed below:
 Component  | Default | Aliases | Options
 ---------- | ------- | ------- | ---------------------------------------------------------------------------------------
 server     | webrick | none    | thin, **puma** (recommended), falcon (fiber-based, Ruby 3.0+), spider-gazelle (unmaintained), mongrel (unmaintained), trinidad, webrick
-orm        | none    | -d      | mongoid, activerecord, minirecord, ohm, sequel, dynamoid
+orm        | none    | -d      | mongoid, activerecord, sequel
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, dojo, vite
 renderer   | none    | -e      | erb, haml, slim, liquid
-stylesheet | none    | -c      | sass, less, scss, tailwind
+stylesheet | none    | -c      | sass, scss, tailwind
 mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your
@@ -3838,15 +3876,25 @@ You can also specify desired fields to be contained within your `User` model:
 $ padrino g model User name:string age:integer email:string
 ```
 
-With ActiveRecord, a field can take a third segment: `index` adds an index on
-the column and `uniq` adds a unique index. A `references` (or `belongs_to`)
-field adds a `<name>_id` column, and takes the same segment:
+A field can take modifiers after its type, in any order:
+
+- `index` adds an index on the column, and `uniq` adds a unique index. Given
+  both, the column gets one unique index.
+- A `references` (or `belongs_to`) field adds a `<name>_id` column. With
+  `polymorphic` it also adds a `<name>_type` column, so the field can point at
+  more than one model.
 
 ```shell
 $ padrino g model Post title:string slug:string:uniq user:references:index
+$ padrino g model Comment body:text commentable:references:polymorphic:index
 ```
 
-The other ORMs ignore the third segment.
+With ActiveRecord and Sequel the modifiers go in the migration. Sequel makes a
+`references` field a foreign key to the pluralized table, with an index; a
+polymorphic one gets an index on both columns and no foreign key. With Mongoid,
+which has no migrations, a `references` field becomes a `belongs_to`
+association in the model, and `index` and `uniq` are ignored. Other modifiers
+are ignored.
 
 The model generator will create multiple files within your application and based
 on your ORM component. Usually the model file will generate files similar to the
@@ -3906,13 +3954,15 @@ The migration generator will then construct the migration file according to your
 ORM component chosen within `db/migrate/xxx_add_fields_to_users.rb` including
 the columns specified in the command.
 
-With ActiveRecord, a column can take a third segment, `index` or `uniq`, to add
-an index or a unique index, and `references` (or `belongs_to`) adds a
-`<name>_id` column. Rolling the migration back removes the columns and their
-indexes:
+With ActiveRecord and Sequel, a column takes the same modifiers as in the
+[model generator](/guides/generators/models/), in any order: `index` or `uniq`
+adds an index or a unique index, `references` (or `belongs_to`) adds a
+`<name>_id` column, and `polymorphic` adds a `<name>_type` column next to it.
+Rolling the migration back removes the columns and their indexes:
 
 ```shell
 $ padrino g migration AddFieldsToPosts slug:string:uniq author:references:index
+$ padrino g migration AddOwnerToProfiles owner:belongs_to:polymorphic:uniq
 ```
 
 You can destroy migrations that you created via the destroy option and setting
@@ -4098,10 +4148,10 @@ Show help and selected components:
 $ padrino g component
 ```
 
-Add to `minirecord` with `mysql` and `rspec` in your project:
+Add to `activerecord` with `mysql` and `rspec` in your project:
 
 ```shell
-$ padrino g component -d minirecord -a mysql2 -t rspec
+$ padrino g component -d activerecord -a mysql2 -t rspec
 ```
 
 ---
@@ -4800,19 +4850,20 @@ Use `set :sessions` in place of `enable :sessions`, not after it: a later
 `secure: true` tells the browser to send the cookie only over HTTPS. Rack also
 skips saving the session when it sees a plain HTTP request, so over HTTP every
 request starts with an empty session, and logins and CSRF tokens stop working.
-Turn it on only where the site is served over HTTPS, for example in production:
+Turn it on only where the site is served over HTTPS. Apps generated by Padrino
+turn it on in production:
 
 ```ruby
-set :sessions, same_site: :lax
-
-configure :production do
-  set :sessions, same_site: :lax, secure: true
-end
+set :sessions, same_site: :lax, secure: Padrino.env == :production
 ```
 
 If a proxy or load balancer handles TLS and talks to the app over HTTP, it must
 send the `X-Forwarded-Proto: https` header so that Rack sees the request as
-HTTPS.
+HTTPS. A production app served over plain HTTP, such as `padrino s -e production`
+on your own machine, needs `secure: false`.
+
+The apps of a project share one session cookie, so give each of them the same
+`secure:` setting: an app without it rewrites the cookie without the flag.
 
 ---
 
@@ -4852,9 +4903,10 @@ end
 ```
 
 The token lives in the session, so CSRF protection needs sessions. Generated
-apps turn them on with `set :sessions, same_site: :lax`. If sessions are off,
-Padrino prints a warning and every request, GETs included, is rejected with
-`403 Forbidden`.
+apps turn them on with
+`set :sessions, same_site: :lax, secure: Padrino.env == :production`. If
+sessions are off, Padrino prints a warning and every request, GETs included, is
+rejected with `403 Forbidden`.
 
 To use another session store, pass it to the `sessions` setting so that Padrino
 adds it before the CSRF check:
@@ -5972,8 +6024,8 @@ An ORM component defines four methods:
   `padrino g migration`.
 
 The model and migration generators call all of these, so define each one. An
-ORM without migrations leaves the last two empty, as the Mongoid and Ohm
-components do.
+ORM without migrations leaves the last two empty, as the Mongoid component
+does.
 
 Here is the Sequel component,
 [padrino-gen/generators/components/orms/sequel.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/orms/sequel.rb):
@@ -6164,11 +6216,11 @@ also work with Padrino Admin, so that `padrino g admin` and
 ## Padrino Admin Support
 
 First, add `:myorm` to the list returned by `supported_orm` in
-[padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/actions.rb#L29-L31).
+[padrino-admin/generators/actions.rb](https://github.com/padrino/padrino-framework/blob/f64b4c3ffc1e1e2febbb66007ac3016cc617530b/padrino-admin/lib/padrino-admin/generators/actions.rb#L29-L31).
 `padrino g admin` refuses to run for an ORM that isn't in this list.
 
 Next, teach the `Orm` class in
-[padrino-admin/generators/orm.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-admin/lib/padrino-admin/generators/orm.rb)
+[padrino-admin/generators/orm.rb](https://github.com/padrino/padrino-framework/blob/f64b4c3ffc1e1e2febbb66007ac3016cc617530b/padrino-admin/lib/padrino-admin/generators/orm.rb)
 how to talk to your models. The admin controller and view templates call its
 methods to get the Ruby code they write out. Most of them branch on the ORM
 name. These are the Sequel branches:
@@ -6189,7 +6241,7 @@ end
 def find(params = nil)
   case orm
   # ...truncated...
-  when :sequel, :ohm then "#{klass_name}[#{params}]"
+  when :sequel then "#{klass_name}[#{params}]"
   else raise OrmError, "Adapter #{orm} is not yet supported!"
   end
 end
@@ -6752,72 +6804,78 @@ crediting you for the contribution!
 # Stylesheet Engine
 
 Contributing an additional stylesheet engine to Padrino is actually quite
-straightforward. For this guide, let's assume we want to add
-[Less](http://lesscss.org) as a stylesheet engine component integrated into
-Padrino.
+straightforward. For this guide, let's look at how the `sass` component is
+integrated into Padrino; a new engine follows the same steps.
 
 ## Generators
 
-First, let's define the actual integration of the stylesheet engine into the
-generator in
-[padrino-gen/generators/components/stylesheets/less.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb):
+Every file in `padrino-gen/lib/padrino-gen/generators/components/stylesheets/`
+is a choice for `--stylesheet`, named after the file. There's no list of
+components to edit: adding `stylesheets/myengine.rb` is enough for
+`padrino g project --stylesheet=myengine` and, in an existing project,
+`padrino g component --stylesheet=myengine`. Both read the file and then
+[call its `setup_stylesheet` method](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/actions.rb#L41-L46).
+
+Here is the integration of Sass into the generator, in
+[padrino-gen/generators/components/stylesheets/sass.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/stylesheets/sass.rb):
 
 ```ruby
-# padrino-gen/lib/padrino-gen/generators/components/stylesheets/less.rb
+# padrino-gen/lib/padrino-gen/generators/components/stylesheets/sass.rb
 
-LESS_INIT = <<-LESS unless defined?(LESS_INIT)
-    # Enables support for Less template reloading for rack.
-    # Store Less files by default within 'app/stylesheets/'.
-    # See http://github.com/kelredd/rack-less for more details.
-    require 'rack/less'
-    # optional - use as necessary
-    Rack::Less.configure do |config|
-      config.compress = true
-      # config.cache = true
-      # other configs ...
-    end
-    app.use Rack::Less,
-      :root      => Padrino.root,
-      :source    => 'app/stylesheets',
-      :public    => 'public',
-      :hosted_at => 'stylesheets'
-LESS
+SASS_INIT = <<-SASS unless defined?(SASS_INIT)
+    # Enables support for SASS template reloading in rack applications.
+    # See http://nex-3.com/posts/88-sass-supports-rack for more details.
+    # Store SASS files (by default) within 'app/stylesheets'.
+    require 'sass/plugin/rack'
+    Sass::Plugin.options[:template_location] = Padrino.root("app/stylesheets")
+    Sass::Plugin.options[:css_location] = Padrino.root("public/stylesheets")
+    app.use Sass::Plugin::Rack
+SASS
 
 def setup_stylesheet
-  require_dependencies 'less'
-  require_dependencies 'rack-less'
-  require_dependencies 'therubyracer'
-  initializer :less, LESS_INIT
+  require_dependencies 'sass'
+  initializer :sass, SASS_INIT.chomp
   empty_directory destination_root('/app/stylesheets')
 end
 ```
 
+`require_dependencies` adds the gem to the project's `Gemfile`.
+[`initializer`](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/actions.rb#L426-L431)
+writes `config/initializers/sass.rb` with a `SassInitializer` module whose
+`registered` hook runs the code in `SASS_INIT`, and adds
+`register SassInitializer` to `app/app.rb`. Sass compiles the files in
+`app/stylesheets` to `public/stylesheets` as requests come in, so the last line
+creates `app/stylesheets` for the source files.
+
 ## Tests
 
-Let's also add a test to ensure the new stylesheet engine component generates as
+Let's also add a test to ensure the stylesheet engine component generates as
 expected in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L748-L754):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L739-L746):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
-it 'should properly generate for less' do
-  capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--renderer=haml','--script=none','--stylesheet=less') }
-  assert_match_in_file(/gem 'rack-less'/, "#{@apptmp}/sample_project/Gemfile")
-  assert_match_in_file(/module LessInitializer.*Rack::Less/m, "#{@apptmp}/sample_project/lib/less_initializer.rb")
-  assert_match_in_file(/register LessInitializer/m, "#{@apptmp}/sample_project/app/app.rb")
-  assert_dir_exists("#{@apptmp}/sample_project/app/stylesheets")
+describe 'the generator for stylesheet component' do
+  it 'should properly generate for sass' do
+    capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--renderer=haml', '--script=none', '--stylesheet=sass') }
+    assert_match_in_file(/gem 'sass'/, "#{@apptmp}/sample_project/Gemfile")
+    assert_match_in_file(/module SassInitializer.*Sass::Plugin::Rack/m, "#{@apptmp}/sample_project/config/initializers/sass.rb")
+    assert_match_in_file(/register SassInitializer/m, "#{@apptmp}/sample_project/app/app.rb")
+    assert_dir_exists("#{@apptmp}/sample_project/app/stylesheets")
+  end
+  ...
 end
 ```
 
 ## README
 
-Finally, let's update the README for `padrino-gen` to reflect the new component
+Finally, let's update the README for `padrino-gen` to list the component
 in
 [padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 
 ```ruby
 # padrino-gen/README.rdoc
-stylesheet:: none (default), less, sass, scss
+stylesheet:: none  (default), tailwind, sass, scss
 ```
 
 ## Contribute to Padrino
@@ -7079,11 +7137,11 @@ When the project uses Falcon, the ORM generators add a fiber setting to
 `config/database.rb`, both for `padrino g project --server=falcon` and when you
 add an ORM later with `padrino g component`:
 
-ORM                       | Setting
-------------------------- | -------------------------------------------------------------
-Sequel                    | `Sequel.extension :fiber_concurrency`
-Active Record, MiniRecord | `ActiveSupport::IsolatedExecutionState.isolation_level = :fiber`
-Mongoid                   | `Mongoid::Config.isolation_level = :fiber` (Mongoid 9.1+, Ruby 3.2+)
+ORM           | Setting
+------------- | -------------------------------------------------------------
+Sequel        | `Sequel.extension :fiber_concurrency`
+Active Record | `ActiveSupport::IsolatedExecutionState.isolation_level = :fiber`
+Mongoid       | `Mongoid::Config.isolation_level = :fiber` (Mongoid 9.1+, Ruby 3.2+)
 
 This keeps database connections and ORM state per request instead of per
 thread.
@@ -7742,8 +7800,10 @@ The secret must be at least 64 bytes long. Generate one with:
 $ ruby -rsecurerandom -e 'puts SecureRandom.hex(64)'
 ```
 
-If the site is served over HTTPS, also mark the session cookie as secure. See
-[Sessions](/guides/controllers/sessions "Sessions").
+Generated apps mark the session cookie Secure in production, so the app must
+see requests as HTTPS. Behind a proxy or load balancer that terminates TLS, have
+it send the `X-Forwarded-Proto: https` header; a site served over plain HTTP
+needs `secure: false`. See [Sessions](/guides/controllers/sessions "Sessions").
 
 ## Database
 

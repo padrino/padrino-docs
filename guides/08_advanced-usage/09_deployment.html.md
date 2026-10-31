@@ -73,8 +73,10 @@ The secret must be at least 64 bytes long. Generate one with:
 $ ruby -rsecurerandom -e 'puts SecureRandom.hex(64)'
 ```
 
-If the site is served over HTTPS, also mark the session cookie as secure. See
-[Sessions](/guides/controllers/sessions "Sessions").
+Generated apps mark the session cookie Secure in production, so the app must
+see requests as HTTPS. Behind a proxy or load balancer that terminates TLS, have
+it send the `X-Forwarded-Proto: https` header; a site served over plain HTTP
+needs `secure: false`. See [Sessions](/guides/controllers/sessions "Sessions").
 
 ## Database
 

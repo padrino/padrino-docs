@@ -37,13 +37,15 @@ The migration generator will then construct the migration file according to your
 ORM component chosen within `db/migrate/xxx_add_fields_to_users.rb` including
 the columns specified in the command.
 
-With ActiveRecord, a column can take a third segment, `index` or `uniq`, to add
-an index or a unique index, and `references` (or `belongs_to`) adds a
-`<name>_id` column. Rolling the migration back removes the columns and their
-indexes:
+With ActiveRecord and Sequel, a column takes the same modifiers as in the
+[model generator](/guides/generators/models/), in any order: `index` or `uniq`
+adds an index or a unique index, `references` (or `belongs_to`) adds a
+`<name>_id` column, and `polymorphic` adds a `<name>_type` column next to it.
+Rolling the migration back removes the columns and their indexes:
 
 ```shell
 $ padrino g migration AddFieldsToPosts slug:string:uniq author:references:index
+$ padrino g migration AddOwnerToProfiles owner:belongs_to:polymorphic:uniq
 ```
 
 You can destroy migrations that you created via the destroy option and setting
