@@ -55,14 +55,15 @@ For threads, workers and processes, see
 
 Anyone with the session secret can forge session cookies, so production needs
 its own. Projects generated with Padrino 0.18.0 or later read it from the
-`SESSION_SECRET` environment variable, and fall back to the random value
-written into `config/apps.rb`:
+`SESSION_SECRET` environment variable, and fall back to the value written into
+`config/apps.rb` when the project was generated:
 
 ```ruby
 set :session_secret, ENV.fetch('SESSION_SECRET') { '...' } # the generated value
 ```
 
-Set `SESSION_SECRET` on the server. Older projects get only the random value in
+Set `SESSION_SECRET` on the server. If it is set but empty or shorter than 64
+bytes, every request fails. Older projects have only the random value in
 `config/apps.rb`, so don't use that committed value in production. Read it
 from the environment instead:
 
