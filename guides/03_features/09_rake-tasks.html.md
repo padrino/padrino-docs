@@ -135,6 +135,7 @@ rake ar:create                      # Creates the database defined in config/dat
 rake ar:create:all                  # Create all the local databases defined in config/database.yml
 rake ar:drop                        # Drops the database for the current Padrino.env
 rake ar:drop:all                    # Drops all the local databases defined in config/database.yml
+rake ar:dump                        # Dump the database data to a SQL file (FILE=path, default tmp/<env>_dump.sql)
 rake ar:forward                     # Pushes the schema to the next version
 rake ar:migrate                     # Migrate the database through scripts in db/migrate and update db/schema.rb by invoking ar:schema:dump
 rake ar:migrate:down                # Runs the 'down' for a given MIGRATION_VERSION
@@ -158,6 +159,7 @@ rake ar:version                     # Retrieves the current schema version numbe
 ```shell
 rake sq:create              # Create the database
 rake sq:drop                # Drop the database
+rake sq:dump                # Dump the database data to a SQL file (FILE=path, default tmp/<env>_dump.sql)
 rake sq:migrate             # Perform migration up to latest migration available
 rake sq:migrate:auto        # Perform automigration (reset your db data)
 rake sq:migrate:down        # Perform migration down (erase all data)
@@ -192,6 +194,29 @@ rake mi:drop                    # Drops all the collections for the database for
 rake mi:objectid_convert        # Convert string objectids in mongo database to ObjectID type
 rake mi:translate               # Generates .yml files for I18n translations
 ```
+
+--------------------------------------------------------------------------------
+
+## Dumping Data
+
+`db:dump` (`ar:dump` with ActiveRecord, `sq:dump` with Sequel) writes the schema
+and data of the current `Padrino.env` database to `tmp/<env>_dump.sql`, using the
+database's own tool: `pg_dump` for Postgres, `mysqldump` for MySQL and `sqlite3`
+for SQLite. That tool must be on your `PATH`. When the database server runs in a
+container, run the tool inside the container instead.
+
+```shell
+$ padrino rake db:dump                      # => tmp/development_dump.sql
+$ padrino rake db:dump -e production        # => tmp/production_dump.sql
+$ padrino rake db:dump FILE=backups/blog.sql
+```
+
+Generated projects ignore `tmp/` in `.gitignore`, so a dump is not committed by
+accident. The password reaches the tool through `PGPASSWORD` or `MYSQL_PWD`, not
+the command line. A dump that fails leaves no partial file and keeps an earlier
+dump at the same path. When an ActiveRecord environment has several databases,
+each one goes to `tmp/<env>_<name>_dump.sql`, and `FILE=` is refused. Mongoid
+projects have no dump task yet.
 
 --------------------------------------------------------------------------------
 
