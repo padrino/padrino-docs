@@ -37,9 +37,10 @@ end
 ```
 
 The token lives in the session, so CSRF protection needs sessions. Generated
-apps turn them on with `set :sessions, same_site: :lax`. If sessions are off,
-Padrino prints a warning and every request, GETs included, is rejected with
-`403 Forbidden`.
+apps turn them on with
+`set :sessions, same_site: :lax, secure: Padrino.env == :production`. If
+sessions are off, Padrino prints a warning and every request, GETs included, is
+rejected with `403 Forbidden`.
 
 To use another session store, pass it to the `sessions` setting so that Padrino
 adds it before the CSRF check:

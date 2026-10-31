@@ -179,7 +179,7 @@ module BlogTutorial
     register Padrino::Mailer
     register Padrino::Helpers
 
-    set :sessions, same_site: :lax
+    set :sessions, same_site: :lax, secure: Padrino.env == :production
 
     # Here are the defined routes
     get "/" do
