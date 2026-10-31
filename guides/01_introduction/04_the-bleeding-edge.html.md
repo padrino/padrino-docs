@@ -70,7 +70,7 @@ Next, we should mark the version as dev(elopment) to get a fresh set of gems:
 ```ruby
 # /tmp/padrino-framework/padrino-core/lib/padrino-core/version.rb
 module Padrino
-  VERSION = '0.17.0' unless defined?(Padrino::VERSION) # Change to bump version
+  VERSION = '0.18.0' unless defined?(Padrino::VERSION) # Change to bump version
   #...
 end
 ```
@@ -80,11 +80,11 @@ Finally, run the `fresh` rake command to install the latest version:
 ```shell
 padrino-framework$ rake fresh
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-support 0.17.0 built to pkg/padrino-support-0.17.0.gem.
-  padrino-support (0.17.0) installed.
+  padrino-support 0.18.0 built to pkg/padrino-support-0.18.0.gem.
+  padrino-support (0.18.0) installed.
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-core 0.17.0 built to pkg/padrino-core-0.17.0.gem.
-  padrino-core (0.17.0) installed.
+  padrino-core 0.18.0 built to pkg/padrino-core-0.18.0.gem.
+  padrino-core (0.18.0) installed.
   ...
 ```
 
@@ -94,7 +94,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', '~> 0.17.0'
+gem 'padrino', '~> 0.18.0'
 ```
 
 or you can generate a new project easily and you can use padrino commands
@@ -138,7 +138,7 @@ This will point the Padrino gems in your test-project/Gemfile at your checkout:
 
 ```ruby
 # Padrino Stable Gem
-# gem 'padrino', '0.17.0'
+# gem 'padrino', '0.18.0'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'

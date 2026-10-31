@@ -54,8 +54,16 @@ configure :production do
 end
 ```
 
-The secret must be at least 64 bytes long. New projects set a random one in
-`config/apps.rb`. Generate your own with:
+Projects generated with Padrino 0.18.0 or later already read `SESSION_SECRET`
+in `config/apps.rb`, with a fallback value generated with the project for when
+it isn't set. Don't rely on that committed value in production:
+
+```ruby
+set :session_secret, ENV.fetch('SESSION_SECRET') { '...' } # the generated value
+```
+
+Older projects set only a random one there. The secret must be at least 64
+bytes long. Generate your own with `padrino rake secret`, or:
 
 ```bash
 $ ruby -rsecurerandom -e 'puts SecureRandom.hex(64)'

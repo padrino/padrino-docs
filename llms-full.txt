@@ -1,7 +1,7 @@
 # Padrino Framework - Complete Documentation
 
 Generated from https://github.com/padrino/padrino-docs
-Version: 0.17.0
+Version: 0.18.0
 
 ---
 
@@ -439,7 +439,7 @@ Next, we should mark the version as dev(elopment) to get a fresh set of gems:
 ```ruby
 # /tmp/padrino-framework/padrino-core/lib/padrino-core/version.rb
 module Padrino
-  VERSION = '0.17.0' unless defined?(Padrino::VERSION) # Change to bump version
+  VERSION = '0.18.0' unless defined?(Padrino::VERSION) # Change to bump version
   #...
 end
 ```
@@ -449,11 +449,11 @@ Finally, run the `fresh` rake command to install the latest version:
 ```shell
 padrino-framework$ rake fresh
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-support 0.17.0 built to pkg/padrino-support-0.17.0.gem.
-  padrino-support (0.17.0) installed.
+  padrino-support 0.18.0 built to pkg/padrino-support-0.18.0.gem.
+  padrino-support (0.18.0) installed.
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-core 0.17.0 built to pkg/padrino-core-0.17.0.gem.
-  padrino-core (0.17.0) installed.
+  padrino-core 0.18.0 built to pkg/padrino-core-0.18.0.gem.
+  padrino-core (0.18.0) installed.
   ...
 ```
 
@@ -463,7 +463,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', '~> 0.17.0'
+gem 'padrino', '~> 0.18.0'
 ```
 
 or you can generate a new project easily and you can use padrino commands
@@ -507,7 +507,7 @@ This will point the Padrino gems in your test-project/Gemfile at your checkout:
 
 ```ruby
 # Padrino Stable Gem
-# gem 'padrino', '0.17.0'
+# gem 'padrino', '0.18.0'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
@@ -1071,10 +1071,10 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.17.0 has taken the stage development at http://127.0.0.1:3000
-[2026-10-15 06:27:18] INFO  WEBrick 1.9.2
-[2026-10-15 06:27:18] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
-[2026-10-15 06:27:18] INFO  Rackup::Handler::WEBrick::Server#start: pid=15883 port=3000
+=> Padrino/0.18.0 has taken the stage development at http://127.0.0.1:3000
+[2026-10-31 01:57:31] INFO  WEBrick 1.9.2
+[2026-10-31 01:57:31] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
+[2026-10-31 01:57:31] INFO  Rackup::Handler::WEBrick::Server#start: pid=862 port=3000
 ```
 
 
@@ -2671,7 +2671,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.17.0'
+gem 'padrino', '0.18.0'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can
@@ -4811,8 +4811,16 @@ configure :production do
 end
 ```
 
-The secret must be at least 64 bytes long. New projects set a random one in
-`config/apps.rb`. Generate your own with:
+Projects generated with Padrino 0.18.0 or later already read `SESSION_SECRET`
+in `config/apps.rb`, with a fallback value generated with the project for when
+it isn't set. Don't rely on that committed value in production:
+
+```ruby
+set :session_secret, ENV.fetch('SESSION_SECRET') { '...' } # the generated value
+```
+
+Older projects set only a random one there. The secret must be at least 64
+bytes long. Generate your own with `padrino rake secret`, or:
 
 ```bash
 $ ruby -rsecurerandom -e 'puts SecureRandom.hex(64)'
@@ -4885,7 +4893,7 @@ every app in `config/apps.rb`:
 
 ```ruby
 Padrino.configure_apps do
-  set :session_secret, '...'
+  set :session_secret, ENV.fetch('SESSION_SECRET') { '...' }
   set :protection, except: :path_traversal
   set :protect_from_csrf, Padrino.env != :test
 end
@@ -6959,7 +6967,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '0.17.0'
+gem 'padrino', '0.18.0'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -7037,14 +7045,14 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.17.0'
+gem 'padrino', '0.18.0'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.17.0'
+#   gem 'padrino-' + g, '0.18.0'
 # end
 
 gem 'sinatra-contrib'
@@ -7243,7 +7251,7 @@ You can find the code on [Github](https://github.com/padrino/grape-example "Gith
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.17.0 is tested) on JRuby
+You can run Padrino (0.9.29 ... 0.18.0 is tested) on JRuby
 
 --------------------------------------------------------------------------------
 
@@ -7256,7 +7264,7 @@ You can easily install Padrino on jruby when you use
 $ rvm install jruby-latest
 $ rvm use --create jruby-latest@padrino
 $ gem install bundler
-$ gem install padrino -v=0.17.0
+$ gem install padrino -v=0.18.0
 ```
 
 Create Padrino project just as you do when using MRI or REE:
@@ -7780,9 +7788,19 @@ For threads, workers and processes, see
 
 ## Session secret
 
-New projects get a random `session_secret` written into `config/apps.rb`.
-Anyone with that value can forge session cookies, so don't use the committed
-value in production. Read it from the environment instead:
+Anyone with the session secret can forge session cookies, so production needs
+its own. Projects generated with Padrino 0.18.0 or later read it from the
+`SESSION_SECRET` environment variable, and fall back to the value written into
+`config/apps.rb` when the project was generated:
+
+```ruby
+set :session_secret, ENV.fetch('SESSION_SECRET') { '...' } # the generated value
+```
+
+Set `SESSION_SECRET` on the server. If it is set but empty or shorter than 64
+bytes, every request fails. Older projects have only the random value in
+`config/apps.rb`, so don't use that committed value in production. Read it
+from the environment instead:
 
 ```ruby
 Padrino.configure_apps do
