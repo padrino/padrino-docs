@@ -78,14 +78,23 @@ class SimpleApp < Padrino::Application
 
   get '/post/:id', :cache => true do
     @post = Post.find(params[:id])
-    cache_key :my_name
+    cache_key { "post-#{params[:id]}" }
+    render 'posts/show'
   end
 end
 ```
 
-In this way you can manually expire cache with
-`CachedApp.cache.delete(:my_name)` for example from the Post model after an
-update.
+Each post then gets its own cache entry, and you can expire one manually with
+`SimpleApp.cache.delete("post-#{post.id}")`, for example from the Post model
+after an update. The block runs again for every request, and the cached page is
+looked up before the route's code runs, so build the key from `params` or
+`request`, not from variables the route sets. A String key set inside the route
+applies only to that request, so it never produces a cache hit; use the block
+form, or set the String in a `before` filter scoped to that route (such as
+`before(:show)` for a route named `:show` in its controller), since an app-wide
+filter would apply that key to every cached route. A Symbol (`cache_key :my_name`) names one entry
+shared by every request of the route, so use it only on a route whose page is
+the same for everyone.
 
 If you specify `:cache => true` but do not invoke `expires`, the response will
 be cached indefinitely. Most of the time, you will want to specify the expiry

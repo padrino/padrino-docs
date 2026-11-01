@@ -5,7 +5,7 @@ title: Running Padrino on JRuby
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.18.0 is tested) on JRuby
+You can run Padrino (0.9.29 ... 0.18.1 is tested) on JRuby
 
 --------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ You can easily install Padrino on jruby when you use
 $ rvm install jruby-latest
 $ rvm use --create jruby-latest@padrino
 $ gem install bundler
-$ gem install padrino -v=0.18.0
+$ gem install padrino -v=0.18.1
 ```
 
 Create Padrino project just as you do when using MRI or REE:

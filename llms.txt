@@ -14,7 +14,7 @@
 
 ## Quick Reference
 
-- Version: 0.18.0
+- Version: 0.18.1
 - Ruby: >= 2.7.8
 - Built on: Sinatra 4, Rack 3
 - Source: https://github.com/padrino/padrino-framework

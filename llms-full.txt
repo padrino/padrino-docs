@@ -1,7 +1,7 @@
 # Padrino Framework - Complete Documentation
 
 Generated from https://github.com/padrino/padrino-docs
-Version: 0.18.0
+Version: 0.18.1
 
 ---
 
@@ -439,7 +439,7 @@ Next, we should mark the version as dev(elopment) to get a fresh set of gems:
 ```ruby
 # /tmp/padrino-framework/padrino-core/lib/padrino-core/version.rb
 module Padrino
-  VERSION = '0.18.0' unless defined?(Padrino::VERSION) # Change to bump version
+  VERSION = '0.18.1' unless defined?(Padrino::VERSION) # Change to bump version
   #...
 end
 ```
@@ -449,11 +449,11 @@ Finally, run the `fresh` rake command to install the latest version:
 ```shell
 padrino-framework$ rake fresh
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-support 0.18.0 built to pkg/padrino-support-0.18.0.gem.
-  padrino-support (0.18.0) installed.
+  padrino-support 0.18.1 built to pkg/padrino-support-0.18.1.gem.
+  padrino-support (0.18.1) installed.
   ~/.rvm/rubies/ruby-3.4.7/bin/ruby -S rake install
-  padrino-core 0.18.0 built to pkg/padrino-core-0.18.0.gem.
-  padrino-core (0.18.0) installed.
+  padrino-core 0.18.1 built to pkg/padrino-core-0.18.1.gem.
+  padrino-core (0.18.1) installed.
   ...
 ```
 
@@ -463,7 +463,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', '~> 0.18.0'
+gem 'padrino', '~> 0.18.1'
 ```
 
 or you can generate a new project easily and you can use padrino commands
@@ -507,7 +507,7 @@ This will point the Padrino gems in your test-project/Gemfile at your checkout:
 
 ```ruby
 # Padrino Stable Gem
-# gem 'padrino', '0.18.0'
+# gem 'padrino', '0.18.1'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
@@ -1071,7 +1071,7 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.18.0 has taken the stage development at http://127.0.0.1:3000
+=> Padrino/0.18.1 has taken the stage development at http://127.0.0.1:3000
 [2026-10-31 01:57:31] INFO  WEBrick 1.9.2
 [2026-10-31 01:57:31] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
 [2026-10-31 01:57:31] INFO  Rackup::Handler::WEBrick::Server#start: pid=862 port=3000
@@ -2185,14 +2185,23 @@ class SimpleApp < Padrino::Application
 
   get '/post/:id', :cache => true do
     @post = Post.find(params[:id])
-    cache_key :my_name
+    cache_key { "post-#{params[:id]}" }
+    render 'posts/show'
   end
 end
 ```
 
-In this way you can manually expire cache with
-`CachedApp.cache.delete(:my_name)` for example from the Post model after an
-update.
+Each post then gets its own cache entry, and you can expire one manually with
+`SimpleApp.cache.delete("post-#{post.id}")`, for example from the Post model
+after an update. The block runs again for every request, and the cached page is
+looked up before the route's code runs, so build the key from `params` or
+`request`, not from variables the route sets. A String key set inside the route
+applies only to that request, so it never produces a cache hit; use the block
+form, or set the String in a `before` filter scoped to that route (such as
+`before(:show)` for a route named `:show` in its controller), since an app-wide
+filter would apply that key to every cached route. A Symbol (`cache_key :my_name`) names one entry
+shared by every request of the route, so use it only on a route whose page is
+the same for everyone.
 
 If you specify `:cache => true` but do not invoke `expires`, the response will
 be cached indefinitely. Most of the time, you will want to specify the expiry
@@ -2671,7 +2680,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.18.0'
+gem 'padrino', '0.18.1'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can
@@ -6967,7 +6976,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.0'
+gem 'padrino', '0.18.1'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -7045,14 +7054,14 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.0'
+gem 'padrino', '0.18.1'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.18.0'
+#   gem 'padrino-' + g, '0.18.1'
 # end
 
 gem 'sinatra-contrib'
@@ -7251,7 +7260,7 @@ You can find the code on [Github](https://github.com/padrino/grape-example "Gith
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.18.0 is tested) on JRuby
+You can run Padrino (0.9.29 ... 0.18.1 is tested) on JRuby
 
 --------------------------------------------------------------------------------
 
@@ -7264,7 +7273,7 @@ You can easily install Padrino on jruby when you use
 $ rvm install jruby-latest
 $ rvm use --create jruby-latest@padrino
 $ gem install bundler
-$ gem install padrino -v=0.18.0
+$ gem install padrino -v=0.18.1
 ```
 
 Create Padrino project just as you do when using MRI or REE:
