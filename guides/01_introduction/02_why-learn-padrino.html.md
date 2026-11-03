@@ -195,7 +195,7 @@ are new to the Ruby community and want to create a Padrino application with a
 good default set of components, generate your project with this command:
 
 ```shell
-$ padrino g project my_project -d sequel -t shoulda -s jquery -e haml -m mocha
+$ padrino g project my_project -d sequel -t minitest -s jquery -e haml -m mocha
 ```
 
 And then read up on these components:

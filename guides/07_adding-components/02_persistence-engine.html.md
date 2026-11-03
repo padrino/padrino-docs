@@ -81,7 +81,7 @@ def setup_orm
 
   begin
     case adapter ||= options[:adapter]
-    # ...truncated: mysql-gem, mysql/mysql2 and postgres...
+    # ...truncated: mysql/mysql2 and postgres...
     when 'sqlite'
       sequel.gsub!(/!DB_DEVELOPMENT!/, "\"sqlite://db/#{db}_development.db\"")
       sequel.gsub!(/!DB_PRODUCTION!/, "\"sqlite://db/#{db}_production.db\"")
@@ -92,7 +92,7 @@ def setup_orm
       raise ArgumentError
     end
   rescue ArgumentError
-    adapter = ask_valid_option(:adapter, %w[mysql mysql2 mysql-gem postgres sqlite], 'Please, choose a proper adapter:')
+    adapter = ask_valid_option(:adapter, %w[mysql mysql2 postgres sqlite], 'Please, choose a proper adapter:')
     retry
   end
 
