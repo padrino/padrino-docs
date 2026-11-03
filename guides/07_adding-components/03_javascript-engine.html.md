@@ -93,11 +93,11 @@ $ bundle exec ruby -Ilib -Itest -I../padrino/test test/test_project_generator.rb
 
 Finally, let's update the README for `padrino-gen` to reflect the new component
 in
-[padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/README.rdoc#L45):
+[padrino-gen/README.rdoc](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/README.rdoc):
 
 ```ruby
 # padrino-gen/README.rdoc
-script::     none  (default), jquery, prototype, mootools, dojo, vite
+script::     none  (default), jquery, vite, htmx, ujs
 ```
 
 ## Unobtrusive JavaScript Adapter
