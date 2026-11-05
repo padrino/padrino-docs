@@ -28,9 +28,10 @@ Padrino::Logger::Config[:production][:stream] = :stdout
 
 ## Starting the server
 
-New projects use WEBrick unless you chose another server. For production, use
-Puma or Falcon. Add the gem to your `Gemfile` (`gem 'puma'`), or generate the
-project with `--server=puma` or `--server=falcon`.
+New projects use Puma unless you chose another server with `--server` (`webrick`,
+`thin` or `falcon`). Puma builds a native extension, so `bundle install` needs a C
+compiler; where there is none, generate the project with `--server=webrick`. For
+fiber-based concurrency, use `--server=falcon`.
 
 Start the app with `padrino start`:
 
