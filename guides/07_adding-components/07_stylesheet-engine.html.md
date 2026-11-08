@@ -19,55 +19,107 @@ components to edit: adding `stylesheets/myengine.rb` is enough for
 [call its `setup_stylesheet` method](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/actions.rb#L41-L46).
 
 Here is the integration of Sass into the generator, in
-[padrino-gen/generators/components/stylesheets/sass.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/components/stylesheets/sass.rb):
+[padrino-gen/generators/components/stylesheets/sass.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/lib/padrino-gen/generators/components/stylesheets/sass.rb)
+(shortened). The `scss` component applies the same file, since Dart Sass tells
+the two syntaxes apart by file extension:
 
 ```ruby
 # padrino-gen/lib/padrino-gen/generators/components/stylesheets/sass.rb
 
-SASS_INIT = <<-SASS unless defined?(SASS_INIT)
-    # Enables support for SASS template reloading in rack applications.
-    # See http://nex-3.com/posts/88-sass-supports-rack for more details.
-    # Store SASS files (by default) within 'app/stylesheets'.
-    require 'sass/plugin/rack'
-    Sass::Plugin.options[:template_location] = Padrino.root("app/stylesheets")
-    Sass::Plugin.options[:css_location] = Padrino.root("public/stylesheets")
-    app.use Sass::Plugin::Rack
-SASS
+SASS_RAKE = <<~RAKE unless defined?(SASS_RAKE)
+  # Dart Sass compiles each file in app/stylesheets to public/stylesheets, in the same folders:
+  # app/stylesheets/application.scss becomes public/stylesheets/application.css.
+  # Files whose names start with "_" are partials, compiled only into the stylesheets that @use them.
+  # Plain .css files are written out as plain CSS too.
+  SASS_ARGS = %w[--no-source-map --load-path=app/stylesheets app/stylesheets:public/stylesheets].freeze
+
+  namespace :sass do
+    desc 'Build public/stylesheets from the Sass and SCSS files in app/stylesheets'
+    task :build do
+      mkdir_p 'app/stylesheets', verbose: false
+      sh Gem.ruby, Gem.bin_path('sass-embedded', 'sass'), '--no-error-css', *SASS_ARGS
+    end
+
+    desc 'Rebuild public/stylesheets whenever a file in app/stylesheets changes'
+    task :watch do
+      mkdir_p 'app/stylesheets', verbose: false
+      sh Gem.ruby, Gem.bin_path('sass-embedded', 'sass'), '--watch', *SASS_ARGS
+    end
+  end
+
+  namespace :assets do
+    task precompile: 'sass:build'
+  end
+RAKE
 
 def setup_stylesheet
-  require_dependencies 'sass'
-  initializer :sass, SASS_INIT.chomp
+  require_dependencies 'sass-embedded', version: '~> 1.63', require: false
   empty_directory destination_root('/app/stylesheets')
+  create_file destination_root('tasks/sass.rake'), SASS_RAKE, skip: true
+
+  watcher = "css: bundle exec rake sass:watch\n"
+  procfile = destination_root('Procfile.dev')
+  if !File.exist?(procfile)
+    create_file procfile, "web: bundle exec padrino start\n#{watcher}"
+  elsif !(content = File.binread(procfile)).match?(/^css:/n)
+    append_line(procfile, watcher)
+  elsif !content.match?(/^#{watcher.chomp}\r?$/n)
+    say "Procfile.dev already runs a css: process; to rebuild stylesheets on change, make it `#{watcher.chomp}`.", :yellow
+  end
+  ...
+  say 'Run `bundle exec rake sass:build` to compile app/stylesheets into public/stylesheets (or run Procfile.dev to rebuild on change).', :yellow
 end
 ```
 
-`require_dependencies` adds the gem to the project's `Gemfile`.
-[`initializer`](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/lib/padrino-gen/generators/actions.rb#L426-L431)
-writes `config/initializers/sass.rb` with a `SassInitializer` module whose
-`registered` hook runs the code in `SASS_INIT`, and adds
-`register SassInitializer` to `app/app.rb`. Sass compiles the files in
-`app/stylesheets` to `public/stylesheets` as requests come in, so the last line
-creates `app/stylesheets` for the source files.
+`require_dependencies` adds the gem to the project's `Gemfile`. `require: false`
+keeps the app from loading it: only the rake tasks run Dart Sass, through the
+`sass` executable the gem ships. The method then creates `app/stylesheets` for
+the source files and writes `tasks/sass.rake`, which the project's `Rakefile`
+loads with every other file in `tasks/`. `skip: true` leaves a
+`tasks/sass.rake` the project already has alone, so running
+`padrino g component -c sass` again doesn't undo your edits.
+
+`rake sass:build` compiles each file in `app/stylesheets` to
+`public/stylesheets`, and fails when a stylesheet has an error.
+`rake sass:watch` does the same whenever a file changes, and making
+`assets:precompile` depend on `sass:build` builds the stylesheets on deploys
+that precompile assets. Last, the method adds a `css:` process that runs the
+watcher to `Procfile.dev`, creating the file if the project has none. A
+`css:` process the project already runs is left alone, with a note on how to
+change it. The part left out (`...`) lists what an existing project still has
+of an engine it replaces, such as Ruby Sass or Tailwind, so the user can
+remove it.
 
 ## Tests
 
 Let's also add a test to ensure the stylesheet engine component generates as
 expected in
-[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L739-L746):
+[padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/master/padrino-gen/test/test_project_generator.rb):
 
 ```ruby
 # padrino-gen/test/test_project_generator.rb
 describe 'the generator for stylesheet component' do
-  it 'should properly generate for sass' do
-    capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--renderer=haml', '--script=none', '--stylesheet=sass') }
-    assert_match_in_file(/gem 'sass'/, "#{@apptmp}/sample_project/Gemfile")
-    assert_match_in_file(/module SassInitializer.*Sass::Plugin::Rack/m, "#{@apptmp}/sample_project/config/initializers/sass.rb")
-    assert_match_in_file(/register SassInitializer/m, "#{@apptmp}/sample_project/app/app.rb")
-    assert_dir_exists("#{@apptmp}/sample_project/app/stylesheets")
+  %w[sass scss].each do |stylesheet|
+    it "should set up Dart Sass with build and watch tasks for #{stylesheet}" do
+      out, = capture_io { generate(:project, 'sample_project', "--root=#{@apptmp}", '--renderer=haml', '--script=none', "--stylesheet=#{stylesheet}") }
+      project = "#{@apptmp}/sample_project"
+      assert_match_in_file(/^gem 'sass-embedded', '~> 1\.63', require: false$/, "#{project}/Gemfile")
+      assert_no_match_in_file(/^gem 'sass'/, "#{project}/Gemfile")
+      assert_no_match_in_file(/Initializer/, "#{project}/app/app.rb")
+      assert_no_file_exists("#{project}/config/initializers/#{stylesheet}.rb")
+      assert_dir_exists("#{project}/app/stylesheets")
+      assert_equal "web: bundle exec padrino start\ncss: bundle exec rake sass:watch\n", File.read("#{project}/Procfile.dev")
+      assert_match(%r{Run `bundle exec rake sass:build` to compile app/stylesheets into public/stylesheets \(or run Procfile\.dev to rebuild on change\)\.}, out)
+    end
   end
   ...
 end
 ```
+
+Since the component writes rake tasks, the same `describe` block also runs
+`tasks/sass.rake` with a stand-in for the `sass` executable, checking the
+arguments each task passes to it and that `sass:build` fails when Dart Sass
+reports an error.
 
 ## README
 
