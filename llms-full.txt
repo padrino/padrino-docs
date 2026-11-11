@@ -2124,10 +2124,11 @@ stores.
 Padrino-cache can reduce the processing load on your site very effectively
 with minimal configuration.
 
-By default, the component caches pages in a file store at `tmp/cache` within
-your project root. Entries in this store correspond directly to the request
-issued to your server. In other words, responses are cached based on request
-URL, with one cache entry per URL.
+By default, the component caches pages in a file store at
+`tmp/<app name>/cache` within your project root (`tmp/demo/app/cache` for an
+app class `Demo::App`). Each entry is keyed by the request path, with one cache
+entry per path; the query string is not part of the key (see
+[Page cache keys](#page-cache-keys) below).
 
 This behavior is referred to as "page-level caching." If this strategy meets
 your needs, you can enable it very easily:
@@ -2193,15 +2194,8 @@ end
 
 Each post then gets its own cache entry, and you can expire one manually with
 `SimpleApp.cache.delete("post-#{post.id}")`, for example from the Post model
-after an update. The block runs again for every request, and the cached page is
-looked up before the route's code runs, so build the key from `params` or
-`request`, not from variables the route sets. A String key set inside the route
-applies only to that request, so it never produces a cache hit; use the block
-form, or set the String in a `before` filter scoped to that route (such as
-`before(:show)` for a route named `:show` in its controller), since an app-wide
-filter would apply that key to every cached route. A Symbol (`cache_key :my_name`) names one entry
-shared by every request of the route, so use it only on a route whose page is
-the same for everyone.
+after an update. [Page cache keys](#page-cache-keys) below describes each form
+of key and what the default key leaves out.
 
 If you specify `:cache => true` but do not invoke `expires`, the response will
 be cached indefinitely. Most of the time, you will want to specify the expiry
@@ -2269,6 +2263,66 @@ end
 Note that the "latest" method call to `expires` determines its value: if
 called within a route, as opposed to a controller definition, the route's
 value will be assumed.
+
+#### Page cache keys
+
+Each cached page is stored under one key. Without `cache_key`, the key is the
+request path (`env['PATH_INFO']`). Nothing else about the request is part of
+it:
+
+*   the query string: `/posts?page=1` and `/posts?page=2` share one entry (see
+    [Caching URLs with query strings](#caching-urls-with-query-strings));
+*   cookies, the session and request headers such as `Accept` or `User-Agent`:
+    routes on one path told apart only by a condition (`provides:`, `agent:`)
+    share one entry, and the first response stored is sent to all of them;
+*   the mount point: the path is relative to the app, so two mounted apps that
+    share one store share entries for the same path. Each app gets its own store
+    by default.
+
+`GET` and `HEAD` requests share an entry; other verbs are never cached.
+
+`cache_key` replaces the path with a key of your own, in one of three forms:
+
+*   **A block**, `cache_key { "post-#{params[:id]}" }`, is evaluated on every
+    request: before the route's code runs, to look the page up, and again after
+    it on a miss, to store the new page. Build it from `params`, `request` or
+    `session`, not from variables the route sets.
+*   **A Symbol**, `cache_key :about`, names one entry shared by every request of
+    the route, whatever its params. Use it only on a route whose page is the same
+    for everyone, and expire it with `CachedApp.cache.delete(:about)`.
+*   **A String** set inside the route applies only to that request: the lookup
+    has already happened by then, so it never produces a cache hit. Use the block
+    form, or set the String in a `before` filter scoped to that route (such as
+    `before(:show)` for a route named `:show` in its controller), since an
+    app-wide filter would apply that key to every cached route.
+
+Only the response body and its content type are stored. A cached page is sent
+with status 200 to every request that maps to its key, without the other
+headers the route set (such as `Set-Cookie`). A route that calls `halt` or
+`redirect` is not cached, but one that sets `status 404` and returns a body is,
+and is then served as 200.
+
+So a page that shows anything specific to one visitor, such as the signed-in
+user or a flash message, must not be cached under a key that leaves that out:
+the first visitor's page would be sent to everyone else. Leave such pages
+uncached, cache only their shared parts with [fragment
+caching](#fragment-caching), or put what varies into the key:
+
+```ruby
+get :dashboard, cache: true do
+  cache_key { "dashboard-#{session[:user_id]}" }
+  render 'dashboard'
+end
+
+get :feed, cache: true, provides: [:html, :json] do
+  cache_key { "#{request.path_info}.#{content_type}" }
+  render 'feed'
+end
+```
+
+`before` filters and route conditions still run for a cached page, because the
+cache is checked after them, so a login check in a `before` filter also guards
+the cached copy.
 
 ### Fragment Caching
 
@@ -2398,7 +2452,7 @@ as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 
 ```ruby
-cache_key { request.path_info + (params[:page].present? ? "?page=#{params[:page]}" : '') }
+cache_key { request.path_info + (params[:page] ? "?page=#{params[:page]}" : '') }
 ```
 
 If you're using `ActiveSupport`, you can make this a bit more robust:
@@ -2510,7 +2564,8 @@ it will do so immediately if any tweets have been deleted.
 #### Page-level expiration
 
 Page-level expiration works exactly like the example above--by using `expire`
-in your controller. The key is typically `env['PATH_INFO']`.
+in your controller. The key is the request path (`env['PATH_INFO']`), or
+the key the route gives `cache_key`.
 
 ---
 
