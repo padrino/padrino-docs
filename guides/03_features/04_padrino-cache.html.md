@@ -215,9 +215,16 @@ get :feed, cache: true, provides: [:html, :json] do
 end
 ```
 
-After you add or change a route's `cache_key`, clear the store (for example
-`Demo::App.cache.clear`, or delete `tmp/<app name>/cache`), so pages stored
-under the old key aren't served.
+The dashboard's key covers the signed-in user only, so its page must not show
+a flash message: that would be stored with it and shown again.
+
+After you add or change a route's `cache_key`, remove the pages stored under
+the old key once no process running the old code is left (an old process can
+store them again). With the default File store, delete `tmp/<app name>/cache`
+or call `Demo::App.cache.clear`. On a Redis or Memcached store, `clear` empties
+the whole Redis database or Memcached server, so if anything else uses it,
+delete the old keys instead (for example `Demo::App.cache.delete('/dashboard')`),
+or give the cache its own Redis `db:`.
 
 `before` filters and route conditions still run for a cached page, because the
 cache is checked after them, so a login check in a `before` filter also guards
