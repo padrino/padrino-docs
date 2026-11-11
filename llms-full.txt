@@ -1647,6 +1647,7 @@ $ padrino g admin -e erb
 Follow the instructions in your terminal and provide a valid email and
 password for your newly created admin account:
 
+- install the gems it added to your `Gemfile`: `$ bundle install`
 - edit your config/database.rb
 - create the database: `$ bundle exec rake db:create`
 - migrate your database: `$ bundle exec rake db:migrate`
@@ -1736,7 +1737,7 @@ class Admin < Padrino::Application
 
   enable :authentication
   disable :store_location
-  set :login_page, '/admin/sessions/new'
+  set :login_page, '/sessions/new'
 
   access_control.roles_for :any do |role|
     role.protect '/'
@@ -1801,8 +1802,8 @@ end
 
 ## Custom Admin Pages and Bootstrap
 
-Admins generated with `padrino g admin` use Bootstrap 3.1 with jQuery 3.7.1.
-With this jQuery, a Bootstrap collapse, tab, modal or alert link with a bare
+Admins generated with `padrino g admin` use Bootstrap 3.4.1 with jQuery 3.7.1.
+With this jQuery, a Bootstrap collapse, tab, modal or carousel link with a bare
 `href="#"` raises a JavaScript error and does nothing. Give it a `data-target`
 that names its element instead:
 
@@ -1827,7 +1828,6 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 
 If you are planning to use padrino with an adapter other than the currently
 supported ones (activerecord, sequel and mongoid), such as
-[ohm](https://github.com/soveran/ohm "ohm") or
 [ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver"), and you
 want to contribute to the project by adding support for it, be sure to check
 out the [adding components](/guides/adding-components/overview "adding components")
@@ -2124,10 +2124,11 @@ stores.
 Padrino-cache can reduce the processing load on your site very effectively
 with minimal configuration.
 
-By default, the component caches pages in a file store at `tmp/cache` within
-your project root. Entries in this store correspond directly to the request
-issued to your server. In other words, responses are cached based on request
-URL, with one cache entry per URL.
+By default, the component caches pages in a file store at `tmp/<app_name>/cache`
+within your project root, where `<app_name>` is the app's `app_name` setting:
+`tmp/my_project/app/cache` for `MyProject::App`. Entries in this store
+correspond directly to the request issued to your server. In other words,
+responses are cached based on request URL, with one cache entry per URL.
 
 This behavior is referred to as "page-level caching." If this strategy meets
 your needs, you can enable it very easily:
@@ -2341,7 +2342,7 @@ class MyTweets < Padrino::Application
       render 'feeds/show'
     end
 
-    get :mobile_feed, map: '/:username.iphone' do
+    get :mobile_feed, map: '/:username/iphone' do
       username = params[:username]
 
       @feed = cache("feed_for_#{username}", expires: 3) do
@@ -2380,7 +2381,7 @@ class MyTweets < Padrino::Application
       render 'feeds/show'
     end
 
-    get :mobile_feed, map: '/:username.iphone' do
+    get :mobile_feed, map: '/:username/iphone' do
       render 'feeds/show.iphone'
     end
   end
@@ -2398,7 +2399,7 @@ as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 
 ```ruby
-cache_key { request.path_info + (params[:page].present? ? "?page=#{params[:page]}" : '') }
+cache_key { request.path_info + (params[:page] ? "?page=#{params[:page]}" : '') }
 ```
 
 If you're using `ActiveSupport`, you can make this a bit more robust:
@@ -2415,7 +2416,7 @@ You can set a global caching option or a per app caching options.
 
 ```ruby
 Padrino.cache = Padrino::Cache.new(:LRUHash) # in-memory, the default choice
-Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
+Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', 'cache')) # Keeps cached values in file
 Padrino.cache = Padrino::Cache.new(:Memcached) # Uses default server at localhost
 Padrino.cache = Padrino::Cache.new(:Memcached, server: '127.0.0.1:11211', exception_retry_limit: 1)
 Padrino.cache = Padrino::Cache.new(:Memcached, backend: memcached_or_dalli_instance)
@@ -2479,9 +2480,9 @@ user a favor and instantly re-render the feed.
 class MyTweets < Padrino::Application
   register Padrino::Cache # includes helpers
   enable :caching         # turns on caching
-  enable :session         # we'll use this to store last time visited
+  enable :sessions        # we'll use this to store last time visited
 
-  COMPANY_FOUNDING = Time.utc(2010, 'April')
+  COMPANY_FOUNDING = Time.utc(2010, 4)
 
   controller :tweets do
     get :feed, map: '/:username' do
@@ -7260,7 +7261,7 @@ You can find the code on [Github](https://github.com/padrino/grape-example "Gith
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.18.1 is tested) on JRuby
+You can run Padrino on JRuby. Padrino 0.18.5 is tested on JRuby 10.1.
 
 --------------------------------------------------------------------------------
 
@@ -7270,29 +7271,19 @@ You can easily install Padrino on jruby when you use
 [RVM](https://rvm.io/rvm/install "RVM"):
 
 ```shell
-$ rvm install jruby-latest
-$ rvm use --create jruby-latest@padrino
+$ rvm install jruby
+$ rvm use --create jruby@padrino
 $ gem install bundler
-$ gem install padrino -v=0.18.1
+$ gem install padrino -v=0.18.5
 ```
 
-Create Padrino project just as you do when using MRI or REE:
+Create Padrino project just as you do when using MRI:
 
 ```shell
 $ padrino g project jrack-test -e erb
 ```
 
-`cd ./jrack-test` and you should edit `Gemfile`:
-
-```ruby
-# JRuby deployment requirements
-# please add these lines...
-gem 'jruby-openssl'
-gem 'jruby-rack'
-gem 'warbler'
-```
-
-Now you can go:
+`cd ./jrack-test` and now you can go:
 
 ```shell
 $ bundle install && bundle binstubs --all
@@ -7330,56 +7321,29 @@ Then run:
 $ padrino s
 ```
 
-To run JRuby on 1.9 compat mode:
-
-> **Note:** Modern JRuby (9.x+) defaults to Ruby 2.6+ compatibility and no
-> longer requires the `--1.9` flag. The example below applies only to legacy
-> JRuby 1.7.x.
-
-```shell
-alias padrino='jruby --1.9 -S padrino'
-padrino start
-```
-
-You can access <http://localhost:3000> as you run padrino on MRI...
+You can access <http://localhost:3000/index> as you run padrino on MRI...
 
 --------------------------------------------------------------------------------
 
-## How to create WAR
+## Deploying on JRuby
 
-Now you should install the `warbler` gem with `$ gem install warbler`, so you can:
-
-```shell
-$ warble config
-```
-
-Edit `config/warble.rb` if you want to apply some customizations. You can access
-[JRuby-Rack official README](https://github.com/jruby/jruby-rack) and
-[Warbler rdoc](https://github.com/jruby/warbler).
-
-For example, if you want to deploy the app to server root directory, just add to
-`config/warble.rb`:
+[Warbler](https://github.com/jruby/warbler "Warbler") packages an app as a WAR
+file with [JRuby-Rack](https://github.com/jruby/jruby-rack "JRuby-Rack"),
+which doesn't support Rack 3. Padrino 0.18 needs Rack 3, so a WAR built from a
+Padrino 0.18 project fails to start (`cannot load such file -- rack/chunked`).
+Serve the project with a Rack server that runs on JRuby instead, such as Puma.
+Add it to your `Gemfile`:
 
 ```ruby
-config.jar_name = "jrack-test"
+gem 'puma'
 ```
 
-Deploying with JRuby on 1.9 compat mode (obsolete for modern JRuby 9.x+,
-which defaults to Ruby 2.6+ compatibility):
-
-```ruby
-config.webxml.jruby.compat.version = "1.9"
-```
-
-If you are ready, run:
+Then run:
 
 ```shell
-$ warble war
+$ bundle install
+$ padrino start -e production -a puma -h 0.0.0.0 -p 3000
 ```
-
-You would get `jrack-test.war` (the same name as your project directory name),
-and you can deploy this war file to tomcat! I tested on tomcat 6.0.20, and it
-works well with quick response.
 
 ---
 

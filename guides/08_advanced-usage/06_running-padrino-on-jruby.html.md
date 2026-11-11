@@ -5,7 +5,7 @@ title: Running Padrino on JRuby
 
 # Running Padrino on JRuby
 
-You can run Padrino (0.9.29 ... 0.18.1 is tested) on JRuby
+You can run Padrino on JRuby. Padrino 0.18.5 is tested on JRuby 10.1.
 
 --------------------------------------------------------------------------------
 
@@ -15,29 +15,19 @@ You can easily install Padrino on jruby when you use
 [RVM](https://rvm.io/rvm/install "RVM"):
 
 ```shell
-$ rvm install jruby-latest
-$ rvm use --create jruby-latest@padrino
+$ rvm install jruby
+$ rvm use --create jruby@padrino
 $ gem install bundler
-$ gem install padrino -v=0.18.1
+$ gem install padrino -v=0.18.5
 ```
 
-Create Padrino project just as you do when using MRI or REE:
+Create Padrino project just as you do when using MRI:
 
 ```shell
 $ padrino g project jrack-test -e erb
 ```
 
-`cd ./jrack-test` and you should edit `Gemfile`:
-
-```ruby
-# JRuby deployment requirements
-# please add these lines...
-gem 'jruby-openssl'
-gem 'jruby-rack'
-gem 'warbler'
-```
-
-Now you can go:
+`cd ./jrack-test` and now you can go:
 
 ```shell
 $ bundle install && bundle binstubs --all
@@ -75,53 +65,26 @@ Then run:
 $ padrino s
 ```
 
-To run JRuby on 1.9 compat mode:
-
-> **Note:** Modern JRuby (9.x+) defaults to Ruby 2.6+ compatibility and no
-> longer requires the `--1.9` flag. The example below applies only to legacy
-> JRuby 1.7.x.
-
-```shell
-alias padrino='jruby --1.9 -S padrino'
-padrino start
-```
-
-You can access <http://localhost:3000> as you run padrino on MRI...
+You can access <http://localhost:3000/index> as you run padrino on MRI...
 
 --------------------------------------------------------------------------------
 
-## How to create WAR
+## Deploying on JRuby
 
-Now you should install the `warbler` gem with `$ gem install warbler`, so you can:
-
-```shell
-$ warble config
-```
-
-Edit `config/warble.rb` if you want to apply some customizations. You can access
-[JRuby-Rack official README](https://github.com/jruby/jruby-rack) and
-[Warbler rdoc](https://github.com/jruby/warbler).
-
-For example, if you want to deploy the app to server root directory, just add to
-`config/warble.rb`:
+[Warbler](https://github.com/jruby/warbler "Warbler") packages an app as a WAR
+file with [JRuby-Rack](https://github.com/jruby/jruby-rack "JRuby-Rack"),
+which doesn't support Rack 3. Padrino 0.18 needs Rack 3, so a WAR built from a
+Padrino 0.18 project fails to start (`cannot load such file -- rack/chunked`).
+Serve the project with a Rack server that runs on JRuby instead, such as Puma.
+Add it to your `Gemfile`:
 
 ```ruby
-config.jar_name = "jrack-test"
+gem 'puma'
 ```
 
-Deploying with JRuby on 1.9 compat mode (obsolete for modern JRuby 9.x+,
-which defaults to Ruby 2.6+ compatibility):
-
-```ruby
-config.webxml.jruby.compat.version = "1.9"
-```
-
-If you are ready, run:
+Then run:
 
 ```shell
-$ warble war
+$ bundle install
+$ padrino start -e production -a puma -h 0.0.0.0 -p 3000
 ```
-
-You would get `jrack-test.war` (the same name as your project directory name),
-and you can deploy this war file to tomcat! I tested on tomcat 6.0.20, and it
-works well with quick response.
