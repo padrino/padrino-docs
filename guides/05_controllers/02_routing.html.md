@@ -190,7 +190,9 @@ end
 - `request.action` is the route's first argument as you wrote it: a symbol for
   a named route (`:show`), or the path string for a route such as
   `get '/about'` (`"/about"`).
-- Both are `nil` when no route matched, for example in a `not_found` block.
+- Both are `nil` when no route matched, for example in a `not_found` block
+  reached that way. A route that halts with 404 or passes leaves them set to
+  that route.
 
 `route` returns the matched route itself: `route.controller` and `route.action`
 hold the same values, and `route.name` is the route's name (`:"posts show"`).

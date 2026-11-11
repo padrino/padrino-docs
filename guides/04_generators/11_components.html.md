@@ -53,7 +53,7 @@ file format (`number` or `timestamp`) and, for an SQL ORM, the database adapter.
 The other generators read this file instead of asking again: `padrino g model`
 and `padrino g migration` write code for the stored ORM, the model and
 controller generators add tests for the stored test framework, and the
-generators that create classes put them in the stored namespace.
+controller, helper, mailer and app generators use the stored namespace.
 
 `padrino g component` with no options lists the current choices:
 

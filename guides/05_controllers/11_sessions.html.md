@@ -116,7 +116,7 @@ on your own machine, needs `secure: false`.
 The apps of a project share one session cookie, so give each of them the same
 `secure:` setting: an app without it rewrites the cookie without the flag.
 
-## Flash messages
+## Flash Messages
 
 The flash carries a short message, such as "Post was created.", over to the
 next request, usually the page you redirect to. It is kept in the session, so
@@ -136,10 +136,14 @@ post :create do
 end
 ```
 
-`flash[:notice] = '...'` sets a message for the next request. The next request
-the app handles can read it, and the one after that no longer sees it. Reading
-`flash[:notice]` returns the message that arrived with the current request, so
-a message you set is not visible until the next one.
+`flash[:notice] = '...'` sets a message for a later request. It stays in the
+session until a request uses the flash (reads it, sets a message or calls
+`flash_tag`): that request sees it, and later ones don't. A request that never
+touches the flash, such as a JSON endpoint or a missing page, leaves it
+waiting, and a request that only sets a new message drops the waiting one
+without showing it. Reading `flash[:notice]` returns the message that arrived
+with the current request, so a message you set is not visible until a later
+one.
 
 `flash.now[:error] = '...'` sets a message for the current request only, for a
 page you render instead of redirecting. It works without sessions.
@@ -152,8 +156,10 @@ redirect url(:posts, :index), notice: 'Post was created.'
 redirect url(:posts, :index), 301, notice: 'This page has moved.'
 ```
 
-A symbol is translated with `I18n.translate`, so `notice: :post_created` shows
-the translation of `post_created`.
+In this hash, a symbol is translated with `I18n.translate`, so
+`notice: :post_created` shows the translation of `post_created` (a missing key
+shows I18n's "Translation missing" text). `flash[:notice] = :post_created`
+stores the symbol as it is.
 
 To change what reaches the next request:
 
