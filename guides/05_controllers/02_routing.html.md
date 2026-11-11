@@ -166,3 +166,38 @@ Demo::App.controllers :product, parent: :user do
   end
 end
 ```
+
+## Current Controller and Action
+
+In a route, its filters and the views it renders, `request.controller` and
+`request.action` tell you which route is handling the request:
+
+```ruby
+Demo::App.controllers :posts do
+  before do
+    @section = request.controller # => "posts"
+  end
+
+  get :show, with: :id do
+    request.action # => :show
+  end
+end
+```
+
+- `request.controller` is the controller's name as a string: `"posts"` here,
+  and `"admin/users"` for `controllers :admin, :users`. It is `nil` for a route
+  defined outside a controller.
+- `request.action` is the route's first argument as you wrote it: a symbol for
+  a named route (`:show`), or the path string for a route such as
+  `get '/about'` (`"/about"`).
+- Both are `nil` when no route matched, for example in a `not_found` block.
+
+`route` returns the matched route itself: `route.controller` and `route.action`
+hold the same values, and `route.name` is the route's name (`:"posts show"`).
+
+Since the controller is a string, compare it with a string, for example to
+mark the current section in a layout:
+
+```haml
+%li{ class: ('active' if request.controller == 'posts') }= link_to 'Posts', url(:posts, :index)
+```
