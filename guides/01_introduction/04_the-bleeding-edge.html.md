@@ -94,7 +94,7 @@ project's Gemfile depends on the edge version you installed:
 ```ruby
 Gemfile
 # Padrino
-gem 'padrino', '~> 0.18.1'
+gem 'padrino', '0.18.1'
 ```
 
 or you can generate a new project easily and you can use padrino commands
