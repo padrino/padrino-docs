@@ -27,14 +27,14 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.1'
+gem 'padrino', '0.18.5'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.18.1'
+#   gem 'padrino-' + g, '0.18.5'
 # end
 
 gem 'sinatra-contrib'
