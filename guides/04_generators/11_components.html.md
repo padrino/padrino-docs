@@ -12,7 +12,7 @@ Options | Default | Aliases | Description
 ------- | ------- | ------- | ------------------------------------------------------------------
 app     |         | -n      | the application name
 root    | .       | -r      | the root destination path for the project
-adapter | sqlite  | -a      | specify orm db adapter (sqlite, mysql, mysql2, mysql-gem, postgres)
+adapter | sqlite  | -a      | specify orm db adapter (sqlite, mysql, mysql2, trilogy, postgres)
 
 ## Examples
 
