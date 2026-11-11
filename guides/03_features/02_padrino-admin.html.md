@@ -192,7 +192,7 @@ end
 ## Custom Admin Pages and Bootstrap
 
 Admins generated with `padrino g admin` use Bootstrap 3.4.1 with jQuery 3.7.1.
-With this jQuery, a Bootstrap collapse, tab or modal link with a bare
+With this jQuery, a Bootstrap collapse, tab, modal or carousel link with a bare
 `href="#"` raises a JavaScript error and does nothing. Give it a `data-target`
 that names its element instead:
 

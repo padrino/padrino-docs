@@ -1803,7 +1803,7 @@ end
 ## Custom Admin Pages and Bootstrap
 
 Admins generated with `padrino g admin` use Bootstrap 3.4.1 with jQuery 3.7.1.
-With this jQuery, a Bootstrap collapse, tab or modal link with a bare
+With this jQuery, a Bootstrap collapse, tab, modal or carousel link with a bare
 `href="#"` raises a JavaScript error and does nothing. Give it a `data-target`
 that names its element instead:
 
@@ -7321,7 +7321,7 @@ Then run:
 $ padrino s
 ```
 
-You can access <http://localhost:3000> as you run padrino on MRI...
+You can access <http://localhost:3000/index> as you run padrino on MRI...
 
 --------------------------------------------------------------------------------
 
@@ -7342,7 +7342,7 @@ Then run:
 
 ```shell
 $ bundle install
-$ padrino start -a puma
+$ padrino start -e production -a puma -h 0.0.0.0 -p 3000
 ```
 
 ---

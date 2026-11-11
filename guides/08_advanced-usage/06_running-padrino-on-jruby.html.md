@@ -65,7 +65,7 @@ Then run:
 $ padrino s
 ```
 
-You can access <http://localhost:3000> as you run padrino on MRI...
+You can access <http://localhost:3000/index> as you run padrino on MRI...
 
 --------------------------------------------------------------------------------
 
@@ -86,5 +86,5 @@ Then run:
 
 ```shell
 $ bundle install
-$ padrino start -a puma
+$ padrino start -e production -a puma -h 0.0.0.0 -p 3000
 ```
