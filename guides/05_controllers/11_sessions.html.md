@@ -142,9 +142,10 @@ session until a request uses the flash (reads it, sets a message or calls
 `flash_tag`): that request sees it, and later ones don't. A request that never
 touches the flash, such as a JSON endpoint or a missing page, leaves it
 waiting, and a request that only sets a new message drops the waiting one
-without showing it. A page from a `not_found` or `error` block is an
-exception: it can show a waiting message but doesn't clear it, and a message
-set before an error that such a block handles is not kept. Reading
+without showing it. A page from a `not_found` or `error` block that handles
+a raised error is an exception: it can show a waiting message but doesn't
+clear it, and a message set before the error is not kept. After a route calls
+`halt`, the flash is handled as on any other page. Reading
 `flash[:notice]` returns the message that arrived with the current request, so
 a message you set is not visible until a later one.
 
@@ -159,7 +160,8 @@ redirect url(:posts, :index), notice: 'Post was created.'
 redirect url(:posts, :index), 301, notice: 'This page has moved.'
 ```
 
-In this hash, a symbol is translated with `I18n.translate`, so
+With padrino-helpers loaded (every project except `--api`), a symbol in this
+hash is translated with `I18n.translate`, so
 `notice: :post_created` shows the translation of `post_created` (a missing key
 shows I18n's "Translation missing" text). `flash[:notice] = :post_created`
 stores the symbol as it is.

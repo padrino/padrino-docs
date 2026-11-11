@@ -81,7 +81,10 @@ Switch renderer to 'haml' from 'erb' ?[yes/no]:
 Switching adds the new component's gems and setup files, and asks before
 overwriting a file such as `config/database.rb`. It doesn't remove the old
 component's gems or convert what was already generated: after switching from
-Sequel to Active Record, existing models are still Sequel models.
+Sequel to Active Record, existing models are still Sequel models. Two switches do
+change existing files: a mock switch replaces the old mock's lines in the test
+helper, and switching to Tailwind moves `public/stylesheets/application.css` to
+`app/stylesheets/`.
 
 Since the generators trust `.components`, editing it by hand changes what they
 generate next. For example, after changing `:test: minitest` to `:test: rspec`,
