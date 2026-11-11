@@ -92,9 +92,9 @@ this will install the latest 'edge' gems into rubygems. Be sure to verify your
 project's Gemfile depends on the edge version you installed:
 
 ```ruby
-Gemfile
+# Gemfile
 # Padrino
-gem 'padrino', '~> 0.18.1'
+gem 'padrino', '0.18.1'
 ```
 
 or you can generate a new project easily and you can use padrino commands

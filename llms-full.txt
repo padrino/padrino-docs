@@ -461,9 +461,9 @@ this will install the latest 'edge' gems into rubygems. Be sure to verify your
 project's Gemfile depends on the edge version you installed:
 
 ```ruby
-Gemfile
+# Gemfile
 # Padrino
-gem 'padrino', '~> 0.18.1'
+gem 'padrino', '0.18.1'
 ```
 
 or you can generate a new project easily and you can use padrino commands
@@ -6707,7 +6707,7 @@ end
 ```
 
 
-Let's also add a test to ensure the new rendering component generates as expected in [padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L565-L569):
+Let's also add a test to ensure the new rendering component generates as expected in [padrino-gen/test/test\_project\_generator.rb](https://github.com/padrino/padrino-framework/blob/0.17.0/padrino-gen/test/test_project_generator.rb#L566-L570):
 
 
 ```ruby
