@@ -9,7 +9,7 @@ This is just a collection of links (news, blogs, etc) that mention Padrino and n
 
 Name                                           | Description         | Author
 ---------------------------------------------- | ------------------- | ------------
-[Cerner Tech Talk (Video)](https://www.youtube.com/watch?v=CH_a3yNbYDM) |  This talk is part of Cerner's Tech Talk series (2013).  | [@CernerEng](https://twitter.com/CernerEng)
+[Cerner Tech Talk (Video)](https://www.youtube.com/watch?v=CH_a3yNbYDM) |  This talk is part of Cerner's Tech Talk series (2013).  | [@CernerEng](https://www.youtube.com/@CernerEng)
 [O’Reilly Programming](https://web.archive.org/web/20240305064452/http://radar.oreilly.com/2013/12/how-setting-aside-rails-and-picking-up-padrino-might-make-you-a-better-ruby-developer.html) | How Setting Aside Rails and Picking Up Padrino Might Make You a Better Ruby Developer (2013). | [Aaron Sumner](https://web.archive.org/web/20240622052922/http://radar.oreilly.com/asumner/)
 [RubyInside](http://www.rubyinside.com/padrino-sinatra-webapp-framework-3198.html) | Padrino: A Webapp Framework Wrapped Around Sinatra (2010). | [Peter Cooper](https://web.archive.org/web/20250619180014/http://www.rubyinside.com/author/admin)
 [PuddingBowl](https://web.archive.org/web/20150508223704/http://mph.puddingbowl.org/2011/04/padrino/) | padrino (2011). | [Michael Hall](http://mph.puddingbowl.org/about/)

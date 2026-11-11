@@ -43,7 +43,6 @@ Download and translate these files:
 
 - [padrino-support.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-support/lib/padrino-support/locale/en.yml)
 - [padrino-admin.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/admin/en.yml)
-- [padrino-admin-orm.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/orm/en.yml)
 - [padrino-helpers.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-helpers/lib/padrino-helpers/locale/en.yml)
 
 Then add each translated file next to the original, in the same `locale` folder of

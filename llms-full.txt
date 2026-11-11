@@ -535,7 +535,7 @@ This is just a collection of links (news, blogs, etc) that mention Padrino and n
 
 Name                                           | Description         | Author
 ---------------------------------------------- | ------------------- | ------------
-[Cerner Tech Talk (Video)](https://www.youtube.com/watch?v=CH_a3yNbYDM) |  This talk is part of Cerner's Tech Talk series (2013).  | [@CernerEng](https://twitter.com/CernerEng)
+[Cerner Tech Talk (Video)](https://www.youtube.com/watch?v=CH_a3yNbYDM) |  This talk is part of Cerner's Tech Talk series (2013).  | [@CernerEng](https://www.youtube.com/@CernerEng)
 [O’Reilly Programming](https://web.archive.org/web/20240305064452/http://radar.oreilly.com/2013/12/how-setting-aside-rails-and-picking-up-padrino-might-make-you-a-better-ruby-developer.html) | How Setting Aside Rails and Picking Up Padrino Might Make You a Better Ruby Developer (2013). | [Aaron Sumner](https://web.archive.org/web/20240622052922/http://radar.oreilly.com/asumner/)
 [RubyInside](http://www.rubyinside.com/padrino-sinatra-webapp-framework-3198.html) | Padrino: A Webapp Framework Wrapped Around Sinatra (2010). | [Peter Cooper](https://web.archive.org/web/20250619180014/http://www.rubyinside.com/author/admin)
 [PuddingBowl](https://web.archive.org/web/20150508223704/http://mph.puddingbowl.org/2011/04/padrino/) | padrino (2011). | [Michael Hall](http://mph.puddingbowl.org/about/)
@@ -835,7 +835,7 @@ relevant topics.
 There is also a screencast available for this tutorial. You can check it out by:
 <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/10522357?h=2baf45aa24" width="500" height="313" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/padrinocasts">PadrinoCasts</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/user3479413">Padrino Framework</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 </div>
 
 Please note that previous screencast, written for Padrino 0.12.2, is available under <http://vimeo.com/10522357>.
@@ -2875,7 +2875,6 @@ Download and translate these files:
 
 - [padrino-support.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-support/lib/padrino-support/locale/en.yml)
 - [padrino-admin.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/admin/en.yml)
-- [padrino-admin-orm.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-admin/lib/padrino-admin/locale/orm/en.yml)
 - [padrino-helpers.yml](https://raw.githubusercontent.com/padrino/padrino-framework/master/padrino-helpers/lib/padrino-helpers/locale/en.yml)
 
 Then add each translated file next to the original, in the same `locale` folder of
@@ -6918,7 +6917,6 @@ The following YAML files must be translated:
 
 - [padrino-helpers/locale/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-helpers/lib/padrino-helpers/locale/ru.yml)
 - [padrino-admin/locale/admin/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/locale/admin/ru.yml)
-- [padrino-admin/locale/orm/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/locale/orm/ru.yml)
 
 ## Contribute to Padrino
 
@@ -7640,8 +7638,8 @@ Padrino.load!
 
 To obtain an app\_id and secret for Facebook, you need to:
 
-- Go to the [Facebook Developers Page](http://www.facebook.com/developers)
-- Browse and click [create a new app](http://www.facebook.com/developers/createapp.php)
+- Go to the [Facebook Developers Page](https://developers.facebook.com/)
+- Browse and click [create a new app](https://developers.facebook.com/apps/creation/)
 - Set your app name and complete the form…
 - One you finish that you are allowed to edit your settings, go to **website** section
 - Add to site url: `http://localhost:3000`
