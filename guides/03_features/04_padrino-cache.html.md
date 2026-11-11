@@ -17,10 +17,11 @@ stores.
 Padrino-cache can reduce the processing load on your site very effectively
 with minimal configuration.
 
-By default, the component caches pages in a file store at `tmp/cache` within
-your project root. Entries in this store correspond directly to the request
-issued to your server. In other words, responses are cached based on request
-URL, with one cache entry per URL.
+By default, the component caches pages in a file store at `tmp/<app_name>/cache`
+within your project root, where `<app_name>` is the app's `app_name` setting:
+`tmp/my_project/app/cache` for `MyProject::App`. Entries in this store
+correspond directly to the request issued to your server. In other words,
+responses are cached based on request URL, with one cache entry per URL.
 
 This behavior is referred to as "page-level caching." If this strategy meets
 your needs, you can enable it very easily:
@@ -234,7 +235,7 @@ class MyTweets < Padrino::Application
       render 'feeds/show'
     end
 
-    get :mobile_feed, map: '/:username.iphone' do
+    get :mobile_feed, map: '/:username/iphone' do
       username = params[:username]
 
       @feed = cache("feed_for_#{username}", expires: 3) do
@@ -273,7 +274,7 @@ class MyTweets < Padrino::Application
       render 'feeds/show'
     end
 
-    get :mobile_feed, map: '/:username.iphone' do
+    get :mobile_feed, map: '/:username/iphone' do
       render 'feeds/show.iphone'
     end
   end
@@ -291,7 +292,7 @@ as part of the key; for example when using `will_paginate`, you might want to
 cache `url?page=1` separately from  `url?page=2`:
 
 ```ruby
-cache_key { request.path_info + (params[:page].present? ? "?page=#{params[:page]}" : '') }
+cache_key { request.path_info + (params[:page] ? "?page=#{params[:page]}" : '') }
 ```
 
 If you're using `ActiveSupport`, you can make this a bit more robust:
@@ -308,7 +309,7 @@ You can set a global caching option or a per app caching options.
 
 ```ruby
 Padrino.cache = Padrino::Cache.new(:LRUHash) # in-memory, the default choice
-Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', app_name.to_s, 'cache')) # Keeps cached values in file
+Padrino.cache = Padrino::Cache.new(:File, dir: Padrino.root('tmp', 'cache')) # Keeps cached values in file
 Padrino.cache = Padrino::Cache.new(:Memcached) # Uses default server at localhost
 Padrino.cache = Padrino::Cache.new(:Memcached, server: '127.0.0.1:11211', exception_retry_limit: 1)
 Padrino.cache = Padrino::Cache.new(:Memcached, backend: memcached_or_dalli_instance)
@@ -372,9 +373,9 @@ user a favor and instantly re-render the feed.
 class MyTweets < Padrino::Application
   register Padrino::Cache # includes helpers
   enable :caching         # turns on caching
-  enable :session         # we'll use this to store last time visited
+  enable :sessions        # we'll use this to store last time visited
 
-  COMPANY_FOUNDING = Time.utc(2010, 'April')
+  COMPANY_FOUNDING = Time.utc(2010, 4)
 
   controller :tweets do
     get :feed, map: '/:username' do

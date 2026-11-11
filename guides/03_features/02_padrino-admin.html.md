@@ -36,6 +36,7 @@ $ padrino g admin -e erb
 Follow the instructions in your terminal and provide a valid email and
 password for your newly created admin account:
 
+- install the gems it added to your `Gemfile`: `$ bundle install`
 - edit your config/database.rb
 - create the database: `$ bundle exec rake db:create`
 - migrate your database: `$ bundle exec rake db:migrate`
@@ -125,7 +126,7 @@ class Admin < Padrino::Application
 
   enable :authentication
   disable :store_location
-  set :login_page, '/admin/sessions/new'
+  set :login_page, '/sessions/new'
 
   access_control.roles_for :any do |role|
     role.protect '/'
@@ -190,8 +191,8 @@ end
 
 ## Custom Admin Pages and Bootstrap
 
-Admins generated with `padrino g admin` use Bootstrap 3.1 with jQuery 3.7.1.
-With this jQuery, a Bootstrap collapse, tab, modal or alert link with a bare
+Admins generated with `padrino g admin` use Bootstrap 3.4.1 with jQuery 3.7.1.
+With this jQuery, a Bootstrap collapse, tab or modal link with a bare
 `href="#"` raises a JavaScript error and does nothing. Give it a `data-target`
 that names its element instead:
 
@@ -216,7 +217,6 @@ with the line `set :session_id, "your_session_id"` in each apps `app.rb`.
 
 If you are planning to use padrino with an adapter other than the currently
 supported ones (activerecord, sequel and mongoid), such as
-[ohm](https://github.com/soveran/ohm "ohm") or
 [ruby-driver](https://github.com/datastax/ruby-driver "ruby-driver"), and you
 want to contribute to the project by adding support for it, be sure to check
 out the [adding components](/guides/adding-components/overview "adding components")
