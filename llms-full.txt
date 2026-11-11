@@ -1,7 +1,7 @@
 # Padrino Framework - Complete Documentation
 
 Generated from https://github.com/padrino/padrino-docs
-Version: 0.18.1
+Version: 0.18.5
 
 ---
 
@@ -1071,7 +1071,7 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.18.1 has taken the stage development at http://127.0.0.1:3000
+=> Padrino/0.18.5 has taken the stage development at http://127.0.0.1:3000
 [2026-10-31 01:57:31] INFO  WEBrick 1.9.2
 [2026-10-31 01:57:31] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
 [2026-10-31 01:57:31] INFO  Rackup::Handler::WEBrick::Server#start: pid=862 port=3000
@@ -2680,7 +2680,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.18.1'
+gem 'padrino', '0.18.5'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can
@@ -6916,6 +6916,7 @@ In order to add locale translations, simply port the following YAML files to
 your favorite language. For this example, let's port over Padrino to Russian.
 The following YAML files must be translated:
 
+- [padrino-support/locale/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-support/lib/padrino-support/locale/ru.yml)
 - [padrino-helpers/locale/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-helpers/lib/padrino-helpers/locale/ru.yml)
 - [padrino-admin/locale/admin/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/locale/admin/ru.yml)
 - [padrino-admin/locale/orm/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/locale/orm/ru.yml)
@@ -6976,7 +6977,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.1'
+gem 'padrino', '0.18.5'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -7054,14 +7055,14 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.1'
+gem 'padrino', '0.18.5'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.18.1'
+#   gem 'padrino-' + g, '0.18.5'
 # end
 
 gem 'sinatra-contrib'
