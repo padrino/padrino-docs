@@ -193,9 +193,14 @@ end
 - Both are `nil` when no route matched, for example in a `not_found` block
   reached that way. A route that halts with 404 or passes leaves them set to
   that route.
+- App-level `before` filters run once per request, so when a route passes to
+  another one they keep the first route's values; controller-level filters and
+  the route see the route that answers.
 
 `route` returns the matched route itself: `route.controller` and `route.action`
 hold the same values, and `route.name` is the route's name (`:"posts show"`).
+`route` is `nil` when no route matched, so a layout that a `not_found` block
+renders should use `request.controller`, which is safe.
 
 Since the controller is a string, compare it with a string, for example to
 mark the current section in a layout:
