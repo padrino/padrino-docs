@@ -26,7 +26,7 @@ Here is the integration of Sass into the generator, in
 
 SASS_INIT = <<-SASS unless defined?(SASS_INIT)
     # Enables support for SASS template reloading in rack applications.
-    # See https://www.rubydoc.info/gems/sass/Sass/Plugin/Rack for more details.
+    # See http://nex-3.com/posts/88-sass-supports-rack for more details.
     # Store SASS files (by default) within 'app/stylesheets'.
     require 'sass/plugin/rack'
     Sass::Plugin.options[:template_location] = Padrino.root("app/stylesheets")

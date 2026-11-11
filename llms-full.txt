@@ -535,7 +535,7 @@ This is just a collection of links (news, blogs, etc) that mention Padrino and n
 
 Name                                           | Description         | Author
 ---------------------------------------------- | ------------------- | ------------
-[Cerner Tech Talk (Video)](https://www.youtube.com/watch?v=CH_a3yNbYDM) |  This talk is part of Cerner's Tech Talk series (2013).  | @CernerEng
+[Cerner Tech Talk (Video)](https://www.youtube.com/watch?v=CH_a3yNbYDM) |  This talk is part of Cerner's Tech Talk series (2013).  | [@CernerEng](https://www.youtube.com/@CernerEng)
 [O’Reilly Programming](https://web.archive.org/web/20240305064452/http://radar.oreilly.com/2013/12/how-setting-aside-rails-and-picking-up-padrino-might-make-you-a-better-ruby-developer.html) | How Setting Aside Rails and Picking Up Padrino Might Make You a Better Ruby Developer (2013). | [Aaron Sumner](https://web.archive.org/web/20240622052922/http://radar.oreilly.com/asumner/)
 [RubyInside](http://www.rubyinside.com/padrino-sinatra-webapp-framework-3198.html) | Padrino: A Webapp Framework Wrapped Around Sinatra (2010). | [Peter Cooper](https://web.archive.org/web/20250619180014/http://www.rubyinside.com/author/admin)
 [PuddingBowl](https://web.archive.org/web/20150508223704/http://mph.puddingbowl.org/2011/04/padrino/) | padrino (2011). | [Michael Hall](http://mph.puddingbowl.org/about/)
@@ -835,7 +835,7 @@ relevant topics.
 There is also a screencast available for this tutorial. You can check it out by:
 <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/10522357?h=2baf45aa24" width="500" height="313" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/user3479413">PadrinoCasts</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/user3479413">Padrino Framework</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 </div>
 
 Please note that previous screencast, written for Padrino 0.12.2, is available under <http://vimeo.com/10522357>.
@@ -6840,7 +6840,7 @@ Here is the integration of Sass into the generator, in
 
 SASS_INIT = <<-SASS unless defined?(SASS_INIT)
     # Enables support for SASS template reloading in rack applications.
-    # See https://www.rubydoc.info/gems/sass/Sass/Plugin/Rack for more details.
+    # See http://nex-3.com/posts/88-sass-supports-rack for more details.
     # Store SASS files (by default) within 'app/stylesheets'.
     require 'sass/plugin/rack'
     Sass::Plugin.options[:template_location] = Padrino.root("app/stylesheets")

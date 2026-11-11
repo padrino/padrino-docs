@@ -19,7 +19,7 @@ relevant topics.
 There is also a screencast available for this tutorial. You can check it out by:
 <div class="flex-video widescreen" style="margin: 0 auto;text-align:center;">
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/10522357?h=2baf45aa24" width="500" height="313" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/user3479413">PadrinoCasts</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://vimeo.com/10522357">Blog Tutorial</a> from <a href="https://vimeo.com/user3479413">Padrino Framework</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 </div>
 
 Please note that previous screencast, written for Padrino 0.12.2, is available under <http://vimeo.com/10522357>.
