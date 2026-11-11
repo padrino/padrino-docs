@@ -166,8 +166,9 @@ it:
 *   the query string: `/posts?page=1` and `/posts?page=2` share one entry (see
     [Caching URLs with query strings](#caching-urls-with-query-strings));
 *   cookies, the session and request headers such as `Accept` or `User-Agent`:
-    routes on one path told apart only by a condition (`provides:`, `agent:`)
-    share one entry, and the first response stored is sent to all of them;
+    a route that serves several formats (`provides: [:html, :json]`), or routes
+    on one path told apart by `agent:`, share one entry, and the first response
+    stored is sent to all of them;
 *   the mount point: the path is relative to the app, so two mounted apps that
     share one store share entries for the same path. Each app gets its own store
     by default.
@@ -176,10 +177,11 @@ it:
 
 `cache_key` replaces the path with a key of your own, in one of three forms:
 
-*   **A block**, `cache_key { "post-#{params[:id]}" }`, is evaluated on every
-    request: before the route's code runs, to look the page up, and again after
-    it on a miss, to store the new page. Build it from `params`, `request` or
-    `session`, not from variables the route sets.
+*   **A block**, `cache_key { "post-#{params[:id]}" }`, is evaluated before the
+    route's code runs, to look the page up, and again after it on a miss, to
+    store the new page. Build it from `params`, `request` or `session`, not from
+    variables the route sets. The block must return a key for every request; if
+    it returns nil, the request path is used.
 *   **A Symbol**, `cache_key :about`, names one entry shared by every request of
     the route, whatever its params. Use it only on a route whose page is the same
     for everyone, and expire it with `CachedApp.cache.delete(:about)`.
@@ -212,6 +214,10 @@ get :feed, cache: true, provides: [:html, :json] do
   render 'feed'
 end
 ```
+
+After you add or change a route's `cache_key`, clear the store (for example
+`Demo::App.cache.clear`, or delete `tmp/<app name>/cache`), so pages stored
+under the old key aren't served.
 
 `before` filters and route conditions still run for a cached page, because the
 cache is checked after them, so a login check in a `before` filter also guards
