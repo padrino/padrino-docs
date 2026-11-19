@@ -10,11 +10,11 @@
 - [Generators](https://padrinorb.com/guides/generators/overview): Project, app, controller, model, mailer generators
 - [Features](https://padrinorb.com/guides/features/overview): Admin, mailer, cache, mounting apps, i18n, testing
 - [Adding Components](https://padrinorb.com/guides/adding-components/overview): ORMs, template engines, test frameworks, CSS
-- [Advanced Usage](https://padrinorb.com/guides/advanced-usage/overview): Standalone usage, deployment, Passenger, OmniAuth
+- [Advanced Usage](https://padrinorb.com/guides/advanced-usage/overview): Standalone usage, deployment, OmniAuth
 
 ## Quick Reference
 
-- Version: 0.18.1
+- Version: 0.18.5
 - Ruby: >= 2.7.8
 - Built on: Sinatra 4, Rack 3
 - Source: https://github.com/padrino/padrino-framework
