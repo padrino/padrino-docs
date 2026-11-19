@@ -93,8 +93,8 @@ Padrino.load!
 
 To obtain an app\_id and secret for Facebook, you need to:
 
-- Go to the [Facebook Developers Page](http://www.facebook.com/developers)
-- Browse and click [create a new app](http://www.facebook.com/developers/createapp.php)
+- Go to the [Facebook Developers Page](https://developers.facebook.com/)
+- Browse and click [create a new app](https://developers.facebook.com/apps/creation/)
 - Set your app name and complete the form…
 - One you finish that you are allowed to edit your settings, go to **website** section
 - Add to site url: `http://localhost:3000`

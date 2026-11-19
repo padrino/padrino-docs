@@ -15,7 +15,6 @@ The following YAML files must be translated:
 - [padrino-support/locale/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-support/lib/padrino-support/locale/ru.yml)
 - [padrino-helpers/locale/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-helpers/lib/padrino-helpers/locale/ru.yml)
 - [padrino-admin/locale/admin/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/locale/admin/ru.yml)
-- [padrino-admin/locale/orm/ru.yml](https://github.com/padrino/padrino-framework/blob/master/padrino-admin/lib/padrino-admin/locale/orm/ru.yml)
 
 ## Contribute to Padrino
 

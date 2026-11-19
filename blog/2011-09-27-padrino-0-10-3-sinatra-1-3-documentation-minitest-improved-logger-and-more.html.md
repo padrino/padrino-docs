@@ -55,7 +55,7 @@ New projects in Padrino now automatically include this replacement and upgrading
     gem "sinatra-flash" # Replaces gem "rack-flash"
 
 
-In addition, daddye has contributed a [slimmer and faster flash](https://github.com/padrino/padrino-contrib/blob/master/lib/padrino-contrib/helpers/flash.rb) in padrino-contrib. Usage is described in the file itself but is as easy as `register Padrino::Contrib::Helpers::Flash`. Either solution should make upgrading a snap.
+In addition, daddye has contributed a [slimmer and faster flash](https://github.com/padrino/padrino-contrib/blob/v0.1.9/lib/padrino-contrib/helpers/flash.rb) in padrino-contrib. Usage is described in the file itself but is as easy as `register Padrino::Contrib::Helpers::Flash`. Either solution should make upgrading a snap.
 
 
 For more information about the switch be sure to read the [Github Issue](https://github.com/padrino/padrino-framework/issues/679) on the subject or see the [related commit](https://github.com/padrino/padrino-framework/commit/cad9e8f62025736146f5f13d3ead2424c2b1d3aa).
@@ -113,7 +113,7 @@ One final bonus feature to this post is a quick discussion about asset compressi
 
 - [Jammit Sinatra](https://github.com/jacquescrocker/jammit-sinatra) – Excellent sinatra wrapper for Jammit
 - [padrino-sprockets](https://github.com/nightsailer/padrino-sprockets) – Still a young project but looks promising.
-- [assets\_compressor](https://github.com/padrino/padrino-contrib/blob/master/lib/padrino-contrib/helpers/assets_compressor.rb) – Padrino-contrib recipe for simple compression of assets.
+- [assets\_compressor](https://github.com/padrino/padrino-contrib/blob/v0.1.9/lib/padrino-contrib/helpers/assets_compressor.rb) – Padrino-contrib recipe for simple compression of assets.
 - [Sinatra AssetPack](https://github.com/rstacruz/sinatra-assetpack) – Great asset compilation for Sinatra
 - [Middleman](https://github.com/middleman/middleman) – Interesting Padrino-powered alternative for asset handling
 
