@@ -56,7 +56,7 @@ in
 ```ruby
 # padrino-gen/README.rdoc
 
-mock:: none (default), mocha, rr
+mock::       none  (default), mocha, rr (deprecated)
 ```
 
 ## Contribute to Padrino
