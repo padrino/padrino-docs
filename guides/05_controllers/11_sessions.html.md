@@ -142,10 +142,11 @@ session until a request uses the flash (reads it, sets a message or calls
 `flash_tag`): that request sees it, and later ones don't. A request that never
 touches the flash, such as a JSON endpoint or a missing page, leaves it
 waiting, and a request that only sets a new message drops the waiting one
-without showing it. Pages from `not_found` and `error` blocks follow the same
-rule. Reading
-`flash[:notice]` returns the message that arrived with the current request, so
-a message you set is not visible until a later one.
+without showing it. `not_found` for an unmatched path and `error` for a raised
+exception follow the same rule. Blocks reached through `halt`, the `not_found`
+helper or a 405 status do not clear a waiting message or save a new one.
+Reading `flash[:notice]` returns the message that arrived with the current
+request, so a message you set is not visible until a later one.
 
 `flash.now[:error] = '...'` sets a message for the current request only, for a
 page you render instead of redirecting. It works without sessions.
