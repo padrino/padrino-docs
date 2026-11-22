@@ -5343,7 +5343,7 @@ javascript. An example of their uses would be on a simple view template:
 %head
   = stylesheet_link_tag 'layout'
   = javascript_include_tag 'application'
-  = favicon_tag 'images/favicon.png'
+  = favicon_tag 'favicon.png'
 %body
   ...
   = flash_tag :notice
@@ -5393,7 +5393,7 @@ and `button_to` do the same for the form's action.
   - `javascript_include_tag 'application', 'special'`
 - `favicon_tag(source, options = {})`
   - Returns a favicon tag for the header for the source specified.
-  - `favicon_tag 'images/favicon.ico', type: 'image/ico'`
+  - `favicon_tag 'favicon.ico', type: 'image/ico'`
 - `feed_tag(mime, source, options = {})`
   - Returns a feed tag for the mime and source specified
   - `feed_tag :atom, url(:blog, :posts, format: :atom), title: 'ATOM'`
