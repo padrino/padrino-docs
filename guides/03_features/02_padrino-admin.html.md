@@ -86,7 +86,7 @@ we can easily accomplish this by editing `app.rb` accordingly:
 class MyEcommerce < Padrino::Application
   register Padrino::Admin::AccessControl
 
-  enable :authentication
+  enable :sessions
   enable :store_location
   set    :login_page, '/login'
 
@@ -124,7 +124,7 @@ easily manage which functionality is available to your users.
 class Admin < Padrino::Application
   register Padrino::Admin::AccessControl
 
-  enable :authentication
+  enable :sessions
   disable :store_location
   set :login_page, '/sessions/new'
 
