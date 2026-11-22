@@ -67,10 +67,11 @@ Here is the Sequel component,
 
 SEQUEL = <<~SEQUEL unless defined?(SEQUEL)
   Sequel::Model.raise_on_save_failure = false # Do not throw exceptions on failure
+  # test: false connects on first use, so rake sq:create can run before the database exists.
   Sequel::Model.db = case Padrino.env
-    when :development then Sequel.connect(!DB_DEVELOPMENT!, loggers: [logger])
-    when :production  then Sequel.connect(!DB_PRODUCTION!,  loggers: [logger])
-    when :test        then Sequel.connect(!DB_TEST!,        loggers: [logger])
+    when :development then Sequel.connect(!DB_DEVELOPMENT!, loggers: [logger], test: false)
+    when :production  then Sequel.connect(!DB_PRODUCTION!,  loggers: [logger], test: false)
+    when :test        then Sequel.connect(!DB_TEST!,        loggers: [logger], test: false)
   end
 SEQUEL
 
@@ -79,26 +80,18 @@ def setup_orm
   db = @project_name.underscore
   require_dependencies 'sequel'
 
-  begin
-    case adapter ||= options[:adapter]
-    # ...truncated: mysql/mysql2 and postgres...
-    when 'sqlite'
-      sequel.gsub!(/!DB_DEVELOPMENT!/, "\"sqlite://db/#{db}_development.db\"")
-      sequel.gsub!(/!DB_PRODUCTION!/, "\"sqlite://db/#{db}_production.db\"")
-      sequel.gsub!(/!DB_TEST!/,       "\"sqlite://db/#{db}_test.db\"")
-      require_dependencies 'sqlite3'
-    else
-      say "Failed to generate `config/database.rb` for ORM adapter `#{adapter}`", :red
-      raise ArgumentError
-    end
-  rescue ArgumentError
-    adapter = ask_valid_option(:adapter, %w[mysql mysql2 postgres sqlite], 'Please, choose a proper adapter:')
-    retry
+  case (resolve_valid_adapter unless adapter_unknown?)
+  # ...truncated: mysql/mysql2, trilogy and postgres...
+  when 'sqlite'
+    sequel.gsub!(/!DB_DEVELOPMENT!/, "\"sqlite://db/#{db}_development.db\"")
+    sequel.gsub!(/!DB_PRODUCTION!/, "\"sqlite://db/#{db}_production.db\"")
+    sequel.gsub!(/!DB_TEST!/,       "\"sqlite://db/#{db}_test.db\"")
+    require_dependencies 'sqlite3'
   end
 
   # ...truncated: the Falcon fiber setting...
 
-  create_file('config/database.rb', sequel)
+  create_file('config/database.rb', sequel, skip: keep_database_config?)
   empty_directory('db/migrate')
 end
 
