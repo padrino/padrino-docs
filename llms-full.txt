@@ -674,7 +674,7 @@ where your applications will be mounted, by editing your `config/apps.rb` file.
 Let's start by creating a new Padrino project using Active Record:
 
 ```shell
-$ padrino g project blog -d activerecord
+$ padrino g project blog -d activerecord -e slim
 ```
 
 Install all project dependencies:
@@ -694,17 +694,18 @@ section is nothing but a new Padrino **application**:
 $ padrino g admin -e slim
 ```
 
-Beside slim, you can also use `erb` or `haml`. You need to configure your database
+Beside slim, you can also use `erb` or `haml`; give `padrino g project` the same `-e` option, so that engine's gem is in your Gemfile. You need to configure your database
 settings in `config/database.rb` and run your migrations to add tables
 and columns to your database:
 
 ```shell
+$ bundle install
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
 ```
 
 Create your first admin account; this is easily achieved by seeding your
-database with default admin data, stored in your `seed.rb` file:
+database with default admin data, stored in your `db/seeds.rb` file:
 
 ```shell
 $ bundle exec rake db:seed
@@ -1697,7 +1698,7 @@ we can easily accomplish this by editing `app.rb` accordingly:
 class MyEcommerce < Padrino::Application
   register Padrino::Admin::AccessControl
 
-  enable :authentication
+  enable :sessions
   enable :store_location
   set    :login_page, '/login'
 
@@ -1735,7 +1736,7 @@ easily manage which functionality is available to your users.
 class Admin < Padrino::Application
   register Padrino::Admin::AccessControl
 
-  enable :authentication
+  enable :sessions
   disable :store_location
   set :login_page, '/sessions/new'
 
@@ -4324,7 +4325,7 @@ The routing system supports named aliases by using symbols instead of strings
 for your routes:
 
 ```ruby
-Demo::App.controllers :page do
+Demo::App.controllers do
   get :index do
     # url is generated as '/'
     # url_for(:index) => "/"
@@ -4351,7 +4352,7 @@ The routing plugin also supports inline route definitions in which the explicit
 URL and the named alias are both defined:
 
 ```ruby
-Demo::App.controllers :account do
+Demo::App.controllers do
   get :index, map: '/index/example' do
     # url_for(:index) => "/index/example"
   end
@@ -4367,7 +4368,7 @@ Routes defined inline this way can be accessed and treated the same way as tradi
 
 ```haml
 = link_to 'Index Page', url_for(:index)
-= link_to 'Account Page', url_for(:account, id: 1)
+= link_to 'Account Page', url_for(:account, name: 'John', id: 1)
 ```
 
 ## Namespaced Route Aliases
@@ -4378,7 +4379,7 @@ controller group:
 ```ruby
 Demo::App.controllers :admin do
   get :index do
-    # url is generated as '/admin/'
+    # url is generated as '/admin'
     # url_for(:admin, :index) => "/admin"
   end
 
@@ -4392,21 +4393,21 @@ end
 You can then reference these routes using the same `url_for` method:
 
 ```haml
-= link_to 'admin show page', url_for(:admin, :index)
-= link_to 'admin index page', url_for(:admin, :show, id: 25)
+= link_to 'admin index page', url_for(:admin, :index)
+= link_to 'admin show page', url_for(:admin, :show, id: 25)
 ```
 
 If you prefer explicit URLs to named aliases, that is also supported within a
 specified controller group:
 
 ```ruby
-Demo::App.controllers '/admin' do
+Demo::App.controllers :admin do
   get '/show', name: :show do
     # url is generated as "/admin/show"
   end
 
   get '/other/:id', name: :other do
-    # url is generated as "/admin/#{params[:id]}"
+    # url is generated as "/admin/other/#{params[:id]}"
   end
 end
 ```
@@ -4438,8 +4439,8 @@ end
 You can then reference the URLs using the same `url_for` method:
 
 ```haml
-= link_to 'admin show page', url_for(:admin_show, id: 25)
-= link_to 'admin other page', url_for(:admin_other, id: 25, name: :foo)
+= link_to 'admin show page', url_for(:admin, :show, id: 25)
+= link_to 'admin other page', url_for(:admin, :other, id: 25, name: :foo)
 ```
 
 ### Nested Routes
@@ -4585,7 +4586,7 @@ Demo::App.controllers :admin do
 
   get :other, with: [:id, :name], provides: [:html, :json] do
     case content_type
-      when :js    then ...
+      when :html  then ...
       when :json  then ...
     end
   end
@@ -4596,9 +4597,9 @@ These formatted route paths can be accessed easily using `url_for` and then
 `format` option:
 
 ```haml
-= link_to 'admin show page', url_for(:admin, show, id: 25, format: :js)
-= link_to 'admin other page', url_for(:admin, index, id: 25, name: :foo)
-= link_to 'other json', url(:admin, index, id: 25, name: :foo, format: :json)
+= link_to 'admin show page', url_for(:admin, :show, id: 25, format: :js)
+= link_to 'admin other page', url_for(:admin, :other, id: 25, name: :foo)
+= link_to 'other json', url(:admin, :other, id: 25, name: :foo, format: :json)
 ```
 
 ---
@@ -5314,7 +5315,7 @@ containing html tags.
 
 - `tag(name, options = nil, open = false)`
   - Creates an html tag with the given name and options
-  - `tag(:br, style: 'clear:both', open: true)` => `<br
+  - `tag(:br, { style: 'clear:both' }, true)` => `<br
     style="clear:both">`
 - `content_tag(name, content, options = nil, &block)`
   - Creates an html tag with given name, content and options
@@ -5343,7 +5344,7 @@ javascript. An example of their uses would be on a simple view template:
 %head
   = stylesheet_link_tag 'layout'
   = javascript_include_tag 'application'
-  = favicon_tag 'images/favicon.png'
+  = favicon_tag 'favicon.png'
 %body
   ...
   = flash_tag :notice
@@ -5393,7 +5394,7 @@ and `button_to` do the same for the form's action.
   - `javascript_include_tag 'application', 'special'`
 - `favicon_tag(source, options = {})`
   - Returns a favicon tag for the header for the source specified.
-  - `favicon_tag 'images/favicon.ico', type: 'image/ico'`
+  - `favicon_tag 'favicon.ico', type: 'image/ico'`
 - `feed_tag(mime, source, options = {})`
   - Returns a feed tag for the mime and source specified
   - `feed_tag :atom, url(:blog, :posts, format: :atom), title: 'ATOM'`
@@ -5783,10 +5784,10 @@ Format helpers also includes a number of useful text manipulation functions such
 as `simple_format`, `pluralize`, `word_wrap`, and `truncate`.
 
 ```ruby
-simple_format("hello\nworld") # => "<p>hello<br/>world</p>"
+simple_format("hello\nworld") # => "<p>hello\n<br />world</p>"
 pluralize(2, 'person') => '2 people'
-word_wrap('Once upon a time', line_width: 8) => "Once upon\na time"
-truncate("Once upon a time in a world far far away", length: 8) => "Once upon..."
+word_wrap('Once upon a time', line_width: 8) => "Once\nupon a\ntime"
+truncate("Once upon a time in a world far far away", length: 8) => "Once ..."
 truncate_words("Once upon a time in a world far far away", length: 4) => "Once upon a time..."
 highlight('Lorem dolor sit', 'dolor') => "Lorem <strong class="highlight">dolor</strong> sit"
 ```
@@ -5797,18 +5798,18 @@ These helpers can be invoked from any route or view within your application.
 
 - `simple_format(text, html_options)`
   - Returns text transformed into HTML using simple formatting rules.
-  - `simple_format("hello\nworld")` => `"<p>hello<br/>world</p>"`
+  - `simple_format("hello\nworld")` => `"<p>hello\n<br />world</p>"`
 - `pluralize(count, singular, plural = nil)`
   - Attempts to pluralize the singular word unless count is 1.
   - `pluralize(2, 'person')` => '2 people'
 - `word_wrap(text, *args)`
   - Wraps the text into lines no longer than `line_width` characters.
-  - `word_wrap('Once upon a time', line_width: 8)` => "Once upon\na time"
+  - `word_wrap('Once upon a time', line_width: 8)` => "Once\nupon a\ntime"
 - `truncate(text, *args)`
   - Truncates a given text after a given `:length` if text is longer than `:length`
     (defaults to 30).
   - `truncate("Once upon a time in a world far far away", length: 8)` =>
-    "Once upon..."
+    "Once ..."
 - `truncate_words(text, *args)`
   - Truncates a given text after a given :length of total words (defaults to
     30).
@@ -5825,13 +5826,13 @@ These helpers can be invoked from any route or view within your application.
   - Remove all html tags and return only a clean text.
 - `distance_of_time_in_words(from_time, to_time = 0)`
   - Returns relative time in words referencing the given date
-  - `distance_of_time_in_words(2.days.ago)` => "2 days"
-  - `distance_of_time_in_words(5.minutes.ago)` => "5 minutes"
-  - `distance_of_time_in_words(2800.days.ago)` => "over 7 years"
+  - `distance_of_time_in_words(Time.now - 2 * 86_400, Time.now)` => "2 days"
+  - `distance_of_time_in_words(Time.now - 300, Time.now)` => "5 minutes"
+  - `distance_of_time_in_words(Time.now - 2800 * 86_400, Time.now)` => "over 7 years"
 - `time_ago_in_words(from_time)`
   - Returns relative time in words from the current date
-  - `time_ago_in_words(2.days.ago)` => "2 days"
-  - `time_ago_in_words(1.day.from_now)` => "tomorrow"
+  - `time_ago_in_words(Time.now - 2 * 86_400)` => "2 days"
+  - `time_ago_in_words(Time.now + 86_400)` => "1 day"
 - `js_escape_html(html_content)`
   - Escapes html to allow passing information to javascript. Used for passing
     data inside an ajax .js.erb template.

@@ -17,7 +17,7 @@ Demo::App.controllers :admin do
 
   get :other, with: [:id, :name], provides: [:html, :json] do
     case content_type
-      when :js    then ...
+      when :html  then ...
       when :json  then ...
     end
   end
@@ -28,7 +28,7 @@ These formatted route paths can be accessed easily using `url_for` and then
 `format` option:
 
 ```haml
-= link_to 'admin show page', url_for(:admin, show, id: 25, format: :js)
-= link_to 'admin other page', url_for(:admin, index, id: 25, name: :foo)
-= link_to 'other json', url(:admin, index, id: 25, name: :foo, format: :json)
+= link_to 'admin show page', url_for(:admin, :show, id: 25, format: :js)
+= link_to 'admin other page', url_for(:admin, :other, id: 25, name: :foo)
+= link_to 'other json', url(:admin, :other, id: 25, name: :foo, format: :json)
 ```

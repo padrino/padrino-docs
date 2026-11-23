@@ -33,7 +33,7 @@ containing html tags.
 
 - `tag(name, options = nil, open = false)`
   - Creates an html tag with the given name and options
-  - `tag(:br, style: 'clear:both', open: true)` => `<br
+  - `tag(:br, { style: 'clear:both' }, true)` => `<br
     style="clear:both">`
 - `content_tag(name, content, options = nil, &block)`
   - Creates an html tag with given name, content and options

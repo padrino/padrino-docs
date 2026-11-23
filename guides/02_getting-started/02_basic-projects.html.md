@@ -98,7 +98,7 @@ where your applications will be mounted, by editing your `config/apps.rb` file.
 Let's start by creating a new Padrino project using Active Record:
 
 ```shell
-$ padrino g project blog -d activerecord
+$ padrino g project blog -d activerecord -e slim
 ```
 
 Install all project dependencies:
@@ -118,17 +118,18 @@ section is nothing but a new Padrino **application**:
 $ padrino g admin -e slim
 ```
 
-Beside slim, you can also use `erb` or `haml`. You need to configure your database
+Beside slim, you can also use `erb` or `haml`; give `padrino g project` the same `-e` option, so that engine's gem is in your Gemfile. You need to configure your database
 settings in `config/database.rb` and run your migrations to add tables
 and columns to your database:
 
 ```shell
+$ bundle install
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
 ```
 
 Create your first admin account; this is easily achieved by seeding your
-database with default admin data, stored in your `seed.rb` file:
+database with default admin data, stored in your `db/seeds.rb` file:
 
 ```shell
 $ bundle exec rake db:seed
