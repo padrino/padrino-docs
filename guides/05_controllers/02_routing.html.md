@@ -18,7 +18,7 @@ The routing system supports named aliases by using symbols instead of strings
 for your routes:
 
 ```ruby
-Demo::App.controllers :page do
+Demo::App.controllers do
   get :index do
     # url is generated as '/'
     # url_for(:index) => "/"
@@ -45,7 +45,7 @@ The routing plugin also supports inline route definitions in which the explicit
 URL and the named alias are both defined:
 
 ```ruby
-Demo::App.controllers :account do
+Demo::App.controllers do
   get :index, map: '/index/example' do
     # url_for(:index) => "/index/example"
   end
@@ -61,7 +61,7 @@ Routes defined inline this way can be accessed and treated the same way as tradi
 
 ```haml
 = link_to 'Index Page', url_for(:index)
-= link_to 'Account Page', url_for(:account, id: 1)
+= link_to 'Account Page', url_for(:account, name: 'John', id: 1)
 ```
 
 ## Namespaced Route Aliases
@@ -72,7 +72,7 @@ controller group:
 ```ruby
 Demo::App.controllers :admin do
   get :index do
-    # url is generated as '/admin/'
+    # url is generated as '/admin'
     # url_for(:admin, :index) => "/admin"
   end
 
@@ -86,21 +86,21 @@ end
 You can then reference these routes using the same `url_for` method:
 
 ```haml
-= link_to 'admin show page', url_for(:admin, :index)
-= link_to 'admin index page', url_for(:admin, :show, id: 25)
+= link_to 'admin index page', url_for(:admin, :index)
+= link_to 'admin show page', url_for(:admin, :show, id: 25)
 ```
 
 If you prefer explicit URLs to named aliases, that is also supported within a
 specified controller group:
 
 ```ruby
-Demo::App.controllers '/admin' do
+Demo::App.controllers :admin do
   get '/show', name: :show do
     # url is generated as "/admin/show"
   end
 
   get '/other/:id', name: :other do
-    # url is generated as "/admin/#{params[:id]}"
+    # url is generated as "/admin/other/#{params[:id]}"
   end
 end
 ```
@@ -132,8 +132,8 @@ end
 You can then reference the URLs using the same `url_for` method:
 
 ```haml
-= link_to 'admin show page', url_for(:admin_show, id: 25)
-= link_to 'admin other page', url_for(:admin_other, id: 25, name: :foo)
+= link_to 'admin show page', url_for(:admin, :show, id: 25)
+= link_to 'admin other page', url_for(:admin, :other, id: 25, name: :foo)
 ```
 
 ### Nested Routes
