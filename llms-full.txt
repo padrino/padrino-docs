@@ -1,7 +1,7 @@
 # Padrino Framework - Complete Documentation
 
 Generated from https://github.com/padrino/padrino-docs
-Version: 0.18.5
+Version: 0.18.6
 
 ---
 
@@ -1072,7 +1072,7 @@ You should see no errors, and the terminal should output:
 
 
 ```shell
-=> Padrino/0.18.5 has taken the stage development at http://127.0.0.1:3000
+=> Padrino/0.18.6 has taken the stage development at http://127.0.0.1:3000
 [2026-10-31 01:57:31] INFO  WEBrick 1.9.2
 [2026-10-31 01:57:31] INFO  ruby 3.3.6 (2024-11-05) [x86_64-linux]
 [2026-10-31 01:57:31] INFO  Rackup::Handler::WEBrick::Server#start: pid=862 port=3000
@@ -2441,7 +2441,9 @@ The Padrino cache constructor `Padrino::Cache.new` calls `Moneta.new` to
 create a cache instance. Please refer to the [Moneta
 documentation](http://rubydoc.info/gems/moneta) if you have special
 requirements, for example if you want to configure the marshalling mechanism
-or use a more exotic backend.
+or use a more exotic backend. For fragment caching, keep a serializer that
+preserves the string's class (such as Marshal, which the default stores use);
+stores using YAML or JSON escape cached HTML on a cache hit.
 
 ### Application Caching Options
 
@@ -2682,7 +2684,7 @@ our application.
 # Gemfile
 source 'https://rubygems.org'
 gem 'rake'
-gem 'padrino', '0.18.5'
+gem 'padrino', '0.18.6'
 ```
 
 This manifest file uses the standard `bundler` gem syntax of which details can
@@ -7084,7 +7086,7 @@ gem 'rake'
 # ...more gems...
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.5'
+gem 'padrino', '0.18.6'
 ```
 
 All dependencies and libraries required for your project should be declared in
@@ -7162,14 +7164,14 @@ gem 'haml'
 # Test requirements
 
 # Padrino Stable Gem
-gem 'padrino', '0.18.5'
+gem 'padrino', '0.18.6'
 
 # Or Padrino Edge
 # gem 'padrino', github: 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
-#   gem 'padrino-' + g, '0.18.5'
+#   gem 'padrino-' + g, '0.18.6'
 # end
 
 gem 'sinatra-contrib'
@@ -7368,7 +7370,7 @@ You can find the code on [Github](https://github.com/padrino/grape-example "Gith
 
 # Running Padrino on JRuby
 
-You can run Padrino on JRuby. Padrino 0.18.5 is tested on JRuby 10.1.
+You can run Padrino on JRuby. Padrino 0.18.6 is tested on JRuby 10.1.
 
 --------------------------------------------------------------------------------
 
@@ -7381,7 +7383,7 @@ You can easily install Padrino on jruby when you use
 $ rvm install jruby
 $ rvm use --create jruby@padrino
 $ gem install bundler
-$ gem install padrino -v=0.18.5
+$ gem install padrino -v=0.18.6
 ```
 
 Create Padrino project just as you do when using MRI:
