@@ -333,7 +333,9 @@ The Padrino cache constructor `Padrino::Cache.new` calls `Moneta.new` to
 create a cache instance. Please refer to the [Moneta
 documentation](http://rubydoc.info/gems/moneta) if you have special
 requirements, for example if you want to configure the marshalling mechanism
-or use a more exotic backend.
+or use a more exotic backend. For fragment caching, keep a serializer that
+preserves the string's class (such as Marshal, which the default stores use);
+stores using YAML or JSON escape cached HTML on a cache hit.
 
 ### Application Caching Options
 
