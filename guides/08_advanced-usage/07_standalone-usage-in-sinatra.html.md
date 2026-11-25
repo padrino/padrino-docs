@@ -159,7 +159,36 @@ require 'padrino-cache'
 
 class Application < Sinatra::Base
   register Padrino::Cache
+  enable :caching
 end
 ```
 
-This will allow for use of the caching functionality within Sinatra.
+This enables fragment and object caching (`cache(key, expires: 30) { ... }`,
+`cache_object`) within Sinatra. Without `enable :caching`, both run their block
+every time and store nothing.
+
+Page caching (`cache: true` on a route, `expires` and `cache_key`) is built on
+Padrino's router, so register `Padrino::Routing` too, before you define the
+cached routes:
+
+```ruby
+# app.rb
+require 'sinatra/base'
+require 'padrino-cache'
+
+class Application < Sinatra::Base
+  register Padrino::Routing
+  register Padrino::Cache
+  enable :caching
+
+  get '/foo', cache: true do
+    expires 30
+    'Hello world'
+  end
+end
+```
+
+Register both before any route, in either order. `Padrino::Routing` replaces
+Sinatra's route matching for the app (see [Padrino Routing](#padrino-routing)
+above), so routes defined before it stop answering, and a route defined before
+`Padrino::Cache` is never cached.
