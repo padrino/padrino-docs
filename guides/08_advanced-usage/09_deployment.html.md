@@ -118,20 +118,24 @@ server, such as `SESSION_SECRET` and `DATABASE_URL`.
 
 ## Assets
 
-If the project uses the Vite script component or the Tailwind stylesheet
-component, build the assets on each deploy:
+If the project uses the Vite script component or the Tailwind, Sass or SCSS
+stylesheet component, build the assets on each deploy:
 
 ```bash
 $ RACK_ENV=production bundle exec rake assets:precompile
 ```
 
 - Tailwind writes a minified `public/stylesheets/application.css`.
+- Sass and SCSS compile each file in `app/stylesheets` to
+  `public/stylesheets` (`rake sass:build`). Padrino doesn't compile them on
+  request, so a deploy without this step serves the stylesheets last built
+  there, or none.
 - Vite runs `npm ci` and builds into `public/vite`. `npm ci` needs a
   `package-lock.json`, so run `npm install` once and commit the lock file. The
   build machine needs Node.js.
 
-The generators add these build outputs to `.gitignore`, so they have to be
-built where you deploy, not committed.
+The Tailwind and Vite generators add their build outputs to `.gitignore`, so
+they have to be built where you deploy, not committed.
 
 ## Static files
 

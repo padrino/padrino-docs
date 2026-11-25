@@ -91,7 +91,7 @@ orm        | none    | -d      | mongoid, activerecord, sequel
 test       | none    | -t      | bacon, shoulda, cucumber, testunit, rspec, minitest
 script     | none    | -s      | prototype, jquery, mootools, dojo, vite
 renderer   | none    | -e      | erb, haml, slim, liquid
-stylesheet | none    | -c      | sass, scss, tailwind
+stylesheet | none    | -c      | sass (Dart Sass), scss (Dart Sass), tailwind
 mock       | none    | -m      | rr, mocha
 
 Note: Be careful with your naming when using generators and do not have your
@@ -214,10 +214,14 @@ which is gitignored. Link it in your layout:
 
 When you add Tailwind to an existing project, a hand-written
 `public/stylesheets/application.css` is moved into the new source, with its
-`@charset` and `@import` lines kept at the top. If you switch from sass, scss
-or less, remove that engine's gems from the Gemfile, its
-`register ...Initializer` line from `app/app.rb` and
-`config/initializers/<engine>.rb`.
+`@charset` and `@import` lines kept at the top. If you switch from sass or
+scss, delete `tasks/sass.rake`, remove `gem 'sass-embedded'` from the Gemfile
+and make the `css:` line in `Procfile.dev`
+`css: bundle exec rake tailwind:watch`. A project that compiles its
+stylesheets with Ruby Sass or less instead has the engine's gems in the
+Gemfile, a `register ...Initializer` line in `app/app.rb` and
+`config/initializers/<engine>.rb` to remove. The generator lists what it
+finds.
 
 The binary comes in platform-specific gems. If you develop on macOS and deploy
 to Linux, add the platform to your lockfile:
@@ -229,3 +233,43 @@ $ bundle lock --add-platform x86_64-linux
 On platforms without a prebuilt binary, such as JRuby, download the
 standalone Tailwind executable for your OS, save it as `tailwindcss` (and make
 it executable), and point `TAILWINDCSS_INSTALL_DIR` at that directory.
+
+## Sass and SCSS
+
+`-c sass` and `-c scss` set up [Dart Sass](https://sass-lang.com/dart-sass)
+with the [sass-embedded](https://github.com/sass-contrib/sass-embedded-host-ruby)
+gem. The two components are the same: Dart Sass picks the syntax by file
+extension, so a project can have both `.sass` and `.scss` files.
+
+Put your stylesheets in `app/stylesheets`. Each one compiles to
+`public/stylesheets`, in the same folders:
+`app/stylesheets/application.scss` becomes
+`public/stylesheets/application.css`. Files whose names start with `_` are
+partials, compiled only into the stylesheets that `@use` them, and plain
+`.css` files are written out as plain CSS too. Link the result in your layout:
+
+```haml
+= stylesheet_link_tag 'application'
+```
+
+The tasks are in `tasks/sass.rake`:
+
+- `rake sass:build` compiles the stylesheets once. A stylesheet with an error
+  fails the task.
+- `rake sass:watch` rebuilds them whenever a file in `app/stylesheets`
+  changes, and shows an error at the top of the page. `Procfile.dev` gets a
+  `css: bundle exec rake sass:watch` process for it.
+- `rake assets:precompile` runs `sass:build`, so deploys that precompile
+  assets build the CSS too.
+
+Stylesheets aren't compiled on request, so build them before you deploy.
+Dart Sass writes expanded CSS without source maps, and warns about syntax it
+will remove, such as `@import` (use `@use` instead).
+
+A project whose stylesheets use Ruby Sass (the `sass` gem) keeps it. To
+switch it to Dart Sass, run `padrino g component -c sass` (or `-c scss`),
+which lists what the project still has of Ruby Sass: remove `gem 'sass'` from
+the Gemfile and `register SassInitializer` (or `ScssInitializer`) from
+`app/app.rb`, delete `config/initializers/sass.rb` (or `scss.rb`), then run
+`bundle install` and `bundle exec rake sass:build`. In a project that uses
+tailwind, it lists in the same way what to move, remove or change.

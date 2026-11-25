@@ -175,7 +175,6 @@ following routes:
 # app/app.rb
 module BlogTutorial
   class App < Padrino::Application
-    register ScssInitializer
     register Padrino::Mailer
     register Padrino::Helpers
 
@@ -708,10 +707,12 @@ This layout creates a basic structure for the blog and requires the necessary
 stylesheets and javascript files for controlling the behavior and presentation
 of our site.
 
-Next, we adjust some styling for our blog in the `/public/stylesheets/application.css`:
+Next, we adjust some styling for our blog. The project uses SCSS, so the styles
+go in `app/stylesheets/application.scss`:
 
 
-```css
+```scss
+// app/stylesheets/application.scss
 .hero-body {
   background-image: url(https://farm3.staticflickr.com/2840/33942486610_e0c80a7999_o_d.jpg);
   background-position: center;
@@ -739,6 +740,21 @@ h3.has-text-centered {
   margin-top: -200px;
 }
 ```
+
+Dart Sass compiles each file in `app/stylesheets` to `public/stylesheets` when
+you run its rake task, not as pages are requested. Build the stylesheet once:
+
+
+```shell
+$ bundle exec rake sass:build
+```
+
+
+This writes `public/stylesheets/application.css`, the `application` stylesheet
+the layout links. To rebuild it whenever you change a file in `app/stylesheets`,
+keep `bundle exec rake sass:watch` running in a second terminal, or run
+`Procfile.dev` with a process manager such as foreman, which starts the server
+and the watcher together. Build the stylesheets again before you deploy.
 
 And to have a proper mobile burger navigation we need JavaScript in `public/javascripts/application.js`:
 
