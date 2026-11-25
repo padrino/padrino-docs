@@ -17,8 +17,8 @@ $ padrino g project demo -t minitest -m mocha
 
 The [project generator](/guides/generators/projects/) lists every test and mock
 component. The generated project has a test helper and a rake task: RSpec uses
-`spec/spec_helper.rb`; minitest, test-unit, shoulda and bacon use
-`test/test_config.rb`; cucumber uses `features/support/env.rb` plus RSpec's
+`spec/spec_helper.rb`; minitest and test-unit use `test/test_config.rb`;
+cucumber uses `features/support/env.rb` plus RSpec's
 `spec/spec_helper.rb`. The controller, model and helper generators add a test
 file for what they create.
 
@@ -26,7 +26,7 @@ Run the suite, or a single file:
 
 ```shell
 $ bundle exec rake spec    # RSpec
-$ bundle exec rake test    # minitest, test-unit, shoulda and bacon
+$ bundle exec rake test    # minitest and test-unit
 $ bundle exec rspec spec/app/controllers/posts_controller_spec.rb
 $ bundle exec ruby -Itest test/app/controllers/posts_controller_test.rb
 ```
@@ -156,5 +156,5 @@ end
 ```
 
 Both remove the stub when the test ends. The generator sets mocha up for RSpec,
-minitest, test-unit and shoulda; with bacon or cucumber it only adds the gem and
-prints how to set it up.
+minitest and test-unit; with cucumber it only adds the gem and prints how to set
+it up.
